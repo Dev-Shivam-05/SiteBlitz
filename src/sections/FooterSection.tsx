@@ -1,11 +1,11 @@
 import {
-  Facebook,
-  Instagram,
-  Linkedin,
+  Globe,
+  Link,
+  AtSign,
+  Play,
   MapPin,
   MessageCircle,
   Phone,
-  Youtube,
 } from "lucide-react";
 
 interface FooterSectionProps {
@@ -36,28 +36,28 @@ export function FooterSection({ onScrollTo }: FooterSectionProps) {
                 className="w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5" />
+                <Link className="w-5 h-5" />
               </a>
               <a
                 href="https://www.facebook.com/siteblitz"
                 className="w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 aria-label="Facebook"
               >
-                <Facebook className="w-5 h-5" />
+                <Globe className="w-5 h-5" />
               </a>
               <a
                 href="https://twitter.com/siteblitz"
                 className="w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5" />
+                <AtSign className="w-5 h-5" />
               </a>
               <a
                 href="https://www.youtube.com"
                 className="w-10 h-10 rounded-full bg-white border border-border flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
                 aria-label="YouTube"
               >
-                <Youtube className="w-5 h-5" />
+                <Play className="w-5 h-5" />
               </a>
             </div>
           </div>

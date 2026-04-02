@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Prioritize canonical production host
+Host: https://siteblitz.in
+Sitemap: https://siteblitz.in/sitemap.xml
+
+# Keep low-value utility paths out of crawl budget
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /tmp/

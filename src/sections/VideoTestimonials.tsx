@@ -16,8 +16,9 @@ const videoTestimonials: VideoTestimonial[] = [
 
 export function VideoTestimonials() {
   return (
-    <section className="py-24 md:py-32">
-      <div className="container max-w-7xl mx-auto px-4 md:px-6">
+    <section className="">
+    {/* // <section className="py-24 md:py-32"> */}
+      {/* <div className="container max-w-7xl mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-[clamp(2rem,6vw,3.5rem)] font-display font-bold">Don't Trust Us. Trust Them.</h2>
         </div>
@@ -47,7 +48,7 @@ export function VideoTestimonials() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }
