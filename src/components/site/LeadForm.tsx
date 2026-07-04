@@ -48,6 +48,7 @@ export function LeadForm() {
   const next = (s: Step) => {
     setStep(s);
     window.sbTrack?.("lead_form_step", { step: s });
+    if (s === 1) window.sbTrack?.("form_start", {});
   };
 
   const submit = async () => {

@@ -2,12 +2,20 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Users, Inbox, Activity, LogOut, ExternalLink } from "lucide-react";
+import {
+  LayoutDashboard, Users, Inbox, Activity, LogOut, ExternalLink,
+  Radio, Filter, Megaphone, FileText, PieChart,
+} from "lucide-react";
 
 const NAV = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
+  { href: "/admin/live", label: "Live", icon: Radio },
   { href: "/admin/visitors", label: "Visitors", icon: Users },
   { href: "/admin/leads", label: "Leads", icon: Inbox },
+  { href: "/admin/funnel", label: "Funnel", icon: Filter },
+  { href: "/admin/pages", label: "Pages", icon: FileText },
+  { href: "/admin/campaigns", label: "Campaigns", icon: Megaphone },
+  { href: "/admin/audience", label: "Audience", icon: PieChart },
   { href: "/admin/events", label: "Activity", icon: Activity },
 ];
 

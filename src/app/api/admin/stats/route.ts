@@ -12,6 +12,7 @@ export async function GET(req: NextRequest) {
 
   const days = Math.min(Math.max(Number(req.nextUrl.searchParams.get("days")) || 7, 1), 90);
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  const prevSince = new Date(Date.now() - 2 * days * 24 * 60 * 60 * 1000);
   const liveSince = new Date(Date.now() - 5 * 60 * 1000);
   const humanMatch = { isBot: { $ne: true }, lastSeen: { $gte: since } };
 
@@ -144,6 +145,20 @@ export async function GET(req: NextRequest) {
       Lead.find().sort({ createdAt: -1 }).limit(5).lean(),
     ]);
 
+    // Previous equal-length window, for trend deltas on the KPI cards
+    const prev = await Session.aggregate([
+      { $match: { isBot: { $ne: true }, lastSeen: { $gte: prevSince, $lt: since } } },
+      {
+        $group: {
+          _id: null,
+          sessions: { $sum: 1 },
+          visitors: { $addToSet: "$visitorId" },
+          pageviews: { $sum: "$pageviewCount" },
+        },
+      },
+      { $project: { sessions: 1, visitors: { $size: "$visitors" }, pageviews: 1 } },
+    ]);
+
     return NextResponse.json({
       ok: true,
       days,
@@ -154,6 +169,7 @@ export async function GET(req: NextRequest) {
         avgDuration: 0,
         bounceRate: 0,
       },
+      prevTotals: prev[0] || { sessions: 0, visitors: 0, pageviews: 0 },
       liveNow,
       series: series.map((s) => ({ date: s._id, views: s.views, sessions: s.sessions })),
       topPages: topPages.map((p) => ({

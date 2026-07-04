@@ -11,6 +11,7 @@ import { useApi, fmtDuration, flagEmoji, fmtDate } from "@/components/admin/useA
 interface Stats {
   ok: boolean;
   totals: { sessions: number; visitors: number; pageviews: number; avgDuration: number; bounceRate: number };
+  prevTotals: { sessions: number; visitors: number; pageviews: number };
   liveNow: number;
   series: { date: string; views: number; sessions: number }[];
   topPages: { path: string; views: number; avgDuration: number; avgScroll: number }[];
@@ -30,11 +31,27 @@ const RANGES = [
   { label: "90d", days: 90 },
 ];
 
-function Kpi({ label, value, hint }: { label: string; value: string; hint?: string }) {
+function Kpi({ label, value, hint, prev, curr }: { label: string; value: string; hint?: string; prev?: number; curr?: number }) {
+  let delta: number | null = null;
+  if (prev !== undefined && curr !== undefined && prev > 0) {
+    delta = Math.round(((curr - prev) / prev) * 100);
+  }
   return (
     <Card>
       <p className="text-xs uppercase tracking-widest text-faint">{label}</p>
-      <p className="font-display mt-2 text-3xl font-bold tabular-nums">{value}</p>
+      <div className="mt-2 flex items-baseline gap-2">
+        <p className="font-display text-3xl font-bold tabular-nums">{value}</p>
+        {delta !== null && (
+          <span
+            className={`text-xs font-semibold tabular-nums ${
+              delta > 0 ? "text-volt" : delta < 0 ? "text-red-300" : "text-faint"
+            }`}
+            title="vs previous period"
+          >
+            {delta > 0 ? "▲" : delta < 0 ? "▼" : "•"} {Math.abs(delta)}%
+          </span>
+        )}
+      </div>
       {hint && <p className="mt-1 text-xs text-muted">{hint}</p>}
     </Card>
   );
@@ -107,9 +124,9 @@ export default function AdminDashboard() {
       {s && (
         <>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-            <Kpi label="Unique visitors" value={String(s.totals.visitors)} />
-            <Kpi label="Sessions" value={String(s.totals.sessions)} />
-            <Kpi label="Pageviews" value={String(s.totals.pageviews)} />
+            <Kpi label="Unique visitors" value={String(s.totals.visitors)} prev={s.prevTotals?.visitors} curr={s.totals.visitors} />
+            <Kpi label="Sessions" value={String(s.totals.sessions)} prev={s.prevTotals?.sessions} curr={s.totals.sessions} />
+            <Kpi label="Pageviews" value={String(s.totals.pageviews)} prev={s.prevTotals?.pageviews} curr={s.totals.pageviews} />
             <Kpi label="Avg. session" value={fmtDuration(s.totals.avgDuration)} />
             <Kpi label="Bounce rate" value={`${Math.round(s.totals.bounceRate)}%`} />
           </div>
@@ -189,9 +206,14 @@ export default function AdminDashboard() {
             <Card>
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold">Lead pipeline</h3>
-                <Link href="/admin/leads" className="text-xs text-volt hover:underline">
-                  Manage →
-                </Link>
+                <div className="flex items-center gap-3">
+                  <a href="/api/admin/export?type=leads&days=90" className="text-xs text-muted hover:text-ink">
+                    ⤓ CSV
+                  </a>
+                  <Link href="/admin/leads" className="text-xs text-volt hover:underline">
+                    Manage →
+                  </Link>
+                </div>
               </div>
               <div className="mt-4 grid grid-cols-5 gap-2 text-center">
                 {(["new", "contacted", "qualified", "won", "lost"] as const).map((st) => (

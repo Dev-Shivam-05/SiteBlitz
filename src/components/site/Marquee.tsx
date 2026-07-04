@@ -13,6 +13,9 @@ export function Marquee({
   return (
     <div className={`marquee-mask overflow-hidden ${className}`} aria-hidden>
       <div
+        data-marquee-inner
+        data-duration={slow ? "46" : "26"}
+        {...(reverse ? { "data-reverse": "" } : {})}
         className={`flex w-max whitespace-nowrap ${slow ? "animate-marquee-slow" : "animate-marquee"}`}
         style={reverse ? { animationDirection: "reverse" } : undefined}
       >

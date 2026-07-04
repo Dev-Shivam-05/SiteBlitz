@@ -47,17 +47,37 @@ export function Tracker() {
       send({ type: "event", name, meta, path: window.location.pathname });
 
     const onClick = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement)?.closest?.("[data-track]");
-      if (el) {
-        const name = el.getAttribute("data-track");
+      const target = e.target as HTMLElement;
+      const tagged = target?.closest?.("[data-track]");
+      if (tagged) {
+        const name = tagged.getAttribute("data-track");
         if (name) {
           send({
             type: "event",
             name,
             path: window.location.pathname,
-            meta: { text: (el.textContent || "").trim().slice(0, 80) },
+            meta: { text: (tagged.textContent || "").trim().slice(0, 80) },
           });
+          return;
         }
+      }
+      // Untagged interactions: capture every link/button click so the admin
+      // activity feed shows the complete picture.
+      const generic = target?.closest?.("a, button") as HTMLElement | null;
+      if (generic) {
+        const href = generic.getAttribute("href") || undefined;
+        send({
+          type: "event",
+          name: "click",
+          path: window.location.pathname,
+          meta: {
+            text: (generic.textContent || generic.getAttribute("aria-label") || "")
+              .trim()
+              .slice(0, 80),
+            tag: generic.tagName.toLowerCase(),
+            ...(href ? { href: href.slice(0, 200) } : {}),
+          },
+        });
       }
     };
     document.addEventListener("click", onClick, { capture: true });

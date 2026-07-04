@@ -3,7 +3,7 @@ import { Shell } from "@/components/site/Shell";
 import { Hero } from "@/components/site/sections/Hero";
 import { Stats } from "@/components/site/sections/Stats";
 import { Services } from "@/components/site/sections/Services";
-import { Work } from "@/components/site/sections/Work";
+import { WorkGallery } from "@/components/site/sections/WorkGallery";
 import { Process } from "@/components/site/sections/Process";
 import { Manifesto } from "@/components/site/sections/Manifesto";
 import { Testimonials } from "@/components/site/sections/Testimonials";
@@ -47,7 +47,7 @@ export default function HomePage() {
       <Hero />
       <Stats />
       <Services />
-      <Work />
+      <WorkGallery />
       <Process />
       <Manifesto />
       <Testimonials />

@@ -10,7 +10,9 @@ export function Aurora({ className = "" }: { className?: string }) {
     const canvas = ref.current!;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduced =
+      !window.location.search.includes("motion=force") &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let w = 0, h = 0, raf = 0, t = 0;
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);

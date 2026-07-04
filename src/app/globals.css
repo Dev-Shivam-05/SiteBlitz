@@ -154,6 +154,66 @@ body {
 /* ---- admin ---- */
 .admin-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
 
+/* ---- tilt cards: cursor spotlight ---- */
+.tilt-card {
+  position: relative;
+  will-change: transform;
+}
+.tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    320px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(204, 255, 0, 0.08),
+    transparent 65%
+  );
+}
+.tilt-card:hover::after { opacity: 1; }
+
+/* ---- hero scroll cue ---- */
+@keyframes cue-drop {
+  0% { transform: translateY(-100%); }
+  55% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+.scroll-cue::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 100%;
+  background: var(--color-volt);
+  animation: cue-drop 1.8s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+/* ---- horizontal work gallery ---- */
+.hcard {
+  width: min(72vw, 640px);
+}
+@media (min-width: 1024px) {
+  .hcard { width: 44vw; }
+}
+
+/* ---- big link hover: fill sweep ---- */
+.sweep-link {
+  position: relative;
+}
+.sweep-link .sweep-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(204, 255, 0, 0.14), transparent);
+  transform: translateX(-110%);
+  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+.sweep-link:hover .sweep-fill {
+  transform: translateX(110%);
+}
+
 /* ---- preloader curtain ---- */
 .preloader-exit {
   transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);

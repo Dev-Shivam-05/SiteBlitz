@@ -26,17 +26,23 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line">
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
-        <div className="reveal">
-          <p className="font-accent text-lg italic text-muted">Have something to build?</p>
+        <div>
+          <p className="font-accent text-lg italic text-muted" data-anim="fade-up">
+            Have something to build?
+          </p>
           <Link
             href="/contact"
             data-track="footer_cta"
-            className="font-display group mt-2 block text-[13vw] font-bold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl"
+            data-cursor-label="Say hi"
+            className="font-display sweep-link group mt-2 block overflow-hidden text-[13vw] font-bold leading-[0.95] tracking-tight md:text-8xl lg:text-9xl"
           >
-            Let&apos;s <span className="text-volt transition-colors group-hover:text-ink">blitz</span> it.
-            <span className="ml-4 inline-block transition-transform duration-300 group-hover:translate-x-4">
-              →
+            <span data-anim="chars" data-stagger="0.03" className="block">
+              Let&apos;s <span className="text-volt transition-colors group-hover:text-ink">blitz</span> it.
+              <span className="ml-4 inline-block transition-transform duration-300 group-hover:translate-x-4">
+                →
+              </span>
             </span>
+            <span className="sweep-fill" />
           </Link>
         </div>
 

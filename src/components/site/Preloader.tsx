@@ -1,75 +1,119 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 
-/** Cinematic entrance: brand counter 0→100, then curtain lift.
- *  Shows once per browser session; skipped for reduced-motion users. */
+/** Cinematic entrance: brand chars slam in, counter charges, dual curtains split.
+ *  Runs once per browser session; skipped for reduced-motion users. */
 export function Preloader() {
-  const [state, setState] = useState<"idle" | "counting" | "exiting" | "done">("idle");
-  const [count, setCount] = useState(0);
+  const [mounted, setMounted] = useState<boolean | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const countRef = useRef<HTMLSpanElement>(null);
+  const barRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const force = window.location.search.includes("motion=force");
     if (
-      sessionStorage.getItem("sb_seen") ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      (!force && sessionStorage.getItem("sb_seen")) ||
+      (!force && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
     ) {
-      setState("done");
+      setMounted(false);
       return;
     }
     sessionStorage.setItem("sb_seen", "1");
-    setState("counting");
-    document.documentElement.style.overflow = "hidden";
-
-    const start = performance.now();
-    const DURATION = 1500;
-    let raf = 0;
-    const tick = (t: number) => {
-      const p = Math.min((t - start) / DURATION, 1);
-      // ease-out expo for a "charging up" feel
-      const eased = 1 - Math.pow(2, -10 * p);
-      setCount(Math.round(eased * 100));
-      if (p < 1) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        setState("exiting");
-        setTimeout(() => {
-          setState("done");
-          document.documentElement.style.overflow = "";
-        }, 950);
-      }
-    };
-    raf = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(raf);
-      document.documentElement.style.overflow = "";
-    };
+    setMounted(true);
   }, []);
 
-  if (state === "done" || state === "idle") return null;
+  useEffect(() => {
+    if (!mounted || !rootRef.current) return;
+    document.documentElement.style.overflow = "hidden";
+    const root = rootRef.current;
+    const counter = { v: 0 };
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        onComplete: () => {
+          document.documentElement.style.overflow = "";
+          root.style.display = "none";
+        },
+      });
+
+      tl.from("[data-pre-char]", {
+        yPercent: 120,
+        rotate: 6,
+        duration: 0.7,
+        ease: "power4.out",
+        stagger: 0.045,
+      })
+        .to(
+          counter,
+          {
+            v: 100,
+            duration: 1.4,
+            ease: "expo.inOut",
+            onUpdate: () => {
+              if (countRef.current)
+                countRef.current.textContent = String(Math.round(counter.v));
+              if (barRef.current)
+                barRef.current.style.width = `${counter.v}%`;
+            },
+          },
+          "-=0.3"
+        )
+        .to("[data-pre-fade]", { opacity: 0, y: -18, duration: 0.35, ease: "power2.in" })
+        .to("[data-pre-panel-top]", {
+          yPercent: -101,
+          duration: 0.9,
+          ease: "power4.inOut",
+        }, "split")
+        .to("[data-pre-panel-bottom]", {
+          yPercent: 101,
+          duration: 0.9,
+          ease: "power4.inOut",
+        }, "split+=0.06");
+    }, root);
+
+    return () => {
+      ctx.revert();
+      document.documentElement.style.overflow = "";
+    };
+  }, [mounted]);
+
+  if (!mounted) return null;
+
+  const brand = "SITEBLITZ";
 
   return (
-    <div
-      aria-hidden
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-void ${
-        state === "exiting" ? "preloader-exit" : ""
-      }`}
-    >
-      <div className="flex items-baseline gap-3">
-        <span className="font-display text-2xl font-bold tracking-tight text-ink">
-          SITE<span className="text-volt">BLITZ</span>
-        </span>
+    <div ref={rootRef} aria-hidden className="fixed inset-0 z-[100]">
+      <div data-pre-panel-top className="absolute inset-x-0 top-0 h-1/2 bg-void">
+        <div className="absolute inset-x-0 bottom-0 flex translate-y-1/2 flex-col items-center">
+          <div data-pre-fade className="flex overflow-hidden">
+            {brand.split("").map((c, i) => (
+              <span
+                key={i}
+                data-pre-char
+                className={`font-display inline-block text-5xl font-bold tracking-tight md:text-7xl ${
+                  i >= 4 ? "text-volt" : "text-ink"
+                }`}
+              >
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className="mt-8 h-px w-56 overflow-hidden bg-line">
-        <div
-          className="h-full bg-volt transition-[width] duration-100 ease-out"
-          style={{ width: `${count}%` }}
-        />
+      <div data-pre-panel-bottom className="absolute inset-x-0 bottom-0 h-1/2 bg-void">
+        <div data-pre-fade className="absolute inset-x-0 top-0 flex -translate-y-0 flex-col items-center pt-16">
+          <div className="h-px w-64 overflow-hidden bg-line md:w-96">
+            <div ref={barRef} className="h-full bg-volt" style={{ width: "0%" }} />
+          </div>
+          <p className="mt-5 font-display text-sm font-bold tabular-nums text-muted">
+            <span ref={countRef}>0</span>
+            <span className="text-volt">%</span>
+            <span className="font-accent ml-3 text-base italic text-faint">charging the blitz</span>
+          </p>
+        </div>
       </div>
-      <div className="mt-4 font-display text-6xl font-bold tabular-nums text-ink/90">
-        {count}
-        <span className="text-volt">%</span>
-      </div>
-      <p className="font-accent mt-3 text-lg italic text-muted">charging the blitz…</p>
     </div>
   );
 }

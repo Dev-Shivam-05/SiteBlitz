@@ -40,7 +40,9 @@ export default function WorkPage() {
                 alt={`${w.title} — website designed and built by SiteBlitz`}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
+                className="scale-110 object-cover"
+                data-anim="parallax"
+                data-speed="-0.08"
               />
             </div>
             <div>
