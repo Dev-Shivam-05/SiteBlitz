@@ -1,0 +1,67 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+
+export function useApi<T>(url: string, pollMs = 0) {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const urlRef = useRef(url);
+  urlRef.current = url;
+
+  const load = useCallback(async (silent = false) => {
+    if (!silent) setLoading(true);
+    try {
+      const res = await fetch(urlRef.current, { cache: "no-store" });
+      const json = await res.json();
+      if (!res.ok || json.ok === false) {
+        setError(json.error || `HTTP ${res.status}`);
+        setData(json);
+      } else {
+        setError(null);
+        setData(json);
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "network_error");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    load();
+  }, [load, url]);
+
+  useEffect(() => {
+    if (!pollMs) return;
+    const id = setInterval(() => load(true), pollMs);
+    return () => clearInterval(id);
+  }, [pollMs, load]);
+
+  return { data, loading, error, reload: load };
+}
+
+export function fmtDuration(sec: number): string {
+  if (!sec || sec < 1) return "0s";
+  const m = Math.floor(sec / 60);
+  const s = Math.round(sec % 60);
+  return m ? `${m}m ${s}s` : `${s}s`;
+}
+
+export function fmtDate(d: string | Date): string {
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata",
+  }).format(new Date(d));
+}
+
+export function flagEmoji(code?: string): string {
+  if (!code || code.length !== 2) return "🌐";
+  return String.fromCodePoint(
+    ...code.toUpperCase().split("").map((c) => 127397 + c.charCodeAt(0))
+  );
+}

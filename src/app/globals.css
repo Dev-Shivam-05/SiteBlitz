@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #0a0a0c;
+  --color-surface: #121216;
+  --color-raised: #1a1a20;
+  --color-ink: #f5f5f0;
+  --color-muted: #9b9ba3;
+  --color-faint: #55555e;
+  --color-volt: #ccff00;
+  --color-volt-dim: #a3cc00;
+  --color-violet: #7c5cff;
+  --color-line: rgba(245, 245, 240, 0.08);
+
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-body: var(--font-grotesk), system-ui, sans-serif;
+  --font-accent: var(--font-instrument), Georgia, serif;
+
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-marquee-slow: marquee 46s linear infinite;
+  --animate-spin-slow: spin 14s linear infinite;
+  --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-void);
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-volt);
+  color: var(--color-void);
+}
+
+/* ---- scrollbar ---- */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb {
+  background: #2a2a32;
+  border-radius: 8px;
+  border: 2px solid var(--color-void);
+}
+::-webkit-scrollbar-thumb:hover { background: #3a3a44; }
+
+/* ---- typography helpers ---- */
+.font-display { font-family: var(--font-display); }
+.font-accent { font-family: var(--font-accent); }
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 245, 240, 0.25);
+}
+
+.text-balance { text-wrap: balance; }
+
+/* ---- grain overlay ---- */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 8s steps(10) infinite;
+}
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -8%); }
+  30% { transform: translate(3%, -12%); }
+  50% { transform: translate(9%, 6%); }
+  70% { transform: translate(-7%, 9%); }
+  90% { transform: translate(5%, 3%); }
+}
+
+/* ---- reveal-on-scroll (pure CSS fallback; JS enhances) ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- custom cursor: hide native on fine pointers when active ---- */
+@media (pointer: fine) {
+  body.cursor-active,
+  body.cursor-active a,
+  body.cursor-active button {
+    cursor: none;
+  }
+}
+
+/* ---- marquee ---- */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* ---- volt glow button ---- */
+.btn-volt {
+  position: relative;
+  background: var(--color-volt);
+  color: var(--color-void);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+.btn-volt:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(204, 255, 0, 0.4), 0 8px 40px -8px rgba(204, 255, 0, 0.5);
+}
+
+.btn-ghost {
+  border: 1px solid var(--color-line);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-ghost:hover {
+  border-color: rgba(245, 245, 240, 0.3);
+  background: rgba(245, 245, 240, 0.04);
+  transform: translateY(-2px);
+}
+
+/* ---- card hover sheen ---- */
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, background 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(204, 255, 0, 0.25);
+}
+
+/* ---- admin ---- */
+.admin-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
+
+/* ---- preloader curtain ---- */
+.preloader-exit {
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .grain::before { animation: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
