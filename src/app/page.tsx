@@ -10,6 +10,7 @@ import { Testimonials } from "@/components/site/sections/Testimonials";
 import { Pricing } from "@/components/site/sections/Pricing";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { CTA } from "@/components/site/sections/CTA";
+import { BigMarquee } from "@/components/site/BigMarquee";
 import { FAQS, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -44,16 +45,30 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
-      <Hero />
-      <Stats />
-      <Services />
-      <WorkGallery />
-      <Process />
-      <Manifesto />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
+      <div data-chapter="intro">
+        <Hero />
+        <Stats />
+      </div>
+      <div data-chapter="services" data-bgshift="#0D0D13">
+        <Services />
+      </div>
+      <div data-chapter="work">
+        <BigMarquee words={["SELECTED WORK", "CASE STUDIES"]} />
+        <WorkGallery />
+      </div>
+      <div data-chapter="process" data-bgshift="#0C0E09">
+        <Process />
+        <Manifesto />
+      </div>
+      <div data-chapter="pricing" data-bgshift="#100D14">
+        <Testimonials />
+        <Pricing />
+      </div>
+      <div data-chapter="contact">
+        <FAQ />
+        <BigMarquee words={["LET'S BLITZ IT", "START TODAY"]} />
+        <CTA />
+      </div>
     </Shell>
   );
 }

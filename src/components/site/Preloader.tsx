@@ -10,6 +10,7 @@ export function Preloader() {
   const rootRef = useRef<HTMLDivElement>(null);
   const countRef = useRef<HTMLSpanElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const phraseRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const force = window.location.search.includes("motion=force");
@@ -56,6 +57,12 @@ export function Preloader() {
                 countRef.current.textContent = String(Math.round(counter.v));
               if (barRef.current)
                 barRef.current.style.width = `${counter.v}%`;
+              if (phraseRef.current) {
+                const phrases = ["warming shaders", "splitting letters", "charging the blitz"];
+                const next = phrases[Math.min(Math.floor(counter.v / 34), 2)];
+                if (phraseRef.current.textContent !== next)
+                  phraseRef.current.textContent = next;
+              }
             },
           },
           "-=0.3"
@@ -110,7 +117,7 @@ export function Preloader() {
           <p className="mt-5 font-display text-sm font-bold tabular-nums text-muted">
             <span ref={countRef}>0</span>
             <span className="text-volt">%</span>
-            <span className="font-accent ml-3 text-base italic text-faint">charging the blitz</span>
+            <span ref={phraseRef} className="font-accent ml-3 text-base italic text-faint">warming shaders</span>
           </p>
         </div>
       </div>

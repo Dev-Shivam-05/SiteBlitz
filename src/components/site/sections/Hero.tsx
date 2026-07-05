@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Aurora } from "@/components/site/Aurora";
+import { WebGLHero } from "@/components/site/WebGLHero";
 import { Marquee } from "@/components/site/Marquee";
 import { Magnetic } from "@/components/site/Magnetic";
 import { SITE } from "@/lib/site";
@@ -15,8 +15,13 @@ const MARQUEE_ITEMS = [
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
-      <Aurora className="absolute inset-0 h-full w-full" />
+    <section data-hero-pin className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
+      <WebGLHero className="absolute inset-0 h-full w-full" />
+      <div className="noise-layer absolute inset-0 opacity-40" aria-hidden />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-void/60 via-void/15 to-transparent"
+        aria-hidden
+      />
 
       {/* status badge */}
       <div className="absolute left-5 top-24 md:left-8 md:top-32">
@@ -47,7 +52,7 @@ export function Hero() {
         </svg>
       </div>
 
-      <div className="relative mx-auto w-full max-w-7xl px-5 pb-10 md:px-8">
+      <div data-hero-content className="relative mx-auto w-full max-w-7xl px-5 pb-10 md:px-8">
         <h1 className="font-display font-bold leading-[0.92] tracking-tight">
           <span
             className="block text-[13.5vw] md:text-[7.5rem] lg:text-[9rem]"

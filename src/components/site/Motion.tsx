@@ -148,7 +148,27 @@ function useAnimEngine(pathname: string) {
         }
       }
 
-      /* Horizontal work gallery (desktop only; matchMedia re-evaluates on resize) */
+      /* Hero: content zooms away and dims as you leave it (cinema hand-off) */
+      const heroPin = document.querySelector<HTMLElement>("[data-hero-pin]");
+      const heroContent = document.querySelector<HTMLElement>("[data-hero-content]");
+      if (heroPin && heroContent) {
+        gsap.to(heroContent, {
+          scale: 0.92,
+          yPercent: -6,
+          opacity: 0.15,
+          ease: "none",
+          transformOrigin: "center bottom",
+          scrollTrigger: {
+            trigger: heroPin,
+            start: "bottom bottom",
+            end: "bottom 25%",
+            scrub: 0.4,
+          },
+        });
+      }
+
+      /* Horizontal work gallery (desktop only; matchMedia re-evaluates on resize)
+         + velocity skew so cards lean into fast scrolls */
       const hwrap = document.querySelector<HTMLElement>("[data-hscroll]");
       const htrack = document.querySelector<HTMLElement>("[data-hscroll-track]");
       if (hwrap && htrack) {
@@ -156,6 +176,7 @@ function useAnimEngine(pathname: string) {
         mm.add("(min-width: 1024px)", () => {
           const getDist = () => Math.max(htrack.scrollWidth - window.innerWidth, 0);
           if (getDist() <= 0) return;
+          const skewSet = gsap.quickTo(htrack, "skewX", { duration: 0.35, ease: "power2.out" });
           gsap.to(htrack, {
             x: () => -getDist(),
             ease: "none",
@@ -166,8 +187,65 @@ function useAnimEngine(pathname: string) {
               pin: true,
               scrub: 0.7,
               invalidateOnRefresh: true,
+              onUpdate: (self) => {
+                skewSet(gsap.utils.clamp(-6, 6, self.getVelocity() / -350));
+              },
             },
           });
+        });
+      }
+
+      /* Sticky card stack: each card pins, then compresses + dims under the next */
+      const stacks = gsap.utils.toArray<HTMLElement>("[data-stack]");
+      for (const stack of stacks) {
+        const cards = Array.from(stack.querySelectorAll<HTMLElement>("[data-stack-item]"));
+        cards.forEach((card, i) => {
+          if (i === cards.length - 1) return;
+          const nextCard = cards[i + 1];
+          gsap.to(card, {
+            scale: 0.9,
+            opacity: 0.35,
+            filter: "blur(3px)",
+            ease: "none",
+            transformOrigin: "center top",
+            scrollTrigger: {
+              trigger: nextCard,
+              start: "top bottom",
+              end: "top 12%",
+              scrub: 0.4,
+            },
+          });
+        });
+      }
+
+      /* Section background morph: main canvas tints as chapters change */
+      const shifts = gsap.utils.toArray<HTMLElement>("[data-bgshift]");
+      const mainEl = document.querySelector<HTMLElement>("main");
+      if (mainEl && shifts.length) {
+        for (const s of shifts) {
+          const color = s.dataset.bgshift || "#0B0B0E";
+          ScrollTrigger.create({
+            trigger: s,
+            start: "top 55%",
+            end: "bottom 45%",
+            onToggle: (self) => {
+              if (self.isActive) {
+                gsap.to(mainEl, { backgroundColor: color, duration: 0.8, ease: "power2.out", overwrite: "auto" });
+              }
+            },
+          });
+        }
+        ScrollTrigger.create({
+          start: 0,
+          end: "max",
+          onUpdate: () => {
+            if (!shifts.some((s) => {
+              const r = s.getBoundingClientRect();
+              return r.top < innerHeight * 0.55 && r.bottom > innerHeight * 0.45;
+            })) {
+              gsap.to(mainEl, { backgroundColor: "#0B0B0E", duration: 0.8, ease: "power2.out", overwrite: "auto" });
+            }
+          },
         });
       }
 

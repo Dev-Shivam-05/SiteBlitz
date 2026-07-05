@@ -4,6 +4,7 @@ import { Cursor } from "@/components/site/Cursor";
 import { RevealInit } from "@/components/site/Reveal";
 import { Preloader } from "@/components/site/Preloader";
 import { MotionProvider } from "@/components/site/Motion";
+import { ScrollHUD } from "@/components/site/ScrollHUD";
 
 /** Public-site chrome: smooth scroll + anim engine, nav, footer, cursor, entrance. */
 export function Shell({
@@ -18,6 +19,7 @@ export function Shell({
       {entrance && <Preloader />}
       <MotionProvider />
       <Cursor />
+      <ScrollHUD />
       <RevealInit />
       <Navbar />
       <main>{children}</main>
