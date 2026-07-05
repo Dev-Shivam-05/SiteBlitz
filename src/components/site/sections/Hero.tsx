@@ -23,8 +23,8 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* status badge */}
-      <div className="absolute left-5 top-24 md:left-8 md:top-32">
+      {/* status badge: in-flow on mobile (above heading), floating on desktop */}
+      <div className="relative z-10 order-first mx-auto w-full max-w-7xl px-5 pt-24 md:absolute md:left-8 md:top-32 md:order-none md:w-auto md:max-w-none md:px-0 md:pt-0">
         <div
           className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-4 py-2 backdrop-blur"
           data-anim="fade-up"
@@ -52,10 +52,10 @@ export function Hero() {
         </svg>
       </div>
 
-      <div data-hero-content className="relative mx-auto w-full max-w-7xl px-5 pb-10 md:px-8">
+      <div data-hero-content className="relative mx-auto mt-4 w-full max-w-7xl px-5 pb-10 md:mt-0 md:px-8">
         <h1 className="font-display font-bold leading-[0.92] tracking-tight">
           <span
-            className="block text-[13.5vw] md:text-[7.5rem] lg:text-[9rem]"
+            className="block text-[12vw] md:text-[7.5rem] lg:text-[9rem]"
             data-anim="chars"
             data-now
             data-delay="0.15"
@@ -64,7 +64,7 @@ export function Hero() {
             WEBSITES
           </span>
           <span
-            className="block text-[13.5vw] text-outline md:text-[7.5rem] lg:text-[9rem]"
+            className="block text-[12vw] text-outline md:text-[7.5rem] lg:text-[9rem]"
             data-anim="chars"
             data-now
             data-delay="0.3"
@@ -73,7 +73,7 @@ export function Hero() {
             THAT WIN
           </span>
           <span
-            className="block text-[13.5vw] md:text-[7.5rem] lg:text-[9rem]"
+            className="block text-[12vw] md:text-[7.5rem] lg:text-[9rem]"
             data-anim="chars"
             data-now
             data-delay="0.45"
