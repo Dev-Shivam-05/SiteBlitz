@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, Users, Inbox, Activity, LogOut, ExternalLink,
-  Radio, Filter, Megaphone, FileText, PieChart,
+  Radio, Filter, Megaphone, FileText, PieChart, Gauge,
 } from "lucide-react";
 
 const NAV = [
@@ -12,6 +12,7 @@ const NAV = [
   { href: "/admin/live", label: "Live", icon: Radio },
   { href: "/admin/visitors", label: "Visitors", icon: Users },
   { href: "/admin/leads", label: "Leads", icon: Inbox },
+  { href: "/admin/grader", label: "Grader", icon: Gauge },
   { href: "/admin/funnel", label: "Funnel", icon: Filter },
   { href: "/admin/pages", label: "Pages", icon: FileText },
   { href: "/admin/campaigns", label: "Campaigns", icon: Megaphone },

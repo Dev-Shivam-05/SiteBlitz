@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 
 /** Cinematic entrance: brand chars slam in, counter charges, dual curtains split.
  *  Runs once per browser session; skipped for reduced-motion users. */
@@ -14,14 +13,22 @@ export function Preloader() {
 
   useEffect(() => {
     const force = window.location.search.includes("motion=force");
+    let seen = false;
+    try {
+      seen = Boolean(sessionStorage.getItem("sb_seen"));
+      sessionStorage.setItem("sb_seen", "1");
+    } catch {
+      // storage blocked (private mode/policies) — treat as already seen so
+      // the entrance can never trap the visitor
+      seen = true;
+    }
     if (
-      (!force && sessionStorage.getItem("sb_seen")) ||
+      (!force && seen) ||
       (!force && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
     ) {
       setMounted(false);
       return;
     }
-    sessionStorage.setItem("sb_seen", "1");
     setMounted(true);
   }, []);
 
@@ -30,6 +37,27 @@ export function Preloader() {
     document.documentElement.style.overflow = "hidden";
     const root = rootRef.current;
     const counter = { v: 0 };
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
+
+    // If the gsap chunk fails to load (flaky network, blocked CDN), the
+    // full-screen preloader must never trap the page — dismiss it hard.
+    const bail = () => {
+      document.documentElement.style.overflow = "";
+      if (rootRef.current) rootRef.current.style.display = "none";
+    };
+    const failSafe = setTimeout(bail, 6000);
+
+    // gsap loads from its own chunk — the preloader shell paints instantly
+    // and the choreography starts the moment the library lands (~1 frame).
+    import("gsap").catch(() => {
+      bail();
+      return null;
+    }).then((mod) => {
+      if (!mod) return;
+      const gsap = mod.default;
+      clearTimeout(failSafe);
+      if (cancelled || !rootRef.current) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -80,8 +108,13 @@ export function Preloader() {
         }, "split+=0.06");
     }, root);
 
+      cleanup = () => ctx.revert();
+    });
+
     return () => {
-      ctx.revert();
+      cancelled = true;
+      clearTimeout(failSafe);
+      cleanup?.();
       document.documentElement.style.overflow = "";
     };
   }, [mounted]);

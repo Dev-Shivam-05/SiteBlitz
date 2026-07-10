@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { isLowPowerDevice } from "@/components/site/Deferred";
 
 /** Custom GLSL energy field: domain-warped noise in brand colors that bends
  *  toward the cursor and pulses on click. Raw WebGL — no three.js payload. */
@@ -92,7 +93,16 @@ export function WebGLHero({ className = "" }: { className?: string }) {
     const force = window.location.search.includes("motion=force");
     const reduced =
       !force && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Perf gate: no GPU work on phones or low-power devices — the CSS
+    // gradient fallback simply stays. QA override: ?motion=force.
+    if (!force && (window.matchMedia("(max-width: 767px)").matches || isLowPowerDevice())) {
+      return;
+    }
 
+    let disposed = false;
+    let teardown: (() => void) | undefined;
+    const boot = () => {
+    if (disposed) return;
     const gl = canvas.getContext("webgl", {
       antialias: false,
       alpha: false,
@@ -191,13 +201,28 @@ export function WebGLHero({ className = "" }: { className?: string }) {
       raf = requestAnimationFrame(frame);
     }
 
-    return () => {
+    teardown = () => {
       cancelAnimationFrame(raf);
       io.disconnect();
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerdown", onClick);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
+    };
+    };
+
+    // Shader compile + first draw happen after the browser goes idle,
+    // never in the critical path to first paint.
+    const idleId =
+      "requestIdleCallback" in window
+        ? window.requestIdleCallback(boot, { timeout: 2500 })
+        : (setTimeout(boot, 400) as unknown as number);
+
+    return () => {
+      disposed = true;
+      if ("cancelIdleCallback" in window) window.cancelIdleCallback(idleId);
+      else clearTimeout(idleId);
+      teardown?.();
     };
   }, []);
 

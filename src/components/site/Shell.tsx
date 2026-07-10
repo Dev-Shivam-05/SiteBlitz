@@ -1,12 +1,11 @@
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
-import { Cursor } from "@/components/site/Cursor";
 import { RevealInit } from "@/components/site/Reveal";
 import { Preloader } from "@/components/site/Preloader";
-import { MotionProvider } from "@/components/site/Motion";
-import { ScrollHUD } from "@/components/site/ScrollHUD";
+import { ExperienceLayer } from "@/components/site/ExperienceLayer";
 
-/** Public-site chrome: smooth scroll + anim engine, nav, footer, cursor, entrance. */
+/** Public-site chrome. The animation stack mounts idle-deferred via
+ *  ExperienceLayer so it never blocks first paint or interactivity. */
 export function Shell({
   children,
   entrance = false,
@@ -17,9 +16,7 @@ export function Shell({
   return (
     <>
       {entrance && <Preloader />}
-      <MotionProvider />
-      <Cursor />
-      <ScrollHUD />
+      <ExperienceLayer />
       <RevealInit />
       <Navbar />
       <main>{children}</main>

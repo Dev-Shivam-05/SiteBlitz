@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
 import { Pricing } from "@/components/site/sections/Pricing";
+import { ScopeCalculator } from "@/components/site/ScopeCalculator";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { CTA } from "@/components/site/sections/CTA";
 
@@ -23,6 +24,7 @@ export default function PricingPage() {
         </h1>
       </section>
       <Pricing compact={false} />
+      <ScopeCalculator />
       <FAQ />
       <CTA />
     </Shell>

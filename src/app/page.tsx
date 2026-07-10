@@ -11,6 +11,7 @@ import { Pricing } from "@/components/site/sections/Pricing";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { CTA } from "@/components/site/sections/CTA";
 import { BigMarquee } from "@/components/site/BigMarquee";
+import { ProofStrip } from "@/components/site/ProofStrip";
 import { FAQS, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -47,6 +48,7 @@ export default function HomePage() {
       />
       <div data-chapter="intro">
         <Hero />
+        <ProofStrip />
         <Stats />
       </div>
       <div data-chapter="services" data-bgshift="#0D0D13">

@@ -1,0 +1,132 @@
+{
+  "slug": "what-a-small-business-website-must-have-2026",
+  "title": "What a Small Business Website Must Have in 2026",
+  "description": "The six non-negotiables for an Indian SMB website in 2026: mobile-first design, a WhatsApp path, local SEO, speed, one clear action, and analytics.",
+  "cluster": "smb-india",
+  "readingMinutes": 5,
+  "date": "2026-07-10",
+  "author": "Shivam Bhadoriya",
+  "authorRole": "Founder, SiteBlitz",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Your next customer finds you at 11 pm, on a mid-range Android phone, over patchy 4G. They'll give your website a few seconds of patience, and those seconds decide whether they message you or the shop two lanes over. We build websites for Indian small businesses every week at SiteBlitz, and the same six things separate sites that generate enquiries from sites that just exist. Treat it as a checklist: if your site misses any, fix that before you spend a rupee on ads."
+    },
+    {
+      "type": "h2",
+      "text": "Mobile-first is not a preference, it's the whole game"
+    },
+    {
+      "type": "p",
+      "text": "In India, mobile is not a segment of your traffic. It is your traffic. Yet most SMB sites are still designed on a laptop, approved on a laptop, and only ever tested on a laptop. Then the owner wonders why nobody fills the form. Design for the ₹15,000 Android on a moving train, not the MacBook in your office."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Buttons big enough for thumbs, placed in the bottom half of the screen where thumbs actually live.",
+        "Phone numbers that tap-to-call. An address that opens Google Maps in one tap. Nobody copies and pastes.",
+        "Forms short enough to finish while standing. Name, phone, one question. Every extra field costs you enquiries.",
+        "No hover-dependent menus, no pinch-zooming, no popups that cover the whole screen.",
+        "Test on a real budget Android over mobile data, not just your browser's responsive mode."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "A WhatsApp path within two taps of every page"
+    },
+    {
+      "type": "p",
+      "text": "Contact forms have their place. But in India, the actual conversation happens on WhatsApp. It's where your customer already lives, it keeps a record, and it feels like a conversation, not a support ticket. A floating WhatsApp button with a pre-filled message will quietly outwork a five-field contact form. This is why WhatsApp integration ships with every SiteBlitz build, on every plan."
+    },
+    {
+      "type": "quote",
+      "text": "If a customer can't start a WhatsApp chat within two taps of landing on your site, your website is a brochure, not a salesperson."
+    },
+    {
+      "type": "p",
+      "text": "Two details most sites get wrong. First, pre-fill the message with context — \"Hi, I'd like to book a table this Saturday\" beats a blank chat window, because it removes the awkward what-do-I-type moment. Second, route chats to a number someone actually answers — a WhatsApp button that leads to silence is worse than no button."
+    },
+    {
+      "type": "h2",
+      "text": "Local SEO basics beat clever tricks"
+    },
+    {
+      "type": "p",
+      "text": "The searches that matter to a small business almost always carry a place name: \"dentist in Aundh\", \"CA near Andheri station\", \"tiles shop Navsari\". You don't need a content team to win these. You need the fundamentals done properly, once, and kept consistent."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A claimed Google Business Profile with the same name, address and phone number as your website, to the letter.",
+        "Your city and area in page titles and headings — written naturally, not stuffed.",
+        "LocalBusiness structured data so Google understands what you do and where, not just what your page says.",
+        "A dedicated page for each core service instead of one page that vaguely mentions everything.",
+        "Server-rendered pages, so search engines read your content without executing a pile of JavaScript first."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "This is unglamorous work, and it compounds. When we rebuilt Meadow Health Clinic's site in Pune, there was no growth hack involved — just the fundamentals above, executed cleanly. The clinic now sits on the first page of Google for 8 local keywords."
+    },
+    {
+      "type": "h2",
+      "text": "Speed decides whether anything else matters"
+    },
+    {
+      "type": "p",
+      "text": "Noir Atelier, a fashion label we work with, arrived with a site that took 11 seconds to load on mobile. Eleven. Their catalogue was beautiful and almost nobody waited to see it. After the rebuild, catalogue enquiries lifted 38%. Same brand, same products, same photos — the only thing that changed was that people could actually reach them."
+    },
+    {
+      "type": "p",
+      "text": "Speed is a business decision wearing a technical costume. What to demand from whoever builds your site: server-rendered pages, properly compressed images, no bloated page-builder themes dragging twenty plugins behind them, and a Lighthouse score of 90 or above. Don't accept claims — check them. We publish our own live Core Web Vitals at /proof, because a slow website from a web studio tells you everything you need to know."
+    },
+    {
+      "type": "h2",
+      "text": "One page, one job"
+    },
+    {
+      "type": "p",
+      "text": "The most common mistake we see in redesign audits isn't ugly design. It's a homepage asking for five things at once — call us, follow us, read our blog, download our brochure, fill this form. When everything is a priority, the visitor picks the easiest option: leaving. Every page should have exactly one primary action, repeated clearly, with everything else demoted to the footer."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Restaurant homepage → book a table. Nothing competes with that button.",
+        "Service page → start a WhatsApp chat about that specific service.",
+        "Lawyer or doctor profile page → request a consultation.",
+        "Product or catalogue page → enquire about this item, pre-filled."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "This focus shows up in results. Spice Route Kitchen's site funnels everything toward one action — booking a table — and bookings went up 2.4× in 60 days. Verma & Associates points every practice-area page at a single consultation request, and requests tripled in a quarter. Neither site is flashy. Both are ruthless about what they ask visitors to do."
+    },
+    {
+      "type": "h2",
+      "text": "Analytics you'll actually open"
+    },
+    {
+      "type": "p",
+      "text": "If you can't see how many people visited, where they came from, and where they gave up, you're not running a website — you're running a superstition. Most SMB owners install Google Analytics because someone said to, then never log in again — it's built for analysts, drowning in menus. The fix isn't more data. It's less: visitors, sources, and a funnel, on one screen you'll check with your morning chai."
+    },
+    {
+      "type": "p",
+      "text": "This is why every SiteBlitz build ships with a first-party analytics dashboard instead of a third-party tracking script. You should be able to answer \"did Instagram or Google send me more enquiries this month?\" in ten seconds, without a tutorial. None of this requires a big budget: our Launch plan — a one-page site with all six of these built in, live in 48 hours — is ₹7,999. The checklist above is not the premium tier. It's the floor."
+    }
+  ],
+  "keyTakeaways": [
+    "Design for a budget Android on patchy 4G: thumb-friendly buttons, tap-to-call numbers, and short forms are the baseline, not a bonus.",
+    "Put a pre-filled WhatsApp chat within two taps of every page, and give each page exactly one primary action.",
+    "Local SEO fundamentals — Google Business Profile, structured data, city keywords, fast server-rendered pages — outperform clever tricks, and they compound."
+  ],
+  "faq": [
+    {
+      "q": "How much does a small business website cost in India in 2026?",
+      "a": "Less than most owners expect. SiteBlitz's Launch plan is ₹7,999 ($99) for a one-page site live in 48 hours, including SEO, WhatsApp integration and an analytics dashboard. Growth is ₹14,999 for up to 5 pages, and Scale is ₹24,999 for up to 10 pages with e-commerce or booking."
+    },
+    {
+      "q": "I already get enquiries from Google Business Profile and Instagram. Do I still need a website?",
+      "a": "Yes — those are rented land with rules you don't control. Your website is the one channel you own: it ranks for local searches, holds your proof and pricing, and turns lookers into WhatsApp conversations. It works with your profile and social pages, not instead of them."
+    }
+  ]
+}

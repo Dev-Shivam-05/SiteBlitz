@@ -2,6 +2,7 @@ import Link from "next/link";
 import { WebGLHero } from "@/components/site/WebGLHero";
 import { Marquee } from "@/components/site/Marquee";
 import { Magnetic } from "@/components/site/Magnetic";
+import { LiveBadge } from "@/components/site/ProofStrip";
 import { SITE } from "@/lib/site";
 
 const MARQUEE_ITEMS = [
@@ -23,19 +24,15 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* status badge: in-flow on mobile (above heading), floating on desktop */}
-      <div className="relative z-10 order-first mx-auto w-full max-w-7xl px-5 pt-24 md:absolute md:left-8 md:top-32 md:order-none md:w-auto md:max-w-none md:px-0 md:pt-0">
-        <div
-          className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-4 py-2 backdrop-blur"
-          data-anim="fade-up"
-          data-now
-          data-delay="1.1"
-        >
-          <span className="h-2 w-2 animate-pulse-soft rounded-full bg-volt" />
-          <span className="text-xs tracking-wide text-muted">
-            Taking new projects · replies within hours
-          </span>
-        </div>
+      {/* status badge: in-flow on mobile (above heading), floating on desktop.
+          Upgrades to the honest capacity counter when set in the admin panel. */}
+      <div
+        className="relative z-10 order-first mx-auto w-full max-w-7xl px-5 pt-24 md:absolute md:left-8 md:top-32 md:order-none md:w-auto md:max-w-none md:px-0 md:pt-0"
+        data-anim="fade-up"
+        data-now
+        data-delay="1.1"
+      >
+        <LiveBadge />
       </div>
 
       {/* rotating orbit text */}

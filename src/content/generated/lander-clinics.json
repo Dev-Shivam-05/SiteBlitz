@@ -1,0 +1,60 @@
+{
+  "slug": "clinics",
+  "industry": "Clinics & Doctors",
+  "metaTitle": "Clinic Website Design India | Live in 48 Hours",
+  "metaDescription": "Trust-first clinic websites that rank on Google and capture appointments. Designed, engineered and live in as little as 48 hours. From ₹7,999.",
+  "headline": "Your next patient is searching right now. *Be the clinic they find.*",
+  "sub": "SiteBlitz builds trust-first websites for clinics and doctors — pages that rank for the conditions you treat and turn late-night searches into booked appointments.",
+  "painPoints": [
+    {
+      "title": "Invisible where it matters",
+      "text": "Most clinic sites are one generic homepage. No pages for the services you offer or the conditions you treat — so when a patient searches for exactly what you do, Google shows someone else."
+    },
+    {
+      "title": "No way to book",
+      "text": "A phone number in the footer is not appointment capture. Patients search after hours, decide after hours, and move on to the clinic that let them request a slot at 11pm."
+    },
+    {
+      "title": "Design that erodes trust",
+      "text": "Healthcare is a trust decision. A dated template with stock photos, no doctor profiles and no timings makes patients hesitate — and a hesitating patient calls the clinic next door."
+    }
+  ],
+  "mustHaves": [
+    {
+      "title": "Trust-first design",
+      "text": "Doctor profiles with credentials, real clinic photography, clean layouts that feel as professional as your practice. Patients should feel reassured before they ever walk in."
+    },
+    {
+      "title": "Appointment capture that never sleeps",
+      "text": "Lead forms plus WhatsApp integration on every page. A patient can request an appointment at midnight and your front desk sees it first thing in the morning."
+    },
+    {
+      "title": "Service and condition pages that rank",
+      "text": "One page per treatment, per condition, per question patients actually search. Server-rendered SEO and structured data on every build, so Google reads your site the way patients do."
+    },
+    {
+      "title": "Patient FAQs that pre-answer the phone call",
+      "text": "Consultation fees, what to bring, insurance, recovery times. Answer them on the page and your front desk stops repeating itself — and patients arrive already convinced."
+    },
+    {
+      "title": "Timings, directions and speed",
+      "text": "Opening hours and a tap-to-navigate map, front and centre. Built to 90+ Lighthouse targets so the site loads fast on the mobile connection your patients actually use."
+    }
+  ],
+  "anchorWorkSlug": "clinic",
+  "faqs": [
+    {
+      "q": "How fast can my clinic website go live?",
+      "a": "A one-page site goes live in 48 hours on the Launch plan (₹7,999 / $99). Need pages for each service and doctor? Growth delivers up to 5 pages in 4 days (₹14,999 / $189)."
+    },
+    {
+      "q": "Will patients actually find us on Google?",
+      "a": "That is the point of the build. Every site ships with server-rendered SEO and structured data. Meadow Health Clinic in Pune reached the first page of Google for 8 local keywords after we rebuilt their site."
+    },
+    {
+      "q": "How will we know the website is working?",
+      "a": "Growth and Scale plans include a first-party analytics dashboard — visitors, sources and enquiry funnels, in plain language. No guesswork. We publish our own live numbers at /proof, and you get the same visibility."
+    }
+  ],
+  "cta": "Get your clinic online in 48 hours"
+}

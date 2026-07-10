@@ -10,6 +10,11 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
+  env: {
+    // Baked at build time — powers the "deployed X ago" proof metric.
+    NEXT_PUBLIC_BUILD_TIME: new Date().toISOString(),
+    NEXT_PUBLIC_COMMIT: (process.env.VERCEL_GIT_COMMIT_SHA || "").slice(0, 7),
+  },
   // The TS checker OOMs on this dependency set (mongoose/recharts typings on TS 5.9);
   // compilation itself is clean. Type safety is still enforced in the editor.
   typescript: { ignoreBuildErrors: true },

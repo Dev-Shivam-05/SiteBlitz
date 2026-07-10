@@ -82,6 +82,35 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* the pledge — our answer to an industry of "1%" counters */}
+      <section className="border-y border-line bg-surface/40">
+        <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-24">
+          <p className="text-xs uppercase tracking-[0.25em] text-volt" data-anim="fade-up">
+            The no-fake-numbers pledge
+          </p>
+          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+            Every claim on this site is <span className="font-accent italic text-volt">checkable</span>
+          </h2>
+          <div className="mt-8 space-y-4 text-[15px] leading-relaxed text-muted" data-anim="fade-up">
+            <p>
+              Agency websites are full of counters that animate to invented numbers, five-star
+              badges that link nowhere, and &ldquo;testimonials&rdquo; from people who don&rsquo;t
+              exist. We&rsquo;ve studied them closely — it&rsquo;s why this site works differently.
+            </p>
+            <ul className="space-y-3">
+              <li className="flex gap-3"><span className="text-volt">✦</span><span>Our traffic, our real-user speed scores and our deploy history are published live at <a href="/proof" className="text-volt underline-offset-4 hover:underline">/proof</a> — measured by the same analytics engine we ship to clients.</span></li>
+              <li className="flex gap-3"><span className="text-volt">✦</span><span>If the hero says &ldquo;2 slots left this week&rdquo;, it&rsquo;s because we set that number in our own admin panel that morning — it is never generated to pressure you.</span></li>
+              <li className="flex gap-3"><span className="text-volt">✦</span><span>No testimonial ships without a name and a way to verify it. Until we have yours, you&rsquo;ll see showcase builds labelled as exactly that.</span></li>
+              <li className="flex gap-3"><span className="text-volt">✦</span><span>We will never promise you &ldquo;#1 on Google&rdquo;. Nobody can. What we promise — speed, indexing, structure, measurement — we can show you working.</span></li>
+            </ul>
+            <p className="font-accent text-lg italic text-ink">
+              If you ever catch a number on this site that can&rsquo;t be verified, tell us and
+              we&rsquo;ll remove it the same day.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <Manifesto />
       <CTA />
     </Shell>

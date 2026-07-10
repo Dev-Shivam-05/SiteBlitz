@@ -1,0 +1,132 @@
+{
+  "slug": "why-website-speed-decides-revenue",
+  "title": "Why Website Speed Decides Revenue (and How to Check Yours)",
+  "description": "LCP, CLS and INP in plain language, why mobile India punishes slow sites, what makes pages slow, and how to test your own site free in minutes.",
+  "cluster": "speed-conversion",
+  "readingMinutes": 5,
+  "date": "2026-07-10",
+  "author": "Shivam Bhadoriya",
+  "authorRole": "Founder, SiteBlitz",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Your website's speed is not a score. It is a queue. Every extra second a page takes to load is a customer standing outside a shut door, deciding whether to wait or walk to the shop next door. Before we rebuilt Noir Atelier's site, their old one took 11 seconds to load on mobile. After the rebuild, catalogue enquiries lifted 38%. Same brand. Same products. Same photography. The only thing that changed was the wait."
+    },
+    {
+      "type": "h2",
+      "text": "Speed is a business metric, not a vanity score"
+    },
+    {
+      "type": "p",
+      "text": "Lighthouse scores live in developer conversations, and that is exactly the problem. Business owners hear \"68 out of 100\" and file it next to trivia. But your customers never see the score — they experience the wait. Speed belongs in the same mental column as rent, staffing and stock: a lever that directly moves revenue."
+    },
+    {
+      "type": "p",
+      "text": "Here is what makes slow sites uniquely dangerous: nobody complains. A rude waiter gets a review. A broken checkout gets an angry email. A slow page gets nothing — the visitor closes the tab and buys elsewhere, and your dashboard records a bounce, if you have a dashboard at all."
+    },
+    {
+      "type": "quote",
+      "text": "A slow website never earns a complaint. It earns silence. The customer who left at second four doesn't email you about it — they call your competitor."
+    },
+    {
+      "type": "h2",
+      "text": "LCP, CLS and INP, in plain language"
+    },
+    {
+      "type": "p",
+      "text": "Google measures three things on real visitors to your site. They are called Core Web Vitals, and behind the jargon each one is a feeling you already know."
+    },
+    {
+      "type": "list",
+      "items": [
+        "LCP — Largest Contentful Paint. How long until the main thing on the page (your hero image, your headline) is actually visible. The bar: under 2.5 seconds. The feeling: \"has this thing even loaded?\"",
+        "CLS — Cumulative Layout Shift. How much the page jumps around while it loads. The bar: under 0.1. The feeling: you tap \"Book now\", the layout shifts, and you've tapped a banner instead.",
+        "INP — Interaction to Next Paint. How quickly the page reacts when someone taps or types. The bar: under 200 milliseconds. The feeling: pressing a lift button and wondering whether it registered."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "These are not lab simulations. Google collects them from real Chrome users browsing your actual site, and folds them into how it ranks you. But rankings are the smaller prize. The bigger one is that these three numbers describe exactly what your customer feels in the first five seconds — the seconds in which they decide whether you look like a real business."
+    },
+    {
+      "type": "h2",
+      "text": "Mobile India is the toughest room your site will play"
+    },
+    {
+      "type": "p",
+      "text": "Most sites are built and approved on office WiFi and a flagship phone or laptop. Most customers arrive on a mid-range Android over 4G that behaves like 3G in a lift, a basement café or a crowded train. That gap is where revenue quietly leaks."
+    },
+    {
+      "type": "p",
+      "text": "It is why Noir Atelier's 11-second mobile load went unnoticed for so long — on the founder's laptop, on fast broadband, the site felt fine. Your site is almost always faster for you than for your customers, because you are the best-case scenario: warm cache, strong signal, expensive hardware. Judge your site by the worst realistic case instead, because that is how most of your customers will actually reach you."
+    },
+    {
+      "type": "h2",
+      "text": "What actually makes sites slow"
+    },
+    {
+      "type": "p",
+      "text": "In audits, the culprits are boringly consistent. Four show up again and again:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Page builders and bloated themes. Drag-and-drop builders ship the entire toolbox with every page — sliders you never used, three font families you never picked, styling for widgets that aren't even on the page. Convenient to build, expensive to load.",
+        "Oversized images. A 4 MB camera-roll photo squeezed into a 400-pixel card still downloads all 4 MB. Multiply by ten images on a patchy 4G connection, and there is your 11-second page.",
+        "Third-party scripts. The chat widget, two analytics tools, a tag manager, an embedded video player. Each one is a guest that gets served before your customer does.",
+        "Client-heavy rendering on cheap hosting. If the browser must download a pile of JavaScript before it can draw anything, your visitor stares at a blank screen precisely when they are deciding whether to trust you."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The fixes are unglamorous: right-sized images in modern formats, only the scripts you truly need, and HTML rendered on the server so the page arrives ready to read. Every SiteBlitz build ships server-rendered with 90+ Lighthouse targets for exactly this reason — not for the badge, for the queue."
+    },
+    {
+      "type": "h2",
+      "text": "Check your own site, free, in five minutes"
+    },
+    {
+      "type": "p",
+      "text": "You do not need to hire anyone to find out where you stand today. Three checks, all free:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "PageSpeed Insights (pagespeed.web.dev). Paste your URL. Read the mobile tab first, not desktop. If your site has enough traffic, the top section shows real-user Core Web Vitals — that is the verdict that matters.",
+        "Your own phone, WiFi off. Open your site over mobile data, ideally on an older device, ideally somewhere with mediocre signal. Count the seconds honestly.",
+        "Chrome DevTools. Press F12, open the Network tab, switch on throttling, and reload. It is a rough simulation, but it will humble most homepages."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "What you are looking for: an LCP over 2.5 seconds on mobile, a layout that visibly jumps, or a failing real-user assessment. Any of those means you are paying for visitors your site is turning away."
+    },
+    {
+      "type": "h2",
+      "text": "Proof beats promises"
+    },
+    {
+      "type": "p",
+      "text": "Speed claims are easy to make and rarely checked, which is why we decided ours should be checkable. SiteBlitz publishes its own live analytics and real-user Core Web Vitals at /proof — the same measurements Google uses, from real visitors, on the same site you are reading now. If we tell clients that speed decides revenue, our site should stand in the same queue."
+    },
+    {
+      "type": "p",
+      "text": "One caveat we will volunteer: speed alone is not magic. When Spice Route Kitchen's table bookings grew 2.4× in 60 days, it was fast pages plus a clear booking flow. Speed does not close the sale. It just makes sure the customer is still there when your offer does."
+    }
+  ],
+  "keyTakeaways": [
+    "Speed is a revenue filter, not a vanity score. Slow pages silently remove your most impatient — often most ready-to-buy — visitors, and nobody tells you it happened.",
+    "Three numbers describe what customers feel: LCP under 2.5 seconds, CLS under 0.1, INP under 200 milliseconds — measured on real users, mobile first.",
+    "You can audit your own site free in five minutes: PageSpeed Insights on the mobile tab, plus your own phone on mobile data with WiFi off."
+  ],
+  "faq": [
+    {
+      "q": "What is a good load time for a business website in India?",
+      "a": "Aim for an LCP under 2.5 seconds on mobile — Google's bar for real users. On mid-range phones over 4G, hitting it takes server-rendered pages, properly sized images and minimal scripts. Every SiteBlitz plan, including Launch at ₹7,999, is built to 90+ Lighthouse targets."
+    },
+    {
+      "q": "How do I check if my current site is slow?",
+      "a": "Paste your URL into PageSpeed Insights and read the mobile tab, then open your site on a phone over mobile data with WiFi off. If the main content takes more than about 2.5 seconds to appear, or the layout jumps while loading, you are losing visitors before they ever see your offer."
+    }
+  ]
+}

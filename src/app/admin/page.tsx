@@ -6,6 +6,7 @@ import {
   AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
 } from "recharts";
 import { AdminShell, PageHeader, Card, DbNotice } from "@/components/admin/AdminShell";
+import { CapacityControl } from "@/components/admin/CapacityControl";
 import { useApi, fmtDuration, flagEmoji, fmtDate } from "@/components/admin/useApi";
 
 interface Stats {
@@ -118,6 +119,7 @@ export default function AdminDashboard() {
       />
 
       <DbNotice error={error} />
+      <CapacityControl />
 
       {loading && !s && <p className="text-sm text-faint">Loading…</p>}
 

@@ -1,0 +1,60 @@
+{
+  "slug": "boutiques",
+  "industry": "Fashion & Boutiques",
+  "metaTitle": "Boutique Website Design India | Live in 48 Hours",
+  "metaDescription": "Editorial-grade boutique websites that load fast, turn Instagram followers into buyers, and capture enquiries. Designed and live in as little as 48 hours.",
+  "headline": "A website that looks like a *lookbook* — and loads like lightning.",
+  "sub": "Most fashion sites make you choose: beautiful or fast. We refuse the trade-off. Editorial visuals, catalogue-ready pages, and an Instagram-to-enquiry funnel that actually converts.",
+  "painPoints": [
+    {
+      "title": "Gorgeous, but glacial",
+      "text": "Full-bleed imagery gets dumped onto templates never built for it. The result: pages that crawl on mobile, where nearly all your shoppers are. Noir Atelier's old site took 11 seconds to load on mobile. Nobody waits that long for a hemline."
+    },
+    {
+      "title": "Instagram is the shop, the site is an afterthought",
+      "text": "Your feed does the selling, then the link in bio lands on a generic homepage with no path to the piece someone just fell for. The scroll ends, the interest dies, and the enquiry never happens."
+    },
+    {
+      "title": "No way to actually buy or ask",
+      "text": "A contact form buried three taps deep is not a sales channel. Without a proper catalogue, enquiry flow, or checkout, your website is a brochure — and brochures don't ring the till."
+    }
+  ],
+  "mustHaves": [
+    {
+      "title": "Editorial visuals that stay fast",
+      "text": "Full-screen imagery, modern image formats, and lazy loading tuned so pages feel instant. Every SiteBlitz build targets 90+ Lighthouse scores — beauty and speed, no compromise."
+    },
+    {
+      "title": "A catalogue built like a lookbook",
+      "text": "Collections presented the way you'd style them: clean grids, generous whitespace, and product pages that let the garment breathe. Filterable, shareable, and easy to update each season."
+    },
+    {
+      "title": "An Instagram-to-site funnel",
+      "text": "Link-in-bio pages that land followers on the exact collection they saw, with a clear next step: enquire, book a fitting, or buy. Your feed builds desire; your site closes it."
+    },
+    {
+      "title": "Enquiries on WhatsApp, where your clients already are",
+      "text": "One tap from a product page to a WhatsApp conversation about size, fabric, or availability. Built-in lead capture means no interested buyer slips away unrecorded."
+    },
+    {
+      "title": "Proof you can see in your dashboard",
+      "text": "A first-party analytics dashboard shows visitors, sources, and enquiry funnels — so you know whether that reel drove traffic, and whether traffic became enquiries. Server-rendered SEO and structured data help shoppers find you on Google too."
+    }
+  ],
+  "anchorWorkSlug": "fashion",
+  "faqs": [
+    {
+      "q": "Can my site look editorial and still load fast?",
+      "a": "Yes — that's the entire point of how we build. Noir Atelier's old site loaded in 11 seconds on mobile; after the rebuild, catalogue enquiries lifted 38%. Every build targets 90+ Lighthouse scores, and we publish our own real-user Core Web Vitals at /proof, so you can check the claim before you pay."
+    },
+    {
+      "q": "Do I need full e-commerce, or is an enquiry flow enough?",
+      "a": "Depends on how you sell. Made-to-order and high-touch boutiques often convert better through WhatsApp enquiries and fittings — the Growth plan (₹14,999 / $189) covers that. If you want carts and checkout, the Scale plan (₹24,999 / $329) adds full e-commerce with up to 10 pages."
+    },
+    {
+      "q": "How fast can my boutique site go live?",
+      "a": "A one-page site on the Launch plan (₹7,999 / $99) goes live in 48 hours. A multi-page catalogue site on Growth takes 4 days; a full e-commerce build on Scale takes 7. Every plan ships with SEO, WhatsApp integration and lead capture from day one; Growth and Scale add the full analytics dashboard."
+    }
+  ],
+  "cta": "Show your collection the way it deserves — live in as little as 48 hours."
+}

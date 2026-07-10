@@ -1,0 +1,127 @@
+{
+  "slug": "google-business-profile-plus-website-local-seo",
+  "title": "Google Business Profile + Website: A Weekend Local SEO Plan",
+  "description": "How Google Business Profile and your website work together for local search in India: categories, reviews, NAP, linking — all doable in one weekend.",
+  "cluster": "smb-india",
+  "readingMinutes": 6,
+  "date": "2026-07-10",
+  "author": "Shivam Bhadoriya",
+  "authorRole": "Founder, SiteBlitz",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Search for 'dentist near me' anywhere in India and watch what Google does. First, a map with three businesses. Then the regular results underneath. Two contests, two scoreboards. Your Google Business Profile competes on the map. Your website competes below it — and quietly feeds the map at the same time. Most small businesses treat these as separate chores, done badly on separate days. They are one machine with two visible parts. The whole thing can be wired together in a weekend, and this is the exact sequence we use."
+    },
+    {
+      "type": "h2",
+      "text": "One machine, two visible parts"
+    },
+    {
+      "type": "p",
+      "text": "Google has been clear about how local ranking works: relevance, distance, prominence. Your profile supplies the structure — category, hours, location, reviews. Your website supplies the depth — what exactly you do, for whom, at what price, with what proof. Google cross-checks the two. When your profile says 'Dental Clinic' and your website is three lines and a phone number, you lose the tiebreaker to the clinic that wrote everything down."
+    },
+    {
+      "type": "p",
+      "text": "It compounds, too. A strong profile sends searchers to a page that answers their question and captures the lead. That engagement flows back as a signal. A weak website leaks the traffic your profile earned. A weak profile starves the website of local visibility. Fix both, or you are rowing with one oar."
+    },
+    {
+      "type": "h2",
+      "text": "Saturday morning: fix the profile (90 minutes)"
+    },
+    {
+      "type": "p",
+      "text": "Open business.google.com and work through this list in order. None of it needs an agency."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Claim and verify the profile if you haven't. Everything else waits for this.",
+        "Set the primary category to the most specific match — 'Endodontist' beats 'Dentist' if that's what you are. This is the strongest ranking lever on the profile.",
+        "Add secondary categories for services you genuinely offer. Don't stuff; Google notices.",
+        "Write your business name exactly as it appears on your signboard. No 'Sharma Dental — Best Dentist in Andheri'. Keyword-stuffed names get suspended.",
+        "Fill in hours, including lunch breaks and festival holidays. Wrong hours are the fastest route to an angry one-star review.",
+        "List services with short descriptions, and prices where you can. Indian customers compare on price; showing yours filters out mismatched enquiries.",
+        "Upload at least ten real photos: the entrance, the interior, the team, the work. Skip stock images — people can tell.",
+        "Seed the Q&A section with the three questions customers actually ask you on the phone."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Ninety minutes, and most of that is typing things you already know."
+    },
+    {
+      "type": "h2",
+      "text": "Saturday afternoon: reviews, without the shortcuts"
+    },
+    {
+      "type": "p",
+      "text": "Reviews are the loudest prominence signal you control. Get your review link from the profile dashboard, shorten it, and build the ask into the delivery moment — when the customer is happiest, not three weeks later. For most Indian businesses that means a WhatsApp message right after the job is done: a thank-you, one line, the link. That's it."
+    },
+    {
+      "type": "quote",
+      "text": "A review you reply to is marketing. A review you ignore is a complaint on a billboard."
+    },
+    {
+      "type": "p",
+      "text": "Reply to every review — the good ones in a line, the bad ones with a fix and a phone number. Reply in the language the customer wrote in. And never buy reviews. Google's filters catch the patterns, the penalty is suspension, and a suspended profile in a competitive city means weeks of appeals. No shortcut is worth that."
+    },
+    {
+      "type": "h2",
+      "text": "Sunday morning: wire the website in"
+    },
+    {
+      "type": "p",
+      "text": "Now connect the two systems so Google can cross-verify them."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Point the profile's website link at the most relevant page. A clinic's profile should link to the page with services and booking, not a homepage about your 'vision'.",
+        "Put your name, address, and phone number in the website footer as real text, not an image. Match the profile character for character — 'Rd' versus 'Road' inconsistencies genuinely muddy the signal.",
+        "Add LocalBusiness structured data (schema.org) with the same name, address, phone, hours, and geo coordinates. This is machine-readable proof that profile and website describe the same business.",
+        "Embed the Google map of your listing on the contact page.",
+        "Write one honest paragraph about the areas you serve — the neighbourhoods and landmarks customers actually name. Not a keyword wall; a paragraph a human would read.",
+        "Tag the profile's website link with UTM parameters so your analytics shows how many visits and leads the profile actually sends. What gets measured gets defended."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "If your site is server-rendered and fast, all of this lands harder. Google reads it without fuss, and the visitor who taps through from the map isn't left staring at a blank screen while the page paints."
+    },
+    {
+      "type": "h2",
+      "text": "Sunday evening: set the weekly rhythm"
+    },
+    {
+      "type": "p",
+      "text": "Local SEO isn't a one-time setup; it's a small habit. Post an update on the profile once a week — an offer, a new arrival, a before-and-after. Add fresh photos monthly. Check the Q&A for new questions. Ten minutes a week, ideally the same slot every week so the habit survives busy season. Businesses that go quiet on their profile look closed. Businesses that post look alive. Google notices both, and so do customers."
+    },
+    {
+      "type": "h2",
+      "text": "What this looks like when it works"
+    },
+    {
+      "type": "p",
+      "text": "When we rebuilt Meadow Health Clinic's website in Pune and lined it up with their profile — matching NAP, structured data, service pages that actually answered patient questions — the clinic reached the first page of Google for 8 local keywords. No hacks, no bought links. The same alignment work sat behind Spice Route Kitchen in Mumbai, where the rebuild delivered 2.4× more table bookings in 60 days."
+    },
+    {
+      "type": "p",
+      "text": "You can do everything above yourself this weekend — genuinely, it's free and it works. If you'd rather have the website side handled, every SiteBlitz build ships with server-rendered SEO, LocalBusiness structured data, WhatsApp integration, and a first-party analytics dashboard that shows exactly what your profile sends you. The Launch plan is ₹7,999 ($99) and goes live in as little as 48 hours, and our own numbers are public at /proof. Either way: wire the machine together. The map is waiting."
+    }
+  ],
+  "keyTakeaways": [
+    "Your Google Business Profile and your website are one system: the profile wins the map pack, the website wins the organic results — and each feeds the other.",
+    "The highest-leverage profile fixes are a specific primary category, accurate NAP and hours, real photos, and honestly earned reviews. One Saturday covers all of it.",
+    "Link the profile to your most relevant page, match your NAP in the footer as text, and add LocalBusiness structured data so Google can cross-verify both sides."
+  ],
+  "faq": [
+    {
+      "q": "Do I still need a website if my Google Business Profile gets calls already?",
+      "a": "Yes. The profile rents visibility on Google's terms — it can be suspended, edited by 'suggestions', or outranked overnight. Your website is the asset you own: it converts visitors, ranks for searches the map pack never shows, and backs up every claim your profile makes. The businesses that dominate local search run both."
+    },
+    {
+      "q": "How long before this weekend of work shows results?",
+      "a": "Profile edits — categories, hours, services — usually reflect within days. Ranking movement is slower: typically weeks to a few months depending on how competitive your category and city are. Be suspicious of anyone promising a number-one spot in a week. Consistency plus reviews plus a fast, aligned website is what moves you, and it compounds."
+    }
+  ]
+}

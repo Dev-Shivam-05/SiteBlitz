@@ -1,0 +1,92 @@
+{
+  "slug": "ecommerce-and-booking",
+  "name": "E-commerce & Booking",
+  "eyebrow": "Revenue engine",
+  "headline": "Sell, book, get paid — *while you sleep*.",
+  "promise": "A store or booking engine is not a brochure. It is a machine that turns visitors into payments, and it has to work at 2 a.m. without you. We build the whole machine in 7 days — catalogue, checkout, reservations, confirmations, analytics — and switch it on.",
+  "startingPriceINR": 24999,
+  "startingPriceUSD": 329,
+  "timeline": "7 days",
+  "included": [
+    {
+      "title": "Razorpay & Stripe, wired in",
+      "text": "UPI, cards, netbanking, wallets, international payments. Money goes straight to your account — we never touch it."
+    },
+    {
+      "title": "A catalogue built to sell",
+      "text": "Clean product pages, instant search, filters that make sense. When we rebuilt Noir Atelier's catalogue — the old site took 11 seconds to load on mobile — catalogue enquiries lifted 38%."
+    },
+    {
+      "title": "Booking that runs itself",
+      "text": "Tables, appointments, time slots — with automatic confirmations and zero double-bookings. New bookings ping you on WhatsApp the moment they land."
+    },
+    {
+      "title": "Speed as a sales tactic",
+      "text": "Server-rendered pages tuned for 90+ Lighthouse scores. A slow checkout is where carts go to die, so ours doesn't keep anyone waiting."
+    },
+    {
+      "title": "Your funnel, visible",
+      "text": "A first-party analytics dashboard shows visitors, traffic sources, and exactly where people drop off between product view and payment. No guessing, no third-party snooping."
+    },
+    {
+      "title": "Found on Google",
+      "text": "Structured data for products, prices and availability, so your listings can show rich results in search. SEO is baked into the build, not bolted on after."
+    }
+  ],
+  "process": [
+    {
+      "step": "Blueprint",
+      "time": "Day 0",
+      "text": "One call. We map your catalogue, payment flows, booking rules and edge cases — refunds, no-shows, out-of-stock — before a single pixel is drawn."
+    },
+    {
+      "step": "Build",
+      "time": "Day 1–3",
+      "text": "Design and engineering run in parallel: product pages, checkout, the booking engine, WhatsApp alerts. You see real progress, not mockups."
+    },
+    {
+      "step": "Money test",
+      "time": "Day 4–5",
+      "text": "We push real transactions through Razorpay and Stripe, hammer the booking flow for double-bookings and failures, and fix anything that flinches."
+    },
+    {
+      "step": "Launch",
+      "time": "Day 6–7",
+      "text": "DNS, SSL, analytics live. Then a walkthrough where we hand you the keys and show you how to run it yourself."
+    }
+  ],
+  "stack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Razorpay",
+    "Stripe",
+    "MongoDB",
+    "Vercel"
+  ],
+  "faqs": [
+    {
+      "q": "Razorpay or Stripe — which one do I need?",
+      "a": "Razorpay covers India best: UPI, netbanking, local cards and wallets. Stripe is the stronger pick for international customers. We wire in whichever fits your buyers — or both, and route payments accordingly."
+    },
+    {
+      "q": "Is 7 days really enough for a full store?",
+      "a": "For up to 10 pages with e-commerce or booking, yes — the Day 0 blueprint is what makes it possible. If your catalogue is unusually large or your booking rules are genuinely exotic, we tell you on that first call, not on day six."
+    },
+    {
+      "q": "What are the ongoing costs?",
+      "a": "Payment gateways charge their standard per-transaction fees, paid directly to Razorpay or Stripe — none of it comes to us. Beyond that, your only recurring costs are hosting and your domain, both of which stay in your name."
+    },
+    {
+      "q": "How do I manage products and bookings after launch?",
+      "a": "From your own dashboard — update prices, stock and time slots without calling us. New orders and bookings arrive as WhatsApp alerts, and customers get automatic confirmations. It's the same booking pattern we built for Spice Route Kitchen - 2.4× more table bookings in 60 days."
+    },
+    {
+      "q": "Will it stay fast as my catalogue grows?",
+      "a": "Yes. Pages are server-rendered and images are optimised automatically, so page 200 loads like page 1. We publish our own live Core Web Vitals at /proof — hold us to the same standard."
+    }
+  ],
+  "relatedWorkSlugs": ["fashion", "restaurant"],
+  "cta": "Tell us what you sell. We'll build the machine that sells it."
+}

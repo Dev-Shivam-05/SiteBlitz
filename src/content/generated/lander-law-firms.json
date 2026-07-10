@@ -1,0 +1,60 @@
+{
+  "slug": "law-firms",
+  "industry": "Law Firms",
+  "metaTitle": "Law Firm Website Design India | Live in 48 Hours",
+  "metaDescription": "Authoritative law firm websites with practice-area pages, discreet consultation paths and server-rendered SEO. Verma & Associates grew consultations 3x.",
+  "headline": "Your website is the first hearing. *Win it.*",
+  "sub": "SiteBlitz builds authoritative law firm websites — dedicated practice-area pages, discreet consultation paths and SEO that compounds. Designed, engineered and live in as little as 48 hours.",
+  "painPoints": [
+    {
+      "title": "Templates that whisper, not argue",
+      "text": "Most law firm sites look like they were built in 2012 and forgotten. A prospective client comparing three firms decides who looks credible in seconds — and dated design reads as dated practice."
+    },
+    {
+      "title": "No clear path to a consultation",
+      "text": "A phone number buried in the footer is not a consultation path. Someone researching a sensitive matter at 11pm needs a discreet way to reach you — a private form, WhatsApp, anything but a cold call in office hours."
+    },
+    {
+      "title": "Every practice area crammed onto one page",
+      "text": "When family law, property disputes and corporate advisory share a single paragraph, Google ranks you for none of them. And a client with one specific problem can't tell whether you solve it."
+    }
+  ],
+  "mustHaves": [
+    {
+      "title": "Authority at first glance",
+      "text": "Restrained design, clear typography, credentials and court experience front and centre. No stock gavels. The site should carry itself the way your firm does."
+    },
+    {
+      "title": "A page per practice area",
+      "text": "Each practice area gets its own server-rendered page with its own keywords and structured data. That's how a firm ranks for 'property lawyer in Delhi' instead of only its own name."
+    },
+    {
+      "title": "Discreet consultation paths",
+      "text": "Private enquiry forms, WhatsApp integration and lead capture that works after hours. First contact on a legal matter should feel confidential — because it is."
+    },
+    {
+      "title": "SEO that compounds",
+      "text": "Server-rendered pages, legal-service structured data and 90+ Lighthouse targets on every build. Search visibility is the cheapest client acquisition a firm will ever own."
+    },
+    {
+      "title": "Proof, not promises",
+      "text": "A first-party analytics dashboard shows which practice areas draw enquiries, where visitors come from and where they drop off. We publish our own live numbers at /proof — your site gets held to the same standard."
+    }
+  ],
+  "anchorWorkSlug": "law",
+  "faqs": [
+    {
+      "q": "How fast can our firm's website go live?",
+      "a": "A one-page site on the Launch plan (₹7,999 / $99) goes live in 48 hours. Most firms choose Growth (₹14,999 / $189): up to 5 pages — ideal for practice areas — delivered in 4 days, analytics dashboard included."
+    },
+    {
+      "q": "How do you handle confidentiality?",
+      "a": "Enquiry forms deliver straight to your firm, analytics stay first-party, and we never publish client names, matters or testimonials without written approval. Discretion is a design requirement, not an afterthought."
+    },
+    {
+      "q": "Have you built for law firms before?",
+      "a": "Yes. We rebuilt the website for Verma & Associates, a Delhi law firm — consultation requests went up 3× in one quarter. And like every claim we make, our own live analytics are public at /proof."
+    }
+  ],
+  "cta": "Book your build. Your next client is already searching."
+}

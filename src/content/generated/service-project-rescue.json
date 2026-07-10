@@ -1,0 +1,92 @@
+{
+  "slug": "project-rescue",
+  "name": "Project Rescue",
+  "eyebrow": "Rescue service",
+  "headline": "Half-built. Hacked. Eleven seconds to load. *We'll take it from here.*",
+  "promise": "You paid for a website and got a headache. We take over half-finished builds, vanished-agency projects and hacked or crawling WordPress sites — diagnose what's salvageable, rebuild what isn't, and hand you something fast, secure and fully yours. Noir Atelier came to us with a site that took 11 seconds to load; after the rescue, catalogue enquiries lifted 38%.",
+  "startingPriceINR": 14999,
+  "startingPriceUSD": 189,
+  "timeline": "3–5 days",
+  "included": [
+    {
+      "title": "Forensic audit",
+      "text": "We examine every file, plugin, DNS record and hosting setting before touching anything. You get a plain-English report of what's broken, what's risky and why."
+    },
+    {
+      "title": "Repair-or-rebuild verdict",
+      "text": "Sometimes a repair is the right call. Sometimes patching a bad build costs more than replacing it. We show you the maths and tell you straight."
+    },
+    {
+      "title": "Security cleanup",
+      "text": "Malware removal, compromised credentials rotated, abandoned admin accounts closed. If WordPress was the way in, we shut that door for good."
+    },
+    {
+      "title": "Speed rescue",
+      "text": "Server-rendered rebuild targeting 90+ Lighthouse scores, verified on real devices. Slow sites lose customers before the page even appears."
+    },
+    {
+      "title": "SEO salvage and redirects",
+      "text": "We map every old URL and 301-redirect it, keep what ranks, and add structured data. Your existing Google visibility is an asset — we treat it like one."
+    },
+    {
+      "title": "Full ownership handover",
+      "text": "Domain, hosting, code and analytics — all in your name, with your logins. No agency can hold your business hostage again."
+    }
+  ],
+  "process": [
+    {
+      "step": "Triage",
+      "time": "Day 0",
+      "text": "You send us whatever you have — logins, a half-dead URL, even just the domain name. We run the forensic audit and diagnose the damage within 24 hours."
+    },
+    {
+      "step": "The verdict",
+      "time": "Day 1",
+      "text": "Repair or rebuild, with a fixed quote and a fixed timeline. You approve before any work begins. No surprises, no scope creep."
+    },
+    {
+      "step": "The rescue",
+      "time": "Days 1–4",
+      "text": "We rebuild or repair on a modern server-rendered stack: SEO baked in, WhatsApp integration, lead capture and your own analytics dashboard included."
+    },
+    {
+      "step": "Handover",
+      "time": "Days 3–5",
+      "text": "Your site goes live with redirects verified, Lighthouse scores checked and every account transferred to you. We walk you through all of it on a call."
+    }
+  ],
+  "stack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Vercel edge hosting",
+    "Cloudflare DNS",
+    "301 redirect mapping",
+    "Lighthouse CI"
+  ],
+  "faqs": [
+    {
+      "q": "My old agency has my domain and hosting logins. Can you still help?",
+      "a": "Yes — this is the most common rescue we see. We work with your registrar and host to recover access, then move everything into accounts you own. From that point on, nobody can vanish with your website again."
+    },
+    {
+      "q": "How do you decide between repairing and rebuilding?",
+      "a": "The audit decides, not our preference. If a repair genuinely fixes the problem, we quote the repair. If patching would cost you more within a year than rebuilding, we show you that comparison and let you choose."
+    },
+    {
+      "q": "Will I lose my Google rankings if you rebuild?",
+      "a": "Protecting rankings is a core part of the rescue, not an afterthought. We map every existing URL, set up 301 redirects and carry over the content that earns your visibility. Rankings are an asset we salvage, same as the domain."
+    },
+    {
+      "q": "My WordPress site was hacked. Is that in scope?",
+      "a": "Completely. We clean the infection and rotate every credential — and in most cases we recommend rebuilding on a server-rendered stack with no plugin attack surface. That is usually what ends the hack-cleanup-hack cycle for good."
+    },
+    {
+      "q": "What does a rescue cost?",
+      "a": "Rescues start at ₹14,999 ($189), and the exact quote comes after the Day 0 triage. The price is fixed before work begins, so it cannot balloon mid-project. Diagnosis itself costs you nothing."
+    }
+  ],
+  "relatedWorkSlugs": ["fashion", "clinic"],
+  "cta": "Send us the wreckage. Diagnosis is free."
+}

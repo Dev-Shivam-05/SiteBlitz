@@ -23,6 +23,7 @@ interface TrackPayload {
   duration?: number;
   scrollDepth?: number;
   utm?: Record<string, string>;
+  vitals?: { lcp?: number; cls?: number; inp?: number };
 }
 
 function newId(): string {
@@ -170,10 +171,21 @@ export async function POST(req: NextRequest) {
     if (body.type === "leave" && body.path && !ua.isBot) {
       const duration = Math.min(Math.max(Number(body.duration) || 0, 0), 3600);
       const scrollDepth = Math.min(Math.max(Number(body.scrollDepth) || 0, 0), 100);
-      // Attach duration/scroll to the most recent pageview for this path
+      const v = body.vitals;
+      const vitals =
+        v && (v.lcp || v.cls !== undefined || v.inp)
+          ? {
+              ...(v.lcp ? { "vitals.lcp": Math.min(Math.round(v.lcp), 120000) } : {}),
+              ...(v.cls !== undefined
+                ? { "vitals.cls": Math.min(Math.round(v.cls * 1000), 10000) }
+                : {}),
+              ...(v.inp ? { "vitals.inp": Math.min(Math.round(v.inp), 60000) } : {}),
+            }
+          : {};
+      // Attach duration/scroll (+ real-user vitals) to the most recent pageview
       await Pageview.findOneAndUpdate(
         { sid, path: body.path },
-        { $set: { duration, scrollDepth } },
+        { $set: { duration, scrollDepth, ...vitals } },
         { sort: { ts: -1 } }
       );
       await Session.updateOne(

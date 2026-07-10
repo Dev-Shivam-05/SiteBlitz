@@ -1,0 +1,92 @@
+{
+  "slug": "landing-pages",
+  "name": "Landing Pages",
+  "eyebrow": "Core service",
+  "headline": "One page. One job. *Built to convert.*",
+  "promise": "Your ad makes a promise. The page it points to has to keep it — same message, same offer, one clear next step. We design, write and ship campaign landing pages in 48 hours, wired for measurement from the very first click.",
+  "startingPriceINR": 7999,
+  "startingPriceUSD": 99,
+  "timeline": "48 hours",
+  "included": [
+    {
+      "title": "Message-matched hero",
+      "text": "The headline your visitor sees mirrors the ad they clicked. No cognitive gap, no second-guessing — the scent trail from Google or Meta stays unbroken."
+    },
+    {
+      "title": "One CTA, ruthlessly enforced",
+      "text": "A single conversion goal, repeated at every scroll depth. No navigation menus, no footer link farms, no exits that leak paid traffic."
+    },
+    {
+      "title": "Conversion copywriting",
+      "text": "We write the page around your offer: proof, objections, urgency, in that order. Short sentences. Verbs that push."
+    },
+    {
+      "title": "Speed engineering",
+      "text": "Server-rendered and tuned for 90+ Lighthouse scores, because a slow page burns ad spend before anyone reads a word."
+    },
+    {
+      "title": "Full-funnel measurement",
+      "text": "First-party analytics dashboard tracking visitors, traffic sources and the conversion funnel — so you see exactly what each campaign produced."
+    },
+    {
+      "title": "Lead capture + WhatsApp",
+      "text": "Forms that route enquiries to your inbox and a WhatsApp button for the visitors who would rather just talk. Every lead lands somewhere you check."
+    }
+  ],
+  "process": [
+    {
+      "step": "Brief & message match",
+      "time": "H0",
+      "text": "A focused kickoff call. We take your offer, your ad copy and your audience, and lock the one action this page exists to drive."
+    },
+    {
+      "step": "Copy & wireframe",
+      "time": "H6",
+      "text": "You review the page as words and structure first — headline, argument, CTA — so design never has to paper over a weak message."
+    },
+    {
+      "step": "Build & wire-up",
+      "time": "H24",
+      "text": "We build the approved page, connect analytics and lead capture, add structured data and hook in WhatsApp. Everything is tested against real form submissions."
+    },
+    {
+      "step": "QA & launch",
+      "time": "H48",
+      "text": "Device and speed checks, a final conversion walk-through, then we point your domain and go live. Your campaign can start sending traffic immediately."
+    }
+  ],
+  "stack": [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Vercel Edge Network",
+    "First-party analytics dashboard",
+    "Schema.org structured data",
+    "Core Web Vitals monitoring",
+    "WhatsApp Business integration"
+  ],
+  "faqs": [
+    {
+      "q": "Why not just send ad traffic to my homepage?",
+      "a": "Your homepage has ten jobs; a landing page has one. When the page continues the exact promise of the ad, visitors don't have to hunt for what they came for. Fewer choices, fewer exits, more conversions."
+    },
+    {
+      "q": "Will the page match my Google or Meta ads?",
+      "a": "That's the whole method. We start from your ad copy and build outward, so the headline, offer and CTA on the page echo what the click promised. Ad platforms reward relevance — and so do visitors."
+    },
+    {
+      "q": "Is 48 hours actually realistic?",
+      "a": "Yes, because the scope is deliberately tight: one page, one goal, a fixed hour-stamped process. You approve copy at H6 and we launch by H48. We publish our own live performance data at /proof, so you can hold us to it."
+    },
+    {
+      "q": "How will I know if the page is working?",
+      "a": "Every build ships with our first-party analytics dashboard: visitors, where they came from and how they moved through the funnel. You watch real numbers, not vanity metrics. When Noir Atelier rebuilt with us, catalogue enquiries lifted 38% — and they could see it happening."
+    },
+    {
+      "q": "What do you need from me to start?",
+      "a": "Your offer, your ad copy or campaign idea, your logo and any brand assets, plus about 45 minutes for the kickoff call. If something is missing, we flag it at H0 — not at H47."
+    }
+  ],
+  "relatedWorkSlugs": ["restaurant", "fashion"],
+  "cta": "Your campaign is ready to spend. Give it a page that earns it back."
+}

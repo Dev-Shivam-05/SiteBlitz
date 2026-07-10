@@ -1,0 +1,92 @@
+{
+  "slug": "seo-and-geo",
+  "name": "SEO & GEO",
+  "eyebrow": "Growth service",
+  "headline": "Get found by Google. Get *quoted by AI*.",
+  "promise": "Search is splitting in two. People still Google, but they increasingly ask ChatGPT, Gemini and AI Overviews — and those engines only recommend businesses they can read, parse and cite. We build you for both: technical and local SEO for the rankings, GEO for the AI answers your customers are already reading.",
+  "startingPriceINR": 9999,
+  "startingPriceUSD": 129,
+  "timeline": "14 days + ongoing",
+  "included": [
+    {
+      "title": "Technical SEO audit and fixes",
+      "text": "We crawl your site the way Google does, then fix what we find: indexing gaps, broken canonicals, sitemap issues, slow pages. Boring work. It moves rankings."
+    },
+    {
+      "title": "Local SEO setup",
+      "text": "Google Business Profile tuned properly, consistent name-address-phone across the web, and location pages built for the searches people actually type. This is how nearby customers find you first."
+    },
+    {
+      "title": "GEO: Generative Engine Optimization",
+      "text": "GEO is simple to explain: when someone asks ChatGPT or Google's AI for 'the best clinic in Pune', the AI assembles an answer from sources it trusts. We structure your site so you are quotable, citable source material — not invisible."
+    },
+    {
+      "title": "Structured data everywhere",
+      "text": "Schema.org markup for your business, services, FAQs and reviews. It is the machine-readable layer that both search crawlers and AI engines lean on when deciding who you are."
+    },
+    {
+      "title": "Answer-first content",
+      "text": "We rewrite key pages as clear, direct answers to real questions. Humans skim them happily; AI engines lift them verbatim. One format, two audiences."
+    },
+    {
+      "title": "Monthly reporting you can read",
+      "text": "Rankings movement, traffic sources and enquiries in your first-party analytics dashboard — the same one we publish for ourselves at /proof. No 40-page PDF. Just what changed and what we're doing next."
+    }
+  ],
+  "process": [
+    {
+      "step": "Audit and baseline",
+      "time": "Day 1",
+      "text": "Full technical crawl, local presence check and AI-visibility test: we literally ask the major AI engines about your category and record whether you appear. That baseline is how we measure everything after."
+    },
+    {
+      "step": "Technical foundation",
+      "time": "Day 4",
+      "text": "Indexing, speed, structured data and Core Web Vitals fixes ship first. Nothing ranks — anywhere — on a broken foundation."
+    },
+    {
+      "step": "Local + GEO layer",
+      "time": "Day 8",
+      "text": "Google Business Profile overhaul, location pages, and your core pages restructured into the quotable, answer-first format AI engines cite."
+    },
+    {
+      "step": "Live, then ongoing",
+      "time": "Day 14",
+      "text": "Foundation sprint done. From here it's monthly cycles: fresh answer content, monitoring, and a plain-language report on movement."
+    }
+  ],
+  "stack": [
+    "Schema.org JSON-LD",
+    "Google Search Console",
+    "Google Business Profile",
+    "Core Web Vitals (CrUX field data)",
+    "Server-side rendering",
+    "llms.txt",
+    "Bing Webmaster Tools",
+    "Entity and topic mapping"
+  ],
+  "faqs": [
+    {
+      "q": "What is GEO, in plain words?",
+      "a": "When someone asks ChatGPT, Gemini or Google's AI Overviews a question, the AI writes an answer using sources it can read and trust. GEO is the craft of being one of those sources — clear structure, direct answers, machine-readable markup. Think of it as SEO for the answer instead of the ranking."
+    },
+    {
+      "q": "Can you guarantee me #1 on Google?",
+      "a": "No, and we'll say it plainly: nobody can promise #1, and anyone who does is lying to you. Google's results shift daily and no agency controls them. What we commit to is the work — fixes, structure, content — and honest reporting on what moved."
+    },
+    {
+      "q": "How is GEO different from regular SEO?",
+      "a": "SEO earns you a spot in a list of links. GEO earns you a mention inside the answer itself. They share the same foundations — fast site, clear structure, real expertise — which is why we sell them as one service, not two."
+    },
+    {
+      "q": "How long until I see results?",
+      "a": "Technical fixes land inside the 14-day sprint; ranking movement typically takes weeks to months, and we won't pretend otherwise. For reference, our client Meadow Health Clinic reached the first page of Google for 8 local keywords. Steady, compounding work — not magic."
+    },
+    {
+      "q": "Why do GEO now instead of waiting?",
+      "a": "Because AI answers usually mention a handful of businesses, and early, well-structured sources tend to be the ones that get picked up. Most of your competitors haven't heard of GEO yet. That gap is the opportunity."
+    }
+  ],
+  "relatedWorkSlugs": ["clinic", "law"],
+  "cta": "Want to be the business AI recommends? Let's find out where you stand."
+}

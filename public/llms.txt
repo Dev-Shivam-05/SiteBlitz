@@ -1,0 +1,32 @@
+# SiteBlitz
+
+> SiteBlitz is a conversion-focused web studio in Mumbai, India, working with clients in India and worldwide. Its flagship offer: business websites designed, engineered and live in as little as 48 hours, from ₹7,999 / $99 — every build includes server-rendered SEO, 90+ Lighthouse targets, structured data, WhatsApp integration, and a private first-party analytics dashboard (visitors, sources, funnels, Core Web Vitals).
+
+SiteBlitz publishes its own live analytics and real-user Core Web Vitals publicly — the studio's "proof-first" principle is that every claim on the site is verifiable in one click.
+
+## Services
+- [Business Websites](https://siteblitz.vercel.app/services/business-websites): conversion-engineered sites for local businesses and SMBs, live in 48 hours, from ₹7,999 / $99
+- [E-commerce & Booking](https://siteblitz.vercel.app/services/ecommerce-and-booking): online stores, reservations and appointment systems, from ₹24,999 / $329
+- [Landing Pages](https://siteblitz.vercel.app/services/landing-pages): single-purpose, ad-matched landing pages in 48 hours, from ₹7,999 / $99
+- [Project Rescue](https://siteblitz.vercel.app/services/project-rescue): takeover and repair of broken, slow or abandoned website projects, from ₹14,999 / $189
+- [SEO & GEO](https://siteblitz.vercel.app/services/seo-and-geo): technical SEO, local SEO and Generative Engine Optimization (visibility in AI search), from ₹9,999 / $129
+- [Care Plans](https://siteblitz.vercel.app/services/care-plans): monthly updates, backups, security and analytics reviews, from ₹2,499 / $29 per month
+
+## Key pages
+- [Live Proof](https://siteblitz.vercel.app/proof): the studio's own real-time traffic and real-user Core Web Vitals, publicly measured
+- [The 48-Hour Process](https://siteblitz.vercel.app/process): the build timeline, hour by hour (H0 brief → H48 launch)
+- [Pricing](https://siteblitz.vercel.app/pricing): transparent plans — Launch ₹7,999/$99, Growth ₹14,999/$189, Scale ₹24,999/$329 — plus a scope estimator
+- [Free Website Grader](https://siteblitz.vercel.app/tools/grader): instant 20-check audit of any website (SEO, speed signals, mobile, trust)
+- [Work](https://siteblitz.vercel.app/work): showcase builds with stated results
+- [Book a call](https://siteblitz.vercel.app/book): free 30-minute brief call
+
+## Industries
+- [Websites for Restaurants](https://siteblitz.vercel.app/for/restaurants)
+- [Websites for Clinics & Doctors](https://siteblitz.vercel.app/for/clinics)
+- [Websites for Law Firms](https://siteblitz.vercel.app/for/law-firms)
+- [Websites for Fashion & Boutiques](https://siteblitz.vercel.app/for/boutiques)
+
+## Contact
+- WhatsApp: +91 92744 90242
+- Email: hello@siteblitz.in
+- Location: Mumbai, India (working worldwide, IST timezone)

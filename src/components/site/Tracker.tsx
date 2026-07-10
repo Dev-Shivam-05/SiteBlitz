@@ -35,6 +35,50 @@ function utmParams(): Record<string, string> {
   return utm;
 }
 
+/** Real-user Core Web Vitals, page-load scoped (initial route only). */
+const vitals: { lcp?: number; cls?: number; inp?: number; sent?: boolean } = {};
+const vitalObservers: PerformanceObserver[] = [];
+
+function observeVitals() {
+  const watch = (fn: (list: PerformanceObserverEntryList) => void, init: PerformanceObserverInit) => {
+    try {
+      const ob = new PerformanceObserver(fn);
+      ob.observe(init);
+      vitalObservers.push(ob);
+    } catch {}
+  };
+  watch((list) => {
+    const entries = list.getEntries();
+    const last = entries[entries.length - 1] as PerformanceEntry & { startTime: number };
+    if (last) vitals.lcp = last.startTime;
+  }, { type: "largest-contentful-paint", buffered: true });
+  let cls = 0;
+  watch((list) => {
+    for (const e of list.getEntries() as (PerformanceEntry & {
+      value: number;
+      hadRecentInput: boolean;
+    })[]) {
+      if (!e.hadRecentInput) cls += e.value;
+    }
+    vitals.cls = cls;
+  }, { type: "layout-shift", buffered: true });
+  watch((list) => {
+    for (const e of list.getEntries() as (PerformanceEntry & { duration: number })[]) {
+      if (!vitals.inp || e.duration > vitals.inp) vitals.inp = e.duration;
+    }
+  }, { type: "event", buffered: true, durationThreshold: 40 } as PerformanceObserverInit);
+}
+
+/** Stop measuring once reported — SPA navigations must not keep inflating
+ *  the initial page's CLS/INP. */
+function stopVitals() {
+  for (const ob of vitalObservers.splice(0)) {
+    try {
+      ob.disconnect();
+    } catch {}
+  }
+}
+
 export function Tracker() {
   const pathname = usePathname();
   const pageStart = useRef(Date.now());
@@ -90,6 +134,7 @@ export function Tracker() {
       if (depth > maxScroll.current) maxScroll.current = Math.min(depth, 100);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    observeVitals();
 
     const flush = () => {
       send(
@@ -98,12 +143,24 @@ export function Tracker() {
           path: currentPath.current,
           duration: Math.round((Date.now() - pageStart.current) / 1000),
           scrollDepth: maxScroll.current,
+          // vitals belong to the initial load — send once, with its first flush
+          ...(vitals.sent
+            ? {}
+            : { vitals: { lcp: vitals.lcp, cls: vitals.cls, inp: vitals.inp } }),
         },
         true
       );
+      if (!vitals.sent) {
+        vitals.sent = true;
+        stopVitals();
+      }
     };
     const onVisibility = () => {
-      if (document.visibilityState === "hidden") flush();
+      if (document.visibilityState === "hidden") {
+        flush();
+        // reset the clock so a re-focused tab doesn't double-count time
+        pageStart.current = Date.now();
+      }
     };
     document.addEventListener("visibilitychange", onVisibility);
 

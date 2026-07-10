@@ -61,6 +61,11 @@ const PageviewSchema = new Schema(
     duration: { type: Number, default: 0 }, // seconds on page
     scrollDepth: { type: Number, default: 0 }, // 0-100
     referrerPath: String,
+    vitals: {
+      lcp: Number, // ms — real-user Largest Contentful Paint
+      cls: Number, // unitless ×1000 for storage precision
+      inp: Number, // ms — worst interaction latency observed
+    },
   },
   { versionKey: false }
 );
@@ -170,6 +175,7 @@ export interface PageviewDoc {
   duration?: number;
   scrollDepth?: number;
   referrerPath?: string;
+  vitals?: { lcp?: number; cls?: number; inp?: number };
 }
 
 export interface EventDoc {
@@ -204,9 +210,56 @@ export interface LeadDoc {
   updatedAt?: Date;
 }
 
+/* ------------------------------------------------------------------ */
+/* Setting — key/value site configuration (capacity switch, etc.)      */
+/* ------------------------------------------------------------------ */
+const SettingSchema = new Schema(
+  {
+    key: { type: String, required: true, unique: true },
+    value: Schema.Types.Mixed,
+    updatedAt: { type: Date, default: Date.now },
+  },
+  { versionKey: false }
+);
+
+/* ------------------------------------------------------------------ */
+/* GraderRun — one /tools/grader audit of an external site             */
+/* ------------------------------------------------------------------ */
+const GraderRunSchema = new Schema(
+  {
+    url: { type: String, required: true },
+    score: Number,
+    categories: Schema.Types.Mixed, // { seo, performance, trust, ux } sub-scores
+    findings: Schema.Types.Mixed, // array of { check, ok, note }
+    email: String, // captured when they ask for the full report
+    sid: String,
+    ts: { type: Date, default: Date.now, index: true },
+  },
+  { versionKey: false }
+);
+
+export interface SettingDoc {
+  key: string;
+  value: unknown;
+  updatedAt: Date;
+}
+
+export interface GraderRunDoc {
+  url: string;
+  score?: number;
+  categories?: Record<string, number>;
+  findings?: { check: string; ok: boolean; note: string }[];
+  email?: string;
+  sid?: string;
+  ts: Date;
+}
+
 function model<T>(name: string, schema: Schema): Model<T> {
   return (mongoose.models[name] as Model<T>) || mongoose.model<T>(name, schema);
 }
+
+export const Setting = model<SettingDoc>("Setting", SettingSchema);
+export const GraderRun = model<GraderRunDoc>("GraderRun", GraderRunSchema);
 
 export const Session = model<SessionDoc>("Session", SessionSchema);
 export const Pageview = model<PageviewDoc>("Pageview", PageviewSchema);

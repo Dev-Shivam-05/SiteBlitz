@@ -1,0 +1,140 @@
+{
+  "slug": "website-cost-india-honest-breakdown",
+  "title": "What a Website Actually Costs in India: An Honest Breakdown",
+  "description": "Why Indian website quotes run ₹3,000 to ₹3,00,000 — the five things you're paying for, where cheap fails, and where expensive is waste.",
+  "cluster": "smb-india",
+  "readingMinutes": 6,
+  "date": "2026-07-10",
+  "author": "Shivam Bhadoriya",
+  "authorRole": "Founder, SiteBlitz",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Ask three vendors for a website quote in India and you'll get three numbers from three different universes. ₹4,000 from a freelancer on Instagram. ₹50,000 from a local agency. ₹2,50,000 from a firm with a fancy deck and an office in Gurgaon. Same brief. Same five pages. It feels like someone must be lying. Usually nobody is — they're selling three different products that happen to share a name. This is a breakdown of what each number buys, what a website actually costs to make, and where your money quietly evaporates at both ends of the range."
+    },
+    {
+      "type": "h2",
+      "text": "Three products, one name"
+    },
+    {
+      "type": "p",
+      "text": "The ₹3,000–₹10,000 website is a template. Someone buys a theme, swaps in your logo, pastes your text, points your domain at shared hosting, and hands you the keys. Total working time: a few hours. That's not fraud — it's data entry with a design layer. The ₹30,000–₹80,000 website is usually semi-custom: real design decisions, a CMS, some attention to your actual business. The ₹1,50,000-and-up website is a process — discovery calls, brand workshops, custom engineering, multiple stakeholders, and a project manager whose salary lives inside your invoice."
+    },
+    {
+      "type": "p",
+      "text": "None of these tiers is inherently a rip-off. The rip-off is paying tier-three prices for tier-one work. In India's website market that happens constantly, because most buyers can't see under the hood."
+    },
+    {
+      "type": "h2",
+      "text": "The five things you're actually paying for"
+    },
+    {
+      "type": "p",
+      "text": "Every website quote, at any price, is some mix of five line items. Most quotes never show them to you."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Design — layout, typography, colour, and the hundred small decisions that make a site feel trustworthy in the first five seconds. Cheap sites skip this by using a template's decisions instead of yours.",
+        "Engineering — the code that decides whether your site loads in one second or eleven, works on an ₹8,000 Android phone, and can actually be read by Google. Invisible in a demo, decisive in results.",
+        "Content — the words. Someone has to write headlines that sell and pages that answer real customer questions. When a quote is silent on content, the plan is to paste whatever you send over WhatsApp.",
+        "Hosting and domain — anywhere from ₹1,000 to ₹10,000 a year depending on quality. Small number, big consequences: cheap shared hosting is where fast websites go to die.",
+        "Maintenance — updates, backups, security patches, small edits. Either it's in the price, billed monthly, or silently missing until something breaks."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Here's the uncomfortable part: a cheap quote doesn't shrink all five lines. It deletes three of them. You get engineering-free design, content pasted as-is, and no maintenance plan — which is fine right up until it isn't."
+    },
+    {
+      "type": "h2",
+      "text": "Where cheap goes wrong"
+    },
+    {
+      "type": "p",
+      "text": "We rebuilt the site for Noir Atelier, a fashion label whose old website took 11 seconds to load on mobile. Eleven. The design itself was not the problem - the load time was. Almost nobody stayed long enough to see the collection. After the rebuild, catalogue enquiries lifted 38%. Nothing about the brand changed — the engineering did."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Client-side rendering that Google struggles to index, so the site technically exists but never ranks",
+        "Ten unoptimised images per page, each a multi-megabyte photo straight off a phone",
+        "Shared hosting that slows to a crawl exactly when traffic arrives",
+        "No analytics, so nobody ever learns the site isn't working",
+        "A template licence in the developer's name, so leaving them means starting over"
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The pattern: cheap sites optimise for the moment of handover. They look done. Whether they work is a question nobody was paid to answer."
+    },
+    {
+      "type": "h2",
+      "text": "Where expensive is waste"
+    },
+    {
+      "type": "p",
+      "text": "The top of the market has its own failure mode: paying for process instead of outcomes."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Discovery workshops for a five-page site. A dental clinic does not need three stakeholder-alignment sessions to say what a dental clinic does.",
+        "Enterprise CMS setups for content that changes twice a year.",
+        "Custom animations that demo beautifully and add two seconds to every page load.",
+        "Monthly retainers billed for maintenance that amounts to one plugin update a quarter.",
+        "\"SEO packages\" that are a dozen directory backlinks and a monthly PDF nobody reads."
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "A website quote isn't a price for a website. It's a price for a process. Ask what the process is, and half the quotes explain themselves."
+    },
+    {
+      "type": "h2",
+      "text": "One honest data point: what we charge"
+    },
+    {
+      "type": "p",
+      "text": "SiteBlitz is one point on this spectrum, so here are our numbers with no drama. Launch is ₹7,999: a one-page site, live in 48 hours. Growth is ₹14,999: up to five pages in four days, with an analytics dashboard. Scale is ₹24,999: up to ten pages with e-commerce or booking, delivered in seven days. Every build ships server-rendered so Google can read it, targets 90+ Lighthouse scores, and includes structured data, WhatsApp integration, lead capture, and a first-party analytics dashboard showing visitors, sources, and funnels."
+    },
+    {
+      "type": "p",
+      "text": "Are we the only right answer? No. If you need a custom web application, forty pages, or deep integrations with your inventory system, you should pay more than we charge — that's genuine engineering and it costs genuine money. Our prices work because we've standardised the parts of a business website that don't need reinventing and spend our time on the parts that do. And because claims are cheap, we publish our own live analytics and real-user Core Web Vitals at /proof. Ask every vendor for their equivalent."
+    },
+    {
+      "type": "h2",
+      "text": "Six questions that expose any quote"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Who owns the domain, the hosting account, and the code? The only acceptable answer: you.",
+        "Is the site server-rendered? If the vendor doesn't know what that means, Google may not read your pages properly.",
+        "What does year two cost? Hosting, domain, maintenance — get the recurring number in writing.",
+        "What happens if we part ways? You want your files and your accounts, not a hostage negotiation.",
+        "Can you show me a live site you built, and how fast it loads? Test it on your own phone, on mobile data, not their office Wi-Fi.",
+        "What exactly is included in content? \"You send us the text\" is a legitimate answer — as long as you hear it before paying, not after."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "In our experience, a competent small-business website in India lands somewhere between ₹8,000 and ₹60,000 depending on scope. Below that, engineering has usually been deleted. Far above it, you're often funding process. Whatever you spend, make the vendor show you where the five line items live inside their number. The good ones will enjoy the question."
+    }
+  ],
+  "keyTakeaways": [
+    "Website quotes vary wildly because \"website\" covers three different products: a template install, a semi-custom build, and an agency process. Know which one you're buying.",
+    "Every quote is a mix of five line items — design, engineering, content, hosting, and maintenance. Cheap quotes don't shrink them; they silently delete them.",
+    "Match spend to outcomes: at the bottom of the market the engineering disappears, and at the top you're often paying for process rather than results."
+  ],
+  "faq": [
+    {
+      "q": "Is a ₹3,000 website ever worth it?",
+      "a": "Sometimes — if you only need a digital visiting card and you understand that nothing under the hood is engineered. Don't expect it to rank on Google, load fast on mobile, or generate leads. It's a placeholder, not a growth asset."
+    },
+    {
+      "q": "What does SiteBlitz charge, and what's included?",
+      "a": "Launch is ₹7,999 for a one-page site in 48 hours, Growth is ₹14,999 for up to five pages in four days, and Scale is ₹24,999 for up to ten pages with e-commerce or booking in seven days. Every plan includes server-rendered SEO, structured data, WhatsApp integration, lead capture, and a first-party analytics dashboard."
+    }
+  ]
+}

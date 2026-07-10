@@ -1,0 +1,123 @@
+{
+  "slug": "landing-page-vs-website-what-your-business-needs",
+  "title": "Landing Page vs Website: What Your Business Actually Needs",
+  "description": "A practical framework for choosing between a one-page landing page and a full website — mapped to ads, local search, brand building and budgets.",
+  "cluster": "speed-conversion",
+  "readingMinutes": 5,
+  "date": "2026-07-10",
+  "author": "Shivam Bhadoriya",
+  "authorRole": "Founder, SiteBlitz",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Every founder we talk to asks a version of the same question: do I need a full website, or will one good page do? The honest answer is that it depends on exactly one thing — where your next customer comes from. Get that right and the decision mostly makes itself. Get it wrong and you either pay for pages nobody visits, or you starve Google of the pages it needs to find you. Here is the framework we use with SiteBlitz clients, trade-offs included."
+    },
+    {
+      "type": "h2",
+      "text": "One question settles most of it"
+    },
+    {
+      "type": "p",
+      "text": "When someone lands on your site, do you want them to do one thing, or do you want them to explore? A landing page is built for one action — book, call, buy, enquire. Every element on it exists to push toward that action, and anything that doesn't gets cut. A website is built for discovery — multiple services, multiple audiences, multiple entry points from search. One is a funnel. The other is a foundation."
+    },
+    {
+      "type": "p",
+      "text": "So don't start with 'what should my site look like'. Start with 'where will people arrive from, and what do I need them to do next'. Everything below is that logic, spelled out for the situations we see most often."
+    },
+    {
+      "type": "h2",
+      "text": "When a landing page wins"
+    },
+    {
+      "type": "p",
+      "text": "A landing page is the right call when the traffic already knows why it's coming."
+    },
+    {
+      "type": "list",
+      "items": [
+        "You're running paid ads. Meta and Google ads convert best onto a single page that mirrors the ad's promise — same offer, same words, one button. Sending ad traffic to a generic homepage is the fastest way to burn a budget.",
+        "You sell one thing to one audience. A single service, a single offer, a single city. Extra pages would just be extra places to lose people.",
+        "You're validating something new. A new business, a new offer, a new market. Get a page live in 48 hours, point some traffic at it, and find out whether anyone actually enquires before you invest further.",
+        "You have a hard deadline. A launch, a season, an event. One page live this week beats ten pages live next month."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "The trade-off, stated plainly: a landing page ranks for very few searches. It has one page of content, so Google has one page of reasons to show it. If your customers find businesses by searching rather than by clicking ads, a landing page alone will leave you invisible."
+    },
+    {
+      "type": "h2",
+      "text": "When a full website wins"
+    },
+    {
+      "type": "p",
+      "text": "A website earns its keep when customers need to find you, compare you, or trust you before they act."
+    },
+    {
+      "type": "list",
+      "items": [
+        "Local discovery. Ranking for searches like 'physiotherapist in Baner' or 'property lawyer Delhi' needs a dedicated page per service. When we rebuilt Meadow Health Clinic's site in Pune, it was the individual service pages — not the homepage — that put them on the first page of Google for 8 local keywords.",
+        "Trust-heavy decisions. Legal, medical, financial. People research before they call. Verma & Associates in Delhi saw consultation requests rise 3× in one quarter with an authority site built around practice-area pages that answer questions no single page could.",
+        "Multiple services or audiences. If you'd have to cram three different pitches onto one page, you need three pages. Squeezed messaging converts nobody.",
+        "Selling or booking online. Catalogues, carts, appointment slots — that's website territory by definition."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The trade-offs nobody prints on a pricing page"
+    },
+    {
+      "type": "quote",
+      "text": "A landing page is a salesperson with one pitch. A website is a shop with a front door, aisles and a till. Hire for the job you actually have."
+    },
+    {
+      "type": "p",
+      "text": "Websites cost more, take longer, and give you more surface area to get wrong. More pages is not automatically more results. Noir Atelier, a fashion label we work with, came to us with a full website that took 11 seconds to load on a phone. Gorgeous photography, dead weight everywhere. After the rebuild, catalogue enquiries lifted 38% — not because they got more pages, but because the pages they had finally worked."
+    },
+    {
+      "type": "p",
+      "text": "Landing pages have the opposite failure mode. They convert beautifully and rank narrowly. Plenty of businesses run a great one-pager for a year, then realise every competitor with proper service pages outranks them for every search that matters. Neither format is wrong. They fail differently — and you should pick your failure mode on purpose."
+    },
+    {
+      "type": "h2",
+      "text": "Map it to your situation"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Running paid ads right now → landing page. One page per campaign, one message per page.",
+        "Depending on local search → website. Service and location pages are how Google finds reasons to rank you.",
+        "Building a brand people return to → website as the base, with focused landing pages bolted on for each campaign. This is where most growing businesses end up.",
+        "Testing a new idea → landing page first. Upgrade once real enquiries prove the demand.",
+        "Selling products or taking bookings → website with commerce built in from day one."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What each route costs, in plain numbers"
+    },
+    {
+      "type": "p",
+      "text": "At SiteBlitz, the landing-page route is our Launch plan: ₹7,999 (or $99) for a one-page site, designed, engineered and live in as little as 48 hours. The small-business website route is Growth: ₹14,999 ($189) for up to five pages, delivered in four days. If you need e-commerce or booking, Scale is ₹24,999 ($329) for up to ten pages in seven days. Every build — all three — ships with server-rendered SEO, structured data, a first-party analytics dashboard, WhatsApp integration and lead capture, because a page that can't measure itself can't improve."
+    },
+    {
+      "type": "p",
+      "text": "One more thing, because trust is the whole product here: we publish our own live analytics and real-user Core Web Vitals at /proof. If a studio selling websites won't show you its own numbers, ask why. And start smaller than you think — it's easier to grow a page that converts than to rescue a website that doesn't."
+    }
+  ],
+  "keyTakeaways": [
+    "Decide based on where your next customer comes from: paid ads and single offers favour a landing page; search discovery and trust-heavy decisions favour a full website.",
+    "A landing page can be live in 48 hours and is the cheapest way to validate demand — but on its own it will rank for very few search terms.",
+    "Most growing businesses end up with both: a website as the foundation, plus a focused landing page for each campaign."
+  ],
+  "faq": [
+    {
+      "q": "Can I start with a landing page and add pages later?",
+      "a": "Yes — and it's often the smartest sequence. Validate demand with a one-page site first, then expand into service pages once enquiries prove the offer. Our Launch plan (₹7,999 / $99) upgrades cleanly into a multi-page build."
+    },
+    {
+      "q": "Will a one-page site rank on Google?",
+      "a": "For your brand name and a couple of closely related terms, yes. For a spread of local or service keywords, no — ranking broadly needs a dedicated page per topic, which is exactly what a full website gives you."
+    }
+  ]
+}

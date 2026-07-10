@@ -1,0 +1,117 @@
+{
+  "slug": "generative-engine-optimization-geo-explained",
+  "title": "GEO Explained: How to Get Your Business Cited by AI Search",
+  "description": "AI search increasingly answers instead of listing links. A no-hype guide to GEO: structured data, quotable answers, llms.txt and real expertise.",
+  "cluster": "speed-conversion",
+  "readingMinutes": 6,
+  "date": "2026-07-10",
+  "author": "Shivam Bhadoriya",
+  "authorRole": "Founder, SiteBlitz",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "Ask ChatGPT for a good dentist in Andheri and it doesn't give you ten blue links. It gives you an answer — two or three names, a sentence on each, sometimes a citation. Google's AI Overviews now do the same thing, above the results you used to fight over. So the question worth asking is no longer just \"how do I rank?\" It's \"when the machine writes the answer, am I in it?\" That's what generative engine optimization — GEO — is about. And no, it isn't another acronym to panic about. It's mostly work you should have been doing anyway, done properly."
+    },
+    {
+      "type": "h2",
+      "text": "What GEO actually means"
+    },
+    {
+      "type": "p",
+      "text": "SEO earns you a position in a list. GEO earns you a mention in an answer. When someone asks Gemini, ChatGPT, Perplexity or an AI Overview a question your business should win — \"best CA for small businesses in Surat\", \"boutique law firm in Delhi, consultation fees\" — the engine retrieves a handful of sources, reads them, and writes a response. GEO is the craft of being one of those sources, and being quotable enough to survive the summary."
+    },
+    {
+      "type": "p",
+      "text": "One honest caveat before we go further. You'll see articles brandishing precise-sounding percentages about how many searches now end in AI. We won't quote adoption numbers here, because the honest ones move too fast to print and the confident ones are mostly invented. What is not in dispute: these interfaces exist, people use them, and they cite sources. That is enough to act on."
+    },
+    {
+      "type": "h2",
+      "text": "This is the local-SEO moment, again"
+    },
+    {
+      "type": "p",
+      "text": "Rewind to when Google Business Profile — then Google My Business — arrived. Businesses that filled in their hours, photos, categories and services early dominated the local map pack for years. Not because they were better businesses, but because they showed up properly while competitors ignored a free form. It was one of the cheapest visibility wins in memory."
+    },
+    {
+      "type": "p",
+      "text": "GEO is at that same stage right now. The machinery is public. The techniques cost little. Most businesses haven't done any of it. That gap is the whole opportunity — and like the map pack, it will close. Sources these systems learn to retrieve and trust get cited repeatedly. Latecomers fight over what's left."
+    },
+    {
+      "type": "h2",
+      "text": "How AI engines pick who to cite"
+    },
+    {
+      "type": "p",
+      "text": "Nobody outside these companies knows the exact weighting, and anyone selling you \"guaranteed AI rankings\" is selling smoke. But the retrieval side is observable, and it consistently favours a few unglamorous things:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Crawlable, server-rendered HTML. Many AI crawlers execute little or no JavaScript. If your content only appears after client-side rendering, your page may as well be blank to them.",
+        "Direct answers. Engines lift passages, not pages. A clear question as a heading, followed by a 40–60 word plain-English answer, is the most liftable format on the web.",
+        "Structured data. Schema markup — Organization, LocalBusiness, Service, FAQPage — tells machines what you are, where you operate and what you offer, with no inference required.",
+        "Consistency. The same business name, address, services and claims across your website, Google profile and directories. Contradictions read as unreliability, to machines and humans alike.",
+        "Actual expertise. First-hand specifics — real projects, real constraints, a named author — survive summarisation. Generic filler is exactly what these engines are being trained to skip."
+      ]
+    },
+    {
+      "type": "quote",
+      "text": "You can't bribe a language model. You can only be the clearest, most verifiable answer it finds."
+    },
+    {
+      "type": "h2",
+      "text": "What about llms.txt?"
+    },
+    {
+      "type": "p",
+      "text": "llms.txt is a proposed convention: a plain-text file at yourdomain.com/llms.txt listing your most important pages with short descriptions, written for AI crawlers the way sitemap.xml is written for search crawlers. Honest status report: it's early. Not every AI system reads it, and none of the big ones publish confirmation of what they do with it. But it takes about twenty minutes to add, costs nothing to maintain, and if the convention sticks, you're already standing where everyone else will be running. Tiny downside, real upside. That's the kind of bet worth taking without a committee meeting."
+    },
+    {
+      "type": "h2",
+      "text": "Where to start — and what to skip"
+    },
+    {
+      "type": "p",
+      "text": "Three moves you can make this month, in order of effort:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Add an FAQ section answering the exact questions customers ask you on calls — in their words, not yours — with a direct answer under each question. This is the single most quotable format you can publish.",
+        "Ship schema markup sitewide and validate it with Google's Rich Results Test. Broken markup is worse than none; it tells machines you're sloppy about the one thing written specifically for them.",
+        "Publish one page of genuine first-hand expertise: what a real project cost, what went wrong, what you'd do differently. It's the one thing content farms cannot fake, which makes it the one thing worth citing."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "And what to skip: AI-generated article farms. Those \"10 Best X in Y\" pages churned out by a bot are being filtered out by the very companies whose engines you're trying to appear in. You'd be optimising for a machine that is actively learning to ignore you. Skip, too, any agency promising a specific position inside ChatGPT's answers. No such lever exists. The honest play is to be structurally easy to read and substantively worth quoting — then let retrieval do its job."
+    },
+    {
+      "type": "h2",
+      "text": "How we build for this at SiteBlitz"
+    },
+    {
+      "type": "p",
+      "text": "Every SiteBlitz build ships server-rendered, with structured data and 90+ Lighthouse score targets as standard — not as an add-on — because the fundamentals of GEO turn out to be the fundamentals of a fast, honest website. It's the same reason we publish our own live analytics and real-user Core Web Vitals at /proof: verifiable beats claimed, for humans and machines alike. When we rebuilt Meadow Health Clinic's site in Pune on exactly these fundamentals, it reached the first page of Google for 8 local keywords. GEO doesn't replace that work. It compounds it — the pages search engines trust are the pages answer engines cite."
+    },
+    {
+      "type": "p",
+      "text": "The window is open. Like the local pack a decade ago, it will not stay open. The businesses that get cited first get cited most — and the work that earns it is measured in days, not quarters."
+    }
+  ],
+  "keyTakeaways": [
+    "GEO means being the source AI engines cite, not just a ranking in a list. The winning formats are direct answers, clean structured data and verifiable first-hand expertise.",
+    "This is the Google Business Profile moment repeated: cheap, public techniques most businesses ignore. Early movers become the cited sources; latecomers fight over what's left.",
+    "Everything that helps GEO — server rendering, schema markup, fast pages, honest content — also helps classic SEO. There's no trade-off to agonise over; it's the same work done properly."
+  ],
+  "faq": [
+    {
+      "q": "Do I need to rebuild my website for GEO?",
+      "a": "Only if it's client-rendered JavaScript that AI crawlers can't read, or missing structured data entirely. Most sites need targeted fixes: schema markup, FAQ sections with direct answers, and server-rendered pages. Every SiteBlitz build includes all of this as standard, from ₹7,999 ($99) on the Launch plan with 48-hour delivery."
+    },
+    {
+      "q": "Is llms.txt actually worth adding today?",
+      "a": "Yes, because the cost is near zero. It's an emerging convention, not a guarantee — no major AI company publishes what it does with the file. But it takes minutes to create, can't hurt, and positions you early if it becomes standard, the way sitemap.xml adopters were ready when search engines standardised on it."
+    }
+  ]
+}

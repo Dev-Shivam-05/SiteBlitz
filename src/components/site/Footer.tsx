@@ -46,11 +46,41 @@ export function Footer() {
           </Link>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 gap-10 md:mt-24 md:grid-cols-4">
+        <div className="mt-16 grid grid-cols-2 gap-10 md:mt-24 md:grid-cols-5">
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-faint">Studio</h3>
             <ul className="mt-4 space-y-2.5">
               {NAV_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+              {[
+                { href: "/process", label: "48-hour process" },
+                { href: "/proof", label: "Live proof" },
+                { href: "/blog", label: "Insights" },
+                { href: "/book", label: "Book a call" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xs uppercase tracking-[0.2em] text-faint">Built for</h3>
+            <ul className="mt-4 space-y-2.5">
+              {[
+                { href: "/for/restaurants", label: "Restaurants" },
+                { href: "/for/clinics", label: "Clinics & doctors" },
+                { href: "/for/law-firms", label: "Law firms" },
+                { href: "/for/boutiques", label: "Fashion & boutiques" },
+                { href: "/tools/grader", label: "Free website grader ⚡" },
+              ].map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
                     {l.label}
