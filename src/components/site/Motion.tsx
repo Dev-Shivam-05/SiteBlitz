@@ -59,8 +59,24 @@ function useAnimEngine(pathname: string) {
   useEffect(() => {
     if (prefersReduced()) return;
     const ctx = gsap.context(() => {
-      const els = gsap.utils.toArray<HTMLElement>("[data-anim]");
-      for (const el of els) {
+      // Yielding scheduler: above-the-fold (data-now) scenes build immediately;
+      // everything else is spread across idle frames so no single long task
+      // blocks the main thread (keeps Total Blocking Time low).
+      const queue: (() => void)[] = [];
+      const schedule = (fn: () => void) => queue.push(fn);
+      const drain = () => {
+        const start = performance.now();
+        while (queue.length && performance.now() - start < 6) queue.shift()!();
+        if (queue.length) {
+          if ("requestIdleCallback" in window)
+            window.requestIdleCallback(drain, { timeout: 400 });
+          else setTimeout(drain, 16);
+        } else {
+          ScrollTrigger.refresh();
+        }
+      };
+
+      const buildAnim = (el: HTMLElement) => {
         const type = el.dataset.anim!;
         const delay = parseFloat(el.dataset.delay || "0");
         const stagger = parseFloat(el.dataset.stagger || "0.03");
@@ -146,8 +162,15 @@ function useAnimEngine(pathname: string) {
             },
           });
         }
+      };
+
+      const els = gsap.utils.toArray<HTMLElement>("[data-anim]");
+      for (const el of els) {
+        if (el.dataset.now !== undefined) buildAnim(el); // above the fold — now
+        else schedule(() => buildAnim(el)); // deferred, yielded
       }
 
+      schedule(() => {
       /* Hero: content zooms away and dims as you leave it (cinema hand-off) */
       const heroPin = document.querySelector<HTMLElement>("[data-hero-pin]");
       const heroContent = document.querySelector<HTMLElement>("[data-hero-content]");
@@ -297,12 +320,15 @@ function useAnimEngine(pathname: string) {
           },
         });
       }
+      }); // end scheduled scene setup
+
+      // Start draining the deferred queue once the browser is idle.
+      if ("requestIdleCallback" in window)
+        window.requestIdleCallback(drain, { timeout: 600 });
+      else setTimeout(drain, 32);
     });
 
-    // Re-measure after fonts/images settle
-    const t = setTimeout(() => ScrollTrigger.refresh(), 350);
     return () => {
-      clearTimeout(t);
       ctx.revert();
     };
   }, [pathname]);
