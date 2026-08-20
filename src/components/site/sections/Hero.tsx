@@ -14,73 +14,72 @@ const MARQUEE_ITEMS = [
   "LIVE VISITOR ANALYTICS",
 ];
 
+/** One headline line. `clamp()` sizing means it never needs breakpoint sizes
+ *  and can never overflow the viewport. */
+const LINE = "block text-[clamp(2.75rem,10.5vw,9.5rem)] leading-[0.86] tracking-[-0.03em]";
+
 export function Hero() {
   return (
-    <section data-hero-pin className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
+    <section
+      data-hero-pin
+      className="relative grid min-h-[100svh] grid-cols-[minmax(0,1fr)] grid-rows-[auto_1fr_auto] overflow-hidden"
+    >
       <WebGLHero className="absolute inset-0 h-full w-full" />
       <div className="noise-layer absolute inset-0 opacity-40" aria-hidden />
-      <div
-        className="absolute inset-0 bg-gradient-to-r from-void/60 via-void/15 to-transparent"
-        aria-hidden
-      />
+      {/* Guarantees text contrast wherever the energy field happens to drift. */}
+      <div className="hero-scrim absolute inset-0" aria-hidden />
 
-      {/* status badge: in-flow on mobile (above heading), floating on desktop.
-          Upgrades to the honest capacity counter when set in the admin panel. */}
+      {/* Row 1 — reserves exactly the navbar's height, so the logo and the
+          headline can never share a band no matter how short the viewport. */}
+      <div className="h-16 md:h-20" aria-hidden />
+
+      {/* Row 2 — the composition, vertically centred rather than bottom-jammed. */}
       <div
-        className="relative z-10 order-first mx-auto w-full max-w-7xl px-5 pt-24 md:absolute md:left-8 md:top-32 md:order-none md:w-auto md:max-w-none md:px-0 md:pt-0"
-        data-anim="fade-up"
-        data-now
-        data-delay="1.1"
+        data-hero-content
+        className="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-5 py-10 md:px-8"
       >
-        <LiveBadge />
-      </div>
+        <div data-anim="fade-up" data-now data-delay="0.05" className="mb-7 md:mb-9">
+          <LiveBadge />
+        </div>
 
-      {/* rotating orbit text */}
-      <div className="pointer-events-none absolute right-8 top-28 hidden lg:block" aria-hidden>
-        <svg width="120" height="120" viewBox="0 0 120 120" className="animate-spin-slow opacity-40">
-          <defs>
-            <path id="orbit" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" />
-          </defs>
-          <text className="fill-muted text-[9.5px] uppercase tracking-[0.32em]">
-            <textPath href="#orbit">
-              blitz · build · launch · rank · blitz · build · launch · rank ·
-            </textPath>
-          </text>
-        </svg>
-      </div>
+        <div className="relative">
+          {/* single volt scanline, behind the type, once on load */}
+          <div className="pointer-events-none absolute inset-y-0 -inset-x-2 overflow-hidden" aria-hidden>
+            <div className="hero-sweep" />
+          </div>
 
-      <div data-hero-content className="relative mx-auto mt-4 w-full max-w-7xl px-5 pb-10 md:mt-0 md:px-8">
-        <h1 className="font-display font-bold leading-[0.92] tracking-tight">
-          <span
-            className="block text-[12vw] md:text-[7.5rem] lg:text-[9rem]"
-            data-anim="chars"
-            data-now
-            data-delay="0.15"
-            data-stagger="0.035"
-          >
-            WEBSITES
-          </span>
-          <span
-            className="block text-[12vw] text-outline md:text-[7.5rem] lg:text-[9rem]"
-            data-anim="chars"
-            data-now
-            data-delay="0.3"
-            data-stagger="0.03"
-          >
-            THAT WIN
-          </span>
-          <span
-            className="block text-[12vw] md:text-[7.5rem] lg:text-[9rem]"
-            data-anim="chars"
-            data-now
-            data-delay="0.45"
-            data-stagger="0.035"
-          >
-            BUSINESS<span className="text-volt">.</span>
-          </span>
-        </h1>
+          <h1 className="relative font-display font-bold">
+            <span
+              className={LINE}
+              data-anim="chars"
+              data-now
+              data-delay="0.15"
+              data-stagger="0.035"
+            >
+              WEBSITES
+            </span>
+            <span
+              className={`${LINE} text-stroke-volt`}
+              data-anim="chars"
+              data-now
+              data-delay="0.3"
+              data-stagger="0.03"
+            >
+              THAT WIN
+            </span>
+            <span
+              className={LINE}
+              data-anim="chars"
+              data-now
+              data-delay="0.45"
+              data-stagger="0.035"
+            >
+              BUSINESS<span className="text-volt">.</span>
+            </span>
+          </h1>
+        </div>
 
-        <div className="mt-8 flex flex-col gap-8 md:mt-12 md:flex-row md:items-end md:justify-between">
+        <div className="mt-9 flex flex-col gap-8 md:mt-12 md:flex-row md:items-end md:justify-between">
           <p
             className="max-w-md text-base leading-relaxed text-muted md:text-lg"
             data-anim="fade-up"
@@ -118,12 +117,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* scroll cue */}
-      <div className="absolute bottom-24 left-1/2 hidden h-14 w-px -translate-x-1/2 overflow-hidden md:block" aria-hidden>
-        <div className="scroll-cue h-full w-full" />
-      </div>
-
-      <div className="relative mt-10 border-y border-line bg-void/60 py-4 backdrop-blur">
+      {/* Row 3 — proof marquee. min-w-0 is load-bearing: without it the strip's
+          intrinsic width sizes the grid column and shoves the hero off-centre. */}
+      <div className="relative z-10 min-w-0 border-y border-line bg-void/60 py-4 backdrop-blur">
         <Marquee
           items={MARQUEE_ITEMS}
           className="font-display text-sm font-semibold tracking-[0.15em] text-muted"

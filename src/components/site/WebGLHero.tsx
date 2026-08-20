@@ -30,45 +30,92 @@ float noise(vec2 p) {
              mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
 }
 
-float fbm(vec2 p) {
-  float v = 0.0;
-  float a = 0.5;
+// Octave count is a direct GPU cost multiplier, so each use gets only what it
+// needs: the domain-warp inputs are low-frequency by nature and cannot show
+// fine detail, while the final lookup is what produces the hairline filaments.
+float fbm2(vec2 p) {
+  float v = 0.0, a = 0.5;
   mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
-  for (int i = 0; i < 4; i++) {
-    v += a * noise(p);
-    p = rot * p * 2.05;
-    a *= 0.5;
-  }
+  for (int i = 0; i < 2; i++) { v += a * noise(p); p = rot * p * 2.05; a *= 0.5; }
   return v;
+}
+
+float fbm3(vec2 p) {
+  float v = 0.0, a = 0.5;
+  mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
+  for (int i = 0; i < 3; i++) { v += a * noise(p); p = rot * p * 2.05; a *= 0.5; }
+  return v;
+}
+
+float fbm(vec2 p) {
+  float v = 0.0, a = 0.5;
+  mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
+  for (int i = 0; i < 5; i++) { v += a * noise(p); p = rot * p * 2.05; a *= 0.5; }
+  return v;
+}
+
+/** Primary energy field: cheap warp, detailed final lookup. */
+float field(vec2 p, float t, float dir, vec2 pull) {
+  vec2 q = vec2(fbm3(p + t * dir), fbm3(p + vec2(5.2, 1.3) - t * dir));
+  vec2 r = vec2(fbm3(p + 3.0 * q + vec2(1.7, 9.2) + t * 1.4 * dir),
+                fbm3(p + 3.0 * q + vec2(8.3, 2.8) - t * dir));
+  return fbm(p + 3.5 * r + pull * 3.0);
+}
+
+/** Secondary undercurrent — soft and out of focus by design, so it runs on the
+ *  cheapest octaves available. */
+float fieldSoft(vec2 p, float t, float s, float dir, vec2 pull) {
+  vec2 q = vec2(fbm2(p * s + t * dir), fbm2(p * s + vec2(5.2, 1.3) - t * dir));
+  vec2 r = vec2(fbm2(p * s + 3.0 * q + vec2(1.7, 9.2) + t * 1.4 * dir),
+                fbm2(p * s + 3.0 * q + vec2(8.3, 2.8) - t * dir));
+  return fbm3(p * s + 3.5 * r + pull * 3.0);
 }
 
 void main() {
   vec2 uv = gl_FragCoord.xy / uRes.xy;
-  vec2 p = uv * vec2(uRes.x / uRes.y, 1.0) * 2.2;
-  float t = uTime * 0.06;
+  float aspect = uRes.x / uRes.y;
+  vec2 p = uv * vec2(aspect, 1.0) * 2.2;
+  float t = uTime * 0.085;
 
-  vec2 m = uMouse * vec2(uRes.x / uRes.y, 1.0) * 2.2;
+  vec2 m = uMouse * vec2(aspect, 1.0) * 2.2;
   float md = length(p - m);
   vec2 pull = normalize(p - m + 0.0001) * (-0.35) * exp(-md * 1.6);
 
-  vec2 q = vec2(fbm(p + t), fbm(p + vec2(5.2, 1.3) - t));
-  vec2 r = vec2(fbm(p + 3.0 * q + vec2(1.7, 9.2) + t * 1.4),
-                fbm(p + 3.0 * q + vec2(8.3, 2.8) - t));
-  float f = fbm(p + 3.5 * r + pull * 3.0);
+  // The composition has ONE light source, off to the right. Everything on the
+  // left falls to void so the headline always sits on near-black — the text
+  // scrim in CSS is a safety net, not the primary contrast mechanism.
+  float side = smoothstep(0.02, 0.72, uv.x);
+  vec2 focal = vec2(0.76, 0.52);
+  float fd = length((uv - focal) * vec2(aspect, 1.0));
+  float bloom = exp(-fd * 1.55);
+
+  float f = field(p, t, 1.0, pull);                                     // primary
+  float g = fieldSoft(p + vec2(11.3, 4.1), t, 0.45, -0.6, pull * 0.5);  // counter-layer
 
   // base: near-black
-  vec3 col = vec3(0.043, 0.043, 0.055);
-  // violet undercurrent
-  col = mix(col, vec3(0.18, 0.12, 0.42) * 0.55, smoothstep(0.25, 0.75, f) * 0.5);
+  vec3 col = vec3(0.027, 0.027, 0.035);
+
+  // deep violet undercurrent — keeps the field from reading as only green
+  col = mix(col, vec3(0.20, 0.13, 0.48) * 0.55,
+            smoothstep(0.25, 0.75, g) * 0.55 * (0.25 + 0.75 * side));
+
   // volt energy veins
   float vein = smoothstep(0.42, 0.52, f) - smoothstep(0.52, 0.72, f);
-  col += vec3(0.8, 1.0, 0.0) * vein * 0.22;
-  // bright volt filaments
-  float fil = smoothstep(0.495, 0.505, f);
-  col += vec3(0.8, 1.0, 0.0) * fil * (1.0 - smoothstep(0.505, 0.53, f)) * 0.32;
+  col += vec3(0.8, 1.0, 0.0) * vein * 0.26 * side * (0.35 + 0.9 * bloom);
+
+  // hairline volt filaments — the narrow band is what gives the plasma edge
+  float fil = smoothstep(0.4965, 0.5035, f) * (1.0 - smoothstep(0.5035, 0.515, f));
+  col += vec3(0.85, 1.0, 0.15) * fil * 0.55 * side * (0.4 + 1.1 * bloom);
+
+  // secondary layer filaments, dimmer and slower — parallax depth
+  float fil2 = smoothstep(0.492, 0.5, g) * (1.0 - smoothstep(0.5, 0.516, g));
+  col += vec3(0.55, 0.85, 0.25) * fil2 * 0.20 * side * bloom;
+
+  // the light source itself
+  col += vec3(0.70, 0.92, 0.10) * bloom * 0.16 * side;
 
   // cursor glow well
-  col += vec3(0.75, 0.95, 0.05) * exp(-md * 2.6) * 0.14;
+  col += vec3(0.75, 0.95, 0.05) * exp(-md * 2.6) * 0.16 * side;
 
   // click shockwave
   if (uClick < 3.0) {
@@ -78,7 +125,7 @@ void main() {
 
   // vignette
   float vig = smoothstep(1.35, 0.35, length(uv - 0.5));
-  col *= mix(0.75, 1.0, vig);
+  col *= mix(0.68, 1.0, vig);
 
   gl_FragColor = vec4(col, 1.0);
 }
@@ -147,7 +194,9 @@ export function WebGLHero({ className = "" }: { className?: string }) {
     const uClick = gl.getUniformLocation(prog, "uClick");
 
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    const scale = 0.72; // render below native res — indistinguishable for this content
+    // Render scale is quadratic in fragment cost. 0.82 keeps the filaments
+    // readable while holding the whole shader near the pre-v4 GPU budget.
+    const scale = 0.82;
     let w = 0, h = 0;
     const resize = () => {
       const rect = canvas.getBoundingClientRect();

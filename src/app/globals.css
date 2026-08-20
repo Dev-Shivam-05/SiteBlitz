@@ -71,6 +71,60 @@ body {
 
 .text-balance { text-wrap: balance; }
 
+/* ---- hero: volt wireframe headline line ----
+   The v3 hero used .text-outline here, a 1px 25%-opacity stroke that vanished
+   against the shader. A solid volt stroke turns the weakest line into the hook. */
+.text-stroke-volt {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(204, 255, 0, 0.85);
+  paint-order: stroke fill;
+  filter: drop-shadow(0 0 18px rgba(204, 255, 0, 0.35));
+}
+@media (min-width: 768px) {
+  .text-stroke-volt { -webkit-text-stroke-width: 2px; }
+}
+
+/* ---- hero: text protection ----
+   The shader already falls to void on the left; this is the safety net that
+   guarantees contrast regardless of where the energy field happens to drift. */
+.hero-scrim {
+  background:
+    linear-gradient(to top, #0a0a0c 0%, rgba(10, 10, 12, 0) 38%),
+    linear-gradient(
+      100deg,
+      #0a0a0c 0%,
+      rgba(10, 10, 12, 0.94) 30%,
+      rgba(10, 10, 12, 0.62) 50%,
+      rgba(10, 10, 12, 0.12) 72%,
+      transparent 88%
+    );
+}
+
+/* ---- hero: one volt scanline sweeps the headline once on load ---- */
+@keyframes hero-sweep {
+  0% { transform: translateX(-8%) scaleY(0.4); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(108%) scaleY(1); opacity: 0; }
+}
+.hero-sweep {
+  position: absolute;
+  top: -2%;
+  bottom: -2%;
+  width: 140px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(204, 255, 0, 0.09) 35%,
+    rgba(204, 255, 0, 0.55) 50%,
+    rgba(204, 255, 0, 0.09) 65%,
+    transparent
+  );
+  mix-blend-mode: screen;
+  animation: hero-sweep 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.15s both;
+}
+
 /* ---- grain overlay ---- */
 .grain::before {
   content: "";
