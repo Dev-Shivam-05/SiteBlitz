@@ -7,7 +7,9 @@ Map: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md) · Risks: [docs/RISK.md](docs/RI
 - dev `npm run dev` → http://localhost:3000 · build `npm run build`
 - `npm run typecheck` is **broken** — `tsc --noEmit` climbs past 2.9 GB and never finishes
   (confirmed 2026-08-20). Do not put it in a loop. Fixing it is P5.
-- **No tests, no linter exist.** Do not add a runner outside a phase for it.
+- `npm test` → 73 vitest tests over the SSRF guard and the admin auth gate. No linter exists.
+- **Never `npm run build` while `next dev` is live** — shared `.next` gives a bogus
+  `TypeError: a[d] is not a function` prerender failure. Kill dev first; check for orphan children.
 - PowerShell 5.1 has no `&&`. Separate commands, or `;`.
 
 ## Conventions — follow these, don't improve them
@@ -16,10 +18,9 @@ Map: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md) · Risks: [docs/RISK.md](docs/RI
 2. Every route file: `export const runtime = "nodejs"`, plus `dynamic = "force-dynamic"` if DB-backed.
 3. Guard DB work with `dbConfigured()` before `dbConnect()`. A missing database degrades the
    feature (503 / WhatsApp fallback), never crashes the page.
-4. Server components by default. `"use client"` only where there is interaction. Anything
-   decorative or heavy mounts through `Deferred` / `ExperienceLayer` with `next/dynamic` —
-   never on the critical path. Protecting first paint is a product feature here; `/proof`
-   publishes the real-user vitals.
+4. Server components by default; `"use client"` only for interaction. Decorative or heavy work
+   mounts via `Deferred` / `ExperienceLayer` + `next/dynamic`, never on the critical path —
+   `/proof` publishes the real-user vitals, so first paint is a product feature here.
 5. Animation is declarative: put `data-anim="chars|words|fade-up|mask|scale-in|words-scrub|parallax"`
    (+ `data-delay`, `data-stagger`, `data-now`, `data-speed`) on the markup and let `Motion.tsx`
    build the GSAP scene. Never hand-write GSAP inside a component.
@@ -46,9 +47,11 @@ Map: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md) · Risks: [docs/RISK.md](docs/RI
   `site.ts` or the JSON, ask. `/proof` claims every number on this site is verifiable.
 
 ## Done means
-1. `npm run build` exits 0.
+1. `npm test` and `npm run build` both exit 0.
 2. The sections of `docs/VERIFY.md` that cover the change were actually run — not assumed.
-3. UI change → a screenshot of each state, plus one with reduced-motion emulated.
+3. UI change → a screenshot of each state, incl. reduced-motion — which is also the fastest way to
+   *audit* a page (every section renders static and visible). Screenshot over CDP with device
+   metrics set; `chrome --headless --window-size` includes browser insets and silently crops.
 4. Committed as `<area>: <what changed>`, and pushed.
 
 ## Git
