@@ -6,7 +6,12 @@
   --color-raised: #1a1a20;
   --color-ink: #f5f5f0;
   --color-muted: #9b9ba3;
-  --color-faint: #55555e;
+  /* #55555e measured 2.68:1 on --color-void — below the WCAG AA 4.5:1 floor,
+     and this token is used for real content (tag pills, testimonial roles,
+     input placeholders), not only decoration. #81818f is the smallest lift
+     that clears 4.5:1 on all three surfaces it actually sits on:
+     void 5.15:1, surface 4.87:1, raised 4.51:1. Keep the original hue. */
+  --color-faint: #81818f;
   --color-volt: #ccff00;
   --color-volt-dim: #a3cc00;
   --color-violet: #7c5cff;
@@ -283,6 +288,21 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .grain::before { animation: none; }
+
+  /* Marquees duplicate their content so the scroll loop is seamless, and mask
+     their edges so items fade in and out. With the animation frozen, both
+     become defects: the duplicate is just repeated content sitting on screen,
+     and the mask permanently half-hides the first and last item. Degrade to a
+     plain wrapped row instead. */
+  .marquee-mask {
+    mask-image: none;
+    overflow: visible;
+  }
+  .marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+  }
+  .rm-hide { display: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

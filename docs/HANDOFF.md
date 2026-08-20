@@ -1,6 +1,25 @@
 # Handoff — SiteBlitz
 
-## Last session: H1 — Hero v4 (2026-08-20)
+## Last session: H2/H3 + P1 (2026-08-20)
+
+Three phases in one sitting, at the owner's request ("go for all"), committed separately.
+
+**H2/H3 — contrast + reduced motion.** Audited all nine screens of the home page plus `/work` and
+`/services` by screenshot. The premise that those sections needed the hero treatment was wrong;
+they hold up and were left alone. Two real defects were found instead:
+`--color-faint` was 2.68:1 (below WCAG AA) while being used for tag pills, testimonial roles and
+the grader placeholder, and every marquee showed duplicated content under `prefers-reduced-motion`
+— testimonials rendered the same five quotes four times. Both fixed.
+
+**P1 — safety net.** 73 vitest tests over the SSRF guard and the admin auth gate. Both suites
+mutation-checked: removing the `169.254` metadata guard fails 3, removing the `/api/admin` gate
+fails 18. Only source change was three `export` keywords.
+
+**Technique that paid off:** auditing under emulated `prefers-reduced-motion` renders every section
+static and fully visible, which is how the marquee duplication became obvious. `RM=1` in
+`scratchpad/cdp.mjs`.
+
+## Earlier that session: H1 — Hero v4 (2026-08-20)
 
 **Branch:** `v2-redesign` · **Files changed:** `Hero.tsx`, `WebGLHero.tsx`, `globals.css` + spec/docs
 

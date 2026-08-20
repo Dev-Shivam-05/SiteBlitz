@@ -1,11 +1,12 @@
 /** Giant outline-type marquee band — velocity-reactive via the Motion engine. */
 export function BigMarquee({ words }: { words: string[] }) {
+  // second copy exists only to make the scroll loop seamless
   const row = [...words, ...words];
   return (
     <div className="marquee-mask overflow-hidden border-y border-line py-6 md:py-10" aria-hidden>
-      <div data-marquee-inner data-duration="34" className="flex w-max items-center whitespace-nowrap">
+      <div data-marquee-inner data-duration="34" className="marquee-track flex w-max items-center whitespace-nowrap">
         {row.map((w, i) => (
-          <span key={i} className="flex items-center">
+          <span key={i} className={`flex items-center${i >= words.length ? " rm-hide" : ""}`}>
             <span
               className={`font-display px-6 text-6xl font-bold tracking-tight md:text-8xl lg:text-9xl ${
                 i % 2 === 0 ? "text-outline" : "text-volt"

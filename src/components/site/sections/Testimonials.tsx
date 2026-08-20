@@ -1,17 +1,20 @@
 import { TESTIMONIALS } from "@/lib/site";
 
 function Row({ reverse = false }: { reverse?: boolean }) {
+  // second copy exists only to make the scroll loop seamless
   const items = [...TESTIMONIALS, ...TESTIMONIALS];
   return (
     <div className="marquee-mask overflow-hidden">
       <div
-        className="flex w-max gap-5 animate-marquee-slow"
+        className="marquee-track flex w-max gap-5 animate-marquee-slow"
         style={reverse ? { animationDirection: "reverse" } : undefined}
       >
         {items.map((t, i) => (
           <figure
             key={i}
-            className="w-[320px] shrink-0 rounded-2xl border border-line bg-surface p-6 md:w-[380px]"
+            className={`w-[320px] shrink-0 rounded-2xl border border-line bg-surface p-6 md:w-[380px]${
+              i >= TESTIMONIALS.length ? " rm-hide" : ""
+            }`}
           >
             <blockquote className="text-sm leading-relaxed text-ink">“{t.text}”</blockquote>
             <figcaption className="mt-4">
@@ -39,7 +42,10 @@ export function Testimonials() {
       </div>
       <div className="reveal mt-12 space-y-5" data-delay="150">
         <Row />
-        <Row reverse />
+        {/* a second pass of the same quotes; only meaningful while it scrolls */}
+        <div className="rm-hide">
+          <Row reverse />
+        </div>
       </div>
     </section>
   );
