@@ -2,14 +2,16 @@
 
 Only things that could bite while modifying this codebase. Recon date 2026-08-20.
 
-## R1 — The v3 rebuild exists on one machine only ⚠ HIGHEST
+## R1 — The v3 rebuild exists on one machine only ✅ CLOSED 2026-08-20
 
-`v2-redesign` is **2 commits ahead of `origin/v2-redesign`**, and those two commits are
-`fca3e11` (the entire v3 proof-first rebuild) and `4ee3cc1` (the TBT perf work).
-The branch also has **no upstream tracking set** (`git config branch.v2-redesign.remote` is empty),
-so a plain `git push` does nothing useful.
+Was: `v2-redesign` sat 2 commits ahead of `origin/v2-redesign` with no upstream tracking, and
+those two commits were the entire v3 proof-first rebuild (`fca3e11`) plus the TBT perf work
+(`4ee3cc1`). That work existed on one disk.
 
-**Mitigation, do this first:** `git push -u origin v2-redesign`
+**Resolved:** `git push -u origin v2-redesign` — pushed `2d2207d..600d7b0`, upstream now tracked.
+Verify with `git rev-list --left-right --count origin/v2-redesign...v2-redesign` → `0  0`.
+
+**Stays closed only if** every phase ends with a push, per `CLAUDE.md`.
 
 ## R2 — No safety net of any kind
 
