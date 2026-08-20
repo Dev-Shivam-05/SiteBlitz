@@ -1,6 +1,30 @@
 # Handoff — SiteBlitz
 
-## Last session: R0 — Recon (2026-08-20)
+## Last session: H1 — Hero v4 (2026-08-20)
+
+**Branch:** `v2-redesign` · **Files changed:** `Hero.tsx`, `WebGLHero.tsx`, `globals.css` + spec/docs
+
+The owner's #1 priority: the home page had to impress on first sight. Three real defects were
+found by screenshotting the running site, not by reading code:
+
+1. The middle headline line "THAT WIN" was invisible — a 1px 25%-opacity stroke over a bright
+   background. The headline effectively read "WEBSITES … BUSINESS."
+2. The nav logo, the status badge and the headline all shared one band on short viewports.
+3. The shader was one flat texture edge to edge — measured left/right luminance ratio 1.10×,
+   i.e. no focal point at all. That is the "background bahut simple" complaint, quantified.
+
+Fixed by: a volt wireframe stroke on line 2, a 3-row grid that reserves the navbar height, the
+badge moved into flow, and a shader rebuilt around a single light source (ratio now 1.51×).
+Full spec + verification record: `docs/spec/hero-v4.md`.
+
+**Two things worth knowing next session:**
+- Never run `npm run build` while `next dev` is live. They share `.next` and it produces a
+  bogus `TypeError: a[d] is not a function` prerender failure that looks like a code bug.
+- `chrome --headless --window-size=W,H --screenshot` is **not** trustworthy for narrow widths —
+  the window size includes browser insets, so it silently crops a wider layout. Measure via CDP
+  instead (`scratchpad/cdp.mjs` this session; worth moving into the repo as a dev tool).
+
+## Previous session: R0 — Recon (2026-08-20)
 
 **Branch:** `v2-redesign` at `4ee3cc1` · **Source changed:** none (recon is read-only)
 
@@ -28,10 +52,13 @@ single commit and no spec behind it. Produced the docs spine:
 origin**, and those two commits are the whole v3 rebuild plus the TBT perf work. Right now that work
 exists on one disk. See RISK R1.
 
-## Next session: P1 — Safety net
+## Next session
 
-Blocked on one thing: the SPEC LOCK table for P1 needs a one-word approval. Once approved it gets
-written to `docs/spec/p1-safety-net.md` and built.
+Owner's call between:
+- **H2 / H3** — carry the hero's contrast discipline into the rest of the home page, or do the
+  `/work` and `/services` first screens. Product work, matches the stated priority.
+- **P1 — Safety net** — approved and specced, not yet built. vitest + tests for the SSRF guard
+  and the admin auth gate.
 
 ## Open questions for the owner
 Four, at the bottom of `docs/PROJECT_MAP.md`. The one that shapes the roadmap: **is the v3
