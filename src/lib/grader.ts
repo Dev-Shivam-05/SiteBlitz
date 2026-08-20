@@ -28,7 +28,8 @@ const UA =
 
 /** True if an IP (v4 or v6) is loopback, private, link-local (incl. cloud
  *  metadata 169.254.169.254), CGNAT, or otherwise non-public. */
-function isPrivateIp(ip: string): boolean {
+/** @internal — exported for tests; not part of the module's public surface. */
+export function isPrivateIp(ip: string): boolean {
   // unwrap IPv4-mapped IPv6 (::ffff:a.b.c.d)
   const v4 = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/i.exec(ip)?.[1] || (isIP(ip) === 4 ? ip : null);
   if (v4) {
@@ -55,7 +56,8 @@ function isPrivateIp(ip: string): boolean {
 
 /** Validates one URL: public scheme, public host (every resolved address must
  *  be public). Returns the parsed URL or null. */
-async function validatePublicUrl(raw: string): Promise<URL | null> {
+/** @internal — exported for tests. */
+export async function validatePublicUrl(raw: string): Promise<URL | null> {
   let u: URL;
   try {
     u = new URL(raw);
@@ -78,7 +80,8 @@ async function validatePublicUrl(raw: string): Promise<URL | null> {
   return u;
 }
 
-function normalizeInput(input: string): string | null {
+/** @internal — exported for tests. */
+export function normalizeInput(input: string): string | null {
   let raw = input.trim();
   if (!raw) return null;
   if (!/^https?:\/\//i.test(raw)) raw = `https://${raw}`;

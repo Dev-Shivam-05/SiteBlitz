@@ -13,13 +13,16 @@ Verify with `git rev-list --left-right --count origin/v2-redesign...v2-redesign`
 
 **Stays closed only if** every phase ends with a push, per `CLAUDE.md`.
 
-## R2 — No safety net of any kind
+## R2 — No safety net of any kind ✅ PARTLY CLOSED 2026-08-20
 
-Zero test files, zero test runner, no eslint/prettier config. Nothing mechanically verifies a change.
-Combined with R3, a change can be wrong in three ways and still deploy.
+Was: zero tests, zero runner, no lint config — nothing mechanically verified a change.
 
-**Mitigation:** the manual verification checklist in [docs/VERIFY.md](VERIFY.md) is the interim net.
-A real one is Phase 1.
+**Now:** `npm test` runs 73 vitest tests over the two security-critical surfaces — the grader's
+SSRF guard and the admin auth gate (`docs/spec/p1-safety-net.md`). Both suites are mutation-checked:
+removing the `169.254` guard produces 3 failures, removing the `/api/admin` gate produces 18.
+
+**Still open:** everything else is unverified by machine. No lint config, no UI tests, no CI — so
+`docs/VERIFY.md` remains the net for anything outside those two surfaces.
 
 ## R3 — Type errors do not fail the build
 
