@@ -5,7 +5,8 @@ import { useEffect, useRef, useState } from "react";
 const STATS = [
   { value: 48, suffix: "h", label: "Fastest full delivery" },
   { value: 90, suffix: "+", label: "Lighthouse performance" },
-  { value: 100, suffix: "%", label: "On-time launches" },
+  // "100% on-time launches" removed in C1: no delivery records back it. Ownership is in the terms.
+  { value: 100, suffix: "%", label: "Code & domain you own" },
   { value: 24, suffix: "/7", label: "WhatsApp support" },
 ];
 

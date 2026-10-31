@@ -209,31 +209,3 @@ export const SERVICES = [
     tags: ["Updates", "Analytics", "Support"],
   },
 ] as const;
-
-export const TESTIMONIALS = [
-  {
-    name: "Rohan Mehta",
-    role: "Restaurant Owner, Mumbai",
-    text: "Site was live in two days and looked better than agencies quoted six weeks for. Bookings started the same week.",
-  },
-  {
-    name: "Dr. Anjali Kapoor",
-    role: "Clinic Director, Pune",
-    text: "We finally show up when patients search for us. The dashboard showing every visitor is addictive.",
-  },
-  {
-    name: "Sameer Khan",
-    role: "Founder, D2C Brand",
-    text: "Fastest turnaround I've experienced with zero drop in quality. The site loads instantly even on bad networks.",
-  },
-  {
-    name: "Priya Nair",
-    role: "Boutique Owner, Kochi",
-    text: "They handled everything — domain, Google, WhatsApp integration. I just answered questions for half an hour.",
-  },
-  {
-    name: "Adv. Nikhil Verma",
-    role: "Managing Partner, Delhi",
-    text: "Professional, fast, and the consultation requests speak for themselves. Worth every rupee.",
-  },
-] as const;

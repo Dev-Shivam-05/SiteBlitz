@@ -12,7 +12,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Live Proof — Real Numbers, Publicly Measured | SiteBlitz",
   description:
-    "SiteBlitz publishes its own live analytics: real visitors, real-user Core Web Vitals, and deploy history. Every claim on this site is verifiable here.",
+    "SiteBlitz publishes its own live analytics: real visitors, real-user Core Web Vitals, and deploy history, measured on this site and published as it happens.",
   alternates: { canonical: "/proof" },
 };
 

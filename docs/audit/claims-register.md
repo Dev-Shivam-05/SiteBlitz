@@ -48,7 +48,7 @@ every removed sentence is recoverable from git.
 |---|---|---|---|
 | `sb_sid` | httpOnly, 30-min idle session id (`api/track/route.ts:61`) | "a short-lived session cookie" | none |
 | `sb_vid` | httpOnly, **1-year** visitor id (`api/track/route.ts:68`) | "an anonymous visitor cookie" | duration not disclosed |
-| Geography | city, region, country, timezone from Vercel headers stored per session (`route.ts:83-86`) | not mentioned | **undisclosed** |
+| Geography | city, region, country, timezone from Vercel headers stored per session (`route.ts:83-86`); IP truncated to /24 before storage (`route.ts:33-35`) | "approximate location (country/city derived from IP)", "IP addresses are truncated" | none (corrected 2026-10-31: first draft wrongly said undisclosed) |
 | Retention | no TTL index in `src/lib/models.ts` or anywhere in `src/`; raw per-session/pageview rows kept indefinitely (production Atlas indexes not checked) | "Analytics data is kept in aggregate" | **inaccurate** |
 | Content | random ids + page paths + referrer/UTM + device + vitals | "random identifiers only — no personal information" | partly inaccurate: a persistent id + city is pseudonymous personal data under most regimes (check with counsel) |
 | User control | no opt-out, no Do-Not-Track / Global Privacy Control handling | "You may request deletion" | no self-serve control |

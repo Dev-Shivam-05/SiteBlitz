@@ -17,7 +17,7 @@ export function WorkGallery() {
             How we would build for your sector. These are concepts, not client projects — we publish case
             studies only with the client&apos;s permission and numbers we can show.
           </p>
-          <p className="mt-4 hidden text-xs uppercase tracking-[0.25em] text-faint lg:block">
+          <p className="rm-hide mt-4 hidden text-xs uppercase tracking-[0.25em] text-faint lg:block">
             Keep scrolling — the gallery moves sideways ⟶
           </p>
         </div>

@@ -29,13 +29,17 @@ export default function PrivacyPage() {
       </p>
       <h2>Cookies</h2>
       <p>
-        We set a short-lived session cookie and an anonymous visitor cookie to understand how the
-        site is used. They contain random identifiers only — no personal information.
+        We set two first-party cookies to understand how the site is used: a session cookie that
+        expires after 30 minutes of inactivity, and a visitor cookie that lasts up to one year so we
+        can tell new visits from returning ones. Both hold random identifiers only — no name, email
+        or phone number — but together with approximate location and device they describe a visit.
       </p>
       <h2>How long we keep data</h2>
       <p>
-        Enquiry records are kept while relevant to a business relationship. Analytics data is kept
-        in aggregate. You may request deletion of your data at any time.
+        Enquiry records are kept while relevant to a business relationship. Analytics records (the
+        pages of a visit, approximate location, device and the random identifiers above) are
+        currently kept until they are deleted; published figures such as those on our Proof page are
+        aggregates. You may request deletion of your data at any time.
       </p>
       <h2>Your rights</h2>
       <p>

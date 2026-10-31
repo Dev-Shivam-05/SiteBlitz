@@ -6,7 +6,6 @@ import { Services } from "@/components/site/sections/Services";
 import { WorkGallery } from "@/components/site/sections/WorkGallery";
 import { Process } from "@/components/site/sections/Process";
 import { Manifesto } from "@/components/site/sections/Manifesto";
-import { Testimonials } from "@/components/site/sections/Testimonials";
 import { Pricing } from "@/components/site/sections/Pricing";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { CTA } from "@/components/site/sections/CTA";
@@ -55,7 +54,7 @@ export default function HomePage() {
         <Services />
       </div>
       <div data-chapter="work">
-        <BigMarquee words={["SELECTED WORK", "CASE STUDIES"]} />
+        <BigMarquee words={["CONCEPT STUDIES", "HOW WE BUILD"]} />
         <WorkGallery />
       </div>
       <div data-chapter="process" data-bgshift="#0C0E09">
@@ -63,7 +62,6 @@ export default function HomePage() {
         <Manifesto />
       </div>
       <div data-chapter="pricing" data-bgshift="#100D14">
-        <Testimonials />
         <Pricing />
       </div>
       <div data-chapter="contact">

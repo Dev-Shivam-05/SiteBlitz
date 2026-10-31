@@ -316,6 +316,19 @@ body {
     white-space: normal;
   }
   .rm-hide { display: none !important; }
+
+  /* The desktop work gallery only reveals cards 3+ by scrolling sideways (GSAP pin), which is
+     off under reduced motion — they sat clipped off-screen. Wrap into a two-column grid. */
+  @media (min-width: 1024px) {
+    [data-hscroll-track] {
+      flex-wrap: wrap;
+      padding-right: 8vw;
+    }
+    [data-hscroll-track] > .hcard {
+      width: calc(50% - 1rem);
+      flex-shrink: 1;
+    }
+  }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
