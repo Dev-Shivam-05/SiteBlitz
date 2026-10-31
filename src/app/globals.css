@@ -297,10 +297,14 @@ body {
   .marquee-mask {
     mask-image: none;
     overflow: visible;
+    /* clip sideways only: a frozen row must never widen the page (it did at 320-375 px) */
+    overflow-x: clip;
   }
   .marquee-track {
     width: auto;
     flex-wrap: wrap;
+    /* BigMarquee's 60px words are nowrap for the loop; frozen, they must wrap to the viewport */
+    white-space: normal;
   }
   .rm-hide { display: none !important; }
   *, *::before, *::after {
