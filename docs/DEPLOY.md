@@ -37,6 +37,23 @@ Consequences:
 3. Promote that exact deployment: `vercel promote <preview-url> --yes`.
 4. Record the previous production URL here before promoting, so rollback is one command.
 
+## Pending release (2026-11-01)
+
+Commit `f6e0de9` on `v2-redesign` is verified locally: `npm test` 81/81, `npm run build` green with type checking,
+`tsc` 0 errors, screenshots 320-1920 px in motion and reduced-motion modes, lab LCP ≤ 1.78 s on every measured page
+(`docs/audit/d2-site-admin-audit.md`). The agent's `vercel deploy --prod` was blocked by its permission settings, so the
+owner releases it. Deploy from a clean checkout so no local `.env.local` is uploaded:
+
+```powershell
+git -C E:\Temp\SiteBlitz worktree add --detach E:\Temp\siteblitz-release f6e0de9
+Copy-Item -Recurse E:\Temp\SiteBlitz\.vercel E:\Temp\siteblitz-release\.vercel
+cd E:\Temp\siteblitz-release
+vercel deploy --prod
+```
+
+Then check https://siteblitz.vercel.app (home, /work, /website-in-48-hours, /proof) on a phone, and remove the worktree:
+`git -C E:\Temp\SiteBlitz worktree remove E:\Temp\siteblitz-release`.
+
 ## Rollback
 
 `vercel promote <previous-production-url> --yes` (or `vercel rollback`). The previous production deployment before the

@@ -10,6 +10,13 @@ Map: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md) · Risks: [docs/RISK.md](docs/RI
 - `npm test` → vitest tests over the SSRF guard and the admin auth gate. No linter exists.
 - **Never `npm run build` while `next dev` is live** — shared `.next` gives a bogus
   `TypeError: a[d] is not a function` prerender failure. Kill dev first; check for orphan children.
+- On Windows, stopping the background `npm run dev` / `npm start` shell **leaves the `next` child alive on :3000**
+  (bit three times on 2026-10-31: a stale server answered every check, a new dev silently took :3001).
+  After stopping, list `node.exe` processes whose command line contains `E:TempSiteBlitz
+ode_modules` and stop those PIDs.
+- Visual QA: `node scripts/shoot.mjs --pages /,/work --widths 320,375,1440 [--rm] [--full] [--cookie sb_admin=<jwt>]`
+  (flags horizontal overflow + console errors). Lab perf: `node scripts/vitals.mjs --pages / --runs 3` against `npm start`.
+  Git Bash needs `MSYS_NO_PATHCONV=1` or `/` page args get rewritten to Windows paths.
 - PowerShell 5.1 has no `&&`. Separate commands, or `;`.
 
 ## Conventions — follow these, don't improve them
@@ -57,4 +64,5 @@ Map: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md) · Risks: [docs/RISK.md](docs/RI
 ## Git
 - `v2-redesign` is the working branch. `main` is 101 commits behind and is not the deploy source.
   Never push to `main`.
-- The branch has no upstream set yet: `git push -u origin v2-redesign` (see RISK R1).
+- `v2-redesign` tracks `origin/v2-redesign`. Pushes create Vercel **Preview** deployments only; production is a
+  separate step (`docs/DEPLOY.md`).

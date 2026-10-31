@@ -14,7 +14,7 @@ Status: `todo` · `doing` · `done` · `blocked`
 | P4 | Delete the dead code | Remove `Aurora`, `TiltCard`, `sections/Work`, the empty `DEEP_SERVICES` stub, and their orphan CSS | 6 | **done** (2026-10-31) |
 | P5 | Restore typecheck | Confirm `tsc --noEmit` completes, drop `ignoreBuildErrors`, fix what surfaces | 3 | **done** (2026-10-31) |
 | P6 | Durable rate limits | Move the login and grader throttles off per-instance `Map`s onto Mongo | 4 | todo |
-| P7 | README + deploy runbook | Replace the deleted README; document env setup and the release path | 2 | todo |
+| P7 | README + deploy runbook | Replace the deleted README; document env setup and the release path | 2 | partly — release path in `docs/DEPLOY.md`; README still missing |
 | P8 | One source of truth for models | Stop hand-maintaining TS interfaces alongside Mongoose schemas | 3 | todo |
 
 ## Transformation programme (master prompt v1.1, agreed 2026-10-31)
@@ -32,9 +32,9 @@ Order agreed in `docs/debate/2026-10-31-master-prompt-critique/RESULT.md`. On 20
 | P5 | Restore typecheck | (as above) — 0 errors, 4 s | **done** (2026-10-31) |
 | PR1 | Privacy implementation | Retention + user control for analytics, per D1 findings | **done** — GPC/DNT honoured; retention period = owner decision |
 | P3 | Admin defence in depth | (as above) | **done** |
-| D2–D5 | Audit → research → debate → blueprint | Site/mobile/admin audit, creative directions, real `/debate`, spec-lock | todo |
-| X1+ | Redesign implementation | Approved blueprint, ≤8 files per unit | todo |
-| L1 | Release | Verified preview promoted to production, rollback recorded | todo |
+| D2–D5 | Audit → research → debate → blueprint | Site/mobile/admin audit, creative directions, real `/debate`, spec-lock | **done** — `docs/audit/d2-site-admin-audit.md`, `docs/debate/2026-10-31-redesign-seo-direction/RESULT.md` (owner waived spec-lock: "go for all") |
+| X1+ | Redesign implementation | Approved blueprint, ≤8 files per unit | **X1 done** (home narrative) · SEO S1-S2 done · next: pricing comparison + /proof methodology |
+| L1 | Release | Verified preview promoted to production, rollback recorded | **blocked** — agent production deploy denied by permissions; owner runs the command in `docs/DEPLOY.md` |
 
 ## Product work
 
