@@ -1,5 +1,6 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 const COOKIE_NAME = "sb_admin";
 const MAX_AGE = 60 * 60 * 24 * 7; // 7 days
@@ -47,6 +48,14 @@ export async function clearAdminCookie() {
 export async function isAdminRequest(): Promise<boolean> {
   const store = await cookies();
   return verifyAdminToken(store.get(COOKIE_NAME)?.value);
+}
+
+/** Defence in depth (P3): every /api/admin data route calls this first, so a broken middleware
+ *  matcher or a route added outside it no longer publishes admin data (RISK R4).
+ *  Returns the 401 response to send, or null when the request is authorised. */
+export async function requireAdmin(): Promise<NextResponse | null> {
+  if (await isAdminRequest()) return null;
+  return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
 }
 
 export const ADMIN_COOKIE = COOKIE_NAME;

@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { dbConnect, dbConfigured } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import { Lead } from "@/lib/models";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   if (!dbConfigured()) {
     return NextResponse.json({ ok: false, error: "db_not_configured" }, { status: 503 });
   }
@@ -42,6 +45,8 @@ const PatchInput = z.object({
 });
 
 export async function PATCH(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   if (!dbConfigured()) {
     return NextResponse.json({ ok: false, error: "db_not_configured" }, { status: 503 });
   }

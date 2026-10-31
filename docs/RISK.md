@@ -37,7 +37,11 @@ type safety, and `npm run typecheck` may not be runnable.
 **Mitigation:** treat editor diagnostics as the only type signal until this is fixed; do not
 interpret a green build as "types are fine".
 
-## R4 — Admin auth is enforced in exactly one file
+## R4 — Admin auth is enforced in exactly one file ✅ MITIGATED 2026-10-31 (P3)
+
+**Now:** every `/api/admin` data route calls `requireAdmin()` (`src/lib/auth.ts`) before anything else;
+`tests/admin-routes.test.ts` discovers all admin routes from the filesystem and asserts 401 without middleware
+(mutation-checked). Admin *pages* still rely on middleware, but they hold no data — it all comes from these APIs. Was:
 
 `src/middleware.ts` is the sole gate for both `/admin/:path*` and `/api/admin/:path*`.
 No individual admin route re-checks the session. If the `matcher` is edited, a route is added

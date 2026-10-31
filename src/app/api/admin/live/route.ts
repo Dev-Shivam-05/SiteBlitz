@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import { dbConnect, dbConfigured } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import { Session, Pageview, AnalyticsEvent } from "@/lib/models";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   if (!dbConfigured()) {
     return NextResponse.json({ ok: false, error: "db_not_configured" }, { status: 503 });
   }

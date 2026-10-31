@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { dbConnect, dbConfigured } from "@/lib/db";
+import { requireAdmin } from "@/lib/auth";
 import { Session, Lead, Pageview } from "@/lib/models";
 
 export const runtime = "nodejs";
@@ -17,6 +18,8 @@ function toCsv(rows: Record<string, unknown>[], headers: string[]): string {
 }
 
 export async function GET(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   if (!dbConfigured()) {
     return NextResponse.json({ ok: false, error: "db_not_configured" }, { status: 503 });
   }

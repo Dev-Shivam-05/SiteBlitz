@@ -10,7 +10,7 @@ Status: `todo` · `doing` · `done` · `blocked`
 | H2/H3 | **Contrast + reduced motion** | Lift `--color-faint` to WCAG AA; stop marquees showing duplicated content under reduced motion | 5 | **done** (2026-08-20) |
 | P1 | Safety net | vitest + tests for the SSRF guard and the admin auth gate | 8 | **done** (2026-08-20) — 73 tests, mutation-checked |
 | P2 | Push & deploy truth | Set upstream, push `v2-redesign`, confirm all 6 Vercel env vars, record which branch actually deploys | 2 | **done** (2026-10-31) — see `docs/DEPLOY.md` |
-| P3 | Defence in depth on admin | `isAdminRequest()` re-check inside every `/api/admin` route so middleware is no longer a single point of failure | 8 | todo |
+| P3 | Defence in depth on admin | `isAdminRequest()` re-check inside every `/api/admin` route so middleware is no longer a single point of failure | 8 | **done** (2026-10-31) — 13 routes + discovery test |
 | P4 | Delete the dead code | Remove `Aurora`, `TiltCard`, `sections/Work`, the empty `DEEP_SERVICES` stub, and their orphan CSS | 6 | todo |
 | P5 | Restore typecheck | Confirm `tsc --noEmit` completes, drop `ignoreBuildErrors`, fix what surfaces | 3 | **done** (2026-10-31) |
 | P6 | Durable rate limits | Move the login and grader throttles off per-instance `Map`s onto Mongo | 4 | todo |
@@ -30,8 +30,8 @@ Order agreed in `docs/debate/2026-10-31-master-prompt-critique/RESULT.md`. On 20
 | P2 | Deploy truth | Record which branch deploys where, env vars per environment, release + rollback path | **done** — `docs/DEPLOY.md` |
 | C1 | Protective content patch | Remove/relabel unsupported claims; fix `/proof` and `/privacy` wording | **done** (C1a-c) |
 | P5 | Restore typecheck | (as above) — 0 errors, 4 s | **done** (2026-10-31) |
-| PR1 | Privacy implementation | Retention + user control for analytics, per D1 findings | todo |
-| P3 | Admin defence in depth | (as above) | todo |
+| PR1 | Privacy implementation | Retention + user control for analytics, per D1 findings | **done** — GPC/DNT honoured; retention period = owner decision |
+| P3 | Admin defence in depth | (as above) | **done** |
 | D2–D5 | Audit → research → debate → blueprint | Site/mobile/admin audit, creative directions, real `/debate`, spec-lock | todo |
 | X1+ | Redesign implementation | Approved blueprint, ≤8 files per unit | todo |
 | L1 | Release | Verified preview promoted to production, rollback recorded | todo |
