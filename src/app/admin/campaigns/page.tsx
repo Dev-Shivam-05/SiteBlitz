@@ -44,7 +44,7 @@ export default function CampaignsPage() {
           <h3 className="text-sm font-semibold">UTM campaigns</h3>
           <p className="mt-1 text-xs text-faint">
             Tag your ads & posts like{" "}
-            <code className="rounded bg-raised px-1.5 py-0.5 text-volt">
+            <code className="break-all rounded bg-raised px-1.5 py-0.5 text-volt">
               ?utm_source=instagram&utm_campaign=july_offer
             </code>{" "}
             and they show up here automatically.

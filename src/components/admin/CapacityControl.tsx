@@ -56,7 +56,7 @@ export function CapacityControl() {
         placeholder="optional note (e.g. next start Monday)"
         value={note}
         onChange={(e) => setNote(e.target.value)}
-        className="w-56 rounded-lg border border-line bg-void px-3 py-1.5 text-sm text-ink outline-none focus:border-volt"
+        className="w-full max-w-56 rounded-lg border border-line bg-void px-3 py-1.5 text-sm text-ink outline-none focus:border-volt"
       />
       <button
         onClick={save}

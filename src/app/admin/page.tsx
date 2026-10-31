@@ -95,7 +95,7 @@ export default function AdminDashboard() {
         title="Overview"
         sub="Your website, measured to the click."
         right={
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2">
               <span className="h-2 w-2 animate-pulse-soft rounded-full bg-volt" />
               <span className="text-sm tabular-nums text-ink">{s?.liveNow ?? 0}</span>

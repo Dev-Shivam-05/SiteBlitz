@@ -75,7 +75,9 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           </button>
         </div>
       </aside>
-      <main className="ml-16 min-h-screen flex-1 p-5 md:p-8 lg:ml-56">{children}</main>
+      {/* min-w-0: as a flex child, main otherwise grows to its widest content (the 760px visitors
+          table), widening the page on phones instead of letting the table's card scroll. */}
+      <main className="ml-16 min-h-screen min-w-0 flex-1 p-5 md:p-8 lg:ml-56">{children}</main>
     </div>
   );
 }
@@ -94,7 +96,8 @@ export function PageHeader({ title, sub, right }: { title: string; sub?: string;
 
 export function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`rounded-2xl border border-line bg-surface p-5 ${className}`}>{children}</div>
+    // min-w-0: inside a grid, a card holding a wide table must scroll, not widen the column
+    <div className={`min-w-0 rounded-2xl border border-line bg-surface p-5 ${className}`}>{children}</div>
   );
 }
 
