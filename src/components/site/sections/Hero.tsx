@@ -8,7 +8,7 @@ import { SITE } from "@/lib/site";
 const MARQUEE_ITEMS = [
   "48-HOUR DELIVERY",
   "SEO-FIRST ENGINEERING",
-  "90+ LIGHTHOUSE SCORES",
+  "90+ LIGHTHOUSE TARGET",
   "INDIA & WORLDWIDE",
   "CONVERSION-DRIVEN DESIGN",
   "LIVE VISITOR ANALYTICS",
@@ -89,7 +89,10 @@ export function Hero() {
             SiteBlitz is a web studio for businesses that move fast. Conversion-focused,
             SEO-first websites —{" "}
             <span className="font-accent italic text-ink">designed, engineered and live</span>{" "}
-            in as little as 48 hours.
+            in as little as 48 hours.{" "}
+            <Link href="/pricing" data-track="hero_price_link" className="text-ink underline decoration-volt/60 underline-offset-4 hover:decoration-volt">
+              Fixed prices from ₹7,999.
+            </Link>
           </p>
 
           <div className="flex flex-wrap items-center gap-4" data-anim="fade-up" data-now data-delay="1.05">

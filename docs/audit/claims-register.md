@@ -40,6 +40,7 @@ every removed sentence is recoverable from git.
 | 11 | "Mobile-first, blazing fast (90+ Lighthouse)" / "90+ Lighthouse performance" | `site.ts` plans; `Stats.tsx:7` | a build target the owner sells | OWNER-STATED commitment | keep (owner to confirm) |
 | 12 | "24/7 WhatsApp support" | `Stats.tsx:9` | — | OWNER-STATED commitment | keep (owner to confirm) |
 | 13 | "indexing and a healthy foundation are guaranteed" | `site.ts:120` | — | OWNER-STATED commitment | keep (owner to confirm) |
+| 15 | "Most chosen" badge on the Growth plan | `sections/Pricing.tsx:58` | no sales data | UNSUPPORTED | replaced with "Recommended" (X1) |
 | 14 | Live visitor count, weekly visitors, real-user LCP/CLS, last deploy | `ProofStrip.tsx`, `/proof` | first-party data from `/api/proof` | VERIFIED mechanism | keep |
 
 ## Tracking vs disclosure

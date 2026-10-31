@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
 import { Manifesto } from "@/components/site/sections/Manifesto";
-import { Stats } from "@/components/site/sections/Stats";
+import { Answers } from "@/components/site/sections/Answers";
 import { CTA } from "@/components/site/sections/CTA";
 
 export const metadata: Metadata = {
@@ -34,13 +34,13 @@ export default function AboutPage() {
   return (
     <Shell>
       <section className="mx-auto max-w-7xl px-5 pb-16 pt-32 md:px-8 md:pt-44">
-        <p className="reveal text-xs uppercase tracking-[0.25em] text-volt">The studio</p>
-        <h1 className="reveal font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl" data-delay="100">
+        <p className="text-xs uppercase tracking-[0.25em] text-volt">The studio</p>
+        <h1 className="font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl">
           Small studio<span className="text-volt">.</span>
           <br />
           <span className="font-accent italic">Violent</span> execution<span className="text-volt">.</span>
         </h1>
-        <div className="reveal mt-10 max-w-2xl space-y-5 text-base leading-relaxed text-muted" data-delay="200">
+        <div className="mt-10 max-w-2xl space-y-5 text-base leading-relaxed text-muted">
           <p>
             SiteBlitz started with a simple observation: most small and mid-size businesses are
             stuck between overpriced agencies that take two months and template mills that take
@@ -59,7 +59,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Stats />
+      <Answers />
 
       <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-32">
         <h2 className="reveal font-display text-4xl font-bold tracking-tight md:text-6xl">

@@ -1,5 +1,8 @@
 import { PROCESS_STEPS } from "@/lib/site";
 
+/** Beat 3 — "from brief to live" as a sticky card stack (signature scene A, X1). Each step card pins,
+ *  then compresses and dims as the next slides over it (Motion engine: [data-stack]). Reduced motion /
+ *  no JS: four static cards in order. The SiteBlitz principle (formerly the Manifesto section) closes it. */
 export function Process() {
   return (
     <section className="border-y border-line bg-surface/40">
@@ -11,33 +14,42 @@ export function Process() {
             <br />
             Live by <span className="font-accent italic">Wednesday</span><span className="text-volt">.</span>
           </h2>
+          <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted md:text-base">
+            Four steps, each with a fixed output. Launch-plan sites go from brief to live in as little as
+            48 hours; bigger scopes follow the same steps on a longer clock.
+          </p>
         </div>
 
-        {/* scroll-driven progress line */}
-        <div className="mt-14 hidden h-px w-full bg-line md:block">
-          <div data-progress-line className="h-full w-full bg-volt" style={{ transform: "scaleX(0)" }} />
-        </div>
-
-        <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:mt-0 md:rounded-t-none md:border-t-0 lg:grid-cols-4 md:grid-cols-2 mt-14">
+        <div data-stack className="mt-14 flex flex-col gap-6 md:gap-8">
           {PROCESS_STEPS.map((s, i) => (
-            <div
+            <article
               key={s.n}
-              data-anim="fade-up"
-              data-delay={String(i * 0.1)}
-              className="group relative bg-void p-7 transition-colors duration-300 hover:bg-surface md:p-8"
+              data-stack-item
+              className="sticky grid gap-6 overflow-hidden rounded-3xl border border-line bg-void p-7 md:grid-cols-[auto_1fr_auto] md:items-center md:gap-12 md:p-12"
+              style={{ top: `${92 + i * 14}px` }}
             >
-              <span className="font-display text-5xl font-bold text-outline transition-colors duration-300 group-hover:text-volt group-hover:[-webkit-text-stroke:0]">
-                {s.n}
-              </span>
-              <h3 className="font-display mt-6 text-xl font-bold">{s.title}</h3>
-              <p className="mt-1 text-xs uppercase tracking-widest text-volt">{s.time}</p>
-              <p className="mt-4 text-sm leading-relaxed text-muted">{s.text}</p>
-              <span className="absolute bottom-6 right-6 text-faint opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 group-hover:text-volt">
-                ⟶
-              </span>
-            </div>
+              <span className="font-display text-6xl font-bold leading-none text-outline md:w-36 md:text-8xl">{s.n}</span>
+              <div>
+                <h3 className="font-display text-2xl font-bold md:text-4xl">{s.title}</h3>
+                <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:text-base">{s.text}</p>
+              </div>
+              <p className="w-fit rounded-full border border-volt/30 bg-volt/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-volt">
+                {s.time}
+              </p>
+            </article>
           ))}
         </div>
+
+        <p
+          className="font-accent mx-auto mt-20 max-w-4xl text-center text-2xl italic leading-snug text-ink md:mt-28 md:text-4xl"
+          data-anim="words-scrub"
+        >
+          “Most business websites are digital brochures nobody reads. We build salespeople that never
+          sleep — fast enough for Google, sharp enough for humans, measured down to every single visitor.”
+        </p>
+        <p className="mt-6 text-center text-xs uppercase tracking-[0.3em] text-faint" data-anim="fade-up">
+          — The SiteBlitz principle
+        </p>
       </div>
     </section>
   );

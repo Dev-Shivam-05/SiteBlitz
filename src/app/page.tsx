@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
 import { Hero } from "@/components/site/sections/Hero";
-import { Stats } from "@/components/site/sections/Stats";
+import { Answers } from "@/components/site/sections/Answers";
 import { Services } from "@/components/site/sections/Services";
 import { WorkGallery } from "@/components/site/sections/WorkGallery";
 import { Process } from "@/components/site/sections/Process";
-import { Manifesto } from "@/components/site/sections/Manifesto";
+import { Evidence } from "@/components/site/sections/Evidence";
 import { Pricing } from "@/components/site/sections/Pricing";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { CTA } from "@/components/site/sections/CTA";
 import { BigMarquee } from "@/components/site/BigMarquee";
-import { ProofStrip } from "@/components/site/ProofStrip";
 import { FAQS, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -45,10 +44,14 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
       />
+      {/* Six-beat narrative (X1, agreed in docs/debate/2026-10-31-redesign-seo-direction):
+          problem -> buyer questions -> approach -> services + concepts -> evidence -> next step */}
       <div data-chapter="intro">
         <Hero />
-        <ProofStrip />
-        <Stats />
+        <Answers />
+      </div>
+      <div data-chapter="process" data-bgshift="#0C0E09">
+        <Process />
       </div>
       <div data-chapter="services" data-bgshift="#0D0D13">
         <Services />
@@ -57,11 +60,8 @@ export default function HomePage() {
         <BigMarquee words={["CONCEPT STUDIES", "HOW WE BUILD"]} />
         <WorkGallery />
       </div>
-      <div data-chapter="process" data-bgshift="#0C0E09">
-        <Process />
-        <Manifesto />
-      </div>
       <div data-chapter="pricing" data-bgshift="#100D14">
+        <Evidence />
         <Pricing />
       </div>
       <div data-chapter="contact">

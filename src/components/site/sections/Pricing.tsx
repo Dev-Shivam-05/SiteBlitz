@@ -55,7 +55,7 @@ export function Pricing({ compact = false }: { compact?: boolean }) {
           >
             {p.highlight && (
               <span className="absolute -top-3 left-8 rounded-full bg-volt px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-void">
-                Most chosen
+                Recommended
               </span>
             )}
             <h3 className="font-display text-xl font-bold">{p.name}</h3>
