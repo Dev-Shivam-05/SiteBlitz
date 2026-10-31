@@ -54,3 +54,46 @@ third-party analytics is added.
 and the site sells "your data, your dashboard". Breaking that would make `/privacy` false.
 
 **Reopen only if:** the privacy policy is updated first.
+
+---
+
+## D5 — Unevidenced client claims are withheld, work shown as concept studies (2026-10-31)
+
+**Decision:** the 4 case-study results, 5 named testimonials, "100% on-time launches" and "Most chosen" are no longer
+published. Work items stay as clearly labelled concept studies with an image-free frame.
+
+**Why:** no evidence or permission exists in the repo, and the portfolio images are AI mockups showing other brands and
+lorem ipsum (`docs/audit/claims-register.md`). `/proof` promised verifiability. Withheld, not destroyed: git history keeps them.
+
+**Reopen when:** the owner supplies evidence + client permission per claim.
+
+---
+
+## D6 — D3 superseded: type errors fail the build (2026-10-31)
+
+**Decision:** `ignoreBuildErrors` removed. The OOM was the untyped `model()` helper in `src/lib/models.ts`, not the
+dependency set. Keep schemas typed `new Schema<XDoc>`.
+
+---
+
+## D7 — D4 amended: browser opt-out signals are honoured (2026-10-31)
+
+**Decision:** `/api/track` still always returns 204, but records nothing and sets no cookies when `Sec-GPC: 1` or `DNT: 1`.
+No retention TTL until the owner picks a period (a TTL index would also conflict with the existing `ts` index).
+
+---
+
+## D8 — Home narrative, Preloader and robots policy (2026-11-01)
+
+**Decision:** six-beat home order, H1 unchanged, Preloader kept, robots `*` allow without per-bot groups.
+
+**Why:** agreed over 3 ChatGPT rounds (`docs/debate/2026-10-31-redesign-seo-direction/RESULT.md`); Preloader measured as
+not the LCP element (home lab LCP 1.78 s); per-bot groups would not inherit the `/admin` and `/api/` disallows.
+
+---
+
+## D9 — Releases are deployed from a clean worktree (2026-11-01)
+
+**Decision:** production deploys run `vercel deploy --prod` from `git worktree add --detach <dir> <commit>` + copied `.vercel/`.
+
+**Why:** the working copy holds a local `.env.local`; a clean checkout guarantees only tracked files are uploaded.

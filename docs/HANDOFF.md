@@ -1,84 +1,44 @@
-# Handoff — SiteBlitz
+# HANDOFF — SiteBlitz — Phase L1 (release) — 2026-11-01
 
-## Last session: H2/H3 + P1 (2026-08-20)
+## Done
+- Master prompt reviewed with ChatGPT (2 rounds) → v1.1 + project contract + phase brief template + debate prompt v1.1 in `prompts/` (v1.0 kept).
+- Site no longer publishes unsupported claims: the 4 "case studies" (AI mockups showing other brands) are labelled concept studies with no fake results or images; the 5 testimonials, "100% on-time", "Most chosen" and the "every claim verifiable" lines are gone; `/privacy` matches what the code stores.
+- Home follows the six-beat narrative agreed with ChatGPT (3 rounds): Hero → Answers strip → Process sticky stack → Services grid → concept gallery → Evidence → Pricing → FAQ → CTA.
+- `npm run typecheck` works (0 errors, ~4 s) and `npm run build` now fails on type errors.
+- Every `/api/admin` data route checks auth itself (middleware no longer the only gate); `/api/track` honours GPC/DNT.
+- No horizontal overflow on public pages (320–1920) or admin screens (320–1440); lab mobile LCP ≤ 1.78 s on every measured page.
+- SEO: doubled-brand titles fixed, keyword-led titles, new `/website-in-48-hours`, BreadcrumbList, linked entity graph, builder-vs-studio guide, honest `llms.txt`.
+- 81 tests pass; everything pushed to `origin/v2-redesign` (HEAD `ed16331`). Previews are SSO-protected + noindex.
 
-Three phases in one sitting, at the owner's request ("go for all"), committed separately.
+## Files changed
+- `prompts/*v1.1*`, `prompts/SITEBLITZ_PROJECT_CONTRACT_v1.0.md`, `prompts/PHASE_BRIEF_TEMPLATE_v1.0.md` — prompt v1.1 set.
+- `docs/audit/claims-register.md`, `docs/audit/d2-site-admin-audit.md`, `docs/DEPLOY.md` — D1/D2 audits, deploy truth + release runbook.
+- `docs/debate/2026-10-31-*` — both real ChatGPT debates with RESULT.md.
+- `scripts/shoot.mjs`, `scripts/vitals.mjs` — screenshot/overflow tool and lab vitals tool.
+- `src/lib/site.ts`, `src/content/generated/*.json` (16), `public/llms.txt` — claims withdrawn/relabelled; new guide post.
+- `src/components/site/ConceptFrame.tsx`, `sections/{Answers,Evidence,Process,Services,WorkGallery,Hero,Pricing}.tsx`, `src/app/page.tsx` — X1 home.
+- `src/app/website-in-48-hours/page.tsx` + titles/JSON-LD in `layout.tsx`, `pricing`, `services/[slug]`, `for/[slug]`, `blog/[slug]`, `sitemap.ts` — SEO.
+- `src/lib/models.ts`, `next.config.ts` — P5 typecheck fix, `ignoreBuildErrors` removed.
+- `src/lib/auth.ts`, `src/app/api/admin/**/route.ts` (13), `tests/admin-routes.test.ts` — P3.
+- `src/app/api/track/route.ts`, `tests/track-optout.test.ts`, `src/app/privacy/page.tsx` — PR1.
+- `src/components/admin/{AdminShell,CapacityControl}.tsx`, `src/app/admin/{page,campaigns/page}.tsx` — admin mobile overflow.
+- `src/app/globals.css` — reduced-motion marquee/gallery fixes, blueprint grid; deleted Aurora, TiltCard, sections/{Work,Testimonials,Stats}.
 
-**H2/H3 — contrast + reduced motion.** Audited all nine screens of the home page plus `/work` and
-`/services` by screenshot. The premise that those sections needed the hero treatment was wrong;
-they hold up and were left alone. Two real defects were found instead:
-`--color-faint` was 2.68:1 (below WCAG AA) while being used for tag pills, testimonial roles and
-the grader placeholder, and every marquee showed duplicated content under `prefers-reduced-motion`
-— testimonials rendered the same five quotes four times. Both fixed.
+## Decisions made
+- Withhold (not delete) every client claim without evidence; concept studies only — see DECISIONS D5.
+- Keep H1 "THAT WIN" and the first-visit Preloader (measured: not the LCP element) — agreed with ChatGPT.
+- No analytics retention TTL yet: the period is the owner's call and a TTL index would conflict with the existing `ts` index.
+- robots.txt stays `*` allow (per-bot groups would drop the /admin, /api disallows).
+- Deploy from a clean git worktree so local `.env.local` is never uploaded.
 
-**P1 — safety net.** 73 vitest tests over the SSRF guard and the admin auth gate. Both suites
-mutation-checked: removing the `169.254` metadata guard fails 3, removing the `/api/admin` gate
-fails 18. Only source change was three `export` keywords.
+## Known broken / deliberately skipped
+- **Production not updated** — the agent's `vercel deploy --prod` was denied by permission settings; the owner must run it (`docs/DEPLOY.md` → "Pending release").
+- Previews and dev share the production Mongo database (RISK R11) — owner action in the Vercel dashboard.
+- Pricing comparison table and /proof methodology (ChatGPT round 3, items 3 and 5) — not started.
+- VERIFY E manual run with real admin credentials, screen-reader and keyboard passes — no credentials or time.
+- Schema address (Mumbai locality) kept as owner-stated; owner to confirm. No Search Console / keyword data yet.
 
-**Technique that paid off:** auditing under emulated `prefers-reduced-motion` renders every section
-static and fully visible, which is how the marquee duplication became obvious. `RM=1` in
-`scratchpad/cdp.mjs`.
-
-## Earlier that session: H1 — Hero v4 (2026-08-20)
-
-**Branch:** `v2-redesign` · **Files changed:** `Hero.tsx`, `WebGLHero.tsx`, `globals.css` + spec/docs
-
-The owner's #1 priority: the home page had to impress on first sight. Three real defects were
-found by screenshotting the running site, not by reading code:
-
-1. The middle headline line "THAT WIN" was invisible — a 1px 25%-opacity stroke over a bright
-   background. The headline effectively read "WEBSITES … BUSINESS."
-2. The nav logo, the status badge and the headline all shared one band on short viewports.
-3. The shader was one flat texture edge to edge — measured left/right luminance ratio 1.10×,
-   i.e. no focal point at all. That is the "background bahut simple" complaint, quantified.
-
-Fixed by: a volt wireframe stroke on line 2, a 3-row grid that reserves the navbar height, the
-badge moved into flow, and a shader rebuilt around a single light source (ratio now 1.51×).
-Full spec + verification record: `docs/spec/hero-v4.md`.
-
-**Two things worth knowing next session:**
-- Never run `npm run build` while `next dev` is live. They share `.next` and it produces a
-  bogus `TypeError: a[d] is not a function` prerender failure that looks like a code bug.
-- `chrome --headless --window-size=W,H --screenshot` is **not** trustworthy for narrow widths —
-  the window size includes browser insets, so it silently crops a wider layout. Measure via CDP
-  instead (`scratchpad/cdp.mjs` this session; worth moving into the repo as a dev tool).
-
-## Previous session: R0 — Recon (2026-08-20)
-
-**Branch:** `v2-redesign` at `4ee3cc1` · **Source changed:** none (recon is read-only)
-
-### What happened
-Ran `legacy-recon` on an inherited, undocumented codebase — 119 files, ~10.4k LOC, Next.js 15
-App Router + MongoDB analytics + admin panel, with the entire v3 "proof-first" rebuild landed as a
-single commit and no spec behind it. Produced the docs spine:
-
-- `docs/PROJECT_MAP.md` — how to run it, where everything lives, the conventions it actually follows
-- `docs/RISK.md` — 10 risks, R1 is urgent
-- `docs/VERIFY.md` — the manual checklist standing in for the tests that don't exist
-- `docs/DECISIONS.md` — D1 incremental not rewrite, D2 where tests start, D3 leave `ignoreBuildErrors`, D4 analytics stays first-party
-- `docs/spec/GLOSSARY.md` — 18 project terms
-- `docs/PHASES.md` — P1–P8 hardening track + session split
-- `CLAUDE.md` — project rules
-
-### Verified, not assumed
-- `npm run build` → **exit 0**, all 30+ routes built, 103 kB shared JS.
-- `.env.local` is **not** tracked by git; no secrets anywhere in source.
-- Every `/api/admin/*` route is gated by `src/middleware.ts` and by nothing else.
-- Dead code confirmed by reference count: `Aurora.tsx`, `TiltCard.tsx`, `sections/Work.tsx`, `lib/services.ts`'s empty `DEEP_SERVICES`.
-
-### Do this first, before any code
-`git push -u origin v2-redesign` — the branch has **no upstream set** and is **2 commits ahead of
-origin**, and those two commits are the whole v3 rebuild plus the TBT perf work. Right now that work
-exists on one disk. See RISK R1.
-
-## Next session
-
-Owner's call between:
-- **H2 / H3** — carry the hero's contrast discipline into the rest of the home page, or do the
-  `/work` and `/services` first screens. Product work, matches the stated priority.
-- **P1 — Safety net** — approved and specced, not yet built. vitest + tests for the SSRF guard
-  and the admin auth gate.
-
-## Open questions for the owner
-Four, at the bottom of `docs/PROJECT_MAP.md`. The one that shapes the roadmap: **is the v3
-proof-first direction finished, or mid-flight?**
+## Next session starts here
+- Phase L1: owner releases `f6e0de9`+ to production, then verify production pages and field vitals on `/proof`.
+- First command: `git -C E:\Temp\SiteBlitz worktree add --detach E:\Temp\siteblitz-release ed16331`
+- Watch out for: on Windows, stopping `npm run dev` / `npm start` leaves the `next` child on :3000 — kill the PID or every check hits a stale server.

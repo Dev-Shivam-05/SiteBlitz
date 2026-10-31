@@ -17,6 +17,18 @@ Status: `todo` · `doing` · `done` · `blocked`
 | P7 | README + deploy runbook | Replace the deleted README; document env setup and the release path | 2 | partly — release path in `docs/DEPLOY.md`; README still missing |
 | P8 | One source of truth for models | Stop hand-maintaining TS interfaces alongside Mongoose schemas | 3 | todo |
 
+## Now
+
+**L1 release — blocked on the owner.** `v2-redesign` @ `ed16331` is verified (81 tests, typed build, screenshots,
+lab LCP ≤ 1.78 s) but production still serves the 2026-07-10 build. The agent's production deploy was denied by
+permissions; run the commands in `docs/DEPLOY.md` → "Pending release".
+
+## Next 3
+
+1. **L1** — release, then check production pages on a phone and field vitals on `/proof` after real traffic.
+2. **S3** — pricing as an answer-first Launch/Growth/Scale comparison + `/proof` methodology (ChatGPT round 3, items 3 + 5).
+3. **Owner actions** — Search Console + Bing for the permanent domain; separate preview/dev database (RISK R11); confirm the Mumbai address.
+
 ## Transformation programme (master prompt v1.1, agreed 2026-10-31)
 
 Order agreed in `docs/debate/2026-10-31-master-prompt-critique/RESULT.md`. On 2026-10-31 the owner said
