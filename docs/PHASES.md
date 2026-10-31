@@ -17,6 +17,25 @@ Status: `todo` · `doing` · `done` · `blocked`
 | P7 | README + deploy runbook | Replace the deleted README; document env setup and the release path | 2 | todo |
 | P8 | One source of truth for models | Stop hand-maintaining TS interfaces alongside Mongoose schemas | 3 | todo |
 
+## Transformation programme (master prompt v1.1, agreed 2026-10-31)
+
+Order agreed in `docs/debate/2026-10-31-master-prompt-critique/RESULT.md`. On 2026-10-31 the owner said
+"go for all … bina ruke" (build everything without stopping), so these ran back to back in one sitting.
+
+| # | Phase | One-line goal | Status |
+|---|---|---|---|
+| A | Prompt v1.1 | Master prompt v1.1 + project contract + phase brief template + debate prompt v1.1 | **done** (2026-10-31) |
+| D1 | Claims + tracking audit | Provenance register for every published claim; tracking vs disclosure | todo |
+| T0 | Screenshot tool | Committed CDP screenshot script with device metrics + reduced-motion mode | todo |
+| P2 | Deploy truth | Record which branch deploys where, env vars per environment, release + rollback path | todo |
+| C1 | Protective content patch | Remove/relabel unsupported claims; fix `/proof` and `/privacy` wording | todo |
+| P5 | Restore typecheck | (as above) | todo |
+| PR1 | Privacy implementation | Retention + user control for analytics, per D1 findings | todo |
+| P3 | Admin defence in depth | (as above) | todo |
+| D2–D5 | Audit → research → debate → blueprint | Site/mobile/admin audit, creative directions, real `/debate`, spec-lock | todo |
+| X1+ | Redesign implementation | Approved blueprint, ≤8 files per unit | todo |
+| L1 | Release | Verified preview promoted to production, rollback recorded | todo |
+
 ## Product work
 
 H1 (hero) is done — spec in `docs/spec/hero-v4.md`. The owner's stated #1 priority is the
