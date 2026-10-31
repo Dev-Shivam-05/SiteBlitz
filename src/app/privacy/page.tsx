@@ -33,6 +33,8 @@ export default function PrivacyPage() {
         expires after 30 minutes of inactivity, and a visitor cookie that lasts up to one year so we
         can tell new visits from returning ones. Both hold random identifiers only — no name, email
         or phone number — but together with approximate location and device they describe a visit.
+        If your browser sends a Global Privacy Control or Do Not Track signal, we set neither cookie
+        and record no analytics for your visit.
       </p>
       <h2>How long we keep data</h2>
       <p>

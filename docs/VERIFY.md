@@ -43,6 +43,8 @@ Also check on each: **no console errors**, and with DevTools → Rendering → "
 3. Click any button → an `event` post (`data-track` name, or generic `click`).
 4. `/admin/live` shows the session within ~10s.
 5. Switch tab away → `leave` fires with a non-zero `duration` and a `scrollDepth`.
+6. Opt-out (PR1): `curl -i -X POST localhost:3000/api/track -H "Sec-GPC: 1" -d '{"type":"pageview","path":"/"}'`
+   → 204 with **no** `Set-Cookie`. Automated in `tests/track-optout.test.ts`.
 
 ## E. Admin auth (run for ANY change to `middleware.ts`, `lib/auth.ts`, or anything under `/admin` or `/api/admin`)
 

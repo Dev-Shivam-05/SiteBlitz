@@ -36,6 +36,10 @@ function anonymizeIp(ip: string): string {
   return "";
 }
 
+function optedOut(req: NextRequest): boolean {
+  return req.headers.get("sec-gpc") === "1" || req.headers.get("dnt") === "1";
+}
+
 export async function POST(req: NextRequest) {
   // Always answer fast and never break the site because of analytics.
   const res = new NextResponse(null, { status: 204 });
@@ -48,6 +52,10 @@ export async function POST(req: NextRequest) {
     return res;
   }
   if (!body || typeof body !== "object" || !body.type) return res;
+
+  // Browser opt-out signals (Global Privacy Control, Do Not Track): record nothing and set no
+  // cookies (PR1). Checked before the cookies below, which are otherwise set even without a DB.
+  if (optedOut(req)) return res;
 
   const now = new Date();
   let sid = req.cookies.get(SID_COOKIE)?.value;
