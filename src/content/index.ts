@@ -16,6 +16,7 @@ import postGbp from "./generated/post-google-business-profile-plus-website-local
 import postSpeed from "./generated/post-why-website-speed-decides-revenue.json";
 import postLanding from "./generated/post-landing-page-vs-website-what-your-business-needs.json";
 import postGeo from "./generated/post-generative-engine-optimization-geo-explained.json";
+import postBuilderVsStudio from "./generated/post-website-builder-vs-web-design-studio.json";
 
 import landRestaurants from "./generated/lander-restaurants.json";
 import landClinics from "./generated/lander-clinics.json";
@@ -74,6 +75,7 @@ export const BLOG_POSTS = [
   postSpeed,
   postLanding,
   postGeo,
+  postBuilderVsStudio,
 ] as unknown as BlogPost[];
 
 export const INDUSTRY_LANDERS = [

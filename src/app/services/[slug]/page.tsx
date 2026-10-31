@@ -56,7 +56,7 @@ export default async function ServicePage({
         name: s.name,
         serviceType: s.name,
         description: s.promise,
-        provider: { "@type": "ProfessionalService", name: SITE.name, url: SITE.url },
+        provider: { "@id": `${SITE.url}/#organization` },
         areaServed: ["India", "Worldwide"],
         offers: {
           "@type": "Offer",

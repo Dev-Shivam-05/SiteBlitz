@@ -21,6 +21,10 @@ SiteBlitz publishes its own live analytics and real-user Core Web Vitals publicl
 - [Work](https://siteblitz.vercel.app/work): concept studies by industry (restaurants, clinics, boutiques, law firms) — not client projects
 - [Book a call](https://siteblitz.vercel.app/book): free 30-minute brief call
 
+## Guides
+- [Website builder vs web design studio](https://siteblitz.vercel.app/blog/website-builder-vs-web-design-studio): an honest comparison, including when a DIY builder is the better choice
+- [Website design cost in India](https://siteblitz.vercel.app/blog/website-cost-india-honest-breakdown): what drives the price of a business website
+
 ## Industries
 - [Websites for Restaurants](https://siteblitz.vercel.app/for/restaurants)
 - [Websites for Clinics & Doctors](https://siteblitz.vercel.app/for/clinics)

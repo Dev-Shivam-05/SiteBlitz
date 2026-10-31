@@ -103,8 +103,12 @@ export default async function PostPage({
         headline: p.title,
         description: p.description,
         datePublished: p.date,
-        author: { "@type": "Person", name: p.author, jobTitle: p.authorRole },
-        publisher: { "@type": "Organization", name: SITE.name, url: SITE.url },
+        // Studio-written posts are credited to the organisation, not to a person who did not write them.
+        author:
+          p.author === "SiteBlitz Studio"
+            ? { "@id": `${SITE.url}/#organization` }
+            : { "@type": "Person", name: p.author, jobTitle: p.authorRole },
+        publisher: { "@id": `${SITE.url}/#organization` },
         mainEntityOfPage: `${SITE.url}/blog/${p.slug}`,
       },
       {

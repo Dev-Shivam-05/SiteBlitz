@@ -52,7 +52,7 @@ export default async function LanderPage({
       {
         "@type": "Service",
         name: `Website design for ${l.industry}`,
-        provider: { "@type": "ProfessionalService", name: SITE.name, url: SITE.url },
+        provider: { "@id": `${SITE.url}/#organization` },
         areaServed: ["India", "Worldwide"],
       },
       {

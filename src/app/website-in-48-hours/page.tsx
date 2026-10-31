@@ -24,7 +24,7 @@ const PAGE_FAQS = [
 ].filter((f): f is (typeof FAQS)[number] => Boolean(f));
 
 export const metadata: Metadata = {
-  title: { absolute: "Business Websites in As Little As 48 Hours | SiteBlitz" },
+  title: "Business Websites in as Little as 48 Hours",
   description:
     "Launch plan websites from ₹7,999 / $99, delivered in as little as 48 hours. See what's included, what you provide, the process and ownership terms.",
   alternates: { canonical: "/website-in-48-hours" },
@@ -37,7 +37,7 @@ const jsonLd = {
       "@type": "Service",
       name: "Business website in as little as 48 hours (Launch plan)",
       serviceType: "Website design and development",
-      provider: { "@type": "ProfessionalService", name: SITE.name, url: SITE.url },
+      provider: { "@id": `${SITE.url}/#organization` },
       areaServed: ["India", "Worldwide"],
       offers: {
         "@type": "Offer",

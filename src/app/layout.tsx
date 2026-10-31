@@ -83,6 +83,7 @@ export const metadata: Metadata = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": `${SITE.url}/#organization`,
   name: "SiteBlitz",
   description:
     "Web studio building conversion-focused, SEO-first business websites, delivered in as little as 48 hours.",
@@ -96,7 +97,7 @@ const orgJsonLd = {
   },
   areaServed: ["IN", "Worldwide"],
   priceRange: "₹₹",
-  sameAs: [],
+  // sameAs left out until verified external profiles exist (an empty list says nothing)
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

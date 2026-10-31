@@ -1,0 +1,127 @@
+{
+  "slug": "website-builder-vs-web-design-studio",
+  "metaTitle": "Website Builder vs Design Studio: Which to Choose",
+  "title": "Website Builder vs Web Design Studio: Which Should You Choose?",
+  "description": "An honest comparison of DIY website builders and a web design studio — time, skills, cost structure, ownership and upkeep — including when a builder is the better choice.",
+  "cluster": "smb-india",
+  "readingMinutes": 6,
+  "date": "2026-11-01",
+  "author": "SiteBlitz Studio",
+  "authorRole": "Editorial team",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "If you need a website, you have two broad routes. You can build it yourself on a website builder — a drag-and-drop platform where you pick a template, add your text and photos, and pay a monthly subscription. Or you can hire a web design studio to plan, design and build it for you. Both routes produce real websites. They differ in who does the work, what you pay for, and what you end up owning. This guide lays out the trade-offs honestly, including the cases where a builder is the better choice — even though we are a studio."
+    },
+    {
+      "type": "h2",
+      "text": "The short answer"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Choose a builder if you enjoy doing it yourself, have time to learn the tool, need a simple presence, and are comfortable with a template look and a recurring subscription.",
+        "Choose a studio if your time is worth more spent on your business, you want the site planned around one clear action (calls, bookings, enquiries), and you want someone accountable for speed, search basics and launch.",
+        "Either way, judge the result by the same three questions: does it load fast on a phone, does Google understand it, and does it make the next step obvious?"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What a website builder actually gives you"
+    },
+    {
+      "type": "p",
+      "text": "A builder gives you a toolkit: templates, an editor, hosting, and usually a domain and email add-on. You supply everything else — the structure of the pages, the words, the photos, the decisions about what goes where. The platform handles the technical plumbing, which is a genuine benefit: you do not need to know code to publish something that works."
+    },
+    {
+      "type": "p",
+      "text": "The cost structure is a subscription. You pay every month or year for as long as the site exists, and moving away later typically means rebuilding the pages on another platform, because the design lives inside the builder."
+    },
+    {
+      "type": "h2",
+      "text": "What a web design studio gives you"
+    },
+    {
+      "type": "p",
+      "text": "A studio sells an outcome rather than a toolkit: a finished site, planned around what you need visitors to do. A good studio starts with a short brief — what you sell, who buys it, why they should pick you — then proposes the page structure and visual direction before building. Writing support, technical SEO, analytics setup and launch are part of the job rather than your homework."
+    },
+    {
+      "type": "p",
+      "text": "The cost structure is usually a project price, sometimes with an optional care plan afterwards. Whether you own the code and design at the end depends on the studio's terms — ask before you sign. At SiteBlitz, for example, prices are fixed and published (from ₹7,999 / $99 for a one-page Launch site), and on full payment you own the website, its code, its content and your domain."
+    },
+    {
+      "type": "h2",
+      "text": "Side by side: the questions that matter"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Your time: a builder needs your hours to learn the tool and assemble pages; a studio needs a brief and your feedback at set points.",
+        "Skills needed: a builder rewards a good eye for layout and writing; a studio brings design, copy, engineering and search setup with it.",
+        "Look and feel: builder sites start from shared templates; studio sites are designed for your business, which matters most when trust is the product.",
+        "Speed and search basics: builders handle hosting, but page weight, image sizes and structure are still up to you; a studio should take responsibility for them — ask how they measure it.",
+        "Cost over time: a builder is a recurring subscription for the life of the site; a studio is a project price plus optional ongoing support.",
+        "Ownership and moving later: builder designs usually stay on the platform; studio terms vary, so check who owns the code and the domain.",
+        "Changes after launch: a builder lets you edit anything yourself, any time; with a studio you either get an editor for routine updates or ask them to make changes."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "When a builder is genuinely the better choice"
+    },
+    {
+      "type": "p",
+      "text": "If you are testing an idea and might change direction next month, a builder is cheap to start and easy to throw away. If you love tinkering with design and have the evenings for it, you will enjoy the control. And if all you need is a single page with your hours, location and phone number, a builder template can be enough. Paying a studio for a site you will rewrite in six weeks is not a good use of money."
+    },
+    {
+      "type": "h2",
+      "text": "When a studio pays for itself"
+    },
+    {
+      "type": "p",
+      "text": "A studio earns its fee when the website has a job to do — getting calls for a clinic, table bookings for a restaurant, consultation requests for a law firm — and when the hours you would spend learning a builder are hours taken away from running the business. It also matters when credibility is the product: a site that looks like a thousand others makes it harder for a cautious customer to choose you."
+    },
+    {
+      "type": "quote",
+      "text": "Do not choose by the tool. Choose by the job the website has to do, and by who will be accountable for it doing that job."
+    },
+    {
+      "type": "h2",
+      "text": "How to judge any option before you pay"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Open the provider's own website on your phone, on mobile data. If it is slow or awkward, expect the same for yours.",
+        "Ask what happens if you leave: do you keep the design, the code and the domain?",
+        "Ask what is included and what costs extra: pages, revisions, copywriting, search setup, analytics.",
+        "Ask for evidence you can check yourself rather than claims. We publish our own site's real-visitor speed and traffic on our Proof page for exactly this reason.",
+        "Run your current site through a free grader to see what actually needs fixing before you decide to rebuild."
+      ]
+    }
+  ],
+  "keyTakeaways": [
+    "A website builder sells a toolkit and a subscription; you do the design and writing yourself.",
+    "A web design studio sells a finished, planned site; check its terms for price, revisions and who owns the code and domain.",
+    "A builder is the better choice for quick experiments, hobby-level budgets and people who enjoy doing it themselves.",
+    "A studio pays for itself when the site has a commercial job to do and your time is better spent on your business."
+  ],
+  "faq": [
+    {
+      "q": "Is a website builder cheaper than a web design studio?",
+      "a": "It is usually cheaper to start, because you only pay a subscription and do the work yourself. Over several years the subscription keeps running, and your own hours have a cost too. Compare the total over the life of the site, and what you own at the end."
+    },
+    {
+      "q": "Can I move a builder site to my own hosting later?",
+      "a": "Usually not as-is. The design and pages live inside the builder's platform, so moving generally means rebuilding the site elsewhere. Your domain can normally be moved."
+    },
+    {
+      "q": "Do I own my website if a studio builds it?",
+      "a": "It depends on the studio's terms, so ask before you sign. At SiteBlitz, on full payment you own the delivered website, its code, its content and your domain."
+    },
+    {
+      "q": "How fast can a studio deliver a website?",
+      "a": "It varies by studio and scope. At SiteBlitz, a one-page Launch site can be live in as little as 48 hours; multi-page Growth sites take about four days and Scale projects about seven."
+    }
+  ]
+}

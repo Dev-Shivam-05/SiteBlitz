@@ -29,8 +29,10 @@ const faqJsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${SITE.url}/#website`,
   name: "SiteBlitz",
   url: SITE.url,
+  publisher: { "@id": `${SITE.url}/#organization` },
 };
 
 export default function HomePage() {
