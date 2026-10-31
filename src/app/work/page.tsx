@@ -16,15 +16,15 @@ export default function WorkPage() {
   return (
     <Shell>
       <section className="mx-auto max-w-7xl px-5 pb-10 pt-32 md:px-8 md:pt-44">
-        <p className="reveal text-xs uppercase tracking-[0.25em] text-volt">Concept studies</p>
-        <h1 className="reveal font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl" data-delay="100">
+        <p className="text-xs uppercase tracking-[0.25em] text-volt">Concept studies</p>
+        <h1 className="font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl">
           Work that <span className="font-accent italic text-volt">works</span>
         </h1>
-        <p className="reveal mt-6 max-w-xl text-base leading-relaxed text-muted" data-delay="200">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
           Below is how we would build for four kinds of business. They are concepts, not client projects: we
           publish a case study only with the client&apos;s permission and numbers we can show you.
         </p>
-        <p className="reveal mt-4 max-w-xl text-base leading-relaxed text-muted" data-delay="250">
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
           The one build you can inspect today is this site.{" "}
           <Link href="/proof" className="text-volt underline-offset-4 hover:underline">
             Its real-visitor speed and traffic are public →

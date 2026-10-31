@@ -17,13 +17,13 @@ export default function ServicesPage() {
   return (
     <Shell>
       <section className="mx-auto max-w-7xl px-5 pb-0 pt-32 md:px-8 md:pt-44">
-        <p className="reveal text-xs uppercase tracking-[0.25em] text-volt">Services</p>
-        <h1 className="reveal font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl" data-delay="100">
+        <p className="text-xs uppercase tracking-[0.25em] text-volt">Services</p>
+        <h1 className="font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl">
           One studio<span className="text-volt">,</span>
           <br />
           every <span className="font-accent italic">weapon</span>
         </h1>
-        <p className="reveal mt-6 max-w-xl text-base leading-relaxed text-muted" data-delay="200">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
           Design, engineering, SEO and analytics under one roof — so nothing gets lost between
           "agencies" and your website actually makes money.
         </p>

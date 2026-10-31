@@ -17,19 +17,19 @@ export default function ContactPage() {
       <section className="mx-auto max-w-7xl px-5 pb-24 pt-32 md:px-8 md:pt-44">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <p className="reveal text-xs uppercase tracking-[0.25em] text-volt">Start a project</p>
-            <h1 className="reveal font-display mt-3 text-5xl font-bold tracking-tight md:text-7xl" data-delay="100">
+            <p className="text-xs uppercase tracking-[0.25em] text-volt">Start a project</p>
+            <h1 className="font-display mt-3 text-5xl font-bold tracking-tight md:text-7xl">
               60 seconds<span className="text-volt">.</span>
               <br />
               That&apos;s the <span className="font-accent italic">brief</span><span className="text-volt">.</span>
             </h1>
-            <p className="reveal mt-6 max-w-md text-base leading-relaxed text-muted" data-delay="200">
+            <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
               Answer three quick questions. We&apos;ll reply within hours with a direction, a
               timeline and a fixed price — no obligation, no spam, no &quot;discovery call&quot;
               theatre.
             </p>
 
-            <div className="reveal mt-10 space-y-4" data-delay="300">
+            <div className="mt-10 space-y-4">
               <a
                 href={SITE.whatsapp("Hi SiteBlitz! I want to discuss a website project.")}
                 target="_blank"
@@ -57,7 +57,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="reveal" data-delay="250">
+          <div >
             <Suspense fallback={<div className="h-96 rounded-2xl border border-line bg-surface" />}>
               <LeadForm />
             </Suspense>

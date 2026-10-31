@@ -4,7 +4,7 @@
 // No dependencies: Node >= 22 ships a global WebSocket.
 //
 //   node scripts/shoot.mjs [--base http://localhost:3000] [--pages /,/work] [--widths 375,1440]
-//                          [--rm] [--full] [--out .shots] [--chrome <path>]
+//                          [--rm] [--full] [--out .shots] [--chrome <path>] [--cookie name=value]
 //
 // --rm    emulate prefers-reduced-motion: reduce. Every section renders static and visible, which makes it the
 //         fastest whole-page audit.
@@ -109,6 +109,13 @@ try {
   });
   await cdp.send("Page.enable");
   await cdp.send("Runtime.enable");
+  // --cookie name=value (e.g. a locally signed sb_admin token to audit admin screens)
+  const cookie = opt("cookie");
+  if (cookie) {
+    const [name, ...rest] = cookie.split("=");
+    await cdp.send("Network.enable");
+    await cdp.send("Network.setCookie", { name, value: rest.join("="), url: BASE });
+  }
   await cdp.send("Emulation.setEmulatedMedia", {
     features: [{ name: "prefers-reduced-motion", value: RM ? "reduce" : "no-preference" }],
   });

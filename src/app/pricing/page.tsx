@@ -16,8 +16,8 @@ export default function PricingPage() {
   return (
     <Shell>
       <section className="mx-auto max-w-7xl px-5 pb-0 pt-32 md:px-8 md:pt-44">
-        <p className="reveal text-xs uppercase tracking-[0.25em] text-volt">Pricing</p>
-        <h1 className="reveal font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl" data-delay="100">
+        <p className="text-xs uppercase tracking-[0.25em] text-volt">Pricing</p>
+        <h1 className="font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl">
           Honest numbers<span className="text-volt">,</span>
           <br />
           <span className="font-accent italic">zero</span> surprises
