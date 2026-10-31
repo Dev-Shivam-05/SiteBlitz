@@ -3,7 +3,7 @@ import mongoose, { Schema, type Model } from "mongoose";
 /* ------------------------------------------------------------------ */
 /* Session — one anonymous visitor session (sid cookie, 30 min idle)  */
 /* ------------------------------------------------------------------ */
-const SessionSchema = new Schema(
+const SessionSchema = new Schema<SessionDoc>(
   {
     sid: { type: String, required: true, unique: true, index: true },
     visitorId: { type: String, index: true }, // long-lived anonymous id
@@ -52,7 +52,7 @@ SessionSchema.index({ lastSeen: -1, isBot: 1 });
 /* ------------------------------------------------------------------ */
 /* Pageview                                                            */
 /* ------------------------------------------------------------------ */
-const PageviewSchema = new Schema(
+const PageviewSchema = new Schema<PageviewDoc>(
   {
     sid: { type: String, required: true, index: true },
     path: { type: String, required: true, index: true },
@@ -74,7 +74,7 @@ PageviewSchema.index({ ts: -1, path: 1 });
 /* ------------------------------------------------------------------ */
 /* Event — CTA clicks, form steps, pricing toggles, wa clicks...      */
 /* ------------------------------------------------------------------ */
-const EventSchema = new Schema(
+const EventSchema = new Schema<EventDoc>(
   {
     sid: { type: String, required: true, index: true },
     name: { type: String, required: true, index: true },
@@ -89,7 +89,7 @@ EventSchema.index({ ts: -1, name: 1 });
 /* ------------------------------------------------------------------ */
 /* Lead                                                                */
 /* ------------------------------------------------------------------ */
-const LeadSchema = new Schema(
+const LeadSchema = new Schema<LeadDoc>(
   {
     name: { type: String, required: true },
     phone: String,
@@ -213,7 +213,7 @@ export interface LeadDoc {
 /* ------------------------------------------------------------------ */
 /* Setting — key/value site configuration (capacity switch, etc.)      */
 /* ------------------------------------------------------------------ */
-const SettingSchema = new Schema(
+const SettingSchema = new Schema<SettingDoc>(
   {
     key: { type: String, required: true, unique: true },
     value: Schema.Types.Mixed,
@@ -225,7 +225,7 @@ const SettingSchema = new Schema(
 /* ------------------------------------------------------------------ */
 /* GraderRun — one /tools/grader audit of an external site             */
 /* ------------------------------------------------------------------ */
-const GraderRunSchema = new Schema(
+const GraderRunSchema = new Schema<GraderRunDoc>(
   {
     url: { type: String, required: true },
     score: Number,
@@ -254,7 +254,9 @@ export interface GraderRunDoc {
   ts: Date;
 }
 
-function model<T>(name: string, schema: Schema): Model<T> {
+// Typecheck OOM fix (P5): `schema: Schema` made TS structurally compare Schema<XDoc> against
+// Schema<any, ...> defaults, which exhausted 6 GB. Keep the doc type on both the schema and here.
+function model<T>(name: string, schema: Schema<T>): Model<T> {
   return (mongoose.models[name] as Model<T>) || mongoose.model<T>(name, schema);
 }
 

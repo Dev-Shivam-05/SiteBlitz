@@ -15,9 +15,8 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_BUILD_TIME: new Date().toISOString(),
     NEXT_PUBLIC_COMMIT: (process.env.VERCEL_GIT_COMMIT_SHA || "").slice(0, 7),
   },
-  // The TS checker OOMs on this dependency set (mongoose/recharts typings on TS 5.9);
-  // compilation itself is clean. Type safety is still enforced in the editor.
-  typescript: { ignoreBuildErrors: true },
+  // Type errors fail the build again (P5, 2026-10-31). The old OOM came from the untyped
+  // model() helper in src/lib/models.ts, not from the dependency set.
   async headers() {
     return [
       { source: "/(.*)", headers: securityHeaders },

@@ -5,9 +5,9 @@ Map: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md) · Risks: [docs/RISK.md](docs/RI
 
 ## Commands
 - dev `npm run dev` → http://localhost:3000 · build `npm run build`
-- `npm run typecheck` is **broken** — `tsc --noEmit` climbs past 2.9 GB and never finishes
-  (confirmed 2026-08-20). Do not put it in a loop. Fixing it is P5.
-- `npm test` → 73 vitest tests over the SSRF guard and the admin auth gate. No linter exists.
+- `npm run typecheck` works again (P5, 2026-10-31: ~4 s, ~500 MB) and `npm run build` now fails on type errors.
+  The old >2.9 GB OOM came from an untyped `model()` helper in `src/lib/models.ts` — keep schemas typed `new Schema<XDoc>`.
+- `npm test` → vitest tests over the SSRF guard and the admin auth gate. No linter exists.
 - **Never `npm run build` while `next dev` is live** — shared `.next` gives a bogus
   `TypeError: a[d] is not a function` prerender failure. Kill dev first; check for orphan children.
 - PowerShell 5.1 has no `&&`. Separate commands, or `;`.
@@ -36,7 +36,7 @@ Map: [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md) · Risks: [docs/RISK.md](docs/RI
   user-supplied-URL fetcher. Do not weaken. Do not touch before tests exist.
 - `src/components/site/Motion.tsx` — 384-line engine; a bad selector kills reveals site-wide, silently.
 - `src/app/api/track/route.ts` — swallows every error by design, so bugs here are invisible.
-- `next.config.ts` has `ignoreBuildErrors: true`. **A green build does not mean the types are fine.**
+- `ignoreBuildErrors` was removed in P5 — a green build now includes a type check.
 
 ## Content rules
 - Short copy, pricing, FAQs, work items, testimonials → `src/lib/site.ts`.

@@ -24,7 +24,11 @@ removing the `169.254` guard produces 3 failures, removing the `/api/admin` gate
 **Still open:** everything else is unverified by machine. No lint config, no UI tests, no CI — so
 `docs/VERIFY.md` remains the net for anything outside those two surfaces.
 
-## R3 — Type errors do not fail the build
+## R3 — Type errors do not fail the build ✅ CLOSED 2026-10-31 (P5)
+
+**Resolved:** the OOM was the untyped `model(name, schema: Schema)` helper in `src/lib/models.ts`
+(structural comparison of `Schema<XDoc>` against `Schema<any,…>` defaults). Typed helper + `new Schema<XDoc>`
+brought `tsc --noEmit` to ~4 s / ~500 MB with 0 errors; `ignoreBuildErrors` removed. Was:
 
 `next.config.ts` sets `typescript: { ignoreBuildErrors: true }`, with a comment saying the TS
 checker OOMs on the mongoose/recharts typings. So `npm run build` succeeding proves nothing about

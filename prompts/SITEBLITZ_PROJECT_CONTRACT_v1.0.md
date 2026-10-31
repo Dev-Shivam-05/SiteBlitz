@@ -21,7 +21,7 @@ Re-check the rows a phase depends on; update `last_verified` or record the discr
 | Content model | Short copy in `src/lib/site.ts`; long-form JSON in `src/content/generated/` registered by hand in `src/content/index.ts`; no CMS | `docs/PROJECT_MAP.md` | VERIFIED | 2026-10-31 |
 | Animation | Declarative `data-anim` markup built by `src/components/site/Motion.tsx` | `CLAUDE.md` | VERIFIED | 2026-10-31 |
 | Tests | vitest suite over the SSRF guard and the admin auth gate; no linter; no E2E | `tests/`, `CLAUDE.md` | VERIFIED | 2026-10-31 |
-| Typecheck | `tsc --noEmit` unusable; `ignoreBuildErrors: true` | `next.config.ts:20` | VERIFIED (until P5) | 2026-10-31 |
+| Typecheck | `npm run typecheck` works (~4 s); build fails on type errors (`ignoreBuildErrors` removed in P5) | `next.config.ts` | VERIFIED | 2026-10-31 |
 | Debate tool | Global `/debate` skill, temporary ChatGPT chat, ≤10 rounds, ≤7 points, 25 KB | `~/.claude/skills/chatgpt-review/SKILL.md` | VERIFIED | 2026-10-31 |
 | Legal jurisdictions | India (DPDP Act 2023 likely relevant) + any international visitors | — | UNKNOWN — check with counsel | — |
 | Budget / timeline | — | — | UNKNOWN | — |
