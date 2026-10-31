@@ -152,6 +152,15 @@ body {
   90% { transform: translate(5%, 3%); }
 }
 
+/* ---- blueprint grid behind concept-study frames (ConceptFrame) ---- */
+.blueprint-grid {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+
 /* ---- reveal-on-scroll (pure CSS fallback; JS enhances) ---- */
 @media (prefers-reduced-motion: no-preference) {
   .reveal {

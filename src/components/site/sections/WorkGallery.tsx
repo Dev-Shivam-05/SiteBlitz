@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { WORK_ITEMS } from "@/lib/site";
+import { ConceptFrame } from "@/components/site/ConceptFrame";
 
 /** Pinned horizontal gallery on desktop (GSAP hscroll), vertical stack on mobile. */
 export function WorkGallery() {
@@ -8,11 +8,15 @@ export function WorkGallery() {
     <section data-hscroll className="relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-5 pt-20 md:px-8 md:pt-28 lg:pt-24">
         <div data-anim="fade-up">
-          <p className="text-xs uppercase tracking-[0.25em] text-volt">Selected work</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-volt">Concept studies</p>
           <h2 className="font-display mt-3 text-4xl font-bold tracking-tight md:text-6xl">
             Built to perform<span className="text-volt">,</span> not just to{" "}
             <span className="font-accent italic">look pretty</span>
           </h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
+            How we would build for your sector. These are concepts, not client projects — we publish case
+            studies only with the client&apos;s permission and numbers we can show.
+          </p>
           <p className="mt-4 hidden text-xs uppercase tracking-[0.25em] text-faint lg:block">
             Keep scrolling — the gallery moves sideways ⟶
           </p>
@@ -31,21 +35,8 @@ export function WorkGallery() {
             data-cursor-label="View"
             className="hcard group w-full shrink-0 overflow-hidden rounded-2xl border border-line bg-surface transition-colors duration-300 hover:border-volt/30 lg:w-auto"
           >
-            <div className="relative aspect-[16/10] overflow-hidden">
-              <Image
-                src={w.image}
-                alt={`${w.title} — website by SiteBlitz`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 44vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-void/80 via-transparent to-transparent" />
-              <span className="font-display absolute right-4 top-4 text-5xl font-bold text-ink/15">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="absolute bottom-4 left-4 rounded-full border border-line bg-void/70 px-3 py-1.5 text-xs text-volt backdrop-blur">
-                {w.result}
-              </div>
+            <div className="relative aspect-[16/10] overflow-hidden transition-transform duration-700 ease-out group-hover:scale-[1.02]">
+              <ConceptFrame title={w.title} goal={w.goal} index={i} />
             </div>
             <div className="flex items-center justify-between p-6">
               <div>
@@ -68,12 +59,12 @@ export function WorkGallery() {
         >
           <div className="text-center">
             <p className="font-display text-3xl font-bold">
-              All case studies
+              All concept studies
               <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-2">
                 →
               </span>
             </p>
-            <p className="mt-2 text-sm text-faint">results, numbers & stories</p>
+            <p className="mt-2 text-sm text-faint">what we&apos;d build, and why</p>
           </div>
         </Link>
       </div>

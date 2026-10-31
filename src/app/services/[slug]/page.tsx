@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Shell } from "@/components/site/Shell";
+import { ConceptFrame } from "@/components/site/ConceptFrame";
 import { Accent } from "@/components/site/Accent";
 import { Magnetic } from "@/components/site/Magnetic";
 import { DEEP_SERVICES, getService } from "@/content";
@@ -157,8 +157,11 @@ export default async function ServicePage({
         <section className="border-y border-line bg-surface/40">
           <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
             <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
-              Proof from the field
+              What this looks like
             </h2>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted" data-anim="fade-up">
+              Concept studies, not client projects — we publish case studies only with permission and numbers we can show.
+            </p>
             <div className="mt-10 grid gap-6 md:grid-cols-2">
               {related.map((w) => (
                 <Link
@@ -169,17 +172,7 @@ export default async function ServicePage({
                   className="group overflow-hidden rounded-2xl border border-line bg-void transition-colors hover:border-volt/30"
                 >
                   <div className="relative aspect-[16/9] overflow-hidden">
-                    <Image
-                      src={w.image}
-                      alt={`${w.title} — built by SiteBlitz`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-void/80 to-transparent" />
-                    <span className="absolute bottom-4 left-4 rounded-full border border-line bg-void/70 px-3 py-1.5 text-xs text-volt backdrop-blur">
-                      {w.result}
-                    </span>
+                    <ConceptFrame title={w.title} goal={w.goal} />
                   </div>
                   <div className="flex items-center justify-between p-5">
                     <div>

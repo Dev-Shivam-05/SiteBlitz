@@ -133,46 +133,47 @@ export const FAQS = [
   },
 ] as const;
 
+/**
+ * Concept studies — how SiteBlitz would build for a sector. NOT client projects: SiteBlitz has no
+ * client case study with recorded evidence and permission yet (docs/audit/claims-register.md).
+ * Publish a real case study here only with the client's permission and numbers that can be shown.
+ */
 export const WORK_ITEMS = [
   {
     slug: "restaurant",
-    title: "Spice Route Kitchen",
-    category: "Restaurant · Mumbai",
-    image: "/images/portfolio-1.png",
-    result: "2.4× more table bookings in 60 days",
+    title: "Restaurant one-pager",
+    category: "Concept study · Restaurants",
+    goal: "From a hungry phone visitor to a booked table in three taps.",
     stack: ["One-page", "Reservations", "Local SEO"],
     story:
-      "A premium dining spot with zero online presence. We shipped a dark, appetite-driven one-pager with a frictionless booking flow and local search optimisation. Bookings from Google more than doubled within two months.",
+      "Menu, hours, map and a booking button in the first scroll — on a phone, on patchy 4G. Everything on the page pushes towards one action: reserving a table. Local search markup tells Google exactly what you serve and where.",
   },
   {
     slug: "clinic",
-    title: "Meadow Health Clinic",
-    category: "Healthcare · Pune",
-    image: "/images/portfolio-2.png",
-    result: "First page of Google for 8 local keywords",
+    title: "Clinic multi-page site",
+    category: "Concept study · Healthcare",
+    goal: "One page per treatment, so patients find the exact answer they searched for.",
     stack: ["Multi-page", "Appointments", "Content SEO"],
     story:
-      "Patients couldn't find them; a competitor's ads owned the area. A clean, trust-first multi-page build with structured data and appointment capture put them on page one for the searches that matter.",
+      "Patients search for a treatment and an area, not a clinic name. A calm, trust-first build with a page per service, structured data and appointment capture answers that search directly — without the competitor's ads in between.",
   },
   {
     slug: "fashion",
-    title: "Noir Atelier",
-    category: "Fashion · International",
-    image: "/images/portfolio-3.png",
-    result: "38% lift in catalogue enquiries",
+    title: "Boutique storefront",
+    category: "Concept study · Fashion & retail",
+    goal: "Editorial photography that still loads fast on a mid-range Android phone.",
     stack: ["E-commerce", "Lookbook", "Performance"],
     story:
-      "A boutique label whose old site took 11 seconds to load on mobile. We rebuilt it as a fast, editorial-grade storefront. Bounce rate halved; enquiries jumped by more than a third.",
+      "Beautiful catalogues fail when they take ten seconds to load. Responsive, compressed imagery, a lookbook that streams in as you scroll, and an enquiry or checkout path that is never more than one tap away.",
   },
   {
     slug: "law",
-    title: "Verma & Associates",
-    category: "Legal · Delhi",
-    image: "/images/portfolio-4.png",
-    result: "Consultation requests up 3× in one quarter",
+    title: "Law firm authority site",
+    category: "Concept study · Legal",
+    goal: "Every practice-area page leads to one discreet consultation request.",
     stack: ["Authority site", "Lead capture", "Speed"],
     story:
-      "Credibility is the product in law. An authoritative, fast, content-structured site with clear consultation paths turned a static brochure into their best business development channel.",
+      "In law, credibility is the product. Clear practice-area pages that answer real questions, a quiet and fast design, and a consultation path that respects how sensitive the first contact is.",
   },
 ] as const;
 

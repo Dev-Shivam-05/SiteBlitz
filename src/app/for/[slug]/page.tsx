@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Shell } from "@/components/site/Shell";
+import { ConceptFrame } from "@/components/site/ConceptFrame";
 import { Accent } from "@/components/site/Accent";
 import { Magnetic } from "@/components/site/Magnetic";
 import { INDUSTRY_LANDERS, getLander } from "@/content";
@@ -118,22 +118,16 @@ export default async function LanderPage({
       {anchor && (
         <section className="border-y border-line bg-surface/40">
           <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
-            <p className="text-xs uppercase tracking-[0.25em] text-volt" data-anim="fade-up">Real build, real result</p>
+            <p className="text-xs uppercase tracking-[0.25em] text-volt" data-anim="fade-up">How we would build yours</p>
             <div className="mt-6 grid items-center gap-8 md:grid-cols-2">
               <Link href={`/work#${anchor.slug}`} data-cursor-label="View" className="group relative block aspect-[16/10] overflow-hidden rounded-2xl border border-line">
-                <Image
-                  src={anchor.image}
-                  alt={`${anchor.title} — website by SiteBlitz`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                <ConceptFrame title={anchor.title} goal={anchor.goal} />
               </Link>
               <div>
                 <h2 className="font-display text-3xl font-bold md:text-4xl">{anchor.title}</h2>
                 <p className="mt-1 text-sm text-faint">{anchor.category}</p>
                 <p className="font-display mt-4 inline-block rounded-full border border-volt/40 bg-volt/10 px-4 py-2 text-sm font-bold text-volt">
-                  {anchor.result}
+                  {anchor.goal}
                 </p>
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{anchor.story}</p>
               </div>
