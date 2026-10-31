@@ -89,3 +89,13 @@ The flip side is that `MONGODB_URI`, `JWT_SECRET`, `ADMIN_EMAIL` and `ADMIN_PASS
 this machine and in Vercel. There is no third copy.
 
 **Mitigation:** confirm the Vercel project has all six env vars set before relying on it as the backup.
+**Checked 2026-10-31 (P2):** Production has 5 of 6 (`NEXT_PUBLIC_SITE_URL` falls back to the code default); see `docs/DEPLOY.md`.
+
+## R11 — Previews and local dev share the production database (found P2, 2026-10-31)
+
+One `MONGODB_URI` is set for Production, Preview and Development in Vercel. Every preview visit, and any
+local session using a pulled `.env.local`, writes sessions, pageviews and test leads into production data —
+which `/proof` then publishes. Also, Preview has no `JWT_SECRET` / `ADMIN_*`, so admin cannot be tested there.
+
+**Mitigation:** give Preview/Development their own database (or `MONGODB_DB=siteblitz_preview`). Owner action
+in the Vercel dashboard; see `docs/DEPLOY.md`.
