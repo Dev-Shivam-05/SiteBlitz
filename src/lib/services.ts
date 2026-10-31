@@ -22,5 +22,3 @@ export interface DeepService {
   relatedWorkSlugs: string[];
   cta: string;
 }
-
-export const DEEP_SERVICES: DeepService[] = [];
