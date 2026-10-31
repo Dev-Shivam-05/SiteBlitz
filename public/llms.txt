@@ -2,7 +2,7 @@
 
 > SiteBlitz is a conversion-focused web studio in Mumbai, India, working with clients in India and worldwide. Its flagship offer: business websites designed, engineered and live in as little as 48 hours, from ₹7,999 / $99 — every build includes server-rendered SEO, 90+ Lighthouse targets, structured data, WhatsApp integration, and a private first-party analytics dashboard (visitors, sources, funnels, Core Web Vitals).
 
-SiteBlitz publishes its own live analytics and real-user Core Web Vitals publicly — the studio's "proof-first" principle is that every claim on the site is verifiable in one click.
+SiteBlitz publishes its own live analytics and real-user Core Web Vitals publicly at /proof. It does not publish client testimonials or client results it cannot evidence; the Work page shows clearly labelled concept studies.
 
 ## Services
 - [Business Websites](https://siteblitz.vercel.app/services/business-websites): conversion-engineered sites for local businesses and SMBs, live in 48 hours, from ₹7,999 / $99
@@ -17,7 +17,7 @@ SiteBlitz publishes its own live analytics and real-user Core Web Vitals publicl
 - [The 48-Hour Process](https://siteblitz.vercel.app/process): the build timeline, hour by hour (H0 brief → H48 launch)
 - [Pricing](https://siteblitz.vercel.app/pricing): transparent plans — Launch ₹7,999/$99, Growth ₹14,999/$189, Scale ₹24,999/$329 — plus a scope estimator
 - [Free Website Grader](https://siteblitz.vercel.app/tools/grader): instant 20-check audit of any website (SEO, speed signals, mobile, trust)
-- [Work](https://siteblitz.vercel.app/work): showcase builds with stated results
+- [Work](https://siteblitz.vercel.app/work): concept studies by industry (restaurants, clinics, boutiques, law firms) — not client projects
 - [Book a call](https://siteblitz.vercel.app/book): free 30-minute brief call
 
 ## Industries
