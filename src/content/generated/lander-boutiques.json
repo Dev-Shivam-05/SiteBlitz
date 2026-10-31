@@ -8,7 +8,7 @@
   "painPoints": [
     {
       "title": "Gorgeous, but glacial",
-      "text": "Full-bleed imagery gets dumped onto templates never built for it. The result: pages that crawl on mobile, where nearly all your shoppers are. Noir Atelier's old site took 11 seconds to load on mobile. Nobody waits that long for a hemline."
+      "text": "Full-bleed imagery gets dumped onto templates never built for it. The result: pages that crawl on mobile, where nearly all your shoppers are. A shopper on patchy 4G will not wait ten seconds for a hemline."
     },
     {
       "title": "Instagram is the shop, the site is an afterthought",
@@ -45,7 +45,7 @@
   "faqs": [
     {
       "q": "Can my site look editorial and still load fast?",
-      "a": "Yes — that's the entire point of how we build. Noir Atelier's old site loaded in 11 seconds on mobile; after the rebuild, catalogue enquiries lifted 38%. Every build targets 90+ Lighthouse scores, and we publish our own real-user Core Web Vitals at /proof, so you can check the claim before you pay."
+      "a": "Yes — that's the entire point of how we build. Every build targets 90+ Lighthouse scores with images sized for phones, and we publish this site's own real-user Core Web Vitals at /proof, so you can check how we build before you pay."
     },
     {
       "q": "Do I need full e-commerce, or is an enquiry flow enough?",

@@ -56,8 +56,8 @@
     {
       "type": "list",
       "items": [
-        "Local discovery. Ranking for searches like 'physiotherapist in Baner' or 'property lawyer Delhi' needs a dedicated page per service. When we rebuilt Meadow Health Clinic's site in Pune, it was the individual service pages — not the homepage — that put them on the first page of Google for 8 local keywords.",
-        "Trust-heavy decisions. Legal, medical, financial. People research before they call. Verma & Associates in Delhi saw consultation requests rise 3× in one quarter with an authority site built around practice-area pages that answer questions no single page could.",
+        "Local discovery. Ranking for searches like 'physiotherapist in Baner' or 'property lawyer Delhi' needs a dedicated page per service. It is the individual service pages — not the homepage — that match those searches.",
+        "Trust-heavy decisions. Legal, medical, financial. People research before they call. An authority site built around practice-area pages answers questions no single page could.",
         "Multiple services or audiences. If you'd have to cram three different pitches onto one page, you need three pages. Squeezed messaging converts nobody.",
         "Selling or booking online. Catalogues, carts, appointment slots — that's website territory by definition."
       ]
@@ -72,7 +72,7 @@
     },
     {
       "type": "p",
-      "text": "Websites cost more, take longer, and give you more surface area to get wrong. More pages is not automatically more results. Noir Atelier, a fashion label we work with, came to us with a full website that took 11 seconds to load on a phone. Gorgeous photography, dead weight everywhere. After the rebuild, catalogue enquiries lifted 38% — not because they got more pages, but because the pages they had finally worked."
+      "text": "Websites cost more, take longer, and give you more surface area to get wrong. More pages is not automatically more results. A gorgeous full website that takes 11 seconds to load on a phone loses to a plain page that loads in two. More pages only help when every page actually works."
     },
     {
       "type": "p",

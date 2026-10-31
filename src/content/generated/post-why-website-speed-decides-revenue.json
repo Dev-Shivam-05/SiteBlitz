@@ -10,7 +10,7 @@
   "blocks": [
     {
       "type": "p",
-      "text": "Your website's speed is not a score. It is a queue. Every extra second a page takes to load is a customer standing outside a shut door, deciding whether to wait or walk to the shop next door. Before we rebuilt Noir Atelier's site, their old one took 11 seconds to load on mobile. After the rebuild, catalogue enquiries lifted 38%. Same brand. Same products. Same photography. The only thing that changed was the wait."
+      "text": "Your website's speed is not a score. It is a queue. Every extra second a page takes to load is a customer standing outside a shut door, deciding whether to wait or walk to the shop next door. A beautiful catalogue that takes 11 seconds to load on mobile is a catalogue almost nobody sees."
     },
     {
       "type": "h2",
@@ -58,7 +58,7 @@
     },
     {
       "type": "p",
-      "text": "It is why Noir Atelier's 11-second mobile load went unnoticed for so long — on the founder's laptop, on fast broadband, the site felt fine. Your site is almost always faster for you than for your customers, because you are the best-case scenario: warm cache, strong signal, expensive hardware. Judge your site by the worst realistic case instead, because that is how most of your customers will actually reach you."
+      "text": "It is why an 11-second mobile load can go unnoticed for months — on the founder's laptop, on fast broadband, the site felt fine. Your site is almost always faster for you than for your customers, because you are the best-case scenario: warm cache, strong signal, expensive hardware. Judge your site by the worst realistic case instead, because that is how most of your customers will actually reach you."
     },
     {
       "type": "h2",
@@ -111,7 +111,7 @@
     },
     {
       "type": "p",
-      "text": "One caveat we will volunteer: speed alone is not magic. When Spice Route Kitchen's table bookings grew 2.4× in 60 days, it was fast pages plus a clear booking flow. Speed does not close the sale. It just makes sure the customer is still there when your offer does."
+      "text": "One caveat we will volunteer: speed alone is not magic. What wins bookings is fast pages plus a clear booking flow. Speed does not close the sale. It just makes sure the customer is still there when your offer does."
     }
   ],
   "keyTakeaways": [

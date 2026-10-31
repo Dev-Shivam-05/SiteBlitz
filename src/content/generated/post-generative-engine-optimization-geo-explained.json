@@ -92,7 +92,7 @@
     },
     {
       "type": "p",
-      "text": "Every SiteBlitz build ships server-rendered, with structured data and 90+ Lighthouse score targets as standard — not as an add-on — because the fundamentals of GEO turn out to be the fundamentals of a fast, honest website. It's the same reason we publish our own live analytics and real-user Core Web Vitals at /proof: verifiable beats claimed, for humans and machines alike. When we rebuilt Meadow Health Clinic's site in Pune on exactly these fundamentals, it reached the first page of Google for 8 local keywords. GEO doesn't replace that work. It compounds it — the pages search engines trust are the pages answer engines cite."
+      "text": "Every SiteBlitz build ships server-rendered, with structured data and 90+ Lighthouse score targets as standard — not as an add-on — because the fundamentals of GEO turn out to be the fundamentals of a fast, honest website. It's the same reason we publish our own live analytics and real-user Core Web Vitals at /proof: verifiable beats claimed, for humans and machines alike. GEO doesn't replace that work. It compounds it — the pages search engines trust are the pages answer engines cite."
     },
     {
       "type": "p",

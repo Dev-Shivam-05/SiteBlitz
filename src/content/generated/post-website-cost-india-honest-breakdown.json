@@ -52,7 +52,7 @@
     },
     {
       "type": "p",
-      "text": "We rebuilt the site for Noir Atelier, a fashion label whose old website took 11 seconds to load on mobile. Eleven. The design itself was not the problem - the load time was. Almost nobody stayed long enough to see the collection. After the rebuild, catalogue enquiries lifted 38%. Nothing about the brand changed — the engineering did."
+      "text": "Picture a fashion label whose website takes 11 seconds to load on mobile. Eleven. The design is not the problem - the load time is. Almost nobody stays long enough to see the collection. Fixing it changes nothing about the brand — only the engineering."
     },
     {
       "type": "list",
