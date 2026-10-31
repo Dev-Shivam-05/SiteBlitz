@@ -10,7 +10,7 @@ import { SITE } from "@/lib/site";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Live Proof — Real Numbers, Publicly Measured | SiteBlitz",
+  title: "Live Proof — Real Numbers, Publicly Measured",
   description:
     "SiteBlitz publishes its own live analytics: real visitors, real-user Core Web Vitals, and deploy history, measured on this site and published as it happens.",
   alternates: { canonical: "/proof" },

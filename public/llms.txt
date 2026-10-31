@@ -14,6 +14,7 @@ SiteBlitz publishes its own live analytics and real-user Core Web Vitals publicl
 
 ## Key pages
 - [Live Proof](https://siteblitz.vercel.app/proof): the studio's own real-time traffic and real-user Core Web Vitals, publicly measured
+- [Website in 48 hours](https://siteblitz.vercel.app/website-in-48-hours): what the 48-hour Launch plan includes, what you provide, and when a larger plan fits instead
 - [The 48-Hour Process](https://siteblitz.vercel.app/process): the build timeline, hour by hour (H0 brief → H48 launch)
 - [Pricing](https://siteblitz.vercel.app/pricing): transparent plans — Launch ₹7,999/$99, Growth ₹14,999/$189, Scale ₹24,999/$329 — plus a scope estimator
 - [Free Website Grader](https://siteblitz.vercel.app/tools/grader): instant 20-check audit of any website (SEO, speed signals, mobile, trust)

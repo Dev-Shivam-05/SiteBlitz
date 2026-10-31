@@ -5,7 +5,7 @@ import { Magnetic } from "@/components/site/Magnetic";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "The 48-Hour Process, Hour by Hour | SiteBlitz",
+  title: "The 48-Hour Process, Hour by Hour",
   description:
     "What actually happens between your brief and your live website: the SiteBlitz 48-hour build, hour-stamped — brief, blueprint, build, launch.",
   alternates: { canonical: "/process" },

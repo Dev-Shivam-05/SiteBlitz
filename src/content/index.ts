@@ -31,6 +31,8 @@ export interface PostBlock {
 export interface BlogPost {
   slug: string;
   title: string;
+  /** SEO title when it should differ from the on-page H1 (the layout template appends the brand). */
+  metaTitle?: string;
   description: string;
   cluster: string;
   readingMinutes: number;

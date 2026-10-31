@@ -4,7 +4,7 @@ import { BookingForm } from "@/components/site/BookingForm";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Book a Free 30-Minute Brief Call | SiteBlitz",
+  title: "Book a Free 30-Minute Brief Call",
   description:
     "Pick a slot, tell us about your business, and leave with a clear direction for your website — whether or not you hire us. Free, on WhatsApp or call.",
   alternates: { canonical: "/book" },

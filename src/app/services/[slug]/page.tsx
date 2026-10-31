@@ -23,7 +23,7 @@ export async function generateMetadata({
   const s = getService(slug);
   if (!s) return {};
   return {
-    title: `${s.name} — from ₹${s.startingPriceINR.toLocaleString("en-IN")} | SiteBlitz`,
+    title: s.metaTitle ?? `${s.name} — from ₹${s.startingPriceINR.toLocaleString("en-IN")}`,
     description: s.promise.slice(0, 155),
     alternates: { canonical: `/services/${s.slug}` },
   };
@@ -43,6 +43,14 @@ export default async function ServicePage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+          { "@type": "ListItem", position: 2, name: "Services", item: `${SITE.url}/services` },
+          { "@type": "ListItem", position: 3, name: s.name, item: `${SITE.url}/services/${s.slug}` },
+        ],
+      },
       {
         "@type": "Service",
         name: s.name,

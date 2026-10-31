@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...DEEP_SERVICES.map((s) => page(`/services/${s.slug}`, 0.85)),
     page("/pricing", 0.9),
     page("/process", 0.8),
+    page("/website-in-48-hours", 0.85),
     page("/tools/grader", 0.8),
     ...INDUSTRY_LANDERS.map((l) => page(`/for/${l.slug}`, 0.75)),
     page("/blog", 0.7),

@@ -21,7 +21,7 @@ export async function generateMetadata({
   const p = getPost(slug);
   if (!p) return {};
   return {
-    title: `${p.title} | SiteBlitz`,
+    title: p.metaTitle ?? p.title,
     description: p.description,
     alternates: { canonical: `/blog/${p.slug}` },
     openGraph: { type: "article", publishedTime: p.date, authors: [p.author] },
@@ -90,6 +90,14 @@ export default async function PostPage({
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+          { "@type": "ListItem", position: 2, name: "Insights", item: `${SITE.url}/blog` },
+          { "@type": "ListItem", position: 3, name: p.title, item: `${SITE.url}/blog/${p.slug}` },
+        ],
+      },
       {
         "@type": "BlogPosting",
         headline: p.title,

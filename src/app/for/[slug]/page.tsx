@@ -43,6 +43,13 @@ export default async function LanderPage({
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
+          { "@type": "ListItem", position: 2, name: `Websites for ${l.industry}`, item: `${SITE.url}/for/${l.slug}` },
+        ],
+      },
+      {
         "@type": "Service",
         name: `Website design for ${l.industry}`,
         provider: { "@type": "ProfessionalService", name: SITE.name, url: SITE.url },

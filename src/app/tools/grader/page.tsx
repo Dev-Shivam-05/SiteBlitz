@@ -3,7 +3,7 @@ import { Shell } from "@/components/site/Shell";
 import { GraderTool } from "@/components/site/GraderTool";
 
 export const metadata: Metadata = {
-  title: "Free Website Grader — 20 Real Checks in 10 Seconds | SiteBlitz",
+  title: "Free Website Grader — 20 Real Checks in 10 Seconds",
   description:
     "Paste your website address and get an honest, instant audit: SEO basics, speed signals, mobile setup and trust checks. Free, no email wall.",
   alternates: { canonical: "/tools/grader" },

@@ -9,6 +9,8 @@ export interface ServiceFAQ {
 export interface DeepService {
   slug: string;
   name: string;
+  /** SEO title override (the layout template appends the brand). */
+  metaTitle?: string;
   eyebrow: string;
   headline: string; // may contain one *italic* span marked with asterisks
   promise: string;

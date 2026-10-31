@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "SiteBlitz — Websites That Win Business, Shipped in 48 Hours",
+    default: "SiteBlitz — Fast Business Websites from ₹7,999 / $99",
     template: "%s — SiteBlitz",
   },
   description:
@@ -65,15 +65,15 @@ export const metadata: Metadata = {
     siteName: "SiteBlitz",
     locale: "en_IN",
     url: SITE.url,
-    title: "SiteBlitz — Websites That Win Business, Shipped in 48 Hours",
+    title: "SiteBlitz — Fast Business Websites from ₹7,999 / $99",
     description:
-      "Conversion-focused, SEO-first business websites for India and worldwide. Designed, engineered and launched in 48 hours.",
+      "Conversion-focused, SEO-first business websites for India and worldwide. Designed, engineered and launched in as little as 48 hours.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SiteBlitz — Websites That Win Business, Shipped in 48 Hours",
+    title: "SiteBlitz — Fast Business Websites from ₹7,999 / $99",
     description:
-      "Conversion-focused, SEO-first business websites, launched in 48 hours.",
+      "Conversion-focused, SEO-first business websites, launched in as little as 48 hours.",
   },
   verification: {
     google: "FpMq1620MPw97ShOx5JxKpvxsk0ON2uvsx7jUCBk_Ks",

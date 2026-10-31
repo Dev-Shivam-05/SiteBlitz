@@ -4,7 +4,7 @@ import { Shell } from "@/components/site/Shell";
 import { BLOG_POSTS } from "@/content";
 
 export const metadata: Metadata = {
-  title: "Insights — Honest Notes on Websites That Sell | SiteBlitz",
+  title: "Insights — Honest Notes on Websites That Sell",
   description:
     "No AI-farm listicles. Practical, honest writing on websites, speed, local SEO and AI search for business owners in India and beyond.",
   alternates: { canonical: "/blog" },

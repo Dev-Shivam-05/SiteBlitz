@@ -6,7 +6,7 @@ import { FAQ } from "@/components/site/sections/FAQ";
 import { CTA } from "@/components/site/sections/CTA";
 
 export const metadata: Metadata = {
-  title: "Pricing — Transparent, One-Time, No Surprises",
+  title: "Affordable Website Design in India — Fixed Prices",
   description:
     "SiteBlitz pricing: conversion-focused business websites from ₹7,999 / $99. One-time payment, 48-hour delivery available, you own everything.",
   alternates: { canonical: "/pricing" },

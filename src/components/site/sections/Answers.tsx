@@ -5,7 +5,7 @@ import Link from "next/link";
  *  PLANS in site.ts, ownership from /terms, speed from /proof. Copy agreed in docs/debate/2026-10-31-redesign-seo-direction. */
 const ANSWERS = [
   { value: "₹7,999 / $99", label: "Launch plan starting price", href: "/pricing", track: "answers_price" },
-  { value: "As little as 48 hours", label: "Launch plan delivery", href: "/process", track: "answers_time" },
+  { value: "As little as 48 hours", label: "Launch plan delivery", href: "/website-in-48-hours", track: "answers_time" },
   { value: "Yours after full payment", label: "Code, content & domain", href: "/terms", track: "answers_ownership" },
   { value: "Live speed data", label: "Our website's performance at /proof", href: "/proof", track: "answers_proof" },
 ] as const;
