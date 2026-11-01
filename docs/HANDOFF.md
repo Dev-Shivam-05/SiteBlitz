@@ -1,44 +1,80 @@
-# HANDOFF — SiteBlitz — Phase L1 (release) — 2026-11-01
+# HANDOFF — SiteBlitz — First-client programme (S0–AD) — 2026-11-01
+
+## ⚠️ FIRST THING NEXT SESSION — ASK THE FOUNDER, DO NOT ASSUME
+The founder **does not like the current (new, light) design** and needs time to decide. Before any other work, ask:
+
+> "Which design should be final: (1) the new light demo-led design now on `v2-redesign` (`bdb59e8` onward), or
+> (2) the previous dark design (state at `bada4e7`, before the redesign)? Or (3) something else?"
+
+Wait for the answer. Do not release, restyle or revert anything until the founder decides.
+**Trap if they choose the old design:** `bdb59e8` mixes the visual redesign with truth fixes and the offer config.
+A plain `git revert bdb59e8` would bring back the fake Mumbai location, the dead email, the withdrawn $/₹14,999/₹24,999
+prices and the "booked" wording. Restore only the visual layer (globals.css tokens, layout fonts, Navbar/Footer,
+home sections), keep `src/lib/offer.ts`, `src/lib/site.ts` truth fixes, the demos and `tests/offer.test.ts` green.
 
 ## Done
-- Master prompt reviewed with ChatGPT (2 rounds) → v1.1 + project contract + phase brief template + debate prompt v1.1 in `prompts/` (v1.0 kept).
-- Site no longer publishes unsupported claims: the 4 "case studies" (AI mockups showing other brands) are labelled concept studies with no fake results or images; the 5 testimonials, "100% on-time", "Most chosen" and the "every claim verifiable" lines are gone; `/privacy` matches what the code stores.
-- Home follows the six-beat narrative agreed with ChatGPT (3 rounds): Hero → Answers strip → Process sticky stack → Services grid → concept gallery → Evidence → Pricing → FAQ → CTA.
-- `npm run typecheck` works (0 errors, ~4 s) and `npm run build` now fails on type errors.
-- Every `/api/admin` data route checks auth itself (middleware no longer the only gate); `/api/track` honours GPC/DNT.
-- No horizontal overflow on public pages (320–1920) or admin screens (320–1440); lab mobile LCP ≤ 1.78 s on every measured page.
-- SEO: doubled-brand titles fixed, keyword-led titles, new `/website-in-48-hours`, BreadcrumbList, linked entity graph, builder-vs-studio guide, honest `llms.txt`.
-- 81 tests pass; everything pushed to `origin/v2-redesign` (HEAD `ed16331`). Previews are SSO-protected + noindex.
+- Three ChatGPT debates (business transformation, 7 rounds; ads + psychology + redesign, 4 rounds; ad campaign, 2 rounds), all in `docs/debate/2026-11-01-*` with `RESULT.md`.
+- Grader can no longer be DNS-rebound to internal addresses: the connection is pinned to validated IPs (14 new tests, mutation-checked).
+- The public site is light and demo-led. The home page has a phone switcher (salon / coaching / showroom), the 4-step process, pricing, an honest comparison, FAQs and a WhatsApp CTA.
+- `/pricing` shows the full terms: inclusions, exclusions, renewals, payment stages, revisions and when the delivery clock starts.
+- Three fictional, labelled, noindex demos at `/demo/salon|coaching|showroom`. Their enquiry is simulated, sends nothing and collects no data (verified by clicking through in the browser).
+- Truth fixes:
+  - "Gujarat-based" replaces Mumbai.
+  - The dead `hello@siteblitz.in` is hidden (`SITE.emailLive=false`).
+  - Booking is a "request", not "booked".
+  - On database failure the WhatsApp fallback is a button the visitor taps.
+  - Withdrawn prices are purged from every page and every JSON; `tests/offer.test.ts` blocks their return.
+- Admin:
+  - Today view (overdue / due / new / no-next-action, concepts 3 per week, ₹800 ad-spend ledger, alert status).
+  - Phone-first Quick-add with duplicate warning and source codes SB-R1/SB-S1.
+  - Lead search and inline edits that report failures.
+  - Telegram new-lead alert with retry.
+  - 08:00 IST brief at `/api/cron/brief` (CRON_SECRET).
+- End-to-end against a throwaway local MongoDB: the lead is saved with an `SB-XXXX` ref and a +91 phone, shows in admin, the alert is recorded, plus quick-add, edits, ad spend and cron auth. 24/25 passed; the honeypot failure is fixed.
+- Ad kit in `marketing/ads/`:
+  - an 18 s Reel (1080×1920, original sound) and a 1080×1350 static, both rendered from real demo captures;
+  - Gujarati/Hinglish copy, Ads Manager settings, spend rules and a release checklist.
+- The code runs on Vercel or Netlify (`src/lib/geo.ts`, `netlify.toml`, `netlify/functions/daily-brief.mjs`).
+- 178 tests pass and `npm run build` passes. Pushed `cf34032` to `origin/v2-redesign` (Preview only).
 
 ## Files changed
-- `prompts/*v1.1*`, `prompts/SITEBLITZ_PROJECT_CONTRACT_v1.0.md`, `prompts/PHASE_BRIEF_TEMPLATE_v1.0.md` — prompt v1.1 set.
-- `docs/audit/claims-register.md`, `docs/audit/d2-site-admin-audit.md`, `docs/DEPLOY.md` — D1/D2 audits, deploy truth + release runbook.
-- `docs/debate/2026-10-31-*` — both real ChatGPT debates with RESULT.md.
-- `scripts/shoot.mjs`, `scripts/vitals.mjs` — screenshot/overflow tool and lab vitals tool.
-- `src/lib/site.ts`, `src/content/generated/*.json` (16), `public/llms.txt` — claims withdrawn/relabelled; new guide post.
-- `src/components/site/ConceptFrame.tsx`, `sections/{Answers,Evidence,Process,Services,WorkGallery,Hero,Pricing}.tsx`, `src/app/page.tsx` — X1 home.
-- `src/app/website-in-48-hours/page.tsx` + titles/JSON-LD in `layout.tsx`, `pricing`, `services/[slug]`, `for/[slug]`, `blog/[slug]`, `sitemap.ts` — SEO.
-- `src/lib/models.ts`, `next.config.ts` — P5 typecheck fix, `ignoreBuildErrors` removed.
-- `src/lib/auth.ts`, `src/app/api/admin/**/route.ts` (13), `tests/admin-routes.test.ts` — P3.
-- `src/app/api/track/route.ts`, `tests/track-optout.test.ts`, `src/app/privacy/page.tsx` — PR1.
-- `src/components/admin/{AdminShell,CapacityControl}.tsx`, `src/app/admin/{page,campaigns/page}.tsx` — admin mobile overflow.
-- `src/app/globals.css` — reduced-motion marquee/gallery fixes, blueprint grid; deleted Aurora, TiltCard, sections/{Work,Testimonials,Stats}.
+- `src/lib/offer.ts` — the single source of prices, payment splits, delivery terms and scope.
+- `src/lib/site.ts` — truthful SITE (region, `emailLive`, reply hours), new nav, process and FAQs.
+- `src/app/globals.css`, `src/app/layout.tsx` — light tokens (AA measured), Manrope, dark admin scope, demo themes.
+- `src/app/page.tsx`, `src/components/site/sections/{Home,PricingPlans}.tsx`, `src/components/site/DemoSwitcher.tsx` — the new home.
+- `src/app/pricing/page.tsx` — full terms page.
+- `src/lib/demos.ts`, `src/components/demo/*`, `src/app/demo/[vertical]/page.tsx`, `public/demos/*.png` — concept demos.
+- `src/components/site/{Navbar,Footer,LeadForm,BookingForm,Shell,ExperienceLayer}.tsx`, contact, legal and 48h pages, 16 content JSONs — truth fixes and the new chrome.
+- Deleted: WebGL hero, preloader, marquees, cursor, scroll HUD, proof strip, old Pricing/Hero/Evidence/WorkGallery sections, ScopeCalculator.
+- `src/lib/grader.ts` + `tests/grader-*.test.ts` — the DNS-rebinding fix.
+- Admin/alerts: `src/lib/{phone,ref,leadops,today,leads,telegram,notify,todayData,brief,cron}.ts`, the today/quick-add/leads pages, the adspend/today/retry/cron routes, `models.ts`, `AdminShell.tsx`, `useApi.ts`.
+- `src/lib/geo.ts`, `netlify.toml`, `netlify/functions/daily-brief.mjs` — host-neutral setup.
+- `scripts/shoot.mjs` — `--dpr` and `--eval` flags.
+- `marketing/ads/*` — ad sources, renderer and exports.
+- `tests/{offer,geo,phone,ref,today,telegram,cron-brief}.test.ts`.
 
 ## Decisions made
-- Withhold (not delete) every client claim without evidence; concept studies only — see DECISIONS D5.
-- Keep H1 "THAT WIN" and the first-visit Preloader (measured: not the LCP element) — agreed with ChatGPT.
-- No analytics retention TTL yet: the period is the owner's call and a TTL index would conflict with the existing `ts` index.
-- robots.txt stays `*` allow (per-bot groups would drop the /admin, /api disallows).
-- Deploy from a clean git worktree so local `.env.local` is never uploaded.
+- D10–D12 in `docs/DECISIONS.md`: founder facts (Navsari/Gujarat, no face or name, no GST, ₹1,000 ads, domain only), one offer config, host-neutral code.
+- D13: the final design is undecided because the founder dislikes the current one (see the top of this file).
+- Ad plan: Meta click-to-WhatsApp, ₹800 lifetime media cap, Gujarati-led hybrid hook "પહેલાં ડેમો જુઓ. 1-પેજ વેબસાઇટ ₹7,999થી.", Reel + static, codes SB-R1/SB-S1.
+- Recommend a **.com with privacy protection** over .in, because .in requires Aadhaar KYC and bans WHOIS privacy, which would publish the founder's name. siteblitz.com is taken; siteblitzstudio.com looked free (RDAP 404).
+- WhatsApp: convert the current number to the Business app (personal WhatsApp stops on that number; contacts can still message).
 
 ## Known broken / deliberately skipped
-- **Production not updated** — the agent's `vercel deploy --prod` was denied by permission settings; the owner must run it (`docs/DEPLOY.md` → "Pending release").
-- Previews and dev share the production Mongo database (RISK R11) — owner action in the Vercel dashboard.
-- Pricing comparison table and /proof methodology (ChatGPT round 3, items 3 and 5) — not started.
-- VERIFY E manual run with real admin credentials, screen-reader and keyboard passes — no credentials or time.
-- Schema address (Mumbai locality) kept as owner-stated; owner to confirm. No Search Console / keyword data yet.
+- **Production not released:** it still serves the 2026-07-10 build with the fake testimonials. Waiting on the founder's design decision and approval.
+- **Founder dislikes the current design:** final design pending (top of file).
+- Prices ₹7,999 / ₹17,999 and the payment splits are not yet explicitly approved by the founder.
+- **Hosting not switched:** the founder must choose Netlify Free (needs a staging pass) or Vercel Pro ($20/mo). The Vercel Hobby commercial-use breach is still live.
+- Not created yet, all needing founder logins:
+  - domain;
+  - Meta Page and Ads account;
+  - WhatsApp Business;
+  - Telegram bot (alerts show "failed: telegram_not_configured" until then).
+- A1 individual admin accounts are not built. One shared env login remains, so don't give the collaborator access yet.
+- No real-phone test yet; QA was headless Chrome only.
+- The Preview deploy shares the production database (RISK R11) and has no admin env.
 
 ## Next session starts here
-- Phase L1: owner releases `f6e0de9`+ to production, then verify production pages and field vitals on `/proof`.
-- First command: `git -C E:\Temp\SiteBlitz worktree add --detach E:\Temp\siteblitz-release ed16331`
-- Watch out for: on Windows, stopping `npm run dev` / `npm start` leaves the `next` child on :3000 — kill the PID or every check hits a stale server.
+- Phase: ask the founder the design question above, then (depending on the answer) restyle or keep, then L1 release + accounts.
+- First command: `git -C E:\Temp\SiteBlitz log --oneline -3` (then ask the design question before touching code)
+- Watch out for: reverting `bdb59e8` wholesale would bring the false claims and old prices back. Restore the visuals only.

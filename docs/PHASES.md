@@ -19,9 +19,9 @@ Status: `todo` · `doing` · `done` · `blocked`
 
 ## Now
 
-**L1 release — blocked on the owner.** `v2-redesign` @ `ed16331` is verified (81 tests, typed build, screenshots,
-lab LCP ≤ 1.78 s) but production still serves the 2026-07-10 build. The agent's production deploy was denied by
-permissions; run the commands in `docs/DEPLOY.md` → "Pending release".
+**Blocked on the founder: final design decision.** The founder does not like the new light design (`bdb59e8`+) and
+will choose between it, the previous dark design (`bada4e7`) or something else. Ask first next session (see
+`docs/HANDOFF.md`). Everything else in the first-client programme is built, tested and pushed (`cf34032`, Preview only).
 
 ## First-client programme (2026-11-01, built in one execution cycle at the founder's request)
 
@@ -33,14 +33,15 @@ permissions; run the commands in `docs/DEPLOY.md` → "Pending release".
 | A2/A3a | Lead ref + phone normalising, Quick-add, Today view, inline edits, Telegram alerts + retry, ad-spend ledger, 08:00 brief cron | **done** (merged), e2e 24/25 → fixed |
 | H | Host-neutral geo + Netlify config/scheduled brief | **done** `aa85f7d` — no host switch yet |
 | AD | Reel (18 s) + static ad rendered from real demo captures, copy, settings, checklist | **done** `marketing/ads/` |
-| L1 | Production release + host decision + domain + Meta account + WhatsApp Business | **blocked on founder** (approval + logins) |
+| DS | Final design decision (new light vs previous dark vs other) | **blocked on founder** — ask first |
+| L1 | Production release + host decision + domain + Meta account + WhatsApp Business | **blocked on founder** (design decision, approval, logins) |
 | A1 | Individual admin accounts (hashed, roles, audit) | todo — before the collaborator gets access |
 
 ## Next 3
 
-1. **Founder approval** of the preview (screens + ads), then L1 release on the chosen host.
-2. **Founder logins** (browser): domain registrar, Netlify (if chosen), Meta Business/Ads, Telegram bot; then Claude configures.
-3. **A1** individual admin accounts before the collaborator logs in.
+1. **Ask the founder the design question**, then keep or restyle (visual layer only, keep truth fixes + offer.ts).
+2. **Founder approval** of prices, site and ads, then L1 release on the chosen host (Netlify Free vs Vercel Pro).
+3. **Founder logins** (browser): domain (.com recommended), host, Meta Page/Ads, Telegram bot; A1 accounts before the collaborator logs in.
 
 ## Transformation programme (master prompt v1.1, agreed 2026-10-31)
 

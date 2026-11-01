@@ -125,3 +125,13 @@ buyers (max 3/week). All in `src/lib/offer.ts`, guarded by `tests/offer.test.ts`
 **Decision:** keep the app deployable on Vercel and Netlify (`src/lib/geo.ts`, `netlify.toml`). Vercel Hobby forbids
 commercial use; Netlify Free allows it but pauses all sites at its 300-credit cap and may remove free sites. The
 founder chooses: Vercel Pro ($20/mo) or Netlify Free after a staging deploy passes the e2e script.
+
+---
+
+## D13 — Final visual design is NOT decided (2026-11-01)
+
+**Decision:** none yet, on purpose. The founder dislikes the new light demo-led design and asked for time. Next session
+must ask: keep the new design, return to the previous dark design (`bada4e7`), or something else.
+
+**Constraint whichever way:** the truth fixes, `src/lib/offer.ts`, the demos' disclosure rules and `tests/offer.test.ts`
+stay. Only the visual layer may be swapped.

@@ -18,6 +18,13 @@ ode_modules` and stop those PIDs.
   (flags horizontal overflow + console errors). Lab perf: `node scripts/vitals.mjs --pages / --runs 3` against `npm start`.
   Git Bash needs `MSYS_NO_PATHCONV=1` or `/` page args get rewritten to Windows paths.
 - PowerShell 5.1 has no `&&`. Separate commands, or `;`.
+- `shoot.mjs --full` prints the viewport size, but the PNG is full height; `--dpr 2` for crisp assets,
+  `--eval "<js>"` (async allowed) to inspect or click in the real browser. Native `loading="lazy"` images
+  never loaded in headless shots; images that are the proof (demo cards) use `loading="eager"`.
+- Start/stop servers as background tasks and stop them with TaskStop; broad `Stop-Process` patterns are blocked.
+  A stale `.next` can fail the build with `ENOENT edge-runtime-webpack.js`: re-run `npm run build` (deleting `.next` is blocked).
+- E2E without touching production: run the cached `~/.cache/mongodb-binaries/mongod-x64-win32-8.2.6.exe` on a
+  scratch dbpath and port, then `next start` with `MONGODB_URI` and test-only `ADMIN_*`, `JWT_SECRET`, `CRON_SECRET` env.
 
 ## Conventions — follow these, don't improve them
 1. API routes return `{ ok: boolean, ... }`; errors `{ ok:false, error }` with a real status code.
