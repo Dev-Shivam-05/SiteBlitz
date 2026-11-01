@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { dbConnect, dbConfigured } from "@/lib/db";
-import { Lead } from "@/lib/models";
+import { createLeadWithRef } from "@/lib/leads";
+import { notifyNewLead } from "@/lib/notify";
+import { normalizeIndianPhone } from "@/lib/phone";
 import { parseUA } from "@/lib/ua";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const LeadInput = z.object({
   name: z.string().min(2).max(120),
@@ -59,9 +62,11 @@ export async function POST(req: NextRequest) {
     await dbConnect();
     const ua = parseUA(req.headers.get("user-agent"));
     const sid = req.cookies.get("sb_sid")?.value;
-    const lead = await Lead.create({
+    const lead = await createLeadWithRef({
       name: parsed.name,
-      phone: parsed.phone || undefined,
+      // Store Indian numbers normalised (+91XXXXXXXXXX) so Quick-add can spot duplicates; keep any
+      // other format (e.g. an overseas visitor) exactly as typed.
+      phone: parsed.phone ? normalizeIndianPhone(parsed.phone) || parsed.phone : undefined,
       email: parsed.email || undefined,
       businessType: parsed.businessType,
       budget: parsed.budget,
@@ -76,8 +81,12 @@ export async function POST(req: NextRequest) {
         utmCampaign: parsed.utmCampaign,
         country: req.headers.get("x-vercel-ip-country") || undefined,
         device: ua.deviceType,
+        code: "website",
+        channel: "web",
       },
     });
+    // The lead is already saved. Alerting never throws and is capped at ~3 s (lib/notify.ts).
+    await notifyNewLead(lead);
     return NextResponse.json({ ok: true, id: String(lead._id) });
   } catch {
     return NextResponse.json({ ok: false, fallback: "whatsapp" }, { status: 503 });

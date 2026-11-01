@@ -1,4 +1,5 @@
-import mongoose, { Schema, type Model } from "mongoose";
+import mongoose, { Schema, type Model, type Types } from "mongoose";
+import { LEAD_STATUSES, SOURCE_CHANNELS, type LeadStatus, type SourceChannel } from "./leadops";
 
 /* ------------------------------------------------------------------ */
 /* Session — one anonymous visitor session (sid cookie, 30 min idle)  */
@@ -101,10 +102,19 @@ const LeadSchema = new Schema<LeadDoc>(
     plan: String,
     status: {
       type: String,
-      enum: ["new", "contacted", "qualified", "won", "lost"],
+      enum: [...LEAD_STATUSES],
       default: "new",
       index: true,
     },
+    // Lead-ops fields (2026-11-01). All optional: older leads lack them and every reader must cope.
+    ref: { type: String, unique: true, sparse: true }, // public "SB-7K2Q", see lib/ref.ts
+    owner: String, // free text: "Founder" / "Partner"
+    nextAction: String,
+    nextActionAt: { type: Date, index: true }, // 00:00 IST of the due day
+    lastContactAt: Date,
+    valueInr: { type: Number, min: 0 },
+    lostReason: String,
+    conceptAt: Date, // set when status becomes "concept"; counts against the weekly cap
     score: { type: Number, default: 0 },
     notes: [
       {
@@ -119,6 +129,8 @@ const LeadSchema = new Schema<LeadDoc>(
       utmCampaign: String,
       country: String,
       device: String,
+      code: String, // SB-H1 | SB-G1 | SB-E1 | walk-in | referral | website | other
+      channel: { type: String, enum: [...SOURCE_CHANNELS] },
     },
   },
   { timestamps: true }
@@ -195,7 +207,15 @@ export interface LeadDoc {
   goal?: string;
   message?: string;
   plan?: string;
-  status: "new" | "contacted" | "qualified" | "won" | "lost";
+  status: LeadStatus;
+  ref?: string;
+  owner?: string;
+  nextAction?: string;
+  nextActionAt?: Date;
+  lastContactAt?: Date;
+  valueInr?: number;
+  lostReason?: string;
+  conceptAt?: Date;
   score: number;
   notes?: { text: string; at: Date }[];
   sid?: string;
@@ -205,6 +225,8 @@ export interface LeadDoc {
     utmCampaign?: string;
     country?: string;
     device?: string;
+    code?: string;
+    channel?: SourceChannel;
   };
   createdAt?: Date;
   updatedAt?: Date;
@@ -254,6 +276,60 @@ export interface GraderRunDoc {
   ts: Date;
 }
 
+/* ------------------------------------------------------------------ */
+/* Notification — one outbound new-lead alert to one recipient         */
+/* ------------------------------------------------------------------ */
+const NotificationSchema = new Schema<NotificationDoc>(
+  {
+    leadId: { type: Schema.Types.ObjectId, required: true, index: true },
+    channel: { type: String, enum: ["telegram"], default: "telegram" },
+    // Telegram chat id. "" while TELEGRAM_CHAT_IDS is unset; filled in by the first retry after.
+    recipient: { type: String, default: "" },
+    status: { type: String, enum: ["pending", "sent", "failed"], default: "pending", index: true },
+    attempts: { type: Number, default: 0 },
+    lastError: String,
+    sentAt: Date,
+    providerMessageId: String,
+  },
+  { timestamps: true } // updatedAt doubles as the in-flight marker for retries (lib/notify.ts)
+);
+
+export interface NotificationDoc {
+  leadId: Types.ObjectId;
+  channel: "telegram";
+  recipient: string;
+  status: "pending" | "sent" | "failed";
+  attempts: number;
+  lastError?: string;
+  sentAt?: Date;
+  providerMessageId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+/* ------------------------------------------------------------------ */
+/* AdSpend — one line of the manual ad-spend ledger (media ₹, ex-GST)  */
+/* ------------------------------------------------------------------ */
+// Its own collection rather than an array inside Setting.value: entries are appended from a phone
+// and occasionally deleted, so separate documents avoid read-modify-write races on one Mixed blob,
+// get schema validation, and sum with a plain aggregate.
+const AdSpendSchema = new Schema<AdSpendDoc>(
+  {
+    day: { type: String, required: true, index: true }, // "YYYY-MM-DD", IST calendar day
+    amountInr: { type: Number, required: true, min: 0 },
+    note: String,
+  },
+  { timestamps: true }
+);
+
+export interface AdSpendDoc {
+  day: string;
+  amountInr: number;
+  note?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
 // Typecheck OOM fix (P5): `schema: Schema` made TS structurally compare Schema<XDoc> against
 // Schema<any, ...> defaults, which exhausted 6 GB. Keep the doc type on both the schema and here.
 function model<T>(name: string, schema: Schema<T>): Model<T> {
@@ -267,3 +343,5 @@ export const Session = model<SessionDoc>("Session", SessionSchema);
 export const Pageview = model<PageviewDoc>("Pageview", PageviewSchema);
 export const AnalyticsEvent = model<EventDoc>("AnalyticsEvent", EventSchema);
 export const Lead = model<LeadDoc>("Lead", LeadSchema);
+export const Notification = model<NotificationDoc>("Notification", NotificationSchema);
+export const AdSpend = model<AdSpendDoc>("AdSpend", AdSpendSchema);

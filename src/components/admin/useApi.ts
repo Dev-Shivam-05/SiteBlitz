@@ -41,6 +41,30 @@ export function useApi<T>(url: string, pollMs = 0) {
   return { data, loading, error, reload: load };
 }
 
+/** A write request whose outcome is always checked: resolves to `{ ok:false, error }` on a network
+ *  failure, a non-2xx status or an `{ ok:false }` body, so callers can show the error and keep
+ *  the old value instead of silently assuming success. */
+export async function sendJson<T = Record<string, unknown>>(
+  url: string,
+  method: "POST" | "PATCH" | "DELETE",
+  body?: unknown
+): Promise<{ ok: true; data: T } | { ok: false; error: string; status: number; data: T | null }> {
+  try {
+    const res = await fetch(url, {
+      method,
+      headers: body === undefined ? undefined : { "content-type": "application/json" },
+      body: body === undefined ? undefined : JSON.stringify(body),
+    });
+    const json = (await res.json().catch(() => null)) as (T & { ok?: boolean; error?: string }) | null;
+    if (!res.ok || !json || json.ok === false) {
+      return { ok: false, error: json?.error || `HTTP ${res.status}`, status: res.status, data: json };
+    }
+    return { ok: true, data: json };
+  } catch (e) {
+    return { ok: false, error: e instanceof Error ? e.message : "network_error", status: 0, data: null };
+  }
+}
+
 export function fmtDuration(sec: number): string {
   if (!sec || sec < 1) return "0s";
   const m = Math.floor(sec / 60);
