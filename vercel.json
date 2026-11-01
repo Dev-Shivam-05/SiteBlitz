@@ -1,4 +1,5 @@
 {
   "installCommand": "npm install --no-audit --no-fund",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "crons": [{ "path": "/api/cron/brief", "schedule": "30 2 * * *" }]
 }

@@ -21,6 +21,13 @@
 | `ADMIN_EMAIL` | ✓ | — | — |
 | `ADMIN_PASSWORD` | ✓ | — | — |
 | `NEXT_PUBLIC_SITE_URL` | — (code default `https://siteblitz.vercel.app`) | — | — |
+| `TELEGRAM_BOT_TOKEN` | not set yet (founder creates the bot) | — | — |
+| `TELEGRAM_CHAT_IDS` | not set yet — comma-separated chat ids | — | — |
+| `CRON_SECRET` | not set yet — random string; Vercel Cron sends it as `Authorization: Bearer …` to `/api/cron/brief` | — | — |
+
+Lead ops (2026-11-01): without the two `TELEGRAM_*` vars every new lead records a `failed` / `telegram_not_configured`
+notification, shown on `/admin/today` → Alerts; set them, then press Retry. Without `CRON_SECRET` the daily brief
+(`vercel.json` cron `30 2 * * *` = 08:00 IST) answers 503 and sends nothing.
 
 Consequences:
 - **Previews and local dev write into the production database.** One `MONGODB_URI` serves all three environments, so every
