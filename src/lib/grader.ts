@@ -21,7 +21,11 @@ export interface GradeResult {
 }
 
 import { lookup } from "node:dns/promises";
-import { isIP } from "node:net";
+import { request as httpRequest, type IncomingMessage } from "node:http";
+import { request as httpsRequest } from "node:https";
+import { isIP, type LookupFunction } from "node:net";
+import { Readable, pipeline } from "node:stream";
+import { constants as zc, createBrotliDecompress, createGunzip, createInflate } from "node:zlib";
 
 const UA =
   "Mozilla/5.0 (compatible; SiteBlitzGrader/1.0; +https://siteblitz.vercel.app/tools/grader)";
@@ -88,6 +92,87 @@ export function normalizeInput(input: string): string | null {
   return raw;
 }
 
+/** Connect-time resolver for every outbound socket. validatePublicUrl() checks
+ *  DNS once, but a rebinding host can answer public for that check and private
+ *  for the real connection — so the addresses the socket actually dials are
+ *  re-checked here, and this is the only resolution the connection uses. */
+/** @internal — exported for tests. */
+export const guardedLookup: LookupFunction = (hostname, options, callback) => {
+  lookup(hostname, { all: true, verbatim: true })
+    .then((addrs) => {
+      // same rule as validatePublicUrl: one private answer taints the host
+      if (!addrs.length || addrs.some((a) => isPrivateIp(a.address))) {
+        const err: NodeJS.ErrnoException = new Error(`Refusing non-public address for ${hostname}`);
+        err.code = "ENOTFOUND";
+        return callback(err, "");
+      }
+      const usable = options.family === 4 || options.family === 6
+        ? addrs.filter((a) => a.family === options.family)
+        : addrs;
+      if (!usable.length) {
+        const err: NodeJS.ErrnoException = new Error(`No usable address for ${hostname}`);
+        err.code = "ENOTFOUND";
+        return callback(err, "");
+      }
+      if (options.all) return callback(null, usable);
+      callback(null, usable[0].address, usable[0].family);
+    })
+    .catch((e: NodeJS.ErrnoException) => callback(e, ""));
+};
+
+/** One GET over node:http(s) pinned to guardedLookup, adapted to a WHATWG
+ *  Response so callers keep the fetch() shape. global fetch can't take a
+ *  custom resolver without adding undici as a dependency. */
+function requestPinned(url: URL, signal: AbortSignal): Promise<Response> {
+  return new Promise((resolve, reject) => {
+    const req = (url.protocol === "https:" ? httpsRequest : httpRequest)(
+      url,
+      {
+        method: "GET",
+        headers: { "user-agent": UA, accept: "text/html,*/*", "accept-encoding": "gzip, deflate, br" },
+        lookup: guardedLookup,
+        agent: false, // no pooled socket can outlive the check that admitted it
+        signal,
+      },
+      (res) => {
+        try {
+          resolve(toResponse(res));
+        } catch (e) {
+          res.destroy();
+          reject(e);
+        }
+      }
+    );
+    req.on("error", reject);
+    req.end();
+  });
+}
+
+function toResponse(res: IncomingMessage): Response {
+  const status = res.statusCode ?? 0;
+  if (status < 200 || status > 599) throw new Error(`Unsupported HTTP status ${status}`);
+  const headers = new Headers();
+  for (const [k, v] of Object.entries(res.headers)) {
+    if (v === undefined) continue;
+    for (const one of Array.isArray(v) ? v : [v]) headers.append(k, one);
+  }
+  if (status === 204 || status === 205 || status === 304) {
+    res.resume();
+    return new Response(null, { status, headers });
+  }
+  // fetch() decoded bodies for us; keep that so the HTML checks see text.
+  // SYNC_FLUSH mirrors undici's leniency toward truncated streams.
+  const enc = (res.headers["content-encoding"] || "").trim().toLowerCase();
+  const decoder =
+    enc === "gzip" || enc === "x-gzip" ? createGunzip({ flush: zc.Z_SYNC_FLUSH, finishFlush: zc.Z_SYNC_FLUSH })
+    : enc === "deflate" ? createInflate({ flush: zc.Z_SYNC_FLUSH, finishFlush: zc.Z_SYNC_FLUSH })
+    : enc === "br" ? createBrotliDecompress({ flush: zc.BROTLI_OPERATION_FLUSH, finishFlush: zc.BROTLI_OPERATION_FLUSH })
+    : null;
+  const body: Readable = decoder ? pipeline(res, decoder, () => {}) : res;
+  // node:stream/web and lib.dom ReadableStream are the same object at runtime
+  return new Response(Readable.toWeb(body) as unknown as ReadableStream<Uint8Array>, { status, headers });
+}
+
 /** Fetch with manual redirect handling — every hop is re-validated against
  *  the private-network rules, so a public host cannot 302 us internally. */
 async function fetchPublic(
@@ -109,11 +194,7 @@ async function fetchPublic(
     const t = setTimeout(() => ctrl.abort(), remaining);
     let res: Response;
     try {
-      res = await fetch(valid.toString(), {
-        headers: { "user-agent": UA, accept: "text/html,*/*" },
-        redirect: "manual",
-        signal: ctrl.signal,
-      });
+      res = await requestPinned(valid, ctrl.signal);
     } catch {
       clearTimeout(t);
       return { error: "We couldn't reach that site (timeout or connection refused). Is it online?" };
