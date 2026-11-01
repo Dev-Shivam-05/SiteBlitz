@@ -1,16 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Space_Grotesk, Instrument_Serif } from "next/font/google";
+import { Manrope, Instrument_Serif } from "next/font/google";
 import { SITE } from "@/lib/site";
+import { FROM_PRICE, inr } from "@/lib/offer";
 import { Tracker } from "@/components/site/Tracker";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
-
-const grotesk = Space_Grotesk({
+/* One variable sans for headings and body (FD-41: fewer font files on the critical path); the serif
+   italic is kept only for short accent words. The CSS variable names stay so no component changes. */
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-grotesk",
   display: "swap",
@@ -25,7 +22,7 @@ const instrument = Instrument_Serif({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0c",
+  themeColor: "#faf9f5",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -34,11 +31,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "SiteBlitz — Fast Business Websites from ₹7,999 / $99",
+    default: `Business Websites from ${inr(FROM_PRICE)} — SiteBlitz, Gujarat`,
     template: "%s — SiteBlitz",
   },
   description:
-    "SiteBlitz is a web studio building conversion-focused, SEO-first business websites for India and worldwide — designed, engineered and launched in as little as 48 hours.",
+    `Professional, mobile-friendly websites for local businesses. See working demos, know the price upfront (from ${inr(FROM_PRICE)}, no hidden charges) and review a homepage concept before you pay. Gujarat-based, serving all of India.`,
   keywords: [
     "website development India",
     "business website design",
@@ -65,15 +62,14 @@ export const metadata: Metadata = {
     siteName: "SiteBlitz",
     locale: "en_IN",
     url: SITE.url,
-    title: "SiteBlitz — Fast Business Websites from ₹7,999 / $99",
+    title: `Business Websites from ${inr(FROM_PRICE)} — SiteBlitz`,
     description:
-      "Conversion-focused, SEO-first business websites for India and worldwide. Designed, engineered and launched in as little as 48 hours.",
+      "See working website demos, know the price upfront and review a homepage concept for your business before you pay.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SiteBlitz — Fast Business Websites from ₹7,999 / $99",
-    description:
-      "Conversion-focused, SEO-first business websites, launched in as little as 48 hours.",
+    title: `Business Websites from ${inr(FROM_PRICE)} — SiteBlitz`,
+    description: "Working demos, upfront prices, and a homepage concept to review before you pay.",
   },
   verification: {
     google: "FpMq1620MPw97ShOx5JxKpvxsk0ON2uvsx7jUCBk_Ks",
@@ -86,24 +82,25 @@ const orgJsonLd = {
   "@id": `${SITE.url}/#organization`,
   name: "SiteBlitz",
   description:
-    "Web studio building conversion-focused, SEO-first business websites, delivered in as little as 48 hours.",
+    "Website studio building professional, mobile-friendly business websites with upfront pricing.",
   url: SITE.url,
-  email: SITE.email,
+  ...(SITE.emailLive ? { email: SITE.email } : {}),
   telephone: SITE.phone,
+  // Region only: no street or city is published (truthful-location rule, FD-22).
   address: {
     "@type": "PostalAddress",
-    addressLocality: SITE.city,
+    addressRegion: SITE.region,
     addressCountry: "IN",
   },
-  areaServed: ["IN", "Worldwide"],
+  areaServed: "IN",
   priceRange: "₹₹",
   // sameAs left out until verified external profiles exist (an empty list says nothing)
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${grotesk.variable} ${instrument.variable}`}>
-      <body className="grain">
+    <html lang="en" className={`${manrope.variable} ${instrument.variable}`}>
+      <body>
         {/* without JS, reveal-on-scroll elements must simply be visible */}
         <noscript>
           <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>

@@ -29,7 +29,7 @@ export default function RefundsPage() {
       </p>
       <h2>How to request</h2>
       <p>
-        Email {SITE.email} with your project details. Refunds are processed to the original
+        Message us on WhatsApp {SITE.phone} with your project details. Refunds are processed to the original
         payment method within 7 working days of approval.
       </p>
     </LegalPage>

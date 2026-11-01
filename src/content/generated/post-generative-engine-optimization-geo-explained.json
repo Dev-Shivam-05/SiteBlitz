@@ -107,7 +107,7 @@
   "faq": [
     {
       "q": "Do I need to rebuild my website for GEO?",
-      "a": "Only if it's client-rendered JavaScript that AI crawlers can't read, or missing structured data entirely. Most sites need targeted fixes: schema markup, FAQ sections with direct answers, and server-rendered pages. Every SiteBlitz build includes all of this as standard, from ₹7,999 ($99) on the Launch plan with 48-hour delivery."
+      "a": "Only if it's client-rendered JavaScript that AI crawlers can't read, or missing structured data entirely. Most sites need targeted fixes: schema markup, FAQ sections with direct answers, and server-rendered pages. SiteBlitz builds server-rendered pages with basic structured data as standard, from ₹7,999 for a one-page Launch site."
     },
     {
       "q": "Is llms.txt actually worth adding today?",

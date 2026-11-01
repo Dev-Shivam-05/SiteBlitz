@@ -5,7 +5,6 @@
   "headline": "Get found by Google. Get *quoted by AI*.",
   "promise": "Search is splitting in two. People still Google, but they increasingly ask ChatGPT, Gemini and AI Overviews — and those engines only recommend businesses they can read, parse and cite. We build you for both: technical and local SEO for the rankings, GEO for the AI answers your customers are already reading.",
   "startingPriceINR": 9999,
-  "startingPriceUSD": 129,
   "timeline": "14 days + ongoing",
   "included": [
     {
@@ -87,6 +86,9 @@
       "a": "Because AI answers usually mention a handful of businesses, and early, well-structured sources tend to be the ones that get picked up. Most of your competitors haven't heard of GEO yet. That gap is the opportunity."
     }
   ],
-  "relatedWorkSlugs": ["clinic", "law"],
+  "relatedWorkSlugs": [
+    "clinic",
+    "law"
+  ],
   "cta": "Want to be the business AI recommends? Let's find out where you stand."
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { fromPrice } from "@/lib/offer";
 import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
 import { Services } from "@/components/site/sections/Services";
@@ -56,7 +57,7 @@ export default function ServicesPage() {
               </div>
               <p className="mt-2 line-clamp-2 text-sm text-muted">{s.promise}</p>
               <p className="mt-4 font-display text-sm font-bold tabular-nums text-volt">
-                from ₹{s.startingPriceINR.toLocaleString("en-IN")}
+                {fromPrice(s.startingPriceINR)}
                 <span className="ml-2 font-normal text-faint">· {s.timeline}</span>
               </p>
             </Link>

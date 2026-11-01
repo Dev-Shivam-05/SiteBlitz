@@ -1,135 +1,102 @@
+import { FROM_PRICE, businessPkg, inr, launchPkg } from "./offer";
+
 export const SITE = {
   name: "SiteBlitz",
-  tagline: "Websites that win business, shipped in 48 hours.",
+  tagline: "Websites that help customers understand your business and get in touch.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://siteblitz.vercel.app",
+  /* The siteblitz.in domain is not registered yet (DNS NXDOMAIN, 2026-11-01), so mail to it bounces.
+     Every UI that shows the address checks emailLive; flip it only after a real send/receive test. */
   email: "hello@siteblitz.in",
+  emailLive: false,
   phone: "+91 92744 90242",
   phoneRaw: "919274490242",
   whatsapp: (text: string) =>
     `https://wa.me/919274490242?text=${encodeURIComponent(text)}`,
-  city: "Mumbai",
+  /* Truthful location (FD-22): the studio works from South Gujarat. Never state a city or office the
+     business does not operate from; an earlier out-of-state city claim was removed for that reason. */
+  region: "Gujarat",
   country: "India",
+  locationLine: "Gujarat-based · serving businesses across India",
+  replyHours: "9 AM – 9 PM IST",
   founded: 2024,
 } as const;
 
 export const NAV_LINKS = [
-  { href: "/work", label: "Work" },
-  { href: "/services", label: "Services" },
+  { href: "/#demos", label: "Live demos" },
+  { href: "/#how", label: "How it works" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/proof", label: "Proof" },
-  { href: "/about", label: "Studio" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#faq", label: "FAQs" },
 ] as const;
 
-export type Currency = "INR" | "USD";
-
-export const PLANS = [
-  {
-    id: "launch",
-    name: "Launch",
-    priceINR: 7999,
-    priceUSD: 99,
-    blurb: "A razor-sharp single page that makes your business look established and gets the phone ringing.",
-    delivery: "48-hour delivery",
-    features: [
-      "Conversion-focused one-page site",
-      "Mobile-first, blazing fast (90+ Lighthouse)",
-      "On-page SEO + Google indexing setup",
-      "WhatsApp & call integration",
-      "Contact form with lead capture",
-      "1 revision round",
-    ],
-    highlight: false,
-  },
-  {
-    id: "growth",
-    name: "Growth",
-    priceINR: 14999,
-    priceUSD: 189,
-    blurb: "A multi-page presence engineered to rank locally and convert visitors into enquiries on autopilot.",
-    delivery: "4-day delivery",
-    features: [
-      "Up to 5 custom-designed pages",
-      "Local SEO + Google Business sync",
-      "Analytics dashboard included",
-      "Lead management panel",
-      "Blog / updates section",
-      "Speed & Core Web Vitals tuning",
-      "3 revision rounds",
-    ],
-    highlight: true,
-  },
-  {
-    id: "scale",
-    name: "Scale",
-    priceINR: 24999,
-    priceUSD: 329,
-    blurb: "The full weapon: custom features, integrations and a growth engine your competitors can't copy.",
-    delivery: "7-day delivery",
-    features: [
-      "Up to 10 pages + custom features",
-      "E-commerce / booking integrations",
-      "Advanced analytics & funnels",
-      "CRM / WhatsApp automation hooks",
-      "Content & copywriting assistance",
-      "Priority support, 30-day care plan",
-      "Unlimited revisions (fair use)",
-    ],
-    highlight: false,
-  },
-] as const;
-
+/** The four-step buying process (FD-27): demo first, concept before payment, scope in writing. */
 export const PROCESS_STEPS = [
   {
     n: "01",
-    title: "Brief",
-    time: "30 minutes",
-    text: "One focused call or WhatsApp chat. We extract what your business does best and who needs to hear it.",
+    title: "Tell us what you need",
+    time: "One WhatsApp chat",
+    text: "Your business, what customers should be able to do on your website, and when you want to launch. No technical brief needed.",
   },
   {
     n: "02",
-    title: "Blueprint",
-    time: "Same day",
-    text: "You get a visual direction and page architecture before we write a single line of code. No surprises.",
+    title: "See the design direction",
+    time: "Before any payment",
+    text: "Explore a working demo for your type of business. For suitable projects we prepare one homepage concept with your name and approved images, free to review, no obligation to buy.",
   },
   {
     n: "03",
-    title: "Build",
-    time: "24–48 hours",
-    text: "Design and engineering happen in one motion. Real content, real SEO, real speed — not a template dressed up.",
+    title: "Approve scope and price",
+    time: "In writing",
+    text: "Pages, features, content, timeline, ownership and any future costs are agreed in writing. You approve before the first payment.",
   },
   {
     n: "04",
-    title: "Blitz",
-    time: "Launch day",
-    text: "Domain, hosting, analytics, search indexing — wired and verified. You watch the first visitors arrive live.",
+    title: "Build, review, launch",
+    time: `${launchPkg.delivery.split(" after")[0]} / ${businessPkg.delivery.split(" after")[0]}`,
+    text: "We build the agreed site, share a staging link, complete the included revision round, then take the final payment and hand over.",
   },
 ] as const;
 
+/** Buyer questions, answered honestly (objection map in docs/debate/2026-11-01-ads-psychology-redesign). */
 export const FAQS = [
   {
-    q: "How can you deliver a real website in 48 hours?",
-    a: "Because we've productised the process. A focused brief, a battle-tested design system, and senior execution with modern tooling — no agency bureaucracy, no six-week email chains. Speed is engineering, not a shortcut.",
+    q: "Is the personalised homepage concept really free?",
+    a: "For qualified projects, yes. You can review one homepage concept for your business without paying or agreeing to buy. It is a design preview, not a finished website, and depends on available slots each week.",
   },
   {
-    q: "What do I need to provide?",
-    a: "Your business details, any photos or brand assets you have, and 30 minutes for the brief. Missing content? We draft professional copy for you and generate placeholder visuals until you replace them.",
+    q: "What if I don't like the concept?",
+    a: "Then you simply don't go ahead. Nothing is owed for the free concept. Once a paid project starts, revisions and cancellation follow the written agreement you approve before paying.",
+  },
+  {
+    q: "I already have Instagram. Why a website?",
+    a: "Keep Instagram. A website complements it: your services, prices, location and an enquiry button in one place that you own, which people can open from Google, WhatsApp or your Instagram bio. It doesn't create traffic by itself.",
+  },
+  {
+    q: "Will my website bring more customers?",
+    a: "A website makes it easier for interested people to understand you and get in touch. How many customers you get depends on demand, promotion and competition, so we don't promise a number of leads or sales.",
   },
   {
     q: "Will my website show up on Google?",
-    a: "Yes — properly. Every build ships with technical SEO: server-rendered pages, structured data, sitemap, fast Core Web Vitals, and Search Console submission. Ranking positions take time, but indexing and a healthy foundation are guaranteed.",
+    a: "We set up the technical SEO basics and submit the site to Google Search Console. Google alone decides if and when a page is indexed or ranked, so nobody can honestly guarantee rankings or indexing.",
   },
   {
-    q: "Do you work with clients outside India?",
-    a: "Absolutely. We work remotely with clients worldwide — pricing is available in INR and USD, and we operate async-friendly with clear communication over WhatsApp or email.",
+    q: "Are there monthly charges or hidden costs?",
+    a: `The website build is a one-time fee: ${inr(FROM_PRICE)} for one page, ${inr(businessPkg.priceInr as number)} for three. Domain renewal and hosting are separate and are written in your quotation before you pay. Nothing outside the agreed scope is charged without your approval.`,
   },
   {
-    q: "What happens after launch?",
-    a: "You own everything — domain, code, content. Growth and Scale plans include a live analytics dashboard so you can see every visitor, and our care plan covers updates. No hostage-taking, no forced monthly fees.",
+    q: "Who owns the website and the domain?",
+    a: "We recommend registering the domain in your own name and account. The agreement lists what is handed over to you: the live site, access and content.",
   },
   {
-    q: "What if I don't like the design?",
-    a: "You see the visual direction before the build starts, and every plan includes revisions. In the rare case we can't land a direction you love, you don't pay. Simple.",
+    q: "How fast can you deliver?",
+    a: `Launch (one page): ${launchPkg.delivery}. Business (three pages): ${businessPkg.delivery}. Ready-to-build means your content, approvals and first payment are in.`,
+  },
+  {
+    q: "Where is SiteBlitz based?",
+    a: "We are a website studio based in South Gujarat and work with businesses remotely across India. Most conversations happen on WhatsApp.",
+  },
+  {
+    q: "Do you have client reviews?",
+    a: "We are building our client portfolio and will not show reviews or results we can't prove. Instead you can open our working demos, review a concept for your own business and get the full scope in writing before you pay.",
   },
 ] as const;
 

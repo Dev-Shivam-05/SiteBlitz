@@ -14,8 +14,8 @@ export interface DeepService {
   eyebrow: string;
   headline: string; // may contain one *italic* span marked with asterisks
   promise: string;
+  /** 0 = custom work, priced by quote (see src/lib/offer.ts). USD pricing was withdrawn. */
   startingPriceINR: number;
-  startingPriceUSD: number;
   timeline: string;
   included: { title: string; text: string }[];
   process: { step: string; time: string; text: string }[];

@@ -6,5 +6,10 @@ export const metadata: Metadata = {
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-screen bg-void">{children}</div>;
+  // The public site is light; the operator panel keeps its dark token set (globals.css [data-theme]).
+  return (
+    <div data-theme="dark" className="min-h-screen bg-void">
+      {children}
+    </div>
+  );
 }

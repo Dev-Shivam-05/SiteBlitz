@@ -4,8 +4,7 @@
   "eyebrow": "Revenue engine",
   "headline": "Sell, book, get paid — *while you sleep*.",
   "promise": "A store or booking engine is not a brochure. It is a machine that turns visitors into payments, and it has to work at 2 a.m. without you. We build the whole machine in 7 days — catalogue, checkout, reservations, confirmations, analytics — and switch it on.",
-  "startingPriceINR": 24999,
-  "startingPriceUSD": 329,
+  "startingPriceINR": 0,
   "timeline": "7 days",
   "included": [
     {
@@ -87,6 +86,9 @@
       "a": "Yes. Pages are server-rendered and images are optimised automatically, so page 200 loads like page 1. We publish our own live Core Web Vitals at /proof — hold us to the same standard."
     }
   ],
-  "relatedWorkSlugs": ["fashion", "restaurant"],
+  "relatedWorkSlugs": [
+    "fashion",
+    "restaurant"
+  ],
   "cta": "Tell us what you sell. We'll build the machine that sells it."
 }

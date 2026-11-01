@@ -54,7 +54,7 @@ export default function AboutPage() {
             <span className="text-ink">how many enquiries it generates</span>.
           </p>
           <p>
-            Based in {`Mumbai, India`} — working with businesses across India and worldwide.
+            Based in South Gujarat — working remotely with businesses across India.
           </p>
         </div>
       </section>

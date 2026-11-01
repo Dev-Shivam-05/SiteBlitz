@@ -44,7 +44,7 @@ export default function TermsPage() {
         is limited to the fees paid for the project.
       </p>
       <h2>Contact</h2>
-      <p>Questions about these terms: {SITE.email}</p>
+      <p>Questions about these terms: WhatsApp {SITE.phone}</p>
     </LegalPage>
   );
 }

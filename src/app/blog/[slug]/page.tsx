@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { fromPrice } from "@/lib/offer";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Shell } from "@/components/site/Shell";
@@ -70,7 +71,7 @@ function ServicePlug({ cluster }: { cluster: string }) {
           data-track={`blog_plug_${svc.slug}`}
           className="btn-volt rounded-full px-5 py-2.5 text-sm font-semibold"
         >
-          From ₹{svc.startingPriceINR.toLocaleString("en-IN")} →
+          {fromPrice(svc.startingPriceINR)} →
         </Link>
         <span className="text-xs text-faint">{svc.timeline}</span>
       </div>

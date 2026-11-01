@@ -2,31 +2,29 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
 import { Magnetic } from "@/components/site/Magnetic";
-import { FAQS, PLANS, PROCESS_STEPS, SITE } from "@/lib/site";
+import { FAQS, PROCESS_STEPS, SITE } from "@/lib/site";
+import { PACKAGES, READY_TO_BUILD, inr, launchPkg } from "@/lib/offer";
 
 /* Commercial page for "website in 48 hours" searches (SEO phase, agreed in
    docs/debate/2026-10-31-redesign-seo-direction). Every scope, price and timing statement comes from
-   PLANS / FAQS / PROCESS_STEPS in site.ts or the terms — nothing here is new copy about the offer.
+   src/lib/offer.ts and FAQS / PROCESS_STEPS in site.ts — nothing here is new copy about the offer.
    /process holds the hour-by-hour timeline; this page answers "is the 48-hour plan right for me?". */
 
-const launch = PLANS[0];
-const growth = PLANS[1];
-const scale = PLANS[2];
+const launch = launchPkg;
+const others = PACKAGES.filter((p) => p.id !== "launch");
 const faq = (q: string) => FAQS.find((f) => f.q === q);
-const inputsFaq = faq("What do I need to provide?");
-const speedFaq = faq("How can you deliver a real website in 48 hours?");
 const PAGE_FAQS = [
-  speedFaq,
-  inputsFaq,
-  faq("What if I don't like the design?"),
-  faq("What happens after launch?"),
+  faq("How fast can you deliver?"),
+  faq("What if I don't like the concept?"),
+  faq("Are there monthly charges or hidden costs?"),
+  faq("Who owns the website and the domain?"),
   faq("Will my website show up on Google?"),
 ].filter((f): f is (typeof FAQS)[number] => Boolean(f));
 
 export const metadata: Metadata = {
   title: "Business Websites in as Little as 48 Hours",
   description:
-    "Launch plan websites from ₹7,999 / $99, delivered in as little as 48 hours. See what's included, what you provide, the process and ownership terms.",
+    "A one-page business website for ₹7,999, delivered in 2 working days (48 hours) once your content is ready. See what's included, what you provide and the terms.",
   alternates: { canonical: "/website-in-48-hours" },
 };
 
@@ -38,11 +36,11 @@ const jsonLd = {
       name: "Business website in as little as 48 hours (Launch plan)",
       serviceType: "Website design and development",
       provider: { "@id": `${SITE.url}/#organization` },
-      areaServed: ["India", "Worldwide"],
+      areaServed: "India",
       offers: {
         "@type": "Offer",
         priceCurrency: "INR",
-        price: String(launch.priceINR),
+        price: String(launch.priceInr),
         url: `${SITE.url}/website-in-48-hours`,
       },
     },
@@ -64,8 +62,6 @@ const jsonLd = {
   ],
 };
 
-const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
-
 export default function WebsiteIn48HoursPage() {
   return (
     <Shell>
@@ -74,27 +70,27 @@ export default function WebsiteIn48HoursPage() {
       <section className="mx-auto max-w-7xl px-5 pb-12 pt-32 md:px-8 md:pt-44">
         <p className="text-xs uppercase tracking-[0.25em] text-volt">Launch plan</p>
         <h1 className="font-display mt-3 max-w-5xl text-5xl font-bold leading-[1.02] tracking-tight md:text-8xl">
-          A business website in as little as <span className="font-accent italic text-volt">48 hours</span>
+          A business website in <span className="text-volt">48 hours</span>
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-          {launch.blurb} {inr(launch.priceINR)} / ${launch.priceUSD}, one-time — and the code, content and
-          domain are yours after full payment.
+          {launch.tagline} {inr(launch.priceInr as number)}, one-time, no GST added. Delivered in 2 working days
+          once your content and approvals are in, and you review the design before paying.
         </p>
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <Magnetic>
-            <Link href="/contact" data-track="w48_cta_start" className="btn-volt block rounded-full px-7 py-4 text-sm font-semibold md:text-base">
-              Start a project →
-            </Link>
+            <a
+              href={SITE.whatsapp("Hi SiteBlitz, I'm interested in the one-page Launch website. My business is: ")}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="w48_cta_whatsapp_primary"
+              className="btn-volt block rounded-full px-7 py-4 text-sm font-semibold md:text-base"
+            >
+              Ask about Launch on WhatsApp
+            </a>
           </Magnetic>
-          <a
-            href={SITE.whatsapp("Hi SiteBlitz! I'm interested in the 48-hour Launch plan.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="w48_cta_whatsapp"
-            className="btn-ghost block rounded-full px-7 py-4 text-sm text-ink md:text-base"
-          >
-            Ask on WhatsApp
-          </a>
+          <Link href="/demo/salon" data-track="w48_cta_demo" className="btn-ghost block rounded-full px-7 py-4 text-sm text-ink md:text-base">
+            See a working demo
+          </Link>
         </div>
       </section>
 
@@ -104,10 +100,10 @@ export default function WebsiteIn48HoursPage() {
             Is the 48-hour Launch plan right for you?
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted">
-            The 48-hour delivery applies to the <strong className="text-ink">Launch</strong> plan: a single,
-            conversion-focused page. It fits a business that needs to look established and start getting
-            calls and WhatsApp enquiries quickly — one clear offer, one main action. If you need several
-            pages, a store or bookings, see the larger plans below.
+            The 48-hour (2 working day) delivery applies to the <strong className="text-ink">Launch</strong> package:
+            a single, focused page. It fits a business that needs a professional link to share and an easy way
+            for customers to call or WhatsApp. The clock starts once the project is ready to build. If you need
+            several pages, a store or bookings, see the larger packages below.
           </p>
         </section>
 
@@ -116,7 +112,7 @@ export default function WebsiteIn48HoursPage() {
             What&apos;s included in the Launch plan?
           </h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {launch.features.map((f) => (
+            {launch.includes.map((f) => (
               <li key={f} className="flex gap-3 rounded-2xl border border-line bg-surface p-5 text-sm text-ink">
                 <span className="text-volt" aria-hidden>✦</span>
                 {f}
@@ -124,19 +120,20 @@ export default function WebsiteIn48HoursPage() {
             ))}
           </ul>
           <p className="mt-4 text-sm text-faint">
-            &ldquo;90+ Lighthouse&rdquo; is the performance target every build is engineered to; you can see
-            how this site itself measures on <Link href="/proof" className="text-volt hover:underline">/proof</Link>.
+            Every site is built mobile-first and tested for speed on a phone before handover.
           </p>
         </section>
 
-        {inputsFaq && (
-          <section>
-            <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
-              What do we need from you?
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-muted">{inputsFaq.a}</p>
-          </section>
-        )}
+        <section>
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+            What do we need from you? (&ldquo;ready to build&rdquo;)
+          </h2>
+          <ol className="mt-5 list-decimal space-y-1 pl-5 text-base leading-relaxed text-muted">
+            {READY_TO_BUILD.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ol>
+        </section>
 
         <section>
           <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
@@ -154,10 +151,7 @@ export default function WebsiteIn48HoursPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-4 text-sm text-muted">
-            Want it hour by hour?{" "}
-            <Link href="/process" className="text-volt hover:underline">See the full 48-hour timeline →</Link>
-          </p>
+
         </section>
 
         <section>
@@ -165,14 +159,14 @@ export default function WebsiteIn48HoursPage() {
             What if your website needs more time?
           </h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
-            {[growth, scale].map((p) => (
+            {others.map((p) => (
               <div key={p.id} className="rounded-2xl border border-line bg-surface p-6">
                 <p className="font-display text-xl font-bold">
                   {p.name} <span className="text-faint">· {p.delivery}</span>
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{p.blurb}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{p.tagline}</p>
                 <p className="font-display mt-4 text-2xl font-bold">
-                  {inr(p.priceINR)} <span className="text-sm font-normal text-faint">/ ${p.priceUSD} one-time</span>
+                  {p.priceInr ? `${inr(p.priceInr)} one-time` : "By quote"}
                 </p>
               </div>
             ))}
@@ -184,10 +178,10 @@ export default function WebsiteIn48HoursPage() {
             Pricing, payment and ownership
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted">
-            The Launch plan is {inr(launch.priceINR)} (${launch.priceUSD}) as a one-time price. Payment terms
-            are in our <Link href="/terms" className="text-volt hover:underline">terms</Link>: on full payment,
-            you own the delivered website, its code, content and your domain. Every plan and what it
-            includes is on the <Link href="/pricing" className="text-volt hover:underline">pricing page</Link>.
+            Launch is {inr(launch.priceInr as number)} one-time, paid in two parts: {inr(launch.payments![0])} after
+            you approve the design and scope, {inr(launch.payments![1])} after you approve the finished site. Domain
+            and hosting costs are written in your quote. Full terms are on the{" "}
+            <Link href="/pricing#terms" className="text-volt hover:underline">pricing page</Link>.
           </p>
         </section>
 

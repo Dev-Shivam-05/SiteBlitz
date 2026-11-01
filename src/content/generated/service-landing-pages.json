@@ -6,7 +6,6 @@
   "headline": "One page. One job. *Built to convert.*",
   "promise": "Your ad makes a promise. The page it points to has to keep it — same message, same offer, one clear next step. We design, write and ship campaign landing pages in 48 hours, wired for measurement from the very first click.",
   "startingPriceINR": 7999,
-  "startingPriceUSD": 99,
   "timeline": "48 hours",
   "included": [
     {
@@ -88,6 +87,9 @@
       "a": "Your offer, your ad copy or campaign idea, your logo and any brand assets, plus about 45 minutes for the kickoff call. If something is missing, we flag it at H0 — not at H47."
     }
   ],
-  "relatedWorkSlugs": ["restaurant", "fashion"],
+  "relatedWorkSlugs": [
+    "restaurant",
+    "fashion"
+  ],
   "cta": "Your campaign is ready to spend. Give it a page that earns it back."
 }

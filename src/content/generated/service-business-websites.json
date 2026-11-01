@@ -6,7 +6,6 @@
   "headline": "Your business, online and converting in *48 hours*.",
   "promise": "Most business websites are digital brochures nobody reads. We build the other kind: fast, server-rendered, engineered around one job — turning visitors into enquiries. Brief us at hour zero; by hour 48 you are live, indexed and measurable.",
   "startingPriceINR": 7999,
-  "startingPriceUSD": 99,
   "timeline": "48 hours",
   "included": [
     {
@@ -77,7 +76,7 @@
     },
     {
       "q": "What if I need more than one page?",
-      "a": "Move up a plan. Growth (₹14,999 / $189) covers up to 5 pages in 4 days with the full analytics dashboard; Scale (₹24,999 / $329) adds e-commerce or booking across up to 10 pages in 7 days. Same engineering standards on every tier."
+      "a": "Move up a package. Business (₹17,999) covers three agreed pages, delivered in 7 working days once the project is ready to build. E-commerce, bookings or more pages are quoted to the agreed scope. Same engineering standards on every package."
     },
     {
       "q": "Will my site actually show up on Google?",
@@ -88,6 +87,9 @@
       "a": "Your first-party analytics dashboard shows visitors, where they came from and how they move toward contacting you. We hold ourselves to the same standard — our own live analytics and real-user Core Web Vitals are public at /proof. Check ours before you buy."
     }
   ],
-  "relatedWorkSlugs": ["restaurant", "law"],
+  "relatedWorkSlugs": [
+    "restaurant",
+    "law"
+  ],
   "cta": "Brief us today. Be live before the weekend."
 }

@@ -7,11 +7,11 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="mx-auto max-w-4xl px-5 py-20 md:px-8 md:py-32">
-      <div className="reveal text-center">
-        <p className="text-xs uppercase tracking-[0.25em] text-volt">Questions</p>
-        <h2 className="font-display mt-3 text-4xl font-bold tracking-tight md:text-5xl">
-          You&apos;re probably <span className="font-accent italic">wondering</span>…
+    <section id="faq" className="mx-auto max-w-4xl scroll-mt-20 px-5 py-16 md:px-8 md:py-24">
+      <div className="text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-volt">Questions people ask</p>
+        <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
+          Straight answers before you decide.
         </h2>
       </div>
 
@@ -21,7 +21,7 @@ export function FAQ() {
           return (
             <div
               key={i}
-              className={`reveal overflow-hidden rounded-2xl border transition-colors ${
+              className={`overflow-hidden rounded-2xl border transition-colors ${
                 isOpen ? "border-volt/30 bg-surface" : "border-line bg-surface/50"
               }`}
               data-delay={String(i * 60)}

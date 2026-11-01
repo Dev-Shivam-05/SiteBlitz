@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Start a Project — Contact",
   description:
-    "Tell SiteBlitz about your business in 60 seconds. We reply within hours and can have your new website live in as little as 48 hours.",
+    "Tell SiteBlitz about your business in 60 seconds. We reply on WhatsApp 9 AM - 9 PM IST with a demo, the price and next steps.",
   alternates: { canonical: "/contact" },
 };
 
@@ -24,9 +24,8 @@ export default function ContactPage() {
               That&apos;s the <span className="font-accent italic">brief</span><span className="text-volt">.</span>
             </h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted">
-              Answer three quick questions. We&apos;ll reply within hours with a direction, a
-              timeline and a fixed price — no obligation, no spam, no &quot;discovery call&quot;
-              theatre.
+              Answer three quick questions. We&apos;ll reply on WhatsApp or by phone during {SITE.replyHours}{" "}
+              with a relevant demo, the price and next steps. No obligation.
             </p>
 
             <div className="mt-10 space-y-4">
@@ -39,21 +38,23 @@ export default function ContactPage() {
               >
                 <div>
                   <p className="font-display font-bold">Prefer WhatsApp?</p>
-                  <p className="text-sm text-muted">{SITE.phone} · replies fast</p>
+                  <p className="text-sm text-muted">{SITE.phone} · {SITE.replyHours}</p>
                 </div>
                 <span className="text-volt transition-transform group-hover:translate-x-1">→</span>
               </a>
-              <a
-                href={`mailto:${SITE.email}`}
-                data-track="contact_email"
-                className="group flex items-center justify-between rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-volt/40"
-              >
-                <div>
-                  <p className="font-display font-bold">Old-school email?</p>
-                  <p className="text-sm text-muted">{SITE.email}</p>
-                </div>
-                <span className="text-volt transition-transform group-hover:translate-x-1">→</span>
-              </a>
+              {SITE.emailLive && (
+                <a
+                  href={`mailto:${SITE.email}`}
+                  data-track="contact_email"
+                  className="group flex items-center justify-between rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-volt/40"
+                >
+                  <div>
+                    <p className="font-display font-bold">Prefer email?</p>
+                    <p className="text-sm text-muted">{SITE.email}</p>
+                  </div>
+                  <span className="text-volt transition-transform group-hover:translate-x-1">→</span>
+                </a>
+              )}
             </div>
           </div>
 

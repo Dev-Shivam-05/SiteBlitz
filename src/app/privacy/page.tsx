@@ -45,7 +45,7 @@ export default function PrivacyPage() {
       </p>
       <h2>Your rights</h2>
       <p>
-        Email <strong>{SITE.email}</strong> to access, correct or delete your personal data. We
+        Message us on <strong>WhatsApp {SITE.phone}</strong> to access, correct or delete your personal data. We
         respond within 7 working days.
       </p>
       <h2>Third parties</h2>

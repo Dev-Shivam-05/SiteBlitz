@@ -29,7 +29,7 @@ type Step = 0 | 1 | 2;
 export function LeadForm() {
   const params = useSearchParams();
   const [step, setStep] = useState<Step>(0);
-  const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [state, setState] = useState<"idle" | "sending" | "done" | "fallback" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const [form, setForm] = useState({
@@ -80,11 +80,11 @@ export function LeadForm() {
         setState("done");
         window.sbTrack?.("lead_submitted", { businessType: form.businessType });
       } else if (data.fallback === "whatsapp") {
-        // DB briefly unavailable — hand off to WhatsApp so the lead is never lost.
+        // Not saved. Say so, and hand the visitor a WhatsApp button with their answers pre-filled:
+        // window.open() after an await is popup-blocked on many phones, which used to show "done"
+        // while nothing was sent anywhere.
         window.sbTrack?.("lead_whatsapp_fallback", {});
-        const text = `Hi SiteBlitz! I'm ${form.name}. Business: ${form.businessType || "—"}. Goal: ${form.goal || "—"}. Budget: ${form.budget || "—"}. ${form.message}`;
-        window.open(SITE.whatsapp(text), "_blank");
-        setState("done");
+        setState("fallback");
       } else {
         setState("error");
         setErrorMsg(data.error || "Something went wrong. Try WhatsApp instead?");
@@ -95,13 +95,38 @@ export function LeadForm() {
     }
   };
 
+  if (state === "fallback") {
+    const text = `Hi SiteBlitz! I'm ${form.name}. Business: ${form.businessType || "-"}. Goal: ${form.goal || "-"}. Budget: ${form.budget || "-"}. ${form.message}`;
+    return (
+      <div className="rounded-2xl border border-line bg-surface p-8 text-center" role="alert">
+        <h3 className="font-display text-2xl font-bold">We couldn&apos;t save your request just now.</h3>
+        <p className="mt-3 text-sm leading-relaxed text-muted">
+          Nothing was sent yet. Tap below to send the same details to us on WhatsApp, or try the form again.
+        </p>
+        <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+          <a
+            href={SITE.whatsapp(text)}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="lead_fallback_whatsapp"
+            className="btn-volt inline-block rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Send my details on WhatsApp
+          </a>
+          <button type="button" onClick={() => setState("idle")} className="btn-ghost rounded-full px-6 py-3 text-sm font-semibold text-ink">
+            Try the form again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (state === "done") {
     return (
-      <div className="rounded-2xl border border-volt/30 bg-volt/5 p-10 text-center">
-        <div className="font-display text-5xl">⚡</div>
-        <h3 className="font-display mt-4 text-2xl font-bold">Brief received. We&apos;re on it.</h3>
+      <div className="rounded-2xl border border-volt/30 bg-volt/5 p-10 text-center" role="status">
+        <h3 className="font-display text-2xl font-bold">Request received and saved.</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          Expect a reply within a few hours (usually much faster). Want to skip the queue?
+          We reply on WhatsApp or by phone during {SITE.replyHours}. Want to start the conversation now?
         </p>
         <a
           href={SITE.whatsapp(`Hi SiteBlitz! I just submitted the form — I'm ${form.name}.`)}
@@ -261,7 +286,7 @@ export function LeadForm() {
               data-track="lead_form_submit"
               className="btn-volt rounded-full px-8 py-3.5 text-sm font-semibold disabled:opacity-60"
             >
-              {state === "sending" ? "Sending…" : "Send the brief ⚡"}
+              {state === "sending" ? "Sending…" : "Send my request"}
             </button>
           </div>
         </div>

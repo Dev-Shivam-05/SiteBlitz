@@ -7,6 +7,7 @@ import { Accent } from "@/components/site/Accent";
 import { Magnetic } from "@/components/site/Magnetic";
 import { DEEP_SERVICES, getService } from "@/content";
 import { SITE, WORK_ITEMS } from "@/lib/site";
+import { fromPrice } from "@/lib/offer";
 
 export const dynamicParams = false;
 
@@ -23,7 +24,7 @@ export async function generateMetadata({
   const s = getService(slug);
   if (!s) return {};
   return {
-    title: s.metaTitle ?? `${s.name} — from ₹${s.startingPriceINR.toLocaleString("en-IN")}`,
+    title: s.metaTitle ?? `${s.name} — ${fromPrice(s.startingPriceINR)}`,
     description: s.promise.slice(0, 155),
     alternates: { canonical: `/services/${s.slug}` },
   };
@@ -57,13 +58,17 @@ export default async function ServicePage({
         serviceType: s.name,
         description: s.promise,
         provider: { "@id": `${SITE.url}/#organization` },
-        areaServed: ["India", "Worldwide"],
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "INR",
-          price: String(s.startingPriceINR),
-          url: `${SITE.url}/services/${s.slug}`,
-        },
+        areaServed: "India",
+        ...(s.startingPriceINR > 0
+          ? {
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "INR",
+                price: String(s.startingPriceINR),
+                url: `${SITE.url}/services/${s.slug}`,
+              },
+            }
+          : {}),
       },
       {
         "@type": "FAQPage",
@@ -98,11 +103,8 @@ export default async function ServicePage({
           </p>
           <div className="flex shrink-0 flex-wrap items-center gap-6" data-anim="fade-up" data-now data-delay="0.4">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-faint">from</p>
-              <p className="font-display text-3xl font-bold tabular-nums">
-                ₹{s.startingPriceINR.toLocaleString("en-IN")}
-                <span className="ml-2 text-base text-muted">/ ${s.startingPriceUSD}</span>
-              </p>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-faint">price</p>
+              <p className="font-display text-3xl font-bold tabular-nums">{fromPrice(s.startingPriceINR)}</p>
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-[0.25em] text-faint">timeline</p>
@@ -241,7 +243,7 @@ export default async function ServicePage({
             </a>
           </div>
           <p className="mt-5 text-xs text-faint">
-            From ₹{s.startingPriceINR.toLocaleString("en-IN")} / ${s.startingPriceUSD} · {s.timeline} · no advance until you approve the direction
+            {fromPrice(s.startingPriceINR)} · {s.timeline} · no payment until you approve the design direction
           </p>
         </div>
       </section>

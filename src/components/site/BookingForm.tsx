@@ -46,7 +46,7 @@ export function BookingForm() {
         name: name.trim(),
         phone: phone.trim(),
         businessType: topic || "Brief call",
-        goal: "Booked brief call",
+        goal: "Call requested (unconfirmed)",
         plan: "booking",
         message: `Requested brief call: ${day} at ${slot} IST${topic ? ` — about: ${topic}` : ""}`,
       }),
@@ -62,15 +62,15 @@ export function BookingForm() {
     return (
       <div className="rounded-3xl border border-volt/40 bg-surface p-10 text-center">
         <p className="font-display text-3xl font-bold">
-          Locked in<span className="text-volt">.</span>
+          Request received<span className="text-volt">.</span>
         </p>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted">
-          <b className="text-ink">{dayLabel}</b> at <b className="text-ink">{slot} IST</b>. We&rsquo;ll
-          confirm on WhatsApp within a few hours. If the slot clashes on our side, we&rsquo;ll
-          propose the nearest one — you never have to chase us.
+          You asked for <b className="text-ink">{dayLabel}</b> at <b className="text-ink">{slot} IST</b>. This time
+          is <b className="text-ink">not confirmed yet</b>: we&rsquo;ll confirm it, or suggest the nearest free time,
+          on WhatsApp during {SITE.replyHours}.
         </p>
         <a
-          href={SITE.whatsapp(`Hi SiteBlitz! I just booked a brief call for ${day} at ${slot} IST (${name}).`)}
+          href={SITE.whatsapp(`Hi SiteBlitz! I just requested a call for ${day} at ${slot} IST (${name}).`)}
           target="_blank"
           rel="noopener noreferrer"
           data-track="booking_wa_confirm"

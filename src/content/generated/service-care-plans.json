@@ -5,7 +5,6 @@
   "headline": "We maintain it. *You own it.*",
   "promise": "Websites decay quietly — dependencies age, content goes stale, and one missed update can take a good site down. Care Plans keep yours fast, secure and current: updates shipped, backups running, changes made, analytics reviewed with you every month. And because you own everything — code, domain, data — you stay because it works, not because you're stuck.",
   "startingPriceINR": 2499,
-  "startingPriceUSD": 29,
   "timeline": "monthly, cancel anytime",
   "included": [
     {
@@ -87,6 +86,9 @@
       "a": "Because websites decay quietly. Dependencies age, security holes appear, content goes stale — and both Google and your customers notice. A monthly habit at ₹2,499 is far cheaper than an emergency rebuild."
     }
   ],
-  "relatedWorkSlugs": ["clinic", "restaurant"],
+  "relatedWorkSlugs": [
+    "clinic",
+    "restaurant"
+  ],
   "cta": "Hand over the maintenance. Never the ownership."
 }

@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-void: #0a0a0c;
-  --color-surface: #121216;
-  --color-raised: #1a1a20;
-  --color-ink: #f5f5f0;
-  --color-muted: #9b9ba3;
-  /* #55555e measured 2.68:1 on --color-void — below the WCAG AA 4.5:1 floor,
-     and this token is used for real content (tag pills, testimonial roles,
-     input placeholders), not only decoration. #81818f is the smallest lift
-     that clears 4.5:1 on all three surfaces it actually sits on:
-     void 5.15:1, surface 4.87:1, raised 4.51:1. Keep the original hue. */
-  --color-faint: #81818f;
-  --color-volt: #ccff00;
-  --color-volt-dim: #a3cc00;
-  --color-violet: #7c5cff;
-  --color-line: rgba(245, 245, 240, 0.08);
+  /* Light, product-led palette agreed in docs/debate/2026-11-01-ads-psychology-redesign (FD-41).
+     Token names are kept from the dark era so every component re-themes without a rename:
+     void = page canvas, volt = the primary action colour. Contrast measured on void / surface / raised:
+     ink 13.9 / 14.6 / 12.6 · muted 6.5 / 6.9 / 5.9 · faint 5.1 / 5.4 / 4.7 · volt 6.1 / 6.4 / 5.5 —
+     all clear WCAG AA 4.5:1. --color-warm is 1.7:1 on canvas: fills and decoration only, never text. */
+  --color-void: #faf9f5;
+  --color-surface: #ffffff;
+  --color-raised: #f1eee6;
+  --color-ink: #182b36;
+  --color-muted: #4f5c64;
+  --color-faint: #606c73;
+  --color-volt: #006b60;
+  --color-volt-dim: #00564d;
+  --color-violet: #e7b877;
+  --color-warm: #e7b877;
+  --color-line: rgba(24, 43, 54, 0.11);
 
-  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-display: var(--font-grotesk), system-ui, sans-serif;
   --font-body: var(--font-grotesk), system-ui, sans-serif;
   --font-accent: var(--font-instrument), Georgia, serif;
 
@@ -55,15 +56,31 @@ body {
   color: var(--color-void);
 }
 
+/* The admin panel keeps its dark operator theme: same token names, scoped values. */
+[data-theme="dark"] {
+  --color-void: #0a0a0c;
+  --color-surface: #121216;
+  --color-raised: #1a1a20;
+  --color-ink: #f5f5f0;
+  --color-muted: #9b9ba3;
+  --color-faint: #81818f;
+  --color-volt: #ccff00;
+  --color-volt-dim: #a3cc00;
+  --color-violet: #7c5cff;
+  --color-line: rgba(245, 245, 240, 0.08);
+  color: var(--color-ink);
+  color-scheme: dark;
+}
+
 /* ---- scrollbar ---- */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-void); }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a32;
+  background: rgba(24, 43, 54, 0.22);
   border-radius: 8px;
   border: 2px solid var(--color-void);
 }
-::-webkit-scrollbar-thumb:hover { background: #3a3a44; }
+::-webkit-scrollbar-thumb:hover { background: rgba(24, 43, 54, 0.36); }
 
 /* ---- typography helpers ---- */
 .font-display { font-family: var(--font-display); }
@@ -71,7 +88,7 @@ body {
 
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(245, 245, 240, 0.25);
+  -webkit-text-stroke: 1px rgba(24, 43, 54, 0.3);
 }
 
 .text-balance { text-wrap: balance; }
@@ -197,7 +214,13 @@ body {
 }
 .btn-volt:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 0 1px rgba(204, 255, 0, 0.4), 0 8px 40px -8px rgba(204, 255, 0, 0.5);
+  background: var(--color-volt-dim);
+  box-shadow: 0 10px 30px -12px rgba(0, 107, 96, 0.55);
+}
+.btn-volt:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
 }
 
 .btn-ghost {
@@ -205,8 +228,8 @@ body {
   transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-ghost:hover {
-  border-color: rgba(245, 245, 240, 0.3);
-  background: rgba(245, 245, 240, 0.04);
+  border-color: rgba(24, 43, 54, 0.35);
+  background: rgba(24, 43, 54, 0.04);
   transform: translateY(-2px);
 }
 
@@ -216,7 +239,8 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  border-color: rgba(204, 255, 0, 0.25);
+  border-color: rgba(0, 107, 96, 0.35);
+  box-shadow: 0 18px 40px -24px rgba(24, 43, 54, 0.35);
 }
 
 /* ---- admin ---- */
@@ -258,7 +282,7 @@ body {
 .sweep-link .sweep-fill {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(204, 255, 0, 0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 107, 96, 0.12), transparent);
   transform: translateX(-110%);
   transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: none;
@@ -314,3 +338,77 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ==== Concept demo websites (/demo/*) ====
+   Each demo is styled as a different client's own brand, so it gets its own palette here rather than
+   SiteBlitz tokens. Contrast (ink/bg, white on accent) measured >= 6.2:1 for all three. */
+.demo-root {
+  background: var(--demo-bg);
+  color: var(--demo-ink);
+  font-family: var(--font-body);
+}
+.demo-salon {
+  --demo-bg: #fbf4f1; --demo-ink: #3a1f2b; --demo-accent: #8e3b5c; --demo-soft: #f3e3df;
+  --demo-card: #ffffff; --demo-art-a: #e9c6c9; --demo-art-b: #c98a9f; --demo-art-bg: #f1dcd8;
+}
+.demo-salon .demo-heading { font-family: var(--font-accent); font-weight: 400; letter-spacing: -0.01em; }
+.demo-coaching {
+  --demo-bg: #f4f7fc; --demo-ink: #12233f; --demo-accent: #1d4ed8; --demo-soft: #e4ebf8;
+  --demo-card: #ffffff; --demo-art-a: #facc15; --demo-art-b: #93b4f5; --demo-art-bg: #dfe8fa;
+}
+.demo-coaching .demo-heading { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.03em; }
+.demo-showroom {
+  --demo-bg: #f6f2ec; --demo-ink: #2a2420; --demo-accent: #7a4e2d; --demo-soft: #ece3d7;
+  --demo-card: #fffdf9; --demo-art-a: #c9a27e; --demo-art-b: #8c6a4f; --demo-art-bg: #e6dccd;
+}
+.demo-showroom .demo-heading { font-family: var(--font-accent); font-weight: 400; }
+
+.demo-ribbon { background: var(--color-ink); color: var(--color-void); }
+.demo-kicker { color: var(--demo-accent); }
+.demo-mark { background: var(--demo-accent); color: #ffffff; }
+.demo-band { background: var(--demo-soft); }
+.demo-soft { background: var(--demo-soft); }
+.demo-card { background: var(--demo-card); box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 12px 30px -22px rgba(0, 0, 0, 0.35); }
+.demo-btn { background: var(--demo-accent); color: #ffffff; transition: transform 0.2s ease, filter 0.2s ease; }
+.demo-btn:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.08); }
+.demo-btn-outline { border: 1.5px solid var(--demo-accent); color: var(--demo-accent); }
+.demo-btn, .demo-btn-outline, .demo-option { display: inline-block; text-align: center; }
+.demo-btn:focus-visible, .demo-btn-outline:focus-visible, .demo-option:focus-visible {
+  outline: 2px solid var(--demo-ink); outline-offset: 3px;
+}
+.demo-option { background: var(--demo-soft); border: 1.5px solid transparent; text-align: left; transition: border-color 0.15s ease; }
+.demo-option:hover:not(:disabled) { border-color: var(--demo-accent); }
+.demo-option.is-selected { border-color: var(--demo-accent); background: var(--demo-card); box-shadow: inset 0 0 0 1px var(--demo-accent); }
+
+/* hero illustration: original CSS shapes + line icons, no photos (no licensing questions) */
+.demo-art { background: var(--demo-art-bg); color: var(--demo-ink); }
+.demo-art-shape-a { width: 62%; height: 78%; left: 10%; bottom: -8%; border-radius: 999px 999px 24px 24px; background: var(--demo-art-a); }
+.demo-art-shape-b { width: 46%; height: 56%; right: 6%; top: 8%; border-radius: 28px; background: var(--demo-art-b); opacity: 0.85; }
+.demo-coaching .demo-art-shape-a { border-radius: 28px; transform: rotate(-6deg); }
+.demo-coaching .demo-art-shape-b { border-radius: 999px; }
+.demo-showroom .demo-art-shape-a { border-radius: 24px 24px 8px 8px; height: 46%; width: 74%; left: 13%; bottom: 10%; }
+.demo-showroom .demo-art-shape-b { width: 30%; height: 64%; right: 10%; top: 6%; border-radius: 999px 999px 8px 8px; }
+.demo-art-icon { color: var(--demo-ink); opacity: 0.8; }
+.demo-art-label { background: rgba(255, 255, 255, 0.85); color: var(--demo-ink); }
+
+/* ==== SiteBlitz home: phone frame used by the live demo switcher ==== */
+.phone-frame {
+  border: 10px solid var(--color-ink);
+  border-radius: 2.6rem;
+  box-shadow: 0 40px 80px -40px rgba(24, 43, 54, 0.55), 0 0 0 1px rgba(24, 43, 54, 0.08);
+  background: var(--color-ink);
+}
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 34%;
+  height: 18px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: var(--color-ink);
+  z-index: 2;
+}
+
+.card-recommended { box-shadow: 0 24px 60px -36px rgba(0, 107, 96, 0.6); }

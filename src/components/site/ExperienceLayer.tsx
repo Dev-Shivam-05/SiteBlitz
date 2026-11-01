@@ -17,19 +17,11 @@ class QuietBoundary extends Component<{ children: ReactNode }, { failed: boolean
   }
 }
 
-/* The whole animation stack (GSAP, SplitText, Lenis, cursor, HUD) loads as a
+/* The animation stack (GSAP, SplitText, Lenis) loads as a
  * separate chunk and only after the browser is idle — first paint and first
  * interaction never wait for it. */
 const MotionProvider = dynamic(
   () => import("@/components/site/Motion").then((m) => m.MotionProvider),
-  { ssr: false }
-);
-const Cursor = dynamic(
-  () => import("@/components/site/Cursor").then((m) => m.Cursor),
-  { ssr: false }
-);
-const ScrollHUD = dynamic(
-  () => import("@/components/site/ScrollHUD").then((m) => m.ScrollHUD),
   { ssr: false }
 );
 
@@ -37,9 +29,9 @@ export function ExperienceLayer() {
   return (
     <QuietBoundary>
       <Deferred>
+        {/* The custom cursor and scroll HUD were removed in the light redesign (FD-24/36): decoration that
+            hid the native cursor and added nothing a buyer needs. */}
         <MotionProvider />
-        <Cursor />
-        <ScrollHUD />
       </Deferred>
     </QuietBoundary>
   );
