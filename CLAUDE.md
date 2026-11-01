@@ -32,7 +32,10 @@ ode_modules` and stop those PIDs.
    (+ `data-delay`, `data-stagger`, `data-now`, `data-speed`) on the markup and let `Motion.tsx`
    build the GSAP scene. Never hand-write GSAP inside a component.
 6. Colours come from the `@theme` tokens in `globals.css` — `void, surface, raised, ink, muted,
-   faint, volt, violet, line`. No inline hex. Reusable effects are classes in `globals.css`.
+   faint, volt, violet, warm, line`. No inline hex. Reusable effects are classes in `globals.css`.
+   Since 2026-11-01 the public site is **light** (void = canvas #faf9f5, volt = teal action #006b60);
+   the admin keeps the dark set via `[data-theme="dark"]` on `src/app/admin/layout.tsx`.
+   `--color-warm` fails text contrast: fills and decoration only.
    Tailwind v4 is CSS-first: there is no `tailwind.config.js` and there should not be one.
 7. Honour `prefers-reduced-motion` everywhere; `?motion=force` is the QA override.
 
@@ -46,7 +49,14 @@ ode_modules` and stop those PIDs.
 - `ignoreBuildErrors` was removed in P5 — a green build now includes a type check.
 
 ## Content rules
-- Short copy, pricing, FAQs, work items, testimonials → `src/lib/site.ts`.
+- **Prices, payment splits, delivery terms, inclusions/exclusions → `src/lib/offer.ts` only.** Every page
+  reads from it; `tests/offer.test.ts` fails if a withdrawn price ($ prices, ₹14,999/₹24,999), "Mumbai",
+  an indexing guarantee or an unguarded `SITE.email` reappears in public copy.
+- Short copy, FAQs, process steps, work items → `src/lib/site.ts`. Location is "Gujarat-based" (truthful);
+  the founder's name/photo never appear. `SITE.emailLive` stays false until the mailbox is send/receive tested.
+- Demo sites (`src/lib/demos.ts`, `/demo/*`) are FICTIONAL: noindex, permanent disclosure ribbon, enquiry is
+  simulated and collects nothing. Never add a real address, phone, review or result to a demo.
+- Ads live in `marketing/ads/` (sources + `render.mjs`); re-render, never hand-edit exports.
 - Long-form (deep services, blog posts, industry landers) → JSON in `src/content/generated/`,
   imported explicitly by `src/content/index.ts`. That barrel is hand-maintained on purpose:
   a new file needs a new import line or it silently won't ship.

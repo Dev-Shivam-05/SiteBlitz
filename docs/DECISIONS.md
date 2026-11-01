@@ -97,3 +97,31 @@ not the LCP element (home lab LCP 1.78 s); per-bot groups would not inherit the 
 **Decision:** production deploys run `vercel deploy --prod` from `git worktree add --detach <dir> <commit>` + copied `.vercel/`.
 
 **Why:** the working copy holds a local `.env.local`; a clean checkout guarantees only tracked files are uploaded.
+
+---
+
+## D10 — Founder facts that bind all copy and plans (2026-11-01)
+
+**Decision:** SiteBlitz is presented as Gujarat-based (the founder works from Navsari; the Mumbai claim was false and
+is removed); the founder's name and photo never appear; prices are final with no GST (not registered — re-check with
+an accountant); ₹1,000 all-in for November ads (≈ ₹800 media); only the domain may be bought.
+
+**Why:** stated by the founder; truth outranks perceived "urban" credibility (master prompt v3.0 priorities).
+
+---
+
+## D11 — One offer, one source of truth (2026-11-01)
+
+**Decision:** Launch ₹7,999 (1 page, 2 working days after ready-to-build), Business ₹17,999 (3 pages, 7 working days),
+Custom by quote; payments ₹4,000+₹3,999 / ₹9,000+₹8,999; "review your homepage concept before you pay" for qualified
+buyers (max 3/week). All in `src/lib/offer.ts`, guarded by `tests/offer.test.ts`.
+
+**Why:** debates `docs/debate/2026-11-01-*`. Prices await the founder's explicit go before the public release.
+
+---
+
+## D12 — Host-neutral code; no host switch without a staging pass (2026-11-01)
+
+**Decision:** keep the app deployable on Vercel and Netlify (`src/lib/geo.ts`, `netlify.toml`). Vercel Hobby forbids
+commercial use; Netlify Free allows it but pauses all sites at its 300-credit cap and may remove free sites. The
+founder chooses: Vercel Pro ($20/mo) or Netlify Free after a staging deploy passes the e2e script.

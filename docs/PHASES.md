@@ -23,11 +23,24 @@ Status: `todo` · `doing` · `done` · `blocked`
 lab LCP ≤ 1.78 s) but production still serves the 2026-07-10 build. The agent's production deploy was denied by
 permissions; run the commands in `docs/DEPLOY.md` → "Pending release".
 
+## First-client programme (2026-11-01, built in one execution cycle at the founder's request)
+
+| # | Unit | Status |
+|---|---|---|
+| S0a | Grader DNS-rebinding fix (connection pinned to validated IPs) + 14 tests | **done** `bada4e7` |
+| S0b | Truth: Mumbai → Gujarat, dead email hidden, booking = request, WhatsApp fallback is a tap, withdrawn prices purged | **done** `bdb59e8` |
+| D1 | Light design system, new home (demo switcher), /pricing full terms, 3 concept demos | **done** `bdb59e8`, QA `e98e4b5` |
+| A2/A3a | Lead ref + phone normalising, Quick-add, Today view, inline edits, Telegram alerts + retry, ad-spend ledger, 08:00 brief cron | **done** (merged), e2e 24/25 → fixed |
+| H | Host-neutral geo + Netlify config/scheduled brief | **done** `aa85f7d` — no host switch yet |
+| AD | Reel (18 s) + static ad rendered from real demo captures, copy, settings, checklist | **done** `marketing/ads/` |
+| L1 | Production release + host decision + domain + Meta account + WhatsApp Business | **blocked on founder** (approval + logins) |
+| A1 | Individual admin accounts (hashed, roles, audit) | todo — before the collaborator gets access |
+
 ## Next 3
 
-1. **L1** — release, then check production pages on a phone and field vitals on `/proof` after real traffic.
-2. **S3** — pricing as an answer-first Launch/Growth/Scale comparison + `/proof` methodology (ChatGPT round 3, items 3 + 5).
-3. **Owner actions** — Search Console + Bing for the permanent domain; separate preview/dev database (RISK R11); confirm the Mumbai address.
+1. **Founder approval** of the preview (screens + ads), then L1 release on the chosen host.
+2. **Founder logins** (browser): domain registrar, Netlify (if chosen), Meta Business/Ads, Telegram bot; then Claude configures.
+3. **A1** individual admin accounts before the collaborator logs in.
 
 ## Transformation programme (master prompt v1.1, agreed 2026-10-31)
 

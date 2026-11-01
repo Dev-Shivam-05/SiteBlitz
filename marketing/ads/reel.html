@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8">
+<title>SiteBlitz Reel — salon demo (1080x1920, 18 s)</title>
+<!-- Spec: docs/debate/2026-11-01-ad-campaign/02_chatgpt.md §2 ("The Customer's 8-Second Test"), hybrid hook.
+     Everything inside the phone is a real capture of /demo/salon (assets/*.png); the opening chat bubble is
+     labelled as an example. Text stays inside the Reels safe zone (x 65-1015, y 269-1248).
+     render.mjs calls window.renderAt(seconds) per frame, so timing is deterministic. -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Noto+Sans+Gujarati:wght@500;700;800&display=block" rel="stylesheet">
+<style>
+  :root { --canvas:#faf9f5; --ink:#182b36; --muted:#4f5c64; --teal:#006b60; }
+  * { box-sizing:border-box; margin:0; }
+  body { width:1080px; height:1920px; background:var(--canvas); color:var(--ink); overflow:hidden; position:relative;
+         font-family:"Noto Sans Gujarati","Manrope",sans-serif; }
+  .abs { position:absolute; }
+  #brand { left:0; right:0; top:285px; text-align:center; font:800 40px/1 Manrope,sans-serif; letter-spacing:-.02em; }
+  #brand b { color:var(--teal); }
+  #cap { left:70px; right:70px; top:345px; text-align:center; font-weight:800; font-size:64px; line-height:1.15; }
+  #sub { left:70px; right:70px; top:422px; text-align:center; font-weight:700; font-size:44px; color:var(--teal); }
+  #phone { left:260px; top:600px; width:560px; height:1100px; border:14px solid var(--ink); border-radius:62px; overflow:hidden;
+           background:#fff; box-shadow:0 50px 100px -50px rgba(24,43,54,.6); }
+  #screen { position:absolute; inset:0; overflow:hidden; }
+  #page, #done { position:absolute; left:0; width:100%; }
+  #ribbon { position:absolute; left:0; top:0; width:100%; z-index:3; }
+  #label { left:0; right:0; top:508px; text-align:center; z-index:5; }
+  #label span { display:inline-block; background:var(--ink); color:#fff; font-weight:700; font-size:30px; padding:10px 26px; border-radius:999px; }
+  #tap { width:96px; height:96px; border-radius:50%; background:rgba(0,107,96,.35); border:5px solid #fff; z-index:6;
+         box-shadow:0 8px 24px rgba(0,0,0,.25); }
+  #bubble { left:150px; top:760px; width:780px; z-index:8; }
+  #bubble .b { background:#fff; border-radius:40px 40px 40px 10px; padding:34px 40px; box-shadow:0 30px 60px -30px rgba(24,43,54,.5);
+               font-weight:700; font-size:54px; line-height:1.25; }
+  #bubble .e { margin-top:16px; font-weight:700; font-size:30px; color:var(--muted); padding-left:12px; }
+  #offer, #end { inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+                 background:var(--canvas); z-index:10; padding:0 70px 360px; }
+  #offer .l1 { font-weight:800; font-size:72px; line-height:1.2; }
+  #offer .card { margin-top:48px; background:#fff; border:2px solid rgba(24,43,54,.12); border-radius:44px; padding:44px 70px;
+                 box-shadow:0 40px 80px -40px rgba(24,43,54,.5); }
+  #offer .k { font-weight:700; font-size:46px; color:var(--muted); }
+  #offer .p { font:800 128px/1.05 Manrope,"Noto Sans Gujarati",sans-serif; letter-spacing:-.03em; margin-top:10px; }
+  #offer .p small { font-family:"Noto Sans Gujarati",sans-serif; font-size:70px; }
+  #offer .n { margin-top:26px; font-weight:700; font-size:32px; color:var(--teal); }
+  #end .logo { font:800 96px/1 Manrope,sans-serif; letter-spacing:-.03em; }
+  #end .logo b { color:var(--teal); }
+  #end .btn { margin-top:56px; display:flex; align-items:center; gap:24px; background:var(--teal); color:#fff; border-radius:999px;
+              padding:34px 64px; font-weight:800; font-size:58px; }
+  #end .btn svg { width:66px; height:66px; }
+  #end .s { margin-top:40px; font-weight:700; font-size:34px; color:var(--muted); }
+</style>
+</head>
+<body>
+  <div id="brand" class="abs">Site<b>Blitz</b></div>
+  <div id="cap" class="abs"></div>
+  <div id="sub" class="abs"></div>
+
+  <div id="phone" class="abs">
+    <div id="screen">
+      <img id="page" src="assets/salon-full-noribbon.png" alt="">
+      <img id="done" src="assets/salon-enquiry-done.png" alt="">
+      <img id="ribbon" src="assets/salon-ribbon.png" alt="">
+    </div>
+  </div>
+  <div id="tap" class="abs"></div>
+  <div id="label" class="abs"><span>કન્સેપ્ટ ડેમો • ક્લાયન્ટનું કામ નથી</span></div>
+
+  <div id="bubble" class="abs">
+    <div class="b">તમારી વેબસાઇટની લિંક મોકલશો?</div>
+    <div class="e">ઉદાહરણ ચેટ</div>
+  </div>
+
+  <div id="offer" class="abs">
+    <div class="l1">તમારા બિઝનેસ માટે પણ.</div>
+    <div class="card">
+      <div class="k">1-પેજ બિઝનેસ વેબસાઇટ</div>
+      <div class="p">₹7,999<small>થી</small></div>
+      <div class="n">One-time · no GST added</div>
+    </div>
+  </div>
+
+  <div id="end" class="abs">
+    <div class="logo">Site<b>Blitz</b></div>
+    <div class="btn">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.9-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+      WhatsApp પર વાત કરો
+    </div>
+    <div class="s">પહેલાં ડેમો જુઓ · 1-પેજ વેબસાઇટ ₹7,999થી</div>
+  </div>
+
+<script>
+  // Image-pixel offsets of /demo/salon at 390 css px, captured at 2x (measured with scripts/shoot.mjs --eval).
+  const SECTION = { services: 1590 - 40, visit: 6186 - 560, enquiry: 5874 - 820, button: 5874 };
+  const PHONE_TOP = 600;
+  const SCREEN_W = 532, IMG_W = 780, K = SCREEN_W / IMG_W, RIBBON_H = 92 * K;
+  const $ = (id) => document.getElementById(id);
+  const clamp = (x) => Math.max(0, Math.min(1, x));
+  const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  const seg = (t, a, b) => ease(clamp((t - a) / (b - a)));
+  const fade = (t, a, b, c, d) => Math.min(seg(t, a, b), 1 - seg(t, c, d));
+
+  const CAPS = [
+    [0, 1, "", ""],
+    [1, 4, "પહેલાં ડેમો જુઓ.", "1-પેજ વેબસાઇટ ₹7,999થી."],
+    [4, 7, "સેવાઓ જુઓ", "1-પેજ વેબસાઇટ ₹7,999થી."],
+    [7, 8, "સંપર્કની માહિતી જુઓ", ""],
+    [8, 9, "Enquiry બટન", ""],
+    [9, 11, "ડેમો છે • મેસેજ મોકલાતો નથી", ""],
+    [11, 13.3, "એક લિંક. જરૂરી માહિતી.", ""],
+  ];
+
+  window.renderAt = (t) => {
+    // page scroll (image px): hero -> services -> visit -> back to the enquiry button
+    let y = 0;
+    if (t >= 4) y = SECTION.services * seg(t, 4, 5.4);
+    if (t >= 7) y = SECTION.services + (SECTION.visit - SECTION.services) * seg(t, 7, 7.9);
+    if (t >= 8) y = SECTION.visit + (SECTION.enquiry - SECTION.visit) * seg(t, 8, 8.6);
+    $("page").style.top = `${RIBBON_H - y * K}px`;
+    const showDone = t >= 9.15;
+    $("page").style.opacity = showDone ? 0 : 1;
+    $("done").style.opacity = showDone ? 1 : 0;
+    $("done").style.top = "0px";
+    $("ribbon").style.opacity = showDone ? 0 : 1;
+
+    // tap indicator on the real "Preview the request" button
+    const tap = $("tap");
+    const tapOn = t >= 8.6 && t < 9.5;
+    tap.style.opacity = tapOn ? 1 : 0;
+    const by = PHONE_TOP + 14 + RIBBON_H + (SECTION.button - SECTION.enquiry + 50) * K;
+    tap.style.left = `${540 - 48}px`;
+    tap.style.top = `${by - 48}px`;
+    const press = t >= 9 && t < 9.25 ? 0.82 : 1;
+    tap.style.transform = `scale(${press})`;
+
+    // phone: blurred behind the example chat, then sharp; slides slightly at 11-13 s
+    const phone = $("phone");
+    phone.style.filter = t < 1 ? "blur(10px)" : `blur(${10 * (1 - seg(t, 1, 1.35))}px)`;
+    phone.style.transform = `translateY(${(1 - seg(t, 1, 1.4)) * 40}px) scale(${1 - 0.03 * seg(t, 11, 12)})`;
+
+    // example chat bubble 0-1.1 s
+    const bub = $("bubble");
+    bub.style.opacity = fade(t, -1, 0.15, 0.95, 1.15);
+    bub.style.transform = `scale(${0.9 + 0.1 * seg(t, 0, 0.18)})`;
+
+    // concept label whenever the demo is on screen
+    $("label").style.opacity = t >= 1.2 && t < 13.2 ? 1 : 0;
+
+    // captions
+    const c = CAPS.find(([a, b]) => t >= a && t < b) || ["", "", "", ""];
+    $("cap").textContent = c[2];
+    $("sub").textContent = c[3];
+    $("cap").style.top = c[3] ? "345px" : "385px";
+
+    // offer card 13.3-16.2 s, end slate 16.2-18 s
+    $("offer").style.opacity = fade(t, 13.2, 13.6, 16.1, 16.35);
+    $("offer").style.transform = `scale(${0.96 + 0.04 * seg(t, 13.2, 13.7)})`;
+    $("end").style.opacity = seg(t, 16.2, 16.5);
+    $("end").style.transform = `scale(${0.97 + 0.03 * seg(t, 16.2, 16.6)})`;
+    const hide = t >= 13.3;
+    for (const id of ["brand", "cap", "sub"]) $(id).style.opacity = hide ? 0 : 1;
+  };
+  window.renderAt(0);
+</script>
+</body>
+</html>
