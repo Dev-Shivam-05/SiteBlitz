@@ -3,6 +3,7 @@ import { dbConnect, dbConfigured } from "@/lib/db";
 import { Session, Pageview, AnalyticsEvent } from "@/lib/models";
 import { parseUA } from "@/lib/ua";
 import { classifyReferrer } from "@/lib/referrer";
+import { geoFromHeaders } from "@/lib/geo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -87,12 +88,7 @@ export async function POST(req: NextRequest) {
 
     const ua = parseUA(req.headers.get("user-agent"));
     const h = req.headers;
-    const geo = {
-      countryCode: h.get("x-vercel-ip-country") || undefined,
-      region: h.get("x-vercel-ip-country-region") || undefined,
-      city: h.get("x-vercel-ip-city") ? decodeURIComponent(h.get("x-vercel-ip-city")!) : undefined,
-      timezone: h.get("x-vercel-ip-timezone") || undefined,
-    };
+    const geo = geoFromHeaders(h); // Vercel or Netlify edge headers (lib/geo.ts)
     const ipRaw =
       h.get("x-real-ip") ||
       (h.get("x-forwarded-for") || "").split(",")[0].trim();

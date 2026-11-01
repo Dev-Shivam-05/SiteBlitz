@@ -1,0 +1,9 @@
+# Netlify build settings, kept alongside vercel.json so the site can run on either host.
+# Why Netlify at all: Vercel Hobby forbids commercial use; Netlify's Free plan allows it (2026-11-01 research,
+# docs/DEPLOY.md). Next.js is handled by Netlify's OpenNext adapter automatically; no plugin pin needed.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"

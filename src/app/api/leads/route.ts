@@ -5,6 +5,7 @@ import { createLeadWithRef } from "@/lib/leads";
 import { notifyNewLead } from "@/lib/notify";
 import { normalizeIndianPhone } from "@/lib/phone";
 import { parseUA } from "@/lib/ua";
+import { geoFromHeaders } from "@/lib/geo";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -80,7 +81,7 @@ export async function POST(req: NextRequest) {
         path: parsed.path,
         utmSource: parsed.utmSource,
         utmCampaign: parsed.utmCampaign,
-        country: req.headers.get("x-vercel-ip-country") || undefined,
+        country: geoFromHeaders(req.headers).countryCode,
         device: ua.deviceType,
         code: "website",
         channel: "web",
