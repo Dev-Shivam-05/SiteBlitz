@@ -52,8 +52,22 @@ const call = (fn: Handler) =>
 
 describe("admin data routes check auth themselves", () => {
   it("discovers the admin routes", () => {
-    expect(files.length).toBeGreaterThanOrEqual(13);
-    expect(handlers.length).toBeGreaterThanOrEqual(15);
+    expect(files.length).toBeGreaterThanOrEqual(16);
+    expect(handlers.length).toBeGreaterThanOrEqual(20);
+  });
+
+  it("includes the lead-ops routes (quick-add, today, ad spend, alert retry)", () => {
+    const names = handlers.map((h) => h.name.replace(/\\/g, "/"));
+    for (const n of [
+      "POST leads/route.ts",
+      "PATCH leads/route.ts",
+      "GET today/route.ts",
+      "POST adspend/route.ts",
+      "DELETE adspend/route.ts",
+      "POST notifications/retry/route.ts",
+    ]) {
+      expect(names, n).toContain(n);
+    }
   });
 
   it("every handler returns 401 without a session cookie", async () => {
