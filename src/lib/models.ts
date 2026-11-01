@@ -129,7 +129,7 @@ const LeadSchema = new Schema<LeadDoc>(
       utmCampaign: String,
       country: String,
       device: String,
-      code: String, // SB-H1 | SB-G1 | SB-E1 | walk-in | referral | website | other
+      code: String, // SOURCE_CODES in lib/leadops.ts (SB-R1, SB-S1, walk-in, referral, website, ...)
       channel: { type: String, enum: [...SOURCE_CHANNELS] },
     },
   },

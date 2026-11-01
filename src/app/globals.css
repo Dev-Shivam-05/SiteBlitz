@@ -398,17 +398,6 @@ body {
   box-shadow: 0 40px 80px -40px rgba(24, 43, 54, 0.55), 0 0 0 1px rgba(24, 43, 54, 0.08);
   background: var(--color-ink);
 }
-.phone-frame::before {
-  content: "";
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  width: 34%;
-  height: 18px;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: var(--color-ink);
-  z-index: 2;
-}
+/* no notch: it covered the demo's disclosure ribbon in the screenshot */
 
 .card-recommended { box-shadow: 0 24px 60px -36px rgba(0, 107, 96, 0.6); }

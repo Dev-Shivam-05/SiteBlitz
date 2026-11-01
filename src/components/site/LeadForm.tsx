@@ -30,6 +30,7 @@ export function LeadForm() {
   const params = useSearchParams();
   const [step, setStep] = useState<Step>(0);
   const [state, setState] = useState<"idle" | "sending" | "done" | "fallback" | "error">("idle");
+  const [ref, setRef] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState("");
 
   const [form, setForm] = useState({
@@ -77,6 +78,7 @@ export function LeadForm() {
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
+        setRef(typeof data.ref === "string" ? data.ref : null);
         setState("done");
         window.sbTrack?.("lead_submitted", { businessType: form.businessType });
       } else if (data.fallback === "whatsapp") {
@@ -125,6 +127,11 @@ export function LeadForm() {
     return (
       <div className="rounded-2xl border border-volt/30 bg-volt/5 p-10 text-center" role="status">
         <h3 className="font-display text-2xl font-bold">Request received and saved.</h3>
+        {ref && (
+          <p className="mt-2 text-sm text-muted">
+            Your reference: <span className="font-semibold text-ink">{ref}</span>
+          </p>
+        )}
         <p className="mt-3 text-sm leading-relaxed text-muted">
           We reply on WhatsApp or by phone during {SITE.replyHours}. Want to start the conversation now?
         </p>

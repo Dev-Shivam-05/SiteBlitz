@@ -18,7 +18,7 @@ export function HomeHero() {
     <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-24 md:grid-cols-[1.15fr_1fr] md:px-8 md:pb-24 md:pt-32">
       <div>
         <p className="text-sm font-medium text-muted">{SITE.locationLine}</p>
-        <h1 className="font-display mt-4 text-[2.35rem] font-extrabold leading-[1.05] tracking-tight md:text-6xl">
+        <h1 className="font-display mt-4 text-[2.35rem] font-extrabold leading-[1.05] tracking-tight md:text-[3.4rem]">
           Websites that help customers understand your business<span className="text-volt"> — and get in touch.</span>
         </h1>
         <p className="mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
@@ -81,11 +81,14 @@ export function DemoShowcase() {
               className="card-hover group flex flex-col overflow-hidden rounded-3xl border border-line bg-void"
             >
               <div className="relative aspect-[4/3] overflow-hidden border-b border-line bg-raised">
+                {/* Eager: three small optimised images are the proof a buyer came for; native lazy
+                    loading never fired for them in headless QA, so the section doesn't bet on it. */}
                 <Image
                   src={`/demos/${d.id}.png`}
                   alt={`${d.vertical} concept demo`}
                   fill
                   sizes="(min-width: 768px) 33vw, 100vw"
+                  loading="eager"
                   className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                 />
                 <span className="absolute left-3 top-3 rounded-full bg-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-void">

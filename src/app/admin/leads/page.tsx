@@ -272,8 +272,8 @@ export default function LeadsPage() {
                   )}
                 </div>
 
-                <div className="flex shrink-0 flex-col items-end gap-3">
-                  <div className="flex gap-2">
+                <div className="flex w-full min-w-0 flex-col items-start gap-3 sm:w-auto sm:shrink-0 sm:items-end">
+                  <div className="flex flex-wrap gap-2">
                     {l.phone && (
                       <>
                         <a
@@ -304,7 +304,7 @@ export default function LeadsPage() {
                       </a>
                     )}
                   </div>
-                  <div className="flex flex-wrap items-center justify-end gap-2">
+                  <div className="flex flex-wrap items-center gap-2 sm:justify-end">
                     <select
                       value={shownStatus}
                       disabled={busyId === l._id}

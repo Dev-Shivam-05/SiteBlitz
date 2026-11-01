@@ -13,7 +13,7 @@ export function DemoSwitcher() {
   const demo = DEMO_LIST.find((d) => d.id === active)!;
 
   return (
-    <div className="mx-auto w-full max-w-[340px]">
+    <div className="mx-auto w-full max-w-[300px]">
       <div role="tablist" aria-label="Choose a business type" className="flex gap-1 rounded-full border border-line bg-surface p-1">
         {DEMO_LIST.map((d) => (
           <button

@@ -4,7 +4,7 @@
 // No dependencies: Node >= 22 ships a global WebSocket.
 //
 //   node scripts/shoot.mjs [--base http://localhost:3000] [--pages /,/work] [--widths 375,1440]
-//                          [--rm] [--full] [--out .shots] [--chrome <path>] [--cookie name=value]
+//                          [--rm] [--full] [--dpr 2] [--out .shots] [--chrome <path>] [--cookie name=value]
 //
 // --rm    emulate prefers-reduced-motion: reduce. Every section renders static and visible, which makes it the
 //         fastest whole-page audit.
@@ -29,6 +29,10 @@ const WIDTHS = opt("widths", "375,1440").split(",").map(Number);
 const OUT = opt("out", ".shots");
 const RM = flag("rm");
 const FULL = flag("full");
+// --dpr 2 for crisp marketing assets (e.g. public/demos/*.png); QA shots stay at 1.
+const DPR = Number(opt("dpr", "1"));
+// --eval "<js expression>": print its JSON result per page/width (debugging what the browser actually sees).
+const EVAL = opt("eval");
 const CHROME =
   opt("chrome") ||
   [
@@ -127,7 +131,7 @@ try {
       await cdp.send("Emulation.setDeviceMetricsOverride", {
         width: w,
         height: h,
-        deviceScaleFactor: 1,
+        deviceScaleFactor: DPR,
         mobile: w < 768,
       });
       await cdp.send("Emulation.setTouchEmulationEnabled", { enabled: w < 768 });
@@ -139,6 +143,10 @@ try {
         returnByValue: true,
       });
       const info = JSON.parse(result.value);
+      if (EVAL) {
+        const { result: ev } = await cdp.send("Runtime.evaluate", { expression: `(async () => JSON.stringify(await (${EVAL})))()`, returnByValue: true, awaitPromise: true });
+        console.log(`  eval ${path} @${w}: ${ev.value}`);
+      }
       let clip;
       if (FULL) {
         // Walk the page once so scroll-triggered content mounts, then return to the top.

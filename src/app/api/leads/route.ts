@@ -21,8 +21,9 @@ const LeadInput = z.object({
   path: z.string().max(300).optional(),
   utmSource: z.string().max(120).optional(),
   utmCampaign: z.string().max(120).optional(),
-  // honeypot — real users never fill this
-  website: z.string().max(0).optional().or(z.literal("")),
+  // honeypot: real users never fill this. Accept any value here so the branch below can answer with a
+  // quiet fake success; rejecting it with 400 told bots exactly which field gave them away.
+  website: z.string().max(500).optional(),
 });
 
 function scoreLead(d: z.infer<typeof LeadInput>): number {
@@ -87,7 +88,8 @@ export async function POST(req: NextRequest) {
     });
     // The lead is already saved. Alerting never throws and is capped at ~3 s (lib/notify.ts).
     await notifyNewLead(lead);
-    return NextResponse.json({ ok: true, id: String(lead._id) });
+    // ref is the public, unpredictable reference the visitor sees on the thank-you screen.
+    return NextResponse.json({ ok: true, id: String(lead._id), ref: lead.ref });
   } catch {
     return NextResponse.json({ ok: false, fallback: "whatsapp" }, { status: 503 });
   }

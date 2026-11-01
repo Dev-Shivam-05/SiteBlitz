@@ -7,9 +7,10 @@ export const LEAD_STATUSES = [
 export type LeadStatus = (typeof LEAD_STATUSES)[number];
 export const CLOSED_STATUSES: readonly LeadStatus[] = ["won", "lost"];
 
-/** Codes the founder types into Quick-add. SB-H1 / SB-G1 are the pre-filled WhatsApp codes of the
- *  Hinglish / Gujarati ads (docs/debate/2026-11-01-ads-psychology-redesign/RESULT.md row 2). */
-export const SOURCE_CODES = ["SB-H1", "SB-G1", "SB-E1", "walk-in", "referral", "website", "other"] as const;
+/** Codes the founder taps in Quick-add. SB-R1 / SB-S1 are the pre-filled WhatsApp codes of the November
+ *  Meta Reel / static ads (docs/debate/2026-11-01-ad-campaign/02_chatgpt.md §4.4); SB-H1/G1/E1 were the
+ *  earlier Hinglish/Gujarati/English drafts and stay valid for leads already logged with them. */
+export const SOURCE_CODES = ["SB-R1", "SB-S1", "walk-in", "referral", "website", "SB-H1", "SB-G1", "SB-E1", "other"] as const;
 export type SourceCode = (typeof SOURCE_CODES)[number];
 
 export const SOURCE_CHANNELS = ["web", "whatsapp", "in_person", "referral", "other"] as const;
