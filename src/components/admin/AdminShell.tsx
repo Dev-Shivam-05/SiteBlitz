@@ -4,10 +4,12 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, Users, Inbox, Activity, LogOut, ExternalLink,
-  Radio, Filter, Megaphone, FileText, PieChart, Gauge,
+  Radio, Filter, Megaphone, FileText, PieChart, Gauge, CalendarCheck, UserPlus,
 } from "lucide-react";
 
 const NAV = [
+  { href: "/admin/today", label: "Today", icon: CalendarCheck },
+  { href: "/admin/quick-add", label: "Quick add", icon: UserPlus },
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
   { href: "/admin/live", label: "Live", icon: Radio },
   { href: "/admin/visitors", label: "Visitors", icon: Users },
@@ -39,7 +41,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             <span className="hidden lg:inline">SITE<span className="text-volt">BLITZ</span></span>
           </span>
         </Link>
-        <nav className="flex flex-1 flex-col gap-1 p-2 lg:p-3">
+        <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto p-2 lg:p-3">
           {NAV.map((n) => {
             const active = pathname === n.href;
             const Icon = n.icon;

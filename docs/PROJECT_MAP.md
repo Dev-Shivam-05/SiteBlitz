@@ -15,7 +15,7 @@ Recon date: 2026-08-20 · branch `v2-redesign` · commit `4ee3cc1`
 
 Env vars (all in `.env.local`, gitignored, never committed):
 `MONGODB_URI`, `MONGODB_DB` (default `siteblitz`), `JWT_SECRET`, `ADMIN_EMAIL`,
-`ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL`.
+`ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_IDS`, `CRON_SECRET`.
 
 External services: MongoDB Atlas · Vercel (hosting + `x-vercel-ip-*` geo headers) · Google Fonts.
 The app degrades gracefully without Mongo — `dbConfigured()` gates every write and the site still renders.

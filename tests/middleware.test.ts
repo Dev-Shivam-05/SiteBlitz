@@ -39,6 +39,7 @@ function req(path: string, cookie?: string) {
 /** Every route under /api/admin. If a new one is added outside the middleware
  *  matcher, this list is where the omission surfaces. */
 const ADMIN_APIS = [
+  "/api/admin/adspend",
   "/api/admin/audience",
   "/api/admin/campaigns",
   "/api/admin/events",
@@ -47,9 +48,11 @@ const ADMIN_APIS = [
   "/api/admin/grader",
   "/api/admin/leads",
   "/api/admin/live",
+  "/api/admin/notifications/retry",
   "/api/admin/pages",
   "/api/admin/settings",
   "/api/admin/stats",
+  "/api/admin/today",
   "/api/admin/visitors",
   "/api/admin/visitors/abc123",
 ];
