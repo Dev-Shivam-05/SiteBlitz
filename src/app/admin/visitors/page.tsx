@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Monitor, Smartphone, Tablet, Bot, X } from "lucide-react";
 import { AdminShell, PageHeader, Card, DbNotice } from "@/components/admin/AdminShell";
 import { useApi, fmtDuration, fmtDate, flagEmoji } from "@/components/admin/useApi";
+import { useDialog } from "@/components/admin/useDialog";
 
 interface SessionRow {
   sid: string;
@@ -54,15 +55,24 @@ function Detail({ sid, onClose }: { sid: string; onClose: () => void }) {
       ].sort((a, b) => a.t - b.t)
     : [];
 
+  const panel = useRef<HTMLDivElement>(null);
+  // Esc closes, focus stays in the drawer and returns to the row that opened it (spec v4 row 16)
+  useDialog(panel, true, onClose);
+
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-void/60 backdrop-blur-sm" onClick={onClose}>
+    <div className="cmdk-backdrop fixed inset-0 z-[60] flex justify-end" onClick={onClose}>
       <div
-        className="admin-scroll h-full w-full max-w-lg overflow-y-auto border-l border-line bg-surface p-6"
+        ref={panel}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="journey-title"
+        tabIndex={-1}
+        className="admin-sheet-side admin-scroll h-full w-full max-w-lg overflow-y-auto border-l border-line bg-surface p-6 outline-none"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-lg font-bold">Session journey</h2>
-          <button onClick={onClose} className="rounded-lg p-2 text-muted hover:bg-raised hover:text-ink">
+          <h2 id="journey-title" className="admin-title text-xl">Session journey</h2>
+          <button onClick={onClose} aria-label="Close" className="rounded-lg p-2 text-muted hover:bg-raised hover:text-ink">
             <X size={18} />
           </button>
         </div>
@@ -191,7 +201,15 @@ export default function VisitorsPage() {
               <tr
                 key={s.sid}
                 onClick={() => setSelected(s.sid)}
-                className="cursor-pointer border-b border-line/50 transition-colors hover:bg-raised"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelected(s.sid);
+                  }
+                }}
+                tabIndex={0}
+                aria-label={`Open the journey of the visit at ${fmtDate(s.lastSeen)}`}
+                className="cursor-pointer border-b border-line/50 transition-colors hover:bg-raised focus-visible:bg-raised focus-visible:outline focus-visible:outline-2 focus-visible:outline-volt"
               >
                 <td className="px-5 py-3 text-muted">{fmtDate(s.lastSeen)}</td>
                 <td className="px-5 py-3">

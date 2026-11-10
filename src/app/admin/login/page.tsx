@@ -38,12 +38,12 @@ function LoginForm() {
   return (
     <form
       onSubmit={submit}
-      className="w-full max-w-sm rounded-2xl border border-line bg-surface p-8"
+      className="admin-card relative w-full max-w-sm rounded-3xl border border-line p-8 shadow-[0_40px_120px_-40px_rgba(204,255,0,0.25)]"
     >
-      <p className="font-display text-xl font-bold">
-        SITE<span className="text-volt">BLITZ</span>
+      <p className="admin-title text-2xl">
+        Site<span className="text-volt">Blitz</span>
       </p>
-      <p className="mt-1 text-xs uppercase tracking-widest text-faint">Command Center</p>
+      <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-faint">Command Center</p>
 
       <label className="mt-8 block text-xs text-muted" htmlFor="email">
         Email
@@ -55,7 +55,7 @@ function LoginForm() {
         autoComplete="username"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="mt-2 w-full rounded-xl border border-line bg-void px-4 py-3 text-sm outline-none focus:border-volt"
+        className="mt-2 w-full rounded-xl border border-line bg-void px-4 py-3 text-sm outline-none transition-colors focus:border-volt"
       />
       <label className="mt-4 block text-xs text-muted" htmlFor="password">
         Password
@@ -67,9 +67,13 @@ function LoginForm() {
         autoComplete="current-password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="mt-2 w-full rounded-xl border border-line bg-void px-4 py-3 text-sm outline-none focus:border-volt"
+        className="mt-2 w-full rounded-xl border border-line bg-void px-4 py-3 text-sm outline-none transition-colors focus:border-volt"
       />
-      {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
+      {error && (
+        <p className="mt-4 text-sm text-red-400" role="alert">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
         disabled={busy}
@@ -83,7 +87,12 @@ function LoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center px-5">
+    <div className="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-5">
+      {/* the same volt haze and grid as the panel behind it */}
+      <div aria-hidden className="admin-aura" />
+      <p aria-hidden className="admin-title pointer-events-none absolute bottom-[-0.12em] left-1/2 -translate-x-1/2 select-none whitespace-nowrap text-[22vw] text-ink/[0.03]">
+        SiteBlitz
+      </p>
       <Suspense>
         <LoginForm />
       </Suspense>

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  // The public site is light; the operator panel keeps its dark token set (globals.css [data-theme]).
+  // Since v4 the site and the admin share one dark token set; data-theme stays as the admin scope hook.
   return (
     <div data-theme="dark" className="min-h-screen bg-void">
       {children}
