@@ -105,8 +105,8 @@ export const PHOTOS: Record<PhotoId, Photo> = {
 };
 
 /** The ids a page shows, in order, so its footer credits exactly those. */
+/* v4: the home drift collage shows these three (the textile-shop hero photograph left with v3) */
 export const SITE_PHOTO_IDS: readonly PhotoId[] = [
-  "heroShop",
   "salonInterior",
   "coachingClassroom",
   "showroomInterior",

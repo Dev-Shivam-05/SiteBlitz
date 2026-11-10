@@ -127,9 +127,9 @@ export function DemoSite({ demo }: { demo: Demo }) {
       </section>
 
       {/* SiteBlitz's own pitch, visually separated from the fictional business above */}
-      <section className="bg-ink px-5 py-16 text-void md:px-8 md:py-20">
+      <section className="bg-void px-5 py-16 text-ink md:px-8 md:py-20">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] opacity-75">Built by SiteBlitz</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-volt">Built by SiteBlitz</p>
           <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
             A website like this, built around your business.
           </h2>
@@ -143,11 +143,11 @@ export function DemoSite({ demo }: { demo: Demo }) {
               target="_blank"
               rel="noopener noreferrer"
               data-track={`demo_${demo.id}_whatsapp`}
-              className="rounded-full bg-void px-6 py-3.5 text-sm font-semibold text-ink"
+              className="btn-volt rounded-full px-6 py-3.5 text-sm font-semibold"
             >
               Discuss a website on WhatsApp
             </a>
-            <Link href="/pricing" className="rounded-full border border-void/40 px-6 py-3.5 text-sm font-semibold">
+            <Link href="/pricing" className="btn-line rounded-full px-6 py-3.5 text-sm font-semibold">
               Compare SiteBlitz packages
             </Link>
           </div>

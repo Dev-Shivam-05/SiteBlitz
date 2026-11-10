@@ -175,35 +175,30 @@ function useAnimEngine(pathname: string) {
       }
 
       schedule(() => {
-      /* ===== Redesign v3 scenes (docs/spec/redesign-v3-motion.md). Phone and desktop values differ, so
-         each scene is built inside one matchMedia; content is server-rendered and only transformed here. */
-      const v3 = gsap.matchMedia();
+      /* ===== Redesign v4 scenes (docs/spec/redesign-v4-showcase.md). Phone and desktop values differ, so each
+         scene is built inside one matchMedia; content is server-rendered and only transformed here. The hero is
+         driven by hero/ParticleHero.tsx (its own rAF loop and WebGL), not from here. */
+      const v4 = gsap.matchMedia();
       const BP = { desk: "(min-width: 768px)", phone: "(max-width: 767px)" };
 
-      /* 01 Hero: the photograph frame shrinks and rounds as the first scroll begins; the words lift
-         separately so they stay legible instead of shrinking with the photo. */
-      const heroScene = document.querySelector<HTMLElement>('[data-scene="hero"]');
-      if (heroScene) {
-        const frame = heroScene.querySelector<HTMLElement>("[data-hero-frame]");
-        const words = heroScene.querySelector<HTMLElement>("[data-hero-words]");
-        v3.add(BP, (c) => {
-          const desk = Boolean(c.conditions?.desk);
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: heroScene,
-              start: "top top",
-              end: desk ? "+=75%" : "+=55%",
-              scrub: 0.3,
-            },
-          });
-          if (frame) tl.to(frame, { scale: desk ? 0.88 : 0.93, borderRadius: desk ? 28 : 20, ease: "none" }, 0);
-          if (words) tl.to(words, { y: desk ? -0.08 * window.innerHeight : -24, ease: "none" }, 0);
-        });
+      /* Signature strokes: each volt path (pathLength=100) draws itself while its block crosses the screen.
+         autoRound off: GSAP rounds px values by default, which made the stroke jump from hidden to whole. */
+      for (const path of gsap.utils.toArray<SVGPathElement>("[data-draw]")) {
+        gsap.fromTo(
+          path,
+          { strokeDasharray: "100 100", strokeDashoffset: 100 },
+          {
+            strokeDashoffset: 0,
+            ease: "none",
+            autoRound: false,
+            scrollTrigger: { trigger: path.ownerSVGElement || path, start: "top 85%", end: "bottom 50%", scrub: 0.6 },
+          }
+        );
       }
 
-      /* 02 Giant price: rises out of its clipped section (the reference's big count, with a real price) */
+      /* Giant price: rises out of its clipped section */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-rise]")) {
-        v3.add(BP, (c) => {
+        v4.add(BP, (c) => {
           const desk = Boolean(c.conditions?.desk);
           gsap.fromTo(
             el,
@@ -211,112 +206,168 @@ function useAnimEngine(pathname: string) {
             {
               yPercent: 0,
               ease: "none",
-              scrollTrigger: {
-                trigger: el.closest("section") || el,
-                start: "top 82%",
-                end: desk ? "top 35%" : "top 40%",
-                scrub: 0.3,
-              },
+              scrollTrigger: { trigger: el.closest("section") || el, start: "top 82%", end: desk ? "top 30%" : "top 40%", scrub: 0.3 },
             }
           );
         });
       }
 
-      /* 04 Demo stack: as the next card slides up to its sticky line, the one underneath settles back.
-         Short screens (landscape phones) get the CSS normal-flow fallback, so no scene there. */
-      const demoStack = document.querySelector<HTMLElement>("[data-demo-stack]");
-      if (demoStack) {
-        const cards = Array.from(demoStack.querySelectorAll<HTMLElement>("[data-demo-card]"));
-        v3.add({ ...BP, tall: "(min-height: 540px)" }, (c) => {
-          if (!c.conditions?.tall) return;
-          const desk = Boolean(c.conditions?.desk);
-          cards.forEach((card, i) => {
-            const next = cards[i + 1];
-            if (!next) return;
-            gsap.to(card, {
-              scale: desk ? 0.94 : 0.92,
+      /* Drift collage: every frame travels at its own speed (data-drift, ±) through the whole section, with a
+         slight turn, so the captures float past the sticky heading at different depths. */
+      for (const el of gsap.utils.toArray<HTMLElement>("[data-drift]")) {
+        const speed = parseFloat(el.dataset.drift || "0");
+        const sec = el.closest("section") || el;
+        v4.add(BP, (c) => {
+          const amp = (c.conditions?.desk ? 0.7 : 0.45) * window.innerHeight;
+          gsap.fromTo(
+            el,
+            { y: speed * amp, rotate: speed * 4 },
+            {
+              y: -speed * amp,
+              rotate: -speed * 4,
               ease: "none",
-              scrollTrigger: { trigger: next, start: "top 65%", end: `top ${desk ? 96 : 72}px`, scrub: 0.3 },
-            });
-          });
+              scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: true },
+            }
+          );
         });
       }
 
-      /* 05 Type wipe: the word grows while its stage holds, then the stage turns the word's own vermilion,
-         so the colour fills the screen (the reference's word-to-colour transition). */
-      const wipe = document.querySelector<HTMLElement>('[data-scene="wipe"]');
-      if (wipe) {
-        const stage = wipe.querySelector<HTMLElement>("[data-wipe-stage]");
-        const word = wipe.querySelector<HTMLElement>("[data-wipe-word]");
-        const volt = getComputedStyle(document.documentElement).getPropertyValue("--color-volt").trim();
-        v3.add(BP, (c) => {
-          const desk = Boolean(c.conditions?.desk);
-          const tl = gsap.timeline({
-            scrollTrigger: { trigger: wipe, start: "top top", end: "bottom bottom", scrub: 0.3 },
-          });
-          if (word) tl.to(word, { scale: desk ? 3 : 2.2, ease: "none", duration: 1 }, 0);
-          if (stage && volt) tl.to(stage, { backgroundColor: volt, ease: "none", duration: 0.4 }, 0.6);
+      /* Concept wall: on tall desktops the section holds (CSS sticky) while the three cards rise and straighten in
+         turn; elsewhere each card rises once as it arrives. */
+      const hall = document.querySelector<HTMLElement>("[data-hall]");
+      if (hall) {
+        const cards = gsap.utils.toArray<HTMLElement>("[data-hall-card]", hall);
+        v4.add({ pin: "(min-width: 768px) and (min-height: 700px)", flow: "(max-width: 767px), (max-height: 699px)" }, (c) => {
+          if (c.conditions?.pin) {
+            gsap.fromTo(
+              cards,
+              { yPercent: 70, rotate: (i: number) => (i - 1) * 5, opacity: 0 },
+              {
+                yPercent: 0,
+                rotate: 0,
+                opacity: 1,
+                ease: "power2.out",
+                stagger: 0.12,
+                scrollTrigger: { trigger: hall, start: "top 70%", end: "top -35%", scrub: 0.6 },
+              }
+            );
+          } else {
+            for (const card of cards)
+              gsap.from(card, { y: 60, opacity: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: card, start: "top 88%", once: true } });
+          }
         });
       }
 
-      /* 06 Packages: mark the package in view (desktop: its rail row when the panel crosses 55%; phone: the card
-         whose middle is inside the central 40%). Discrete class toggles, no scrub; prices never move. */
-      const panels = gsap.utils.toArray<HTMLElement>("[data-rail-panel]");
-      if (panels.length) {
-        v3.add(BP, (c) => {
-          const desk = Boolean(c.conditions?.desk);
-          const rows = new Map(
-            gsap.utils.toArray<HTMLElement>("[data-rail-row]").map((r) => [r.dataset.railRow, r] as const)
-          );
-          const triggers = panels.map((panel) =>
-            ScrollTrigger.create({
-              trigger: panel,
-              start: desk ? "top 55%" : "center 70%",
-              end: desk ? "bottom 55%" : "center 30%",
-              toggleClass: desk ? undefined : { targets: panel, className: "is-active" },
-              onToggle: (self) => {
-                if (desk) rows.get(panel.dataset.railPanel)?.classList.toggle("is-active", self.isActive);
-              },
-            })
-          );
+      /* Packages track: when every panel fits the screen, the section holds while the rail slides sideways by
+         exactly the scroll distance; a mouse drag on the rail scrolls the page by the same amount. Otherwise
+         (short screens, a panel too tall) the panels stay stacked. */
+      const pk = document.querySelector<HTMLElement>("[data-htrack]");
+      const rail = pk?.querySelector<HTMLElement>("[data-htrack-rail]");
+      const stage = pk?.querySelector<HTMLElement>(".pk-stage");
+      if (pk && rail && stage) {
+        v4.add({ desk: "(min-width: 768px) and (min-height: 640px)", phone: "(max-width: 767px) and (min-height: 700px)" }, () => {
+          pk.classList.add("is-track");
+          const panels = Array.from(rail.querySelectorAll<HTMLElement>(".pk-panel"));
+          if (panels.some((p) => p.scrollHeight > p.clientHeight + 2)) {
+            pk.classList.remove("is-track");
+            return;
+          }
+          const dist = () => Math.max(0, rail.scrollWidth - window.innerWidth);
+          const setHeight = () => {
+            pk.style.height = `${stage.clientHeight + dist()}px`;
+          };
+          setHeight();
+          const tween = gsap.to(rail, {
+            x: () => -dist(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: pk,
+              start: "top top",
+              end: () => `+=${dist()}`,
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+              onRefreshInit: setHeight,
+            },
+          });
+
+          let startX = 0;
+          let startY = 0;
+          let moved = 0;
+          let dragging = false;
+          const down = (e: PointerEvent) => {
+            if (e.pointerType !== "mouse" || e.button !== 0) return;
+            dragging = true;
+            moved = 0;
+            startX = e.clientX;
+            startY = window.scrollY;
+            rail.classList.add("is-dragging");
+          };
+          const move = (e: PointerEvent) => {
+            if (!dragging) return;
+            const dx = e.clientX - startX;
+            moved = Math.max(moved, Math.abs(dx));
+            const y = startY - dx;
+            if (window.__lenis) window.__lenis.scrollTo(y, { immediate: true });
+            else window.scrollTo(0, y);
+          };
+          const up = () => {
+            dragging = false;
+            rail.classList.remove("is-dragging");
+          };
+          // a drag must not end as a click on a WhatsApp button
+          const click = (e: MouseEvent) => {
+            if (moved > 6) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            moved = 0;
+          };
+          const noDrag = (e: Event) => e.preventDefault();
+          rail.addEventListener("pointerdown", down);
+          window.addEventListener("pointermove", move);
+          window.addEventListener("pointerup", up);
+          rail.addEventListener("click", click, true);
+          rail.addEventListener("dragstart", noDrag);
           return () => {
-            triggers.forEach((t) => t.kill());
-            rows.forEach((r) => r.classList.remove("is-active"));
-            panels.forEach((p) => p.classList.remove("is-active"));
+            tween.scrollTrigger?.kill();
+            tween.kill();
+            gsap.set(rail, { x: 0 });
+            pk.classList.remove("is-track");
+            pk.style.height = "";
+            rail.removeEventListener("pointerdown", down);
+            window.removeEventListener("pointermove", move);
+            window.removeEventListener("pointerup", up);
+            rail.removeEventListener("click", click, true);
+            rail.removeEventListener("dragstart", noDrag);
           };
         });
       }
 
-      /* 07 Process: a step lights up and draws its line once it reaches 70% of the screen */
+      /* Process: a step's number fills volt once it reaches 70% of the screen */
       for (const step of gsap.utils.toArray<HTMLElement>("[data-step]")) {
-        const line = step.querySelector<HTMLElement>("[data-step-line]");
-        if (line) gsap.set(line, { scaleX: 0, transformOrigin: "left center" });
         ScrollTrigger.create({
           trigger: step,
           start: "top 70%",
           once: true,
-          onEnter: () => {
-            step.classList.add("is-active");
-            if (line) gsap.to(line, { scaleX: 1, duration: window.innerWidth < 768 ? 0.25 : 0.35, ease: "power2.out" });
-          },
+          onEnter: () => step.classList.add("is-active"),
         });
       }
 
-      /* 08 Promise: letters start scattered and assemble as the section scrolls in (scrubbed, reversible).
+      /* Promise: letters start scattered and assemble as the section scrolls in (scrubbed, reversible).
          SplitText keeps an aria-label with the whole phrase. Offsets are deterministic, not random per load. */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-scatter]")) {
-        v3.add(BP, (c) => {
+        v4.add(BP, (c) => {
           const desk = Boolean(c.conditions?.desk);
           const split = new SplitText(el, { type: "chars,words" });
           const k = desk ? 1 : 0.5;
-          const rotMax = desk ? 7 : 4;
+          const rotMax = desk ? 9 : 5;
           gsap.fromTo(
             split.chars,
             {
-              x: (i: number) => (((i * 37) % 11) / 5 - 1) * 24 * k,
-              y: (i: number) => (((i * 53) % 13) / 6 - 1) * 50 * k,
+              x: (i: number) => (((i * 37) % 11) / 5 - 1) * 40 * k,
+              y: (i: number) => (((i * 53) % 13) / 6 - 1) * 80 * k,
               rotation: (i: number) => (((i * 29) % 9) / 4 - 1) * rotMax,
-              opacity: 0.2,
+              opacity: 0.15,
             },
             {
               x: 0,
@@ -325,24 +376,24 @@ function useAnimEngine(pathname: string) {
               opacity: 1,
               ease: "none",
               stagger: 0.01,
-              scrollTrigger: { trigger: el, start: "top 80%", end: "top 32%", scrub: desk ? 0.35 : 0.3 },
+              scrollTrigger: { trigger: el, start: "top 85%", end: "top 35%", scrub: desk ? 0.4 : 0.3 },
             }
           );
           return () => split.revert();
         });
       }
 
-      /* 10 Close: the ground turns ink when the section is 60% up the screen (and back when you return) */
+      /* Close: the ground turns volt when the section is 60% up the screen (and back when you return) */
       const close = document.querySelector<HTMLElement>("[data-close]");
       if (close) {
         ScrollTrigger.create({
           trigger: close,
           start: "top 60%",
-          toggleClass: { targets: close, className: "is-dark" },
+          toggleClass: { targets: close, className: "is-lit" },
         });
       }
 
-      /* 03 Hairlines draw once as their section arrives */
+      /* Hairlines draw once as their section arrives */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-line]")) {
         gsap.fromTo(
           el,
@@ -507,6 +558,10 @@ function useAnimEngine(pathname: string) {
         });
       }
       }); // end scheduled scene setup
+
+      // Mona Sans is far wider than its fallback: once it has swapped in, every heading may wrap differently, so
+      // the trigger positions are measured again.
+      document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
       // Start draining the deferred queue once the browser is idle.
       if ("requestIdleCallback" in window)

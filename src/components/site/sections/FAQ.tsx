@@ -8,13 +8,13 @@ export function FAQ() {
       <div className="mx-auto grid max-w-[1440px] gap-10 px-4 md:grid-cols-[5fr_7fr] md:gap-16 md:px-8">
         <div className="md:sticky md:top-[104px] md:self-start">
           <p className="kicker text-volt">Questions people ask</p>
-          <h2 id="faq-title" className="display mt-4 text-[clamp(44px,11vw,64px)] md:text-[clamp(64px,6vw,96px)]">
-            Straight answers before you decide.
+          <h2 id="faq-title" className="display mt-4 text-[clamp(40px,10.5vw,56px)] md:text-[clamp(56px,4.8vw,84px)]">
+            Straight answers <span className="serif text-volt">before you decide.</span>
           </h2>
         </div>
-        <div className="border-t border-ink/20">
+        <div className="border-t border-ink/15">
           {FAQS.map((f) => (
-            <details key={f.q} className="faq-item group border-b border-ink/20">
+            <details key={f.q} className="faq-item group border-b border-ink/15">
               <summary
                 data-track="faq_open"
                 className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold md:text-xl"
@@ -22,7 +22,7 @@ export function FAQ() {
                 {f.q}
                 <span
                   aria-hidden
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/25 text-xl text-volt transition-transform duration-200 group-open:rotate-45"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-xl text-volt transition-transform duration-200 group-open:rotate-45"
                 >
                   +
                 </span>

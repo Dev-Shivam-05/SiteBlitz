@@ -71,9 +71,9 @@ export function Footer() {
                   <li key={l.href}>
                     <Link
                       href={l.href}
-                      className="group inline-flex min-h-11 items-center gap-2 text-base text-ink/85 transition-colors hover:text-volt"
+                      className="group inline-flex min-h-11 items-center text-base text-ink/85 transition-colors hover:text-volt"
                     >
-                      <span aria-hidden className="h-px w-0 bg-volt transition-all duration-300 group-hover:w-4" />
+                      <span aria-hidden className="h-px w-0 bg-volt transition-all duration-300 group-hover:mr-2 group-hover:w-4" />
                       {l.label}
                     </Link>
                   </li>
@@ -87,7 +87,7 @@ export function Footer() {
           aria-hidden
           data-anim="chars"
           data-stagger="0.04"
-          className="display mt-16 select-none whitespace-nowrap text-[14vw] leading-[0.82] md:mt-24 md:text-[min(14vw,202px)]"
+          className="display mt-16 select-none whitespace-nowrap text-[17vw] leading-[0.82] md:mt-24 md:text-[min(17.4vw,252px)]"
         >
           Site<span className="text-volt">Blitz</span>
         </p>

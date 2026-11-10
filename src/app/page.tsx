@@ -3,13 +3,13 @@ import { Shell } from "@/components/site/Shell";
 import {
   Close,
   ConceptPromise,
-  DemoStack,
+  ConceptWall,
+  DriftCollage,
   GiantPrice,
   HomeHero,
   Packages,
   Process,
   Statement,
-  TypeWipe,
 } from "@/components/site/sections/Home";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { FAQS, SITE } from "@/lib/site";
@@ -42,14 +42,14 @@ export default function HomePage() {
     <Shell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
-      {/* Redesign v3 scene order (docs/spec/redesign-v3-motion.md, reference Horeca Social): offer and price ->
-          the price as a fact -> why -> working concept demos -> type wipe -> packages -> steps -> concept promise ->
-          questions -> close. The comparison table and defensive lines were removed by the owner-approved spec. */}
+      {/* Redesign v4 scene order (docs/spec/redesign-v4-showcase.md): particle hero that becomes a concept phone ->
+          the promise -> the price -> drifting concept captures -> the concept wall -> packages track -> steps ->
+          concept promise -> questions -> close. */}
       <HomeHero />
-      <GiantPrice />
       <Statement />
-      <DemoStack />
-      <TypeWipe />
+      <GiantPrice />
+      <DriftCollage />
+      <ConceptWall />
       <Packages />
       <Process />
       <ConceptPromise />

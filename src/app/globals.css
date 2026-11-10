@@ -338,70 +338,140 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
   color: var(--color-void);
 }
 
-/* 04 demo stack: cards are CSS-sticky siblings, so each new card slides over the last; Motion.tsx only scales
-   the one underneath. Phones cap the card at 560 px so the WhatsApp pill never covers it. */
-.demo-card-v3 {
-  height: min(560px, calc(100svh - 104px));
-  transform-origin: 50% 0;
+/* ==== v4 home scenes (sections/Home.tsx). Motion.tsx builds the motion; every rule here reads fine static. ==== */
+
+/* signature strokes: Motion.tsx draws them by scroll ([data-draw]); without it they are simply drawn */
+.stroke-draw { pointer-events: none; overflow: visible; }
+.stroke-draw path { stroke-width: 3px; }
+@media (max-width: 767px) { .stroke-draw path { stroke-width: 2.5px; } }
+
+/* 04 drift collage: absolute frames in a tall section; the heading sticks in the middle, always on top */
+/* overflow: clip (not hidden) so the sticky heading still sticks: hidden would make the section a scroll container */
+.drift { position: relative; height: 170svh; overflow: hidden; overflow: clip; background: var(--color-void); }
+@media (min-width: 768px) { .drift { height: 210svh; } }
+.drift-frame {
+  position: absolute;
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(245, 245, 240, 0.08);
   will-change: transform;
 }
+.drift-frame.z-\[1\] { opacity: 0.5; }
+.drift-stage {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 2px 40px rgba(10, 10, 12, 0.85);
+}
+
+/* the paragraph crosses bright captures: it carries its own frosted ground */
+.drift-copy {
+  padding: 12px 18px;
+  border-radius: 18px;
+  background: rgba(10, 10, 12, 0.62);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-shadow: none;
+}
+
+/* 05 concept wall: the screens; hovering pans the whole-page capture top to bottom (container units) */
+.hall-stage { padding: 14vh 0; }
+.hall-screen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px rgba(245, 245, 240, 0.1);
+  transition: box-shadow 0.5s ease;
+}
+.hall-card:hover .hall-screen { box-shadow: 0 0 0 1px rgba(204, 255, 0, 0.55), 0 30px 80px -30px rgba(204, 255, 0, 0.3); }
+.hall-card:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 6px; border-radius: 20px; }
 @media (min-width: 768px) {
-  .demo-card-v3 { height: min(720px, calc(100svh - 128px)); }
+  .hall-screen { aspect-ratio: 16 / 11; container-type: size; }
+  .hall-scroll { transition: transform 1s cubic-bezier(0.45, 0, 0.55, 1); will-change: transform; }
+  .hall-card:hover .hall-scroll,
+  .hall-card:focus-visible .hall-scroll { transform: translateY(calc(-100% + 100cqh)); transition-duration: 6s; }
 }
-/* keyboard: a focused card rises above the cards stacked on it, so its focused button is never hidden */
-.demo-card-v3:focus-within { z-index: 5; }
-.rail-row:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 3px; }
-/* focusing scrolls these clear of the fixed header (top) and the WhatsApp pill (bottom) */
-.demo-card-v3 a, .rail-row { scroll-margin: 160px 0 120px; }
-.demo-shot img { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
-.demo-card-v3:hover .demo-shot img { transform: scale(1.02); }
-/* landscape phones and short screens: normal flow, no stacking (spec fallback) */
-@media (max-height: 539px) {
-  .demo-card-v3 { position: relative; top: auto; height: auto; }
+@media (prefers-reduced-motion: no-preference) and (min-width: 768px) and (min-height: 700px) {
+  .hall { height: 190svh; }
+  .hall-stage { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; padding: 0; }
 }
 
-/* 05 type wipe: a tall section whose sticky stage holds the word while it grows */
-.wipe-scene { height: 140svh; }
-@media (min-width: 768px) { .wipe-scene { height: 155svh; } }
-.wipe-stage { background: var(--color-void); }
-[data-wipe-word] { color: var(--color-volt); transform-origin: 50% 55%; }
-
-/* 06 packages rail: the package in view is marked (desktop rail row; phone card). Fixed 112 px slots, so the
-   1.035 widen never pushes its neighbours. */
-.rail-row {
-  transform-origin: 0 50%;
-  box-shadow: inset 0 0 0 transparent;
-  transition: transform 0.28s cubic-bezier(0.33, 1, 0.68, 1), background 0.28s cubic-bezier(0.33, 1, 0.68, 1),
-    color 0.28s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.28s cubic-bezier(0.33, 1, 0.68, 1);
+/* 06 packages: stacked panels by default; Motion.tsx adds .is-track (and the section height) once it has
+   measured that every panel fits a screen, and the rail then slides sideways while the stage holds */
+.pk-stage { padding: 14vh 0; }
+.pk-rail { display: flex; flex-direction: column; gap: 20px; max-width: 1440px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 768px) { .pk-rail { gap: 24px; padding: 0 32px; } }
+.pk-panel { display: flex; flex-direction: column; border-radius: 24px; padding: 24px; }
+@media (min-width: 768px) { .pk-panel { border-radius: 32px; padding: 44px; } }
+.pk-terms { background: transparent; }
+.pk.is-track .pk-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; align-items: center; padding: 0; }
+.pk.is-track .pk-rail {
+  flex-direction: row;
+  align-items: stretch;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  will-change: transform;
+  cursor: grab;
+  touch-action: pan-y;
 }
-.rail-row:hover { border-color: var(--color-ink); }
-.rail-row.is-active {
-  background: var(--color-ink);
+.pk.is-track .pk-rail.is-dragging { cursor: grabbing; user-select: none; }
+.pk.is-track .pk-intro { width: 86vw; flex-shrink: 0; align-self: center; }
+.pk.is-track .pk-panel { width: 86vw; flex-shrink: 0; height: min(84svh, 720px); }
+.pk.is-track .pk-hint { display: flex; }
+@media (min-width: 768px) {
+  .pk.is-track .pk-intro { width: 34vw; }
+  .pk.is-track .pk-panel { width: 42vw; height: min(80svh, 700px); }
+  .pk.is-track .pk-terms { width: 30vw; }
+}
+
+/* 07 process: outlined numbers that fill volt as each step arrives */
+.step-n {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(245, 245, 240, 0.42);
+  transition: color 0.45s cubic-bezier(0.33, 1, 0.68, 1), -webkit-text-stroke-color 0.45s ease;
+}
+.step.is-active .step-n { color: var(--color-volt); -webkit-text-stroke-color: transparent; }
+
+/* 08 promise: a volt haze behind the assembling letters */
+.promise::before {
+  content: "";
+  position: absolute;
+  inset: 15% 5%;
+  pointer-events: none;
+  background: radial-gradient(45% 50% at 50% 45%, rgba(204, 255, 0, 0.1), transparent 70%);
+}
+
+/* 10 close: void until it arrives, then the whole ground turns volt and runs into the footer */
+.close-scene { background: var(--color-void); color: var(--color-ink); transition: background 0.5s ease, color 0.5s ease; }
+.close-scene .close-kicker,
+.close-scene .serif { color: var(--color-volt); transition: color 0.5s ease; }
+.close-scene .close-sub { color: var(--color-muted); transition: color 0.5s ease; }
+.close-scene .close-cta {
+  background: var(--color-volt);
   color: var(--color-void);
-  transform: scaleX(1.035);
-  box-shadow: inset 4px 0 0 var(--color-volt);
+  transition: background 0.5s ease, color 0.5s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.rail-row.is-active .rail-sub { color: rgba(248, 245, 238, 0.75); }
-@media (max-width: 767px) {
-  .pkg-panel { transition: border-color 0.28s ease, box-shadow 0.28s ease; }
-  .pkg-panel.is-active { border-color: var(--color-volt); box-shadow: inset 0 0 0 1px var(--color-volt); }
-}
-
-/* 07 process: a step turns vermilion when it arrives */
-.step .step-n { transition: color 0.35s cubic-bezier(0.33, 1, 0.68, 1); }
-.step.is-active .step-n { color: var(--color-volt); }
-
-/* 10 close: ivory until it arrives, then the ground turns ink and runs into the footer */
-.close-scene { background: var(--color-void); color: var(--color-ink); transition: background 0.35s ease, color 0.35s ease; }
-.close-scene .close-kicker { color: var(--color-volt); }
-.close-scene .close-sub { color: var(--color-muted); transition: color 0.35s ease; }
-.close-scene .close-ghost { border-color: rgba(18, 26, 29, 0.35); transition: border-color 0.35s ease, transform 0.25s ease; }
-.close-scene .close-ghost:hover { transform: translateY(-1px); border-color: currentColor; }
-.close-scene.is-dark { background: var(--color-ink); color: var(--color-void); }
-.close-scene.is-dark .close-sub { color: rgba(248, 245, 238, 0.78); }
-/* volt on ink is 3.38:1, too low for a 13 px label */
-.close-scene.is-dark .close-kicker { color: rgba(248, 245, 238, 0.75); }
-.close-scene.is-dark .close-ghost { border-color: rgba(248, 245, 238, 0.55); }
+.close-scene .close-ghost { border-color: rgba(245, 245, 240, 0.4); transition: border-color 0.5s ease, transform 0.25s ease; }
+.close-scene .close-cta:hover,
+.close-scene .close-ghost:hover { transform: translateY(-1px); }
+.close-scene .close-ghost:hover { border-color: currentColor; }
+.close-scene .close-cta:active,
+.close-scene .close-ghost:active { transform: translateY(1px) scale(0.98); }
+.close-cta:focus-visible,
+.close-ghost:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.close-scene.is-lit { background: var(--color-volt); color: var(--color-void); }
+.close-scene.is-lit .close-kicker,
+.close-scene.is-lit .serif { color: var(--color-void); }
+.close-scene.is-lit .close-sub { color: rgba(10, 10, 12, 0.78); }
+.close-scene.is-lit .close-cta { background: var(--color-void); color: var(--color-ink); }
+.close-scene.is-lit .close-ghost { border-color: rgba(10, 10, 12, 0.5); }
 
 /* persistent WhatsApp pill. Position is set here (not a utility) because .btn-volt's position: relative is
    unlayered and would beat Tailwind's layered "fixed". "translate" is separate from "transform", so the
@@ -419,16 +489,6 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
 @media (max-width: 767px) {
   .wa-pill { left: 16px; right: 16px; bottom: calc(12px + env(safe-area-inset-bottom)); }
 }
-
-/* hero: the photograph frame is the element the scroll scene scales and rounds */
-.hero-frame { transform-origin: 50% 0%; will-change: transform; }
-
-/* hero entrance, once on load, CSS only so first paint never waits for JS. Transform only (no opacity), so the
-   headline is painted at once; fill-mode backwards so the scroll scene's inline transforms win afterwards. */
-@keyframes hero-in { from { transform: translateY(36px); } to { transform: none; } }
-@keyframes hero-photo-in { from { transform: scale(1.08); } to { transform: none; } }
-[data-hero-words] { animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s backwards; }
-[data-hero-frame] .hero-photo { animation: hero-photo-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 
 /* ==== v4 hero: wordmark particles → showroom phone (sections/Home.tsx HomeHero, hero/ParticleHero.tsx) ====
    Static flow by default (reduced motion, short landscape screens): the wordmark screen, then the phone block.
@@ -561,10 +621,8 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
   .rm-hide { display: none !important; }
 
   /* redesign v3: every scene rests in normal flow */
-  .demo-card-v3 { position: relative; top: auto; height: auto; }
-  .wipe-scene { height: auto; }
-  .wipe-stage { position: relative; height: 60svh; background: var(--color-volt); }
-  [data-wipe-word] { color: var(--color-void); }
+  /* v4: numbers are simply volt, every frame and panel sits still */
+  .step-n { color: var(--color-volt); -webkit-text-stroke-color: transparent; }
 
   .preloader, .cursor-dot, .cursor-ring, .page-curtain { display: none !important; }
   *, *::before, *::after {
@@ -599,7 +657,7 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
 }
 .demo-showroom .demo-heading { font-family: var(--font-accent); font-weight: 400; }
 
-.demo-ribbon { background: var(--color-ink); color: var(--color-void); }
+.demo-ribbon { background: var(--color-void); color: var(--color-ink); }
 .demo-kicker { color: var(--demo-accent); }
 .demo-mark { background: var(--demo-accent); color: #ffffff; }
 .demo-band { background: var(--demo-soft); }
