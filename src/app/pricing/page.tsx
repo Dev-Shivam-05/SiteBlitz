@@ -85,7 +85,7 @@ export default function PricingPage() {
           </p>
         }
         aside={
-          <div className="relative mx-auto w-fit lg:ml-auto lg:mr-0">
+          <div className="relative w-fit">
             <p className="display relative text-[clamp(72px,22vw,120px)] leading-none md:text-[clamp(110px,10vw,180px)]">
               {inr(launchPkg.priceInr as number)}
               <Stroke

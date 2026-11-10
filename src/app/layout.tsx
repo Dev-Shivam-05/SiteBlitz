@@ -17,11 +17,14 @@ const mona = Mona_Sans({
   display: "swap",
 });
 
+// "optional", not "swap": the body font is preloaded and small, so it is normally there for first paint; when a slow
+// connection misses that window, the page keeps the metric-matched fallback instead of swapping mid-read. The swap
+// re-wrapped long hero paragraphs and moved everything under them (lab CLS 0.17 on the research pages, SEO-6).
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-dm",
-  display: "swap",
+  display: "optional",
 });
 
 const instrument = Instrument_Serif({

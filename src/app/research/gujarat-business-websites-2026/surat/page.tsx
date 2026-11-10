@@ -81,7 +81,8 @@ export default function SuratStudy() {
         size="lg"
         crumbs={CRUMBS}
         kicker={`Research · ${CITY} · version ${STUDY.version}`}
-        lines={["Website links recorded", "across 17 trades", <span key="c" className="serif text-volt">in {CITY}.</span>]}
+        // Lines of at most 16 characters: they never re-wrap when the display font replaces its fallback (lab CLS 0.17 -> see HANDOFF).
+        lines={["Website links", "recorded across", "17 trades", <span key="c" className="serif text-volt">in {CITY}.</span>]}
         lead={
           <p>
             Of {num(city.n)} {CITY} listing records with no brand recorded, across 17 selected trades, {pct(city.own, city.n)} carry
@@ -91,7 +92,7 @@ export default function SuratStudy() {
           </p>
         }
         aside={
-          <div className="relative mx-auto w-fit lg:ml-auto lg:mr-0">
+          <div className="relative w-fit">
             <p className="display relative text-[clamp(84px,24vw,128px)] leading-none md:text-[clamp(120px,11vw,200px)]">
               {pct(city.own, city.n)}
               <Stroke

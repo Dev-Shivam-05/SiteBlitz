@@ -83,7 +83,8 @@ export default function GujaratWebsiteStudy() {
         size="lg"
         crumbs={CRUMBS}
         kicker={`Research · Gujarat · version ${STUDY.version}, ${new Date(STUDY.published).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })}`}
-        lines={["How often do Gujarat", "business listings include", <span key="w" className="serif text-volt">a website?</span>]}
+        // Lines of at most 16 characters: they never re-wrap when the display font replaces its fallback (lab CLS check).
+        lines={["How often do", "Gujarat business", "listings include", <span key="w" className="serif text-volt">a website?</span>]}
         lead={
           <p>
             We looked at {num(T.n)} listing records in 17 selected trades across Gujarat, all with no brand recorded, from the
@@ -103,7 +104,7 @@ export default function GujaratWebsiteStudy() {
           </>
         }
         aside={
-          <div className="relative mx-auto w-fit lg:ml-auto lg:mr-0">
+          <div className="relative w-fit">
             <p className="display relative text-[clamp(84px,24vw,128px)] leading-none md:text-[clamp(120px,11vw,200px)]">
               {pct(T.own, T.n)}
               <Stroke

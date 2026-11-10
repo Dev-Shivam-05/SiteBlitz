@@ -33,7 +33,7 @@ export function PageHero({
 }) {
   const scale =
     size === "lg"
-      ? "text-[clamp(34px,8.6vw,52px)] md:text-[clamp(46px,4.4vw,84px)]"
+      ? "text-[clamp(30px,7.6vw,52px)] md:text-[clamp(46px,4.4vw,84px)]"
       : "text-[clamp(40px,11vw,64px)] md:text-[clamp(64px,7vw,128px)]";
   return (
     <section aria-labelledby={id} className="page-hero relative overflow-clip bg-void pb-[9vh] pt-28 md:pb-[12vh] md:pt-36">
@@ -78,7 +78,7 @@ export function PageHero({
  *  number worth stating (two prices, a count) so the hero's right half carries a fact instead of empty ground. */
 export function HeroFigure({ rows, caption }: { rows: { value: string; label: string }[]; caption?: string }) {
   return (
-    <div className="mx-auto w-fit lg:ml-auto lg:mr-0">
+    <div className="w-fit">
       {rows.map((r) => (
         <div key={r.label} className="flex items-baseline justify-between gap-6 border-b border-line py-4 first:pt-0">
           <span className="display text-[clamp(48px,14vw,80px)] leading-none md:text-[clamp(64px,6vw,112px)]">{r.value}</span>

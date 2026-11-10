@@ -751,7 +751,8 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
 }
 @keyframes draw-now { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 @keyframes ph-rise { from { transform: translateY(108%); } }
-@keyframes ph-soft { from { opacity: 0; transform: translateY(18px); } }
+/* transform only: an opacity fade kept big hero figures unpainted for ~2 s and made them the late LCP element (lab: /services 2.8 s) */
+@keyframes ph-soft { from { transform: translateY(22px); } }
 @keyframes ph-rule { from { transform: scaleX(0); } }
 
 @media (prefers-reduced-motion: reduce) {

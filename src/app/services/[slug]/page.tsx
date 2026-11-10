@@ -98,7 +98,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </>
         }
         aside={
-          <div className="relative mx-auto w-fit lg:ml-auto lg:mr-0">
+          <div className="relative w-fit">
             <p className="kicker text-muted">{priced ? "From" : "Price"}</p>
             <p className="display relative mt-3 text-[clamp(56px,16vw,96px)] leading-none md:text-[clamp(80px,7vw,128px)]">
               {priced ? inr(s.startingPriceINR) : "Quote"}
