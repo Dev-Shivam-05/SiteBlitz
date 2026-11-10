@@ -27,7 +27,7 @@ export const INDIA = {
   total: data.total as Split,
   trades: data.trades as (Split & { id: string; label: string })[],
   states: data.states as StateRow[],
-  unclear: data.unclear as Split & { rawValues: number },
+  unclear: data.unclear as Split & { rawValues: number; groups: Record<string, Split> },
   validation: data.validation,
 } as const;
 
@@ -40,7 +40,7 @@ export const anyUrl = (s: Split) => s.n - s.none;
 export const stateAnchor = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
 export function indiaCsv(): string {
-  const head = ["state_or_ut", "trade", "records", "any_website_url", "low_reuse_website_url", "shared_host_or_locator_pattern_url", "directory_marketplace_url_only", "no_url_in_website_field"];
+  const head = ["state_or_ut", "trade", "records", "url_retained_after_filtering", "retained_url_low_reuse_host", "retained_url_shared_host_or_locator_pattern", "retained_url_directory_or_marketplace", "no_url_retained_after_filtering"];
   const rows: (string | number)[][] = [];
   const push = (place: string, trade: string, s: Split) => rows.push([place, trade, s.n, anyUrl(s), s.own, s.shared, s.directory, s.none]);
   push("India", "all 17 trades", INDIA.total);
@@ -49,12 +49,13 @@ export function indiaCsv(): string {
     push(s.name, "all 17 trades", s);
     for (const t of INDIA.trades) if (s.groups[t.id]?.n) push(s.name, t.label, s.groups[t.id]);
   }
-  push("State not clear in the source", "all 17 trades", INDIA.unclear);
+  push("Unassigned state/UT", "all 17 trades", INDIA.unclear);
+  for (const t of INDIA.trades) if (INDIA.unclear.groups?.[t.id]?.n) push("Unassigned state/UT", t.label, INDIA.unclear.groups[t.id]);
   const q = (v: string | number) => (typeof v === "number" ? String(v) : `"${v.replace(/"/g, '""')}"`);
   return [
     `# SiteBlitz - India business-listing website records by state, version ${INDIA.version}, published ${INDIA.published}`,
     `# Source: ${INDIA.source}. Listing records with no brand recorded, 17 selected trades. Host frequency computed once over all ${INDIA.total.n} India records.`,
-    `# Classes describe recorded URLs, not verified ownership. Method: ${SITE.url}${INDIA.path}#method`,
+    `# Measures describe the one URL our extract retains per record after filtering, not all source URLs or verified ownership. CC BY 4.0 applies to these SiteBlitz aggregates, not to the Overture source. Method: ${SITE.url}${INDIA.path}#method`,
     "# Attribution: Overture Maps Foundation (overturemaps.org); CDLA-Permissive-2.0, Apache-2.0 (Foursquare), CC0 (AllThePlaces).",
     head.join(","),
     ...rows.map((r) => r.map(q).join(",")),

@@ -10,7 +10,7 @@ export default function Image() {
   const T = STUDY.total;
   return ogCard({
     kicker: "Research 2026",
-    title: `${pct(T.own, T.n)} of Gujarat listing records carry a low-reuse website URL.`,
+    title: `${pct(T.own, T.n)} of Gujarat listing records retained a URL with a low-reuse host.`,
     sub: `${num(T.n)} records, 17 trades, ${STUDY.cities.length} cities. Method, limits and CSV.`,
   });
 }

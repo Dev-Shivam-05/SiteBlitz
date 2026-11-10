@@ -11,7 +11,7 @@ export default function Image() {
   const T = INDIA.total;
   return ogCard({
     kicker: "Research · India",
-    title: `${pct(anyUrl(T), T.n)} of 1.3 million Indian listing records carry a website link.`,
+    title: `${pct(anyUrl(T), T.n)} of 1.3 million Indian listing records retained a website link.`,
     sub: `${INDIA.states.length} states and union territories, 17 trades. Method, limits and CSV.`,
   });
 }

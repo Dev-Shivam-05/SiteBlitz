@@ -4,10 +4,10 @@ import { STUDY, num, pct, share, type Split } from "@/lib/research";
  *  are drawn and defined identically everywhere. Every bar's values are also printed as text. */
 
 export const CLASS_LABEL = {
-  own: "Low-reuse website URL",
-  shared: "Shared-host or locator-pattern URL",
-  directory: "Directory/marketplace URL only",
-  none: "No URL recorded in the website field",
+  own: "Retained URL: low-reuse host",
+  shared: "Retained URL: shared host or locator pattern",
+  directory: "Retained URL: directory or marketplace",
+  none: "No URL retained after filtering",
 } as const;
 
 export function SplitBar({ s, label }: { s: Split; label: string }) {
@@ -21,10 +21,10 @@ export function SplitBar({ s, label }: { s: Split; label: string }) {
 }
 
 export const splitLabel = (name: string, s: Split) =>
-  `${name}: ${pct(s.own, s.n)} low-reuse website URL, ${pct(s.shared, s.n)} shared-host or locator-pattern URL, ${pct(s.directory, s.n)} directory URL only, ${pct(
+  `${name}: ${pct(s.own, s.n)} retained URL with a low-reuse host, ${pct(s.shared, s.n)} shared host or locator pattern, ${pct(s.directory, s.n)} directory or marketplace, ${pct(
     s.none,
     s.n
-  )} no URL, of ${num(s.n)} records`;
+  )} no URL retained, of ${num(s.n)} records`;
 
 export function Legend() {
   const dot = (cls: string) => <span aria-hidden className={`h-3 w-3 rounded-full ${cls}`} />;
@@ -80,17 +80,17 @@ export function MethodList() {
         expanded into extra rows. Places of worship, schools, banks, ATMs, landmarks and transport are not in the trades.
       </li>
       <li>
-        <strong className="text-ink">The website field.</strong> Our extract keeps one website URL per record: the first
-        recorded URL that is not a social profile or a common listing page (Google, Justdial, Practo, Zomato and similar
-        are removed when the extract is built). So &ldquo;no URL recorded in the website field&rdquo; also covers records
-        whose only links were social profiles or those listings.
+        <strong className="text-ink">Retained URL.</strong> Our extract keeps one URL per record: the first that passes its
+        exclusions (social profiles and common listing pages such as Google, Justdial, Practo and Zomato are filtered out
+        when the extract is built). An empty retained field can mean that no URL was present in the source or that the
+        available links were filtered out, and a retained directory URL does not show that the record had no other link.
       </li>
       <li>
-        <strong className="text-ink">Four classes.</strong> Each record receives one URL classification:{" "}
-        <em>low-reuse website URL</em>, <em>shared-host or locator-pattern URL</em>, <em>directory/marketplace URL only</em>{" "}
-        or <em>no URL recorded in the website field</em>. These describe recorded URLs and our rules; they do not verify
-        website ownership, chain membership, independence or availability. A low-reuse website URL is outside the directory
-        and locator patterns and its host appears in one or two of the {num(STUDY.total.n)} study records. The
+        <strong className="text-ink">Four classes.</strong> Each record receives one class: <em>retained URL with a low-reuse
+        host</em>, <em>retained URL with a shared host or locator pattern</em>, <em>retained directory or marketplace URL</em>{" "}
+        or <em>no URL retained after filtering</em>. These describe retained URLs and our rules; they do not verify
+        website ownership, chain membership, independence or availability. A low-reuse host is outside the directory and
+        locator patterns and appears in one or two of the {num(STUDY.total.n)} study records. The
         shared-host class holds hosts appearing in {STUDY.sharedHostMin} or more records, or URLs matching the published
         locator patterns (a host on singleinterface.com, or one beginning with nearme., store., stores., location.,
         locations., branch., branches. or pin.). Either class can contain a genuine business website. Directory URLs are
@@ -98,8 +98,9 @@ export function MethodList() {
         Builder sites such as Wix or Blogger are judged by their own address like any other.
       </li>
       <li>
-        <strong className="text-ink">Host frequency.</strong> A host&rsquo;s count is the number of study records whose
-        website URL has that host, counted once across all {num(STUDY.total.n)} records before splitting by city or trade.
+        <strong className="text-ink">Host frequency.</strong> Host frequency counts distinct study records containing each
+        retained host, across all {num(STUDY.total.n)} records before splitting by city or trade. It does not count every
+        URL originally present in Overture.
         Of {num(STUDY.validation.tradeRecordsWithUrl)} records with a URL, {num(STUDY.validation.hostsSharedBy3Plus)} hosts
         appear in {STUDY.sharedHostMin} or more; the largest belong to pharmacy, phone-shop and store-locator networks
         whose brand field was empty. The rule can misjudge both ways: a family business with three branches lands in the
@@ -112,7 +113,7 @@ export function MethodList() {
       <li>
         <strong className="text-ink">One diagnostic fetch.</strong> On {ran} IST we made one automated request (10 seconds,
         no retry, redirects followed) for each of {live.sample} listing records picked at random (seed {live.seed}) from
-        the {num(STUDY.total.own)} records in the low-reuse class. The outcomes are mutually exclusive: the HTTP status and
+        the {num(STUDY.total.own)} records whose retained URL has a low-reuse host. The outcomes are mutually exclusive: the HTTP status and
         a parked-page flag (page text saying the domain is for sale, parked or expired) were recorded first, then one
         outcome assigned. Of those {live.sample}: {outcomes}. A successful HTTP response does not confirm that the page
         belongs to the business. This describes one run from one connection; it does not estimate how many Gujarat
@@ -123,7 +124,8 @@ export function MethodList() {
         live, usable or correctly linked to the business. Our classification can both miss genuine business websites and
         include URLs that no longer work. These figures measure classified website links in the source records, not
         verified website ownership or availability, and no margin of error applies to them. Percentages are calculated
-        from the counts before rounding.
+        from the counts before rounding. These figures describe the filtered extract; they do not measure the share of
+        all businesses with websites.
       </li>
     </ol>
   );

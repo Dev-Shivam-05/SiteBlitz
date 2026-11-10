@@ -35,7 +35,7 @@ const ld = graph(
     "@type": "Dataset",
     "@id": `${absUrl(PATH)}#dataset`,
     name: "India business-listing website records by state 2026",
-    description: `How often listing records in 17 selected trades in India carry a website URL, by state and union territory. ${num(
+    description: `How often listing records in 17 selected trades in India retain a URL after extraction filters, by state and union territory. ${num(
       T.n
     )} records with no brand recorded, from the Overture Maps Places release ${INDIA.sourceRelease}; aggregates only.`,
     url: absUrl(PATH),
@@ -46,7 +46,7 @@ const ld = graph(
     dateModified: INDIA.updated,
     temporalCoverage: INDIA.sourceRelease,
     spatialCoverage: { "@type": "Place", name: "India" },
-    variableMeasured: ["Listing records", "Any website URL", "Low-reuse website URL", "Shared-host or locator-pattern URL", "Directory/marketplace URL only", "No URL recorded in the website field"],
+    variableMeasured: ["Listing records", "URL retained after filtering", "Retained URL: low-reuse host", "Retained URL: shared host or locator pattern", "Retained URL: directory or marketplace", "No URL retained after filtering"],
     isBasedOn: "https://docs.overturemaps.org/guides/places/",
     license: "https://creativecommons.org/licenses/by/4.0/",
     isAccessibleForFree: true,
@@ -74,13 +74,14 @@ export default function IndiaStudy() {
         crumbs={CRUMBS}
         kicker={`Research · India · version ${INDIA.version}, 11 November 2026`}
         // Lines of at most 17 characters, so they never re-wrap when the display font loads (lab CLS check).
-        lines={["How often do", "business listings", "in India carry", <span key="w" className="serif text-volt">a website link?</span>]}
+        lines={["Website links", "retained in", "selected business", "listings across", <span key="w" className="serif text-volt">India.</span>]}
         lead={
           <p>
-            Across {num(T.n)} listing records with no brand recorded, in the same 17 trades as our Gujarat study,{" "}
-            {pct(anyUrl(T), T.n)} carry a website URL and {pct(T.none, T.n)} carry none. Among states with at least{" "}
-            {num(NAMED_STATE_MIN)} records, {top.map((s) => s.name).join(" and ")} records carry one most often,{" "}
-            {bottom.map((s) => s.name).join(" and ")} least. These are listing records, not a census of businesses.
+            Among {num(T.n)} India-classified listing records in 17 selected trades with no brand recorded,{" "}
+            {pct(anyUrl(T), T.n)} retained a URL after our extraction filters; {pct(T.none, T.n)} did not. Our extract keeps
+            the first URL that passes its exclusions, so an empty retained field can mean that no URL was present or that
+            the available links were filtered out. These figures describe the filtered extract, not the share of all
+            Indian businesses with websites, verified ownership or whether a website works.
           </p>
         }
         actions={
@@ -104,7 +105,7 @@ export default function IndiaStudy() {
                 className="pointer-events-none absolute -inset-x-[8%] -inset-y-[22%] h-[144%] w-[116%] text-volt"
               />
             </p>
-            <p className="mt-6 max-w-[20rem] text-base text-muted">of {num(T.n)} listing records in India carry any website URL.</p>
+            <p className="mt-6 max-w-[20rem] text-base text-muted">of {num(T.n)} listing records in India retained a URL after filtering.</p>
           </div>
         }
       />
@@ -116,9 +117,12 @@ export default function IndiaStudy() {
             {INDIA.states.length} states and UTs, <span className="serif text-volt">one method.</span>
           </h2>
           <p className="mt-6 max-w-[70ch] text-base leading-relaxed text-muted">
-            Sorted by number of records. Rows marked &ldquo;few records&rdquo; have fewer than {num(SMALL_STATE)}; their shares
-            swing too much to compare. Differences between states partly reflect their mix of trades and how completely each
-            was mapped.
+            Among states and union territories with at least {num(NAMED_STATE_MIN)} eligible records assigned to them,{" "}
+            {top.map((s) => `${s.name} (${pct(anyUrl(s), s.n)})`).join(" and ")} had the highest shares with a URL retained
+            after filtering; {bottom.map((s) => `${s.name} (${pct(anyUrl(s), s.n)})`).join(" and ")} had the lowest. These are
+            unadjusted percentages for selected trade listings with no brand recorded. Differences may reflect trade mix,
+            source coverage, URL filtering and geographic assignment; they are not a ranking of website ownership or business
+            digital adoption. Rows marked &ldquo;few records&rdquo; have fewer than {num(SMALL_STATE)} records.
           </p>
           <div className="relative mt-10 overflow-x-auto rounded-2xl border border-line">
             <table className="w-full min-w-[880px] text-sm md:text-base">
@@ -127,7 +131,7 @@ export default function IndiaStudy() {
                 <tr>
                   <th scope="col" className={th}>State / UT</th>
                   <th scope="col" className={`${th} text-right`}>Records</th>
-                  <th scope="col" className={`${th} text-right`}>Any URL</th>
+                  <th scope="col" className={`${th} text-right`}>URL retained</th>
                   <th scope="col" className={`${th} text-right`}>Low-reuse</th>
                   <th scope="col" className={`${th} text-right`}>Shared host / locator</th>
                   <th scope="col" className={`${th} text-right`}>Directory only</th>
@@ -164,6 +168,17 @@ export default function IndiaStudy() {
                 })}
               </tbody>
               <tfoot className="border-t border-line bg-surface">
+                <tr className="border-b border-line">
+                  <th scope="row" className={`${th} font-normal text-muted`}>Unassigned state/UT</th>
+                  <td className={`${td} text-right text-muted`}>{num(INDIA.unclear.n)}</td>
+                  <td className={`${td} text-right text-muted`}>{pct(anyUrl(INDIA.unclear), INDIA.unclear.n)}</td>
+                  <td className={`${td} text-right text-muted`}>{pct(INDIA.unclear.own, INDIA.unclear.n)}</td>
+                  <td className={`${td} text-right text-muted`}>{pct(INDIA.unclear.shared, INDIA.unclear.n)}</td>
+                  <td className={`${td} text-right text-muted`}>{pct(INDIA.unclear.directory, INDIA.unclear.n)}</td>
+                  <td className={td}>
+                    <SplitBar s={INDIA.unclear} label={splitLabel("Unassigned state/UT", INDIA.unclear)} />
+                  </td>
+                </tr>
                 <tr>
                   <th scope="row" className={th}>All India</th>
                   <td className={`${td} text-right text-muted`}>{num(T.n)}</td>
@@ -179,8 +194,8 @@ export default function IndiaStudy() {
             </table>
           </div>
           <p className="mt-4 text-sm text-faint">
-            &ldquo;All India&rdquo; includes {num(INDIA.unclear.n)} records whose state in the source is a district, a typo,
-            another country or missing.
+            &ldquo;All India&rdquo; = the named rows plus the unassigned row; its percentages are computed from those counts,
+            not averaged from state percentages.
           </p>
           <div className="mt-5">
             <Legend />
@@ -197,7 +212,8 @@ export default function IndiaStudy() {
                 Which trades <span className="serif text-volt">list a website.</span>
               </h2>
               <p className="mt-6 max-w-[44ch] text-base leading-relaxed text-muted">
-                Share of each trade&rsquo;s records that carry any website URL, lowest first. The bar shows the four classes.
+                Share of each trade&rsquo;s records that retained a URL after filtering, lowest first. The bar shows the four
+                classes.
               </p>
               <div className="mt-6">
                 <Legend />
@@ -208,7 +224,7 @@ export default function IndiaStudy() {
                 <li key={t.id} className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 md:grid-cols-[minmax(0,15rem)_1fr_6.5rem] [&>*]:min-w-0">
                   <span className="text-sm font-semibold text-ink md:text-base">{t.label}</span>
                   <span className="text-right text-sm tabular-nums text-muted md:order-3">
-                    <span className="font-semibold text-volt">{pct(anyUrl(t), t.n)}</span> any
+                    <span className="font-semibold text-volt">{pct(anyUrl(t), t.n)}</span> retained
                   </span>
                   <span className="col-span-2 md:order-2 md:col-span-1">
                     <SplitBar s={t} label={splitLabel(t.label, t)} />
@@ -230,8 +246,10 @@ export default function IndiaStudy() {
           </div>
           <ol className="list-decimal space-y-5 pl-5 text-base leading-relaxed text-muted marker:text-volt md:text-lg">
             <li>
-              <strong className="text-ink">Source.</strong> {INDIA.source}, India extract ({num(INDIA.allPlaceRecords)} place
-              records), with places marked permanently closed removed. A place record is a map listing, not a registered
+              <strong className="text-ink">Source and country rule.</strong> {INDIA.source}. The India extract holds the{" "}
+              {num(INDIA.allPlaceRecords)} place records whose address country in the source is India (IN), with places
+              marked permanently closed removed. A handful carry a foreign place name as their state (for example Dubai);
+              they stay in the unassigned row because their country field says India. A place record is a map listing, not a registered
               business, and one business can have more than one record.
             </li>
             <li>
@@ -242,18 +260,20 @@ export default function IndiaStudy() {
             </li>
             <li>
               <strong className="text-ink">States.</strong> The state as the source gives it, folded into the 36 states and
-              union territories: old or variant names are merged (Orissa, Uttaranchal, Pondicherry, &ldquo;Jammu and Kashmir
-              (State)&rdquo;, Daman and Diu with Dadra and Nagar Haveli, spelling variants). {num(INDIA.unclear.n)} records
-              from {num(INDIA.unclear.rawValues)} other values (districts, typos, other countries, missing) are counted in
-              the India total but in no state. Because variants are merged here, Gujarat has {gujarat ? num(gujarat.n - STUDY.total.n) : "a few"}{" "}
+              union territories: old or variant names are merged (Orissa, Uttaranchal, Pondicherry, Daman and Diu with Dadra
+              and Nagar Haveli, spelling variants). Labels from before the 2019 split of Jammu and Kashmir into two union
+              territories (&ldquo;Jammu and Kashmir (State)&rdquo; and similar) are not guessed into J&amp;K or Ladakh.{" "}
+              {num(INDIA.unclear.n)} records from {num(INDIA.unclear.rawValues)} such values (legacy labels, districts,
+              typos, missing) stay in the India total in an &ldquo;Unassigned state/UT&rdquo; row. Because variants are merged here, Gujarat has {gujarat ? num(gujarat.n - STUDY.total.n) : "a few"}{" "}
               more records than in the Gujarat study.
             </li>
             <li>
-              <strong className="text-ink">The main measure.</strong> Any website URL recorded in the website field (our
-              extract drops social profiles and common listing pages such as Google, Justdial, Practo and Zomato). The four
-              classes split those URLs as in the Gujarat study, but host frequency is counted once across all{" "}
-              {num(T.n)} India records ({num(INDIA.validation.hostsSharedBy3Plus)} hosts appear in 3 or more), so a
-              state&rsquo;s low-reuse share here is not the same number as in a single-state study.
+              <strong className="text-ink">The main measure.</strong> Whether a URL was retained after filtering: the extract
+              keeps the first URL that is not a social profile or a common listing page (Google, Justdial, Practo, Zomato and
+              similar). The four classes split retained URLs as in the Gujarat study. Host frequency counts distinct India
+              records containing each retained host, once across all {num(T.n)} records{" "}
+              ({num(INDIA.validation.hostsSharedBy3Plus)} hosts appear in 3 or more); it does not count every URL originally
+              present in Overture, and a state&rsquo;s low-reuse share here is not the same number as in a single-state study.
             </li>
             <li>
               <strong className="text-ink">What the numbers are.</strong> A recorded URL does not establish that a website is
@@ -278,7 +298,8 @@ export default function IndiaStudy() {
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted md:text-lg">
             <p>
-              The state and trade counts are free to reuse under CC BY 4.0. Please credit &ldquo;SiteBlitz analysis of Overture
+              SiteBlitz offers its aggregate state and trade counts under CC BY 4.0 (the licence of this output, not of the
+              Overture source data). Please credit &ldquo;SiteBlitz analysis of Overture
               Maps Places data (release {INDIA.sourceRelease})&rdquo; and link to this page.
             </p>
             <p>

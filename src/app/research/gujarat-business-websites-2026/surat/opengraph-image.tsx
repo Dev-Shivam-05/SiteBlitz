@@ -12,6 +12,6 @@ export default function Image() {
   return ogCard({
     kicker: "Research · Surat",
     title: `Website links in ${num(c.n)} Surat listing records, trade by trade.`,
-    sub: `${pct(c.own, c.n)} carry a low-reuse website URL; the rest of Gujarat ${pct(rest.own, rest.n)}.`,
+    sub: `${pct(c.own, c.n)} retained a low-reuse-host URL; the rest of Gujarat ${pct(rest.own, rest.n)}.`,
   });
 }

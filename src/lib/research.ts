@@ -99,7 +99,7 @@ export const cityPath = (name: string) => `${STUDY.path}/${cityAnchor(name)}`;
 export const getCity = (name: string) => STUDY.cities.find((c) => c.name === name);
 
 export function csv(): string {
-  const head = ["city", "trade", "records", "low_reuse_website_url", "shared_host_or_locator_pattern_url", "directory_marketplace_url_only", "no_url_in_website_field"];
+  const head = ["city", "trade", "records", "retained_url_low_reuse_host", "retained_url_shared_host_or_locator_pattern", "retained_url_directory_or_marketplace", "no_url_retained_after_filtering"];
   const rows: (string | number)[][] = [];
   for (const c of STUDY.cities) {
     rows.push([c.name, "all 17 trades", c.n, c.own, c.shared, c.directory, c.none]);
@@ -114,7 +114,7 @@ export function csv(): string {
   const preamble = [
     `# SiteBlitz - Gujarat business-listing website study, version ${STUDY.version}, published ${STUDY.published}`,
     `# Source: ${STUDY.source}. Listing records with no brand recorded, 17 selected trades. City rows: Gujarat cities with 1,500+ place records; "Gujarat (all cities)" rows: the whole state.`,
-    `# Classes describe recorded URLs, not verified ownership: low_reuse_website_url = host in 1-2 records of the ${STUDY.total.n} study records; shared_host_or_locator_pattern_url = host in ${STUDY.sharedHostMin}+ records or a published locator pattern; directory_marketplace_url_only; no_url_in_website_field.`,
+    `# Classes describe the one URL our extract retains per record after filtering, not verified ownership: low-reuse host = host in 1-2 of the ${STUDY.total.n} study records; shared host or locator pattern = host in ${STUDY.sharedHostMin}+ records or a published locator pattern. CC BY 4.0 applies to these SiteBlitz aggregates, not to the Overture source.`,
     `# Counts describe listing records, not every business in a city. Method: ${SITE.url}${STUDY.path}#method`,
     "# Attribution: Overture Maps Foundation (overturemaps.org); CDLA-Permissive-2.0, Apache-2.0 (Foursquare), CC0 (AllThePlaces).",
   ];

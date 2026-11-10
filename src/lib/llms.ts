@@ -56,13 +56,13 @@ export function llmsTxt(): string {
     line(
       PAGES.studyGujarat.label,
       PAGES.studyGujarat.path,
-      `website URLs in ${num(STUDY.total.n)} Gujarat listing records (no brand recorded) across 17 trades: ${pct(STUDY.total.own, STUDY.total.n)} carry a low-reuse website URL (not a verified ownership count); by city and trade, with method, limits and CSV`
+      `website URLs in ${num(STUDY.total.n)} Gujarat listing records (no brand recorded) across 17 trades: ${pct(STUDY.total.own, STUDY.total.n)} retained a URL with a low-reuse host after filtering (not a verified ownership count); by city and trade, with method, limits and CSV`
     ),
     line(PAGES.studySurat.label, PAGES.studySurat.path, "Surat's 17 trades against the rest of Gujarat, same rules"),
     line(
       PAGES.studyIndia.label,
       PAGES.studyIndia.path,
-      `website URLs in ${INDIA.total.n.toLocaleString("en-US")} Indian listing records across 17 trades, by state and union territory: ${pct(INDIA.total.n - INDIA.total.none, INDIA.total.n)} carry any website URL`
+      `website URLs in ${INDIA.total.n.toLocaleString("en-US")} Indian listing records across 17 trades, by state and union territory: ${pct(INDIA.total.n - INDIA.total.none, INDIA.total.n)} retained a URL after filtering`
     ),
     "",
     "## Guides",

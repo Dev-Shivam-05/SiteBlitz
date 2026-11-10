@@ -67,7 +67,7 @@ export default function SuratStudy() {
       dateModified: STUDY.updated,
       temporalCoverage: STUDY.sourceRelease,
       spatialCoverage: { "@type": "Place", name: "Surat, Gujarat, India" },
-      variableMeasured: ["Listing records", "Low-reuse website URL", "Shared-host or locator-pattern URL", "Directory/marketplace URL only", "No URL recorded in the website field"],
+      variableMeasured: ["Listing records", "URL retained after filtering", "Retained URL: low-reuse host", "Retained URL: shared host or locator pattern", "Retained URL: directory or marketplace", "No URL retained after filtering"],
       license: "https://creativecommons.org/licenses/by/4.0/",
       isAccessibleForFree: true,
       distribution: { "@type": "DataDownload", encodingFormat: "text/csv", contentUrl: absUrl(STUDY.csvPath) },
@@ -86,8 +86,8 @@ export default function SuratStudy() {
         lead={
           <p>
             Of {num(city.n)} {CITY} listing records with no brand recorded, across 17 selected trades, {pct(city.own, city.n)} carry
-            a low-reuse website URL, {pct(city.shared, city.n)} a shared-host or locator-pattern URL, {pct(city.directory, city.n)} a
-            directory page only and {pct(city.none, city.n)} no URL. The rest of Gujarat, counted the same way, is at{" "}
+            a retained URL with a low-reuse host, {pct(city.shared, city.n)} one with a shared host or locator pattern, {pct(city.directory, city.n)} a
+            directory page, and {pct(city.none, city.n)} no URL retained after filtering. The rest of Gujarat, counted the same way, is at{" "}
             {pct(rest.total.own, rest.total.n)} low-reuse. These are listing records, not a census of businesses.
           </p>
         }
@@ -103,7 +103,7 @@ export default function SuratStudy() {
               />
             </p>
             <p className="mt-6 max-w-[30ch] text-base text-muted">
-              low-reuse website URLs in {CITY} listing records, against {pct(rest.total.own, rest.total.n)} in the rest of Gujarat.
+              retained low-reuse-host URLs in {CITY} listing records, against {pct(rest.total.own, rest.total.n)} in the rest of Gujarat.
             </p>
           </div>
         }
@@ -118,7 +118,7 @@ export default function SuratStudy() {
           <p className="mt-6 max-w-[72ch] text-base leading-relaxed text-muted">
             The widest gap below the rest of the state is {below.t.label.toLowerCase()} ({pts(share(below.s.own, below.s.n), share(below.r.own, below.r.n))}
             ); the widest above is {above.t.label.toLowerCase()} ({pts(share(above.s.own, above.s.n), share(above.r.own, above.r.n))}). Differences
-            are in percentage points of low-reuse website URLs, calculated from the counts before rounding, so a
+            are in percentage points of records whose retained URL has a low-reuse host, calculated from the counts before rounding, so a
             difference may not equal the two rounded shares subtracted. These are descriptive differences within the selected
             source records, not estimates of differences among all businesses, and they are not tested for statistical
             significance.
@@ -126,7 +126,7 @@ export default function SuratStudy() {
           <div data-anim="mask" className="relative mt-10 overflow-x-auto rounded-2xl border border-line">
             <table className="w-full min-w-[820px] text-sm md:text-base">
               <caption className="sr-only">
-                {CITY} and the rest of Gujarat: low-reuse website URLs in listing records by trade
+                {CITY} and the rest of Gujarat: retained low-reuse-host URLs in listing records by trade
               </caption>
               <thead className="border-b border-line bg-surface">
                 <tr>

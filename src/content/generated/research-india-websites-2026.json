@@ -2875,135 +2875,6 @@
    }
   },
   {
-   "name": "Jammu and Kashmir",
-   "n": 9682,
-   "own": 1812,
-   "shared": 767,
-   "directory": 98,
-   "none": 7005,
-   "groups": {
-    "restaurants": {
-     "n": 1701,
-     "own": 176,
-     "shared": 126,
-     "directory": 3,
-     "none": 1396
-    },
-    "beauty": {
-     "n": 364,
-     "own": 59,
-     "shared": 20,
-     "directory": 1,
-     "none": 284
-    },
-    "clothing": {
-     "n": 1099,
-     "own": 150,
-     "shared": 136,
-     "directory": 0,
-     "none": 813
-    },
-    "jewellery": {
-     "n": 230,
-     "own": 43,
-     "shared": 6,
-     "directory": 2,
-     "none": 179
-    },
-    "health": {
-     "n": 900,
-     "own": 214,
-     "shared": 25,
-     "directory": 2,
-     "none": 659
-    },
-    "pharmacy": {
-     "n": 465,
-     "own": 42,
-     "shared": 15,
-     "directory": 0,
-     "none": 408
-    },
-    "realestate": {
-     "n": 136,
-     "own": 44,
-     "shared": 2,
-     "directory": 0,
-     "none": 90
-    },
-    "hotels": {
-     "n": 1955,
-     "own": 652,
-     "shared": 84,
-     "directory": 88,
-     "none": 1131
-    },
-    "grocery": {
-     "n": 327,
-     "own": 36,
-     "shared": 67,
-     "directory": 0,
-     "none": 224
-    },
-    "mobile": {
-     "n": 695,
-     "own": 65,
-     "shared": 136,
-     "directory": 0,
-     "none": 494
-    },
-    "home": {
-     "n": 394,
-     "own": 61,
-     "shared": 31,
-     "directory": 1,
-     "none": 301
-    },
-    "events": {
-     "n": 466,
-     "own": 68,
-     "shared": 2,
-     "directory": 0,
-     "none": 396
-    },
-    "coaching": {
-     "n": 183,
-     "own": 83,
-     "shared": 16,
-     "directory": 0,
-     "none": 84
-    },
-    "fitness": {
-     "n": 284,
-     "own": 34,
-     "shared": 5,
-     "directory": 1,
-     "none": 244
-    },
-    "vehicles": {
-     "n": 346,
-     "own": 53,
-     "shared": 95,
-     "directory": 0,
-     "none": 198
-    },
-    "interiors": {
-     "n": 119,
-     "own": 25,
-     "shared": 1,
-     "directory": 0,
-     "none": 93
-    },
-    "accountants": {
-     "n": 18,
-     "own": 7,
-     "shared": 0,
-     "directory": 0,
-     "none": 11
-    }
-   }
-  },
-  {
    "name": "Goa",
    "n": 9184,
    "own": 2478,
@@ -3129,6 +3000,135 @@
      "shared": 0,
      "directory": 0,
      "none": 6
+    }
+   }
+  },
+  {
+   "name": "Jammu and Kashmir",
+   "n": 7728,
+   "own": 1385,
+   "shared": 644,
+   "directory": 29,
+   "none": 5670,
+   "groups": {
+    "restaurants": {
+     "n": 1397,
+     "own": 140,
+     "shared": 107,
+     "directory": 1,
+     "none": 1149
+    },
+    "beauty": {
+     "n": 322,
+     "own": 49,
+     "shared": 20,
+     "directory": 1,
+     "none": 252
+    },
+    "clothing": {
+     "n": 905,
+     "own": 122,
+     "shared": 111,
+     "directory": 0,
+     "none": 672
+    },
+    "jewellery": {
+     "n": 199,
+     "own": 40,
+     "shared": 4,
+     "directory": 2,
+     "none": 153
+    },
+    "health": {
+     "n": 754,
+     "own": 189,
+     "shared": 21,
+     "directory": 1,
+     "none": 543
+    },
+    "pharmacy": {
+     "n": 381,
+     "own": 34,
+     "shared": 13,
+     "directory": 0,
+     "none": 334
+    },
+    "realestate": {
+     "n": 117,
+     "own": 38,
+     "shared": 0,
+     "directory": 0,
+     "none": 79
+    },
+    "hotels": {
+     "n": 1281,
+     "own": 410,
+     "shared": 49,
+     "directory": 22,
+     "none": 800
+    },
+    "grocery": {
+     "n": 268,
+     "own": 27,
+     "shared": 64,
+     "directory": 0,
+     "none": 177
+    },
+    "mobile": {
+     "n": 553,
+     "own": 47,
+     "shared": 119,
+     "directory": 0,
+     "none": 387
+    },
+    "home": {
+     "n": 331,
+     "own": 52,
+     "shared": 31,
+     "directory": 1,
+     "none": 247
+    },
+    "events": {
+     "n": 408,
+     "own": 61,
+     "shared": 2,
+     "directory": 0,
+     "none": 345
+    },
+    "coaching": {
+     "n": 150,
+     "own": 66,
+     "shared": 12,
+     "directory": 0,
+     "none": 72
+    },
+    "fitness": {
+     "n": 234,
+     "own": 29,
+     "shared": 5,
+     "directory": 1,
+     "none": 199
+    },
+    "vehicles": {
+     "n": 311,
+     "own": 49,
+     "shared": 86,
+     "directory": 0,
+     "none": 176
+    },
+    "interiors": {
+     "n": 99,
+     "own": 25,
+     "shared": 0,
+     "directory": 0,
+     "none": 74
+    },
+    "accountants": {
+     "n": 18,
+     "own": 7,
+     "shared": 0,
+     "directory": 0,
+     "none": 11
     }
    }
   },
@@ -4816,123 +4816,123 @@
   "hostsSharedBy3Plus": 7308
  },
  "unclear": {
-  "n": 30209,
-  "own": 5241,
-  "shared": 1293,
-  "directory": 66,
-  "none": 23609,
+  "n": 32163,
+  "own": 5668,
+  "shared": 1416,
+  "directory": 135,
+  "none": 24944,
   "groups": {
    "restaurants": {
-    "n": 5389,
-    "own": 553,
-    "shared": 411,
-    "directory": 5,
-    "none": 4420
+    "n": 5693,
+    "own": 589,
+    "shared": 430,
+    "directory": 7,
+    "none": 4667
    },
    "beauty": {
-    "n": 1219,
-    "own": 214,
+    "n": 1261,
+    "own": 224,
     "shared": 28,
     "directory": 3,
-    "none": 974
+    "none": 1006
    },
    "clothing": {
-    "n": 2203,
-    "own": 296,
-    "shared": 50,
+    "n": 2397,
+    "own": 324,
+    "shared": 75,
     "directory": 3,
-    "none": 1854
+    "none": 1995
    },
    "jewellery": {
-    "n": 463,
-    "own": 64,
-    "shared": 12,
+    "n": 494,
+    "own": 67,
+    "shared": 14,
     "directory": 2,
-    "none": 385
+    "none": 411
    },
    "health": {
-    "n": 3430,
-    "own": 572,
-    "shared": 79,
-    "directory": 7,
-    "none": 2772
+    "n": 3576,
+    "own": 597,
+    "shared": 83,
+    "directory": 8,
+    "none": 2888
    },
    "pharmacy": {
-    "n": 1225,
-    "own": 76,
-    "shared": 30,
+    "n": 1309,
+    "own": 84,
+    "shared": 32,
     "directory": 2,
-    "none": 1117
+    "none": 1191
    },
    "realestate": {
-    "n": 1527,
-    "own": 412,
-    "shared": 47,
+    "n": 1546,
+    "own": 418,
+    "shared": 49,
     "directory": 2,
-    "none": 1066
+    "none": 1077
    },
    "hotels": {
-    "n": 4948,
-    "own": 1549,
-    "shared": 258,
-    "directory": 15,
-    "none": 3126
+    "n": 5622,
+    "own": 1791,
+    "shared": 293,
+    "directory": 81,
+    "none": 3457
    },
    "grocery": {
-    "n": 1310,
-    "own": 150,
-    "shared": 17,
+    "n": 1369,
+    "own": 159,
+    "shared": 20,
     "directory": 6,
-    "none": 1137
+    "none": 1184
    },
    "mobile": {
-    "n": 2042,
-    "own": 190,
-    "shared": 37,
+    "n": 2184,
+    "own": 208,
+    "shared": 54,
     "directory": 4,
-    "none": 1811
+    "none": 1918
    },
    "home": {
-    "n": 1257,
-    "own": 197,
+    "n": 1320,
+    "own": 206,
     "shared": 24,
     "directory": 2,
-    "none": 1034
+    "none": 1088
    },
    "events": {
-    "n": 2126,
-    "own": 346,
+    "n": 2184,
+    "own": 353,
     "shared": 19,
     "directory": 6,
-    "none": 1755
+    "none": 1806
    },
    "coaching": {
-    "n": 719,
-    "own": 256,
-    "shared": 44,
+    "n": 752,
+    "own": 273,
+    "shared": 48,
     "directory": 3,
-    "none": 416
+    "none": 428
    },
    "fitness": {
-    "n": 755,
-    "own": 112,
+    "n": 805,
+    "own": 117,
     "shared": 8,
     "directory": 2,
-    "none": 633
+    "none": 678
    },
    "vehicles": {
-    "n": 1347,
-    "own": 136,
-    "shared": 228,
+    "n": 1382,
+    "own": 140,
+    "shared": 237,
     "directory": 4,
-    "none": 979
+    "none": 1001
    },
    "interiors": {
-    "n": 206,
+    "n": 226,
     "own": 105,
-    "shared": 1,
+    "shared": 2,
     "directory": 0,
-    "none": 100
+    "none": 119
    },
    "accountants": {
     "n": 43,
@@ -4942,6 +4942,6 @@
     "none": 30
    }
   },
-  "rawValues": 319
+  "rawValues": 323
  }
 }

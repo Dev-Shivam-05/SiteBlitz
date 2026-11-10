@@ -46,7 +46,7 @@ const ld = graph(
     "@type": "Dataset",
     "@id": `${absUrl(PATH)}#dataset`,
     name: "Gujarat business-listing website study 2026",
-    description: `How often listing records in 17 selected trades in Gujarat, India carry a low-reuse website URL, a shared-host or locator-pattern URL, a directory or marketplace URL only, or no URL. ${num(
+    description: `How often listing records in 17 selected trades in Gujarat, India retain a URL after extraction filters, and of what kind (low-reuse host, shared host or locator pattern, directory), or none. ${num(
       T.n
     )} records with no brand recorded, from the Overture Maps Places release ${STUDY.sourceRelease}; city and trade aggregates.`,
     url: absUrl(PATH),
@@ -58,7 +58,7 @@ const ld = graph(
     temporalCoverage: STUDY.sourceRelease,
     spatialCoverage: { "@type": "Place", name: "Gujarat, India" },
     measurementTechnique: "Classification of the website field of Overture Maps Places listing records by host",
-    variableMeasured: ["Listing records", "Low-reuse website URL", "Shared-host or locator-pattern URL", "Directory/marketplace URL only", "No URL recorded in the website field"],
+    variableMeasured: ["Listing records", "URL retained after filtering", "Retained URL: low-reuse host", "Retained URL: shared host or locator pattern", "Retained URL: directory or marketplace", "No URL retained after filtering"],
     isBasedOn: "https://docs.overturemaps.org/guides/places/",
     license: "https://creativecommons.org/licenses/by/4.0/",
     isAccessibleForFree: true,
@@ -88,9 +88,9 @@ export default function GujaratWebsiteStudy() {
         lead={
           <p>
             We looked at {num(T.n)} listing records in 17 selected trades across Gujarat, all with no brand recorded, from the
-            open Overture Maps data released on 21 October 2026. {pct(T.own, T.n)} carry a low-reuse website URL (a host that at most one other record uses),{" "}
-            {pct(T.shared, T.n)} a shared-host or locator-pattern URL, {pct(T.directory, T.n)} a directory page only, and {pct(T.none, T.n)} no URL
-            at all. These are listing records, not a census of businesses.
+            open Overture Maps data released on 21 October 2026. {pct(T.n - T.none, T.n)} retained a URL after our extraction filters and {pct(T.none, T.n)} did not; {pct(T.own, T.n)}{" "}
+            retained one on a low-reuse host (used by at most one other record). These figures describe the filtered extract,
+            not the share of all Gujarat businesses with websites.
           </p>
         }
         actions={
@@ -114,7 +114,7 @@ export default function GujaratWebsiteStudy() {
                 className="pointer-events-none absolute -inset-x-[8%] -inset-y-[22%] h-[144%] w-[116%] text-volt"
               />
             </p>
-            <p className="mt-6 max-w-[30ch] text-base text-muted">of listing records in 17 trades carry a low-reuse website URL. Not a verified ownership count.</p>
+            <p className="mt-6 max-w-[30ch] text-base text-muted">of listing records in 17 trades retained a URL with a low-reuse host. Not a verified ownership count.</p>
           </div>
         }
       />
@@ -129,7 +129,7 @@ export default function GujaratWebsiteStudy() {
                 Phone shops and restaurants <span className="serif text-volt">trail.</span>
               </h2>
               <p className="mt-6 max-w-[44ch] text-base leading-relaxed text-muted">
-                {lowest.label} have the lowest share of records with a low-reuse website URL ({pct(lowest.own, lowest.n)} of{" "}
+                {lowest.label} have the lowest share of records whose retained URL has a low-reuse host ({pct(lowest.own, lowest.n)} of{" "}
                 {num(lowest.n)}); {highest.label.toLowerCase()} the highest ({pct(highest.own, highest.n)} of {num(highest.n)}).
                 Trades whose shops are often franchise branches, such as car and bike dealers, phone shops and pharmacies,
                 show the largest share of shared-host or locator-pattern URLs.
@@ -264,7 +264,7 @@ export default function GujaratWebsiteStudy() {
                   <span>
                     <span className="block text-lg font-semibold md:text-xl">{c.name}</span>
                     <span className="mt-1 block text-sm text-muted">
-                      {num(c.n)} records · {pct(c.own, c.n)} low-reuse URL · {pct(c.none, c.n)} no URL
+                      {num(c.n)} records · {pct(c.own, c.n)} low-reuse host · {pct(c.none, c.n)} no URL retained
                     </span>
                   </span>
                   <span
@@ -338,7 +338,8 @@ export default function GujaratWebsiteStudy() {
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted md:text-lg">
             <p>
-              The city and trade counts are free to reuse under CC BY 4.0. Please credit &ldquo;SiteBlitz analysis of Overture
+              SiteBlitz offers its aggregate city and trade counts under CC BY 4.0 (the licence of this output, not of the
+              Overture source data). Please credit &ldquo;SiteBlitz analysis of Overture
               Maps Places data (release {STUDY.sourceRelease})&rdquo; and link to this page.
             </p>
             <p>
