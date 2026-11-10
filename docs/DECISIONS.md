@@ -150,3 +150,16 @@ stand-in photographs. Headline "WEBSITES. FROM ₹7,999.", wipe word "VISIBLE.",
 to selling a service; 13 Awwwards 2026 sites were shortlisted, 8 captured live, and Horeca won with ChatGPT's agreement
 (2 rounds, `docs/debate/2026-11-10-motion-reference/RESULT.md`): it sells a service, keeps its motion on phones, uses
 no WebGL, and its stack (GSAP + CSS sticky, Lenis on desktop) matches ours. The owner approved with "go".
+
+---
+
+## D15 — Redesign v4 "showcase" replaces v3's look (2026-11-10)
+
+**Decision:** supersedes D14's visual identity (its content and motion rules stay). The public site and the admin share
+one dark brand: void #0A0A0C, ink #F5F5F0, volt #CCFF00; Mona Sans (wide, heavy) + Instrument Serif italic + DM Sans.
+Main reference Lando Norris (Awwwards SOTY 2025), WebGL moment after Lusion (SOTY 2023), offer panels after Akaru
+(SOTM Apr 2024), admin after Linear / Vercel Observability / visitors.now. Spec: `docs/spec/redesign-v4-showcase.md`.
+
+**Why:** the owner rated v3 "not worth it": the site is SiteBlitz's portfolio piece and must impress like an award
+agency's. Restraint read as ordinary twice (light teal 1/10, v3). Speed is protected by deferral and fallbacks
+(static poster, low-power detection, reduced motion), not by dropping the effects.

@@ -49,6 +49,19 @@ phases R1–R5 below. Next: inner pages onto v3, then the founder's release deci
 | R5 | Production verification + QA fixes (portrait hero crop, focus, tap size, AA contrast) | **done** `7b5c0c1` — gate OPEN 83 (by-design conflicts, see HANDOFF) |
 | P-INNER | /pricing, /about, /services, /contact, /work, /proof onto the v3 layout and voice | todo |
 
+## Redesign v4 "showcase" (2026-11-10, owner: "go for all do not stop until everything is done")
+
+Spec: `docs/spec/redesign-v4-showcase.md` (D15). Supersedes v3 visually.
+
+| # | Phase | Status |
+|---|---|---|
+| V1 | Dark tokens, Mona Sans + Instrument Serif, preloader, cursor, magnetic buttons, volt page curtain | doing |
+| V2 | WebGL particle hero (wordmark → showroom phone) with static poster | todo |
+| V3 | Signature strokes, drift collage + hall of fame, sideways packages, process path, close, footer | todo |
+| V4 | Admin shell: command bar, shortcuts, phone tab bar, aria-current, drawer a11y | todo |
+| V5 | Admin Live globe, Leads board, Overview KPI count-up + sparklines | todo |
+| V6 | Full verification (public + admin, reduced motion, vitals), handoff, push | todo |
+
 ## Next 3
 
 1. **Owner reviews the Preview** of `v2-redesign` on a phone; collect changes in one list.
