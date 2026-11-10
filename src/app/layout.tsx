@@ -1,18 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Antonio, DM_Sans, Instrument_Serif } from "next/font/google";
+import { DM_Sans, Instrument_Serif, Mona_Sans } from "next/font/google";
 import { SITE } from "@/lib/site";
 import { FROM_PRICE, inr } from "@/lib/offer";
 import { Tracker } from "@/components/site/Tracker";
 import "./globals.css";
 
-/* Redesign v3 (docs/spec/redesign-v3-motion.md): Antonio 600 for display type, DM Sans for text.
-   Antonio needs latin-ext because the rupee sign (U+20B9) lives in that subset; the browser only fetches
-   it when a ₹ is on the page (unicode-range). DM Sans has no ₹, so body-size prices fall back to the
-   system sans, as they did before. Instrument Serif stays for the concept demos' own headings. */
-const antonio = Antonio({
+/* Redesign v4 (docs/spec/redesign-v4-showcase.md): Mona Sans, variable in weight and width, for display type (800,
+   125% wide); Instrument Serif italic for accent words; DM Sans for text. Mona Sans takes latin-ext as well so the
+   rupee sign (U+20B9) can come from it; the browser only fetches that subset when a page needs it (unicode-range). */
+const mona = Mona_Sans({
   subsets: ["latin", "latin-ext"],
-  weight: ["600"],
-  variable: "--font-antonio",
+  axes: ["wdth"],
+  variable: "--font-mona",
   display: "swap",
 });
 
@@ -32,7 +31,7 @@ const instrument = Instrument_Serif({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#f8f5ee",
+  themeColor: "#0a0a0c",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -109,7 +108,8 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${antonio.variable} ${dmSans.variable} ${instrument.variable}`}>
+    // suppressHydrationWarning: the Preloader's inline script marks <html data-seen> before React hydrates
+    <html lang="en" className={`${mona.variable} ${dmSans.variable} ${instrument.variable}`} suppressHydrationWarning>
       <body>
         {/* without JS, reveal-on-scroll elements must simply be visible */}
         <noscript>

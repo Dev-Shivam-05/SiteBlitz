@@ -1,25 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Redesign v3 palette (docs/spec/redesign-v3-motion.md): ivory, near-black ink, vermilion action.
-     Token names are kept from earlier eras so every component re-themes without a rename:
-     void = page canvas, volt = the action colour. Measured contrast: ink on void 16.19 · muted 6.40 ·
-     faint 5.19 · volt 4.79 on void, 5.22 on white, 4.28 on raised (large text only), 3.38 on ink
-     (>= 24 px only) · white on volt 5.22. --color-warm is decoration only, never text.
-     There is no violet: --color-violet is a legacy alias of the action colour. */
-  --color-void: #f8f5ee;
-  --color-surface: #ffffff;
-  --color-raised: #eee8dd;
-  --color-ink: #121a1d;
-  --color-muted: #535b5b;
-  --color-faint: #606968;
-  --color-volt: #c43d15;
-  --color-volt-dim: #a3330f;
-  --color-violet: #c43d15;
+  /* Redesign v4 "showcase" (docs/spec/redesign-v4-showcase.md, D15): the site and the admin share one dark brand.
+     Token names are kept from earlier eras so every component re-themes without a rename: void = page canvas,
+     ink = text, volt = the action colour. Measured contrast on void: ink 18.09 · muted 7.17 · faint 5.15 ·
+     volt 16.83; on surface: muted 6.77 · faint 4.87. Text on a volt ground is void. --color-violet is used only by
+     the admin activity stream; --color-warm is decoration only. */
+  --color-void: #0a0a0c;
+  --color-surface: #121216;
+  --color-raised: #1a1a20;
+  --color-ink: #f5f5f0;
+  --color-muted: #9b9ba3;
+  --color-faint: #81818f;
+  --color-volt: #ccff00;
+  --color-volt-dim: #a3cc00;
+  --color-violet: #7c5cff;
   --color-warm: #ffe6cb;
-  --color-line: #d3c9bc;
+  --color-line: rgba(245, 245, 240, 0.08);
 
-  --font-display: var(--font-antonio), var(--font-dm), system-ui, sans-serif;
+  --font-display: var(--font-mona), var(--font-dm), system-ui, sans-serif;
   --font-body: var(--font-dm), system-ui, sans-serif;
   --font-accent: var(--font-instrument), Georgia, serif;
 
@@ -41,6 +40,7 @@
 html {
   scroll-behavior: smooth;
   background: var(--color-void);
+  color-scheme: dark;
 }
 
 body {
@@ -57,18 +57,8 @@ body {
   color: var(--color-void);
 }
 
-/* The admin panel keeps its dark operator theme: same token names, scoped values. */
+/* The admin layout still sets data-theme="dark"; since v4 the root tokens are the same dark set. */
 [data-theme="dark"] {
-  --color-void: #0a0a0c;
-  --color-surface: #121216;
-  --color-raised: #1a1a20;
-  --color-ink: #f5f5f0;
-  --color-muted: #9b9ba3;
-  --color-faint: #81818f;
-  --color-volt: #ccff00;
-  --color-volt-dim: #a3cc00;
-  --color-violet: #7c5cff;
-  --color-line: rgba(245, 245, 240, 0.08);
   color: var(--color-ink);
   color-scheme: dark;
 }
@@ -77,11 +67,11 @@ body {
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-void); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(18, 26, 29, 0.22);
+  background: rgba(245, 245, 240, 0.16);
   border-radius: 8px;
   border: 2px solid var(--color-void);
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(18, 26, 29, 0.36); }
+::-webkit-scrollbar-thumb:hover { background: rgba(204, 255, 0, 0.5); }
 
 /* ---- typography helpers ---- */
 .font-display { font-family: var(--font-display); }
@@ -89,86 +79,10 @@ body {
 
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(18, 26, 29, 0.3);
+  -webkit-text-stroke: 1px rgba(245, 245, 240, 0.32);
 }
 
 .text-balance { text-wrap: balance; }
-
-/* ---- hero: volt wireframe headline line ----
-   The v3 hero used .text-outline here, a 1px 25%-opacity stroke that vanished
-   against the shader. A solid volt stroke turns the weakest line into the hook. */
-.text-stroke-volt {
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(204, 255, 0, 0.85);
-  paint-order: stroke fill;
-  filter: drop-shadow(0 0 18px rgba(204, 255, 0, 0.35));
-}
-@media (min-width: 768px) {
-  .text-stroke-volt { -webkit-text-stroke-width: 2px; }
-}
-
-/* ---- hero: text protection ----
-   The shader already falls to void on the left; this is the safety net that
-   guarantees contrast regardless of where the energy field happens to drift. */
-.hero-scrim {
-  background:
-    linear-gradient(to top, #0a0a0c 0%, rgba(10, 10, 12, 0) 38%),
-    linear-gradient(
-      100deg,
-      #0a0a0c 0%,
-      rgba(10, 10, 12, 0.94) 30%,
-      rgba(10, 10, 12, 0.62) 50%,
-      rgba(10, 10, 12, 0.12) 72%,
-      transparent 88%
-    );
-}
-
-/* ---- hero: one volt scanline sweeps the headline once on load ---- */
-@keyframes hero-sweep {
-  0% { transform: translateX(-8%) scaleY(0.4); opacity: 0; }
-  12% { opacity: 1; }
-  88% { opacity: 1; }
-  100% { transform: translateX(108%) scaleY(1); opacity: 0; }
-}
-.hero-sweep {
-  position: absolute;
-  top: -2%;
-  bottom: -2%;
-  width: 140px;
-  pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(204, 255, 0, 0.09) 35%,
-    rgba(204, 255, 0, 0.55) 50%,
-    rgba(204, 255, 0, 0.09) 65%,
-    transparent
-  );
-  mix-blend-mode: screen;
-  animation: hero-sweep 0.85s cubic-bezier(0.76, 0, 0.24, 1) 0.15s both;
-}
-
-/* ---- grain overlay ---- */
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  pointer-events: none;
-  z-index: 90;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: grain-shift 8s steps(10) infinite;
-}
-@keyframes grain-shift {
-  0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-5%, -8%); }
-  30% { transform: translate(3%, -12%); }
-  50% { transform: translate(9%, 6%); }
-  70% { transform: translate(-7%, 9%); }
-  90% { transform: translate(5%, 3%); }
-}
 
 /* ---- blueprint grid behind concept-study frames (ConceptFrame) ---- */
 .blueprint-grid {
@@ -192,83 +106,106 @@ body {
   }
 }
 
-/* ---- custom cursor: hide native on fine pointers when active ---- */
-@media (pointer: fine) {
-  body.cursor-active,
-  body.cursor-active a,
-  body.cursor-active button {
-    cursor: none;
-  }
-}
-
 /* ---- marquee ---- */
 .marquee-mask {
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
-/* ---- volt glow button ---- */
+/* ---- buttons: step up and glow on hover, press on click ---- */
 .btn-volt {
   position: relative;
   background: var(--color-volt);
   color: var(--color-void);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.25s ease;
 }
 .btn-volt:hover {
   transform: translateY(-1px);
-  background: var(--color-volt-dim);
-  box-shadow: 0 10px 30px -12px rgba(196, 61, 21, 0.55);
+  box-shadow: 0 0 0 6px rgba(204, 255, 0, 0.12), 0 14px 40px -12px rgba(204, 255, 0, 0.55);
 }
-/* buttons step up on hover and press on click (spec: hover layer) */
 .btn-volt:active,
 .btn-ghost:active,
-.btn-line:active {
+.btn-line:active,
+.btn-dark:active,
+.btn-ivory:active {
   transform: translateY(1px) scale(0.98);
   transition-duration: 0.08s;
 }
 .btn-volt:focus-visible,
-.btn-ghost:focus-visible {
+.btn-ghost:focus-visible,
+.btn-line:focus-visible {
   outline: 2px solid var(--color-ink);
   outline-offset: 3px;
 }
 
 .btn-ghost {
-  border: 1px solid var(--color-line);
+  border: 1px solid rgba(245, 245, 240, 0.16);
   transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-ghost:hover {
-  border-color: rgba(18, 26, 29, 0.35);
-  background: rgba(18, 26, 29, 0.04);
+  border-color: rgba(245, 245, 240, 0.42);
+  background: rgba(245, 245, 240, 0.05);
   transform: translateY(-1px);
 }
 
-/* outline button for dark (ink) grounds */
+/* outline button on dark grounds */
 .btn-line {
-  border: 1.5px solid rgba(248, 245, 238, 0.55);
-  color: var(--color-void);
-  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  border: 1.5px solid rgba(245, 245, 240, 0.4);
+  color: var(--color-ink);
+  transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-line:hover {
-  border-color: var(--color-void);
-  background: rgba(248, 245, 238, 0.08);
+  border-color: var(--color-volt);
+  color: var(--color-volt);
   transform: translateY(-1px);
 }
-.btn-line:focus-visible {
-  outline: 2px solid var(--color-void);
-  outline-offset: 3px;
-}
 
-/* ---- redesign v3 type ----
+/* dark button for volt grounds (btn-ivory is its v3 name, kept as an alias) */
+.btn-dark,
+.btn-ivory {
+  background: var(--color-void);
+  color: var(--color-ink);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease;
+}
+.btn-dark:hover,
+.btn-ivory:hover { transform: translateY(-1px); background: var(--color-raised); }
+.btn-dark:focus-visible,
+.btn-ivory:focus-visible { outline: 2px solid var(--color-void); outline-offset: 3px; }
+
+/* ---- card hover: lift and a volt edge ---- */
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(204, 255, 0, 0.35);
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
+}
+.card-recommended { box-shadow: 0 24px 60px -36px rgba(204, 255, 0, 0.45); }
+
+/* ---- admin ---- */
+.admin-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
+
+/* ---- v4 type ----
    In @layer components so Tailwind utilities (leading-*, text-*, bg-*) can still override these on an element. */
 @layer components {
 .display {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 800;
+  font-stretch: 125%;
   text-transform: uppercase;
-  line-height: 0.92;
-  letter-spacing: -0.015em;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
 }
-@media (min-width: 768px) {
-  .display { letter-spacing: -0.025em; }
+/* the accent word inside a display heading: Instrument Serif italic, lower case, optically matched */
+.serif {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 400;
+  font-stretch: 100%;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-size: 1.08em;
+  line-height: 0.8;
 }
 .kicker {
   font-size: 0.8125rem;
@@ -277,26 +214,129 @@ body {
   text-transform: uppercase;
 }
 
-/* nav pills sit on the hero photograph, so each carries its own solid ground */
+/* glass pill for the floating header */
 .pill {
-  background: var(--color-void);
+  background: rgba(18, 18, 22, 0.72);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(245, 245, 240, 0.1);
   color: var(--color-ink);
   border-radius: 999px;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease, border-color 0.25s ease;
 }
-.pill:hover { transform: translateY(-1px); }
+.pill:hover { border-color: rgba(245, 245, 240, 0.22); }
 .pill:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 3px; }
 }
 
-/* ivory button for vermilion grounds */
-.btn-ivory {
+/* ---- header: hides while scrolling down, returns on the way up ---- */
+.site-header { transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+.site-header.is-hidden { transform: translateY(-110%); }
+
+/* ---- phone menu: a full-screen sheet that wipes down, links rise in turn ---- */
+.menu-sheet {
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.6s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s linear 0.6s;
+}
+.menu-sheet.is-open {
+  visibility: visible;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.6s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s;
+}
+.menu-sheet .menu-item {
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+.menu-sheet.is-open .menu-item {
+  transform: none;
+  opacity: 1;
+  transition-delay: calc(0.18s + var(--i, 0) * 0.05s);
+}
+
+/* ---- preloader (first page of a session only; Preloader.tsx). Pure CSS: it lifts itself even if JS fails. ---- */
+@property --pl-n {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
   background: var(--color-void);
   color: var(--color-ink);
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease;
+  animation: pl-lift 0.3s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
 }
-.btn-ivory:hover { transform: translateY(-1px); background: var(--color-surface); }
-.btn-ivory:active { transform: translateY(1px) scale(0.98); transition-duration: 0.08s; }
-.btn-ivory:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; }
+.preloader-count {
+  counter-reset: pl var(--pl-n);
+  animation: pl-count 0.85s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+.preloader-count::after { content: counter(pl); }
+.preloader-bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: pl-bar 0.85s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+@keyframes pl-count { to { --pl-n: 100; } }
+@keyframes pl-bar { to { transform: scaleX(1); } }
+@keyframes pl-lift { to { transform: translateY(-100%); visibility: hidden; } }
+html[data-seen] .preloader { display: none; }
+
+/* ---- custom cursor (Cursor.tsx): desktop fine pointers only ---- */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 150;
+  pointer-events: none;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.cursor-dot { width: 8px; height: 8px; margin: -4px 0 0 -4px; background: var(--color-volt); }
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1.5px solid rgba(245, 245, 240, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-void);
+  font: 800 12px/1 var(--font-display);
+  letter-spacing: 0.14em;
+  transition: opacity 0.2s ease, width 0.3s cubic-bezier(0.22, 1, 0.36, 1), height 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.3s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease, border-color 0.3s ease;
+}
+html.cursor-on .cursor-dot,
+html.cursor-on .cursor-ring { opacity: 1; }
+.cursor-ring.is-link { width: 56px; height: 56px; margin: -28px 0 0 -28px; border-color: var(--color-volt); background: rgba(204, 255, 0, 0.1); }
+.cursor-ring.is-label { width: 96px; height: 96px; margin: -48px 0 0 -48px; border-color: transparent; background: var(--color-volt); }
+html.cursor-on .cursor-ring.is-text,
+html.cursor-on .cursor-ring.is-text + .cursor-dot,
+html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
+@media (pointer: fine) {
+  html.cursor-active,
+  html.cursor-active * { cursor: none; }
+  html.cursor-active input,
+  html.cursor-active textarea,
+  html.cursor-active select,
+  html.cursor-active [contenteditable] { cursor: auto; }
+}
+
+/* ---- page change: volt curtain (Motion.tsx) ---- */
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 135;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-volt);
+  color: var(--color-void);
+}
 
 /* 04 demo stack: cards are CSS-sticky siblings, so each new card slides over the last; Motion.tsx only scales
    the one underneath. Phones cap the card at 560 px so the WhatsApp pill never covers it. */
@@ -390,73 +430,8 @@ body {
 [data-hero-words] { animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s backwards; }
 [data-hero-frame] .hero-photo { animation: hero-photo-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 
-/* ---- card hover sheen ---- */
-.card-hover {
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, background 0.35s ease;
-}
-.card-hover:hover {
-  transform: translateY(-4px);
-  border-color: rgba(196, 61, 21, 0.35);
-  box-shadow: 0 18px 40px -24px rgba(18, 26, 29, 0.35);
-}
-
-/* ---- admin ---- */
-.admin-scroll::-webkit-scrollbar { height: 8px; width: 8px; }
-
-/* ---- noise texture layer (for hero / menu depth) ---- */
-.noise-layer {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
-  mix-blend-mode: overlay;
-}
-
-/* ---- hero scroll cue ---- */
-@keyframes cue-drop {
-  0% { transform: translateY(-100%); }
-  55% { transform: translateY(0); }
-  100% { transform: translateY(100%); }
-}
-.scroll-cue::before {
-  content: "";
-  display: block;
-  width: 1px;
-  height: 100%;
-  background: var(--color-volt);
-  animation: cue-drop 1.8s cubic-bezier(0.76, 0, 0.24, 1) infinite;
-}
-
-/* ---- horizontal work gallery ---- */
-.hcard {
-  width: min(72vw, 640px);
-}
-@media (min-width: 1024px) {
-  .hcard { width: 44vw; }
-}
-
-/* ---- big link hover: fill sweep ---- */
-.sweep-link {
-  position: relative;
-}
-.sweep-link .sweep-fill {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(196, 61, 21, 0.12), transparent);
-  transform: translateX(-110%);
-  transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
-  pointer-events: none;
-}
-.sweep-link:hover .sweep-fill {
-  transform: translateX(110%);
-}
-
-/* ---- preloader curtain ---- */
-.preloader-exit {
-  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
-  transform: translateY(-100%);
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .grain::before { animation: none; }
 
   /* Marquees duplicate their content so the scroll loop is seamless, and mask
      their edges so items fade in and out. With the animation frozen, both
@@ -483,18 +458,7 @@ body {
   .wipe-stage { position: relative; height: 60svh; background: var(--color-volt); }
   [data-wipe-word] { color: var(--color-void); }
 
-  /* The desktop work gallery only reveals cards 3+ by scrolling sideways (GSAP pin), which is
-     off under reduced motion — they sat clipped off-screen. Wrap into a two-column grid. */
-  @media (min-width: 1024px) {
-    [data-hscroll-track] {
-      flex-wrap: wrap;
-      padding-right: 8vw;
-    }
-    [data-hscroll-track] > .hcard {
-      width: calc(50% - 1rem);
-      flex-shrink: 1;
-    }
-  }
+  .preloader, .cursor-dot, .cursor-ring, .page-curtain { display: none !important; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -549,13 +513,11 @@ body {
 .demo-photo img { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
 .demo-photo:hover img { transform: scale(1.03); }
 
-/* ==== SiteBlitz home: phone frame used by the live demo switcher ==== */
+/* ==== SiteBlitz home: a phone bezel round a demo capture ==== */
 .phone-frame {
-  border: 10px solid var(--color-ink);
+  border: 9px solid var(--color-raised);
   border-radius: 2.6rem;
-  box-shadow: 0 40px 80px -40px rgba(18, 26, 29, 0.55), 0 0 0 1px rgba(18, 26, 29, 0.08);
-  background: var(--color-ink);
+  box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(245, 245, 240, 0.12), 0 0 80px -30px rgba(204, 255, 0, 0.35);
+  background: var(--color-raised);
 }
 /* no notch: it covered the demo's disclosure ribbon in the screenshot */
-
-.card-recommended { box-shadow: 0 24px 60px -36px rgba(196, 61, 21, 0.6); }

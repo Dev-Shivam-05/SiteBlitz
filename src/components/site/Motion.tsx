@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
+import { Cursor } from "./Cursor";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -519,51 +520,92 @@ function useAnimEngine(pathname: string) {
   }, [pathname]);
 }
 
-/** Curtain that sweeps away when a new route mounts. */
+/** Page change (spec v4 row 10): a same-tab internal link click drops the volt curtain (0.4 s), the route changes
+ *  under it, and it lifts on the new page (0.4 s). The click is caught in the capture phase on document, before
+ *  React's root listener, so next/link sees defaultPrevented and leaves the navigation to us. Anything unusual
+ *  (modifier keys, new tab, download, hash on the same page, other origin) keeps the browser's own behaviour.
+ *  If the route never changes, the curtain lifts after 3 s anyway. */
 function PageCurtain({ pathname }: { pathname: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const first = useRef(true);
+  const router = useRouter();
+  const covering = useRef(false);
+  const failsafe = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const lift = () => {
+    const el = ref.current;
+    if (!el) return;
+    clearTimeout(failsafe.current);
+    covering.current = false;
+    gsap.to(el, {
+      yPercent: -100,
+      duration: 0.4,
+      ease: "power3.inOut",
+      delay: 0.05,
+      onComplete: () => {
+        gsap.set(el, { display: "none" });
+      },
+    });
+  };
 
   useEffect(() => {
     if (prefersReduced()) return;
-    if (first.current) {
-      first.current = false;
-      return; // preloader owns the very first entrance
-    }
-    const el = ref.current!;
-    gsap.fromTo(
-      el,
-      { yPercent: 0, display: "block" },
-      {
-        yPercent: -101,
-        duration: 0.85,
-        ease: "power4.inOut",
-        delay: 0.05,
-        onComplete: () => gsap.set(el, { display: "none" }),
-      }
-    );
-    window.scrollTo(0, 0);
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element | null)?.closest?.("a");
+      if (!a || !a.href || a.target === "_blank" || a.hasAttribute("download") || a.dataset.noCurtain !== undefined) return;
+      const url = new URL(a.href, window.location.href);
+      if (url.origin !== window.location.origin) return;
+      if (url.pathname.startsWith("/admin") || url.pathname.startsWith("/api")) return;
+      if (url.pathname === window.location.pathname && url.search === window.location.search) return; // same page / hash
+      e.preventDefault();
+      if (covering.current) return;
+      covering.current = true;
+      const el = ref.current!;
+      gsap.killTweensOf(el);
+      gsap.fromTo(
+        el,
+        { yPercent: 100, display: "flex" },
+        {
+          yPercent: 0,
+          duration: 0.4,
+          ease: "power3.inOut",
+          onComplete: () => router.push(url.pathname + url.search + url.hash),
+        }
+      );
+      failsafe.current = setTimeout(lift, 3000);
+    };
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
+
+  useEffect(() => {
+    if (!covering.current) return;
+    if (!window.location.hash) window.scrollTo(0, 0);
+    window.__lenis?.scrollTo(window.scrollY, { immediate: true });
+    lift();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   return (
-    <div
-      ref={ref}
-      aria-hidden
-      className="fixed inset-0 z-[95] hidden bg-surface"
-      style={{ display: "none" }}
-    >
-      <div className="flex h-full items-center justify-center">
-        <span className="font-display text-2xl font-bold text-ink/20">
-          SITE<span className="text-volt/40">BLITZ</span>
-        </span>
-      </div>
+    <div ref={ref} aria-hidden className="page-curtain">
+      <span className="display text-[clamp(40px,9vw,140px)]">SiteBlitz</span>
     </div>
   );
 }
 
 export function MotionProvider() {
   const pathname = usePathname();
+  const [cursor, setCursor] = useState(false);
   useLenis();
   useAnimEngine(pathname);
-  return <PageCurtain pathname={pathname} />;
+  useEffect(() => {
+    setCursor(!prefersReduced() && window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
+  return (
+    <>
+      <PageCurtain pathname={pathname} />
+      {cursor && <Cursor />}
+    </>
+  );
 }
