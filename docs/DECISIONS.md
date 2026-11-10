@@ -135,3 +135,18 @@ must ask: keep the new design, return to the previous dark design (`bada4e7`), o
 
 **Constraint whichever way:** the truth fixes, `src/lib/offer.ts`, the demos' disclosure rules and `tests/offer.test.ts`
 stay. Only the visual layer may be swapped.
+
+---
+
+## D14 — Redesign v3 is the final design: Horeca-led motion, original identity (2026-11-10)
+
+**Decision:** resolves D13. Neither the light teal design (`bdb59e8`) nor the previous dark one. The public site follows
+`docs/spec/redesign-v3-motion.md`: the motion grammar of Horeca Social (https://horeca-social.com/en, Awwwards Honorable
+Mention 2026-05-09), with PX PUSH's package focus and 1820 Productions' statement rhythm. The identity is SiteBlitz's own:
+Antonio 600 + DM Sans, ivory #F8F5EE / ink #121A1D / vermilion #C43D15. Home = 10 scenes; demos lead with licensed
+stand-in photographs. Headline "WEBSITES. FROM ₹7,999.", wipe word "VISIBLE.", hero = a textile-shop photograph.
+
+**Why:** the owner rated the light design 1/10 and asked for an award-site reference with heavy scroll motion suited
+to selling a service; 13 Awwwards 2026 sites were shortlisted, 8 captured live, and Horeca won with ChatGPT's agreement
+(2 rounds, `docs/debate/2026-11-10-motion-reference/RESULT.md`): it sells a service, keeps its motion on phones, uses
+no WebGL, and its stack (GSAP + CSS sticky, Lenis on desktop) matches ours. The owner approved with "go".

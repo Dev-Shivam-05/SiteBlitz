@@ -19,9 +19,9 @@ Status: `todo` · `doing` · `done` · `blocked`
 
 ## Now
 
-**Blocked on the founder: final design decision.** The founder does not like the new light design (`bdb59e8`+) and
-will choose between it, the previous dark design (`bada4e7`) or something else. Ask first next session (see
-`docs/HANDOFF.md`). Everything else in the first-client programme is built, tested and pushed (`cf34032`, Preview only).
+**Redesign v3 is built and pushed (Preview only).** The owner chose a new direction (D14): Horeca Social-led scroll
+motion, Antonio/DM Sans, ivory/ink/vermilion, real photographs in the demos. Spec `docs/spec/redesign-v3-motion.md`,
+phases R1–R5 below. Next: inner pages onto v3, then the founder's release decision.
 
 ## First-client programme (2026-11-01, built in one execution cycle at the founder's request)
 
@@ -33,15 +33,27 @@ will choose between it, the previous dark design (`bada4e7`) or something else. 
 | A2/A3a | Lead ref + phone normalising, Quick-add, Today view, inline edits, Telegram alerts + retry, ad-spend ledger, 08:00 brief cron | **done** (merged), e2e 24/25 → fixed |
 | H | Host-neutral geo + Netlify config/scheduled brief | **done** `aa85f7d` — no host switch yet |
 | AD | Reel (18 s) + static ad rendered from real demo captures, copy, settings, checklist | **done** `marketing/ads/` |
-| DS | Final design decision (new light vs previous dark vs other) | **blocked on founder** — ask first |
-| L1 | Production release + host decision + domain + Meta account + WhatsApp Business | **blocked on founder** (design decision, approval, logins) |
+| DS | Final design decision (new light vs previous dark vs other) | **done** 2026-11-10 — D14, redesign v3 |
+| L1 | Production release + host decision + domain + Meta account + WhatsApp Business | **blocked on founder** (approval, logins; design decided D14) |
 | A1 | Individual admin accounts (hashed, roles, audit) | todo — before the collaborator gets access |
+
+## Redesign v3 (2026-11-10, one sitting at the owner's "do not stop until the end")
+
+| # | Phase | Status |
+|---|---|---|
+| R0 | Reference shortlist + ChatGPT debate + locked spec | **done** `0607c70`, `08a377e` |
+| R1 | Demos lead with licensed photographs; credits; new demo captures | **done** `b3f46dd` |
+| R2 | Tokens, Antonio + DM Sans, pill navbar, photo hero (scroll shrink), giant price, statement, ink footer | **done** `bdef37c` |
+| R3 | Stacked demo cards + VISIBLE. type wipe | **done** `7f053d4` |
+| R4 | Packages rail, process, assembling promise, native FAQ, ink close, WhatsApp pill, desktop-only Lenis | **done** `9e6cb57` |
+| R5 | Production verification + QA fixes (portrait hero crop, focus, tap size, AA contrast) | **done** `7b5c0c1` — gate OPEN 83 (by-design conflicts, see HANDOFF) |
+| P-INNER | /pricing, /about, /services, /contact, /work, /proof onto the v3 layout and voice | todo |
 
 ## Next 3
 
-1. **Ask the founder the design question**, then keep or restyle (visual layer only, keep truth fixes + offer.ts).
-2. **Founder approval** of prices, site and ads, then L1 release on the chosen host (Netlify Free vs Vercel Pro).
-3. **Founder logins** (browser): domain (.com recommended), host, Meta Page/Ads, Telegram bot; A1 accounts before the collaborator logs in.
+1. **Owner reviews the Preview** of `v2-redesign` on a phone; collect changes in one list.
+2. **P-INNER:** inner pages onto v3 (≤ 8 files), replacing old copy such as "Violent execution".
+3. **Founder approval** of prices, site and ads, then L1 release on the chosen host (Netlify Free vs Vercel Pro).
 
 ## Transformation programme (master prompt v1.1, agreed 2026-10-31)
 

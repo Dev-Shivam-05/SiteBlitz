@@ -23,6 +23,14 @@ ode_modules` and stop those PIDs.
   never loaded in headless shots; images that are the proof (demo cards) use `loading="eager"`.
 - Start/stop servers as background tasks and stop them with TaskStop; broad `Stop-Process` patterns are blocked.
   A stale `.next` can fail the build with `ENOENT edge-runtime-webpack.js`: re-run `npm run build` (deleting `.next` is blocked).
+- `node_modules` can be missing on this device: `npm ci` first. Marketing captures (`public/demos/*`) come from
+  `next start`: dev mode stamps the "N" indicator into screenshots.
+- Under machine load (AnyDesk), three tests that import routes in `beforeAll` hit vitest's 10 s hook timeout;
+  `npx vitest run --hookTimeout 60000` tells slow from broken. Lab TBT is not comparable then either.
+- Photos: Unsplash and Codrops sit behind bot checks — do not bypass. Licensed stand-ins come from Wikimedia
+  Commons via the design skill's `photos.mjs search`; credit each in `src/lib/photos.ts` (footer line).
+- Reference sites: `docs/debate/2026-11-10-motion-reference/tools/ref-scroll.mjs --url <site> --name x [--w 390]`
+  scrolls a live site with real wheel events and probes GSAP/Lenis/WebGL/fonts/bytes; tile frames with ffmpeg.
 - E2E without touching production: run the cached `~/.cache/mongodb-binaries/mongod-x64-win32-8.2.6.exe` on a
   scratch dbpath and port, then `next start` with `MONGODB_URI` and test-only `ADMIN_*`, `JWT_SECRET`, `CRON_SECRET` env.
 
@@ -40,10 +48,15 @@ ode_modules` and stop those PIDs.
    build the GSAP scene. Never hand-write GSAP inside a component.
 6. Colours come from the `@theme` tokens in `globals.css` — `void, surface, raised, ink, muted,
    faint, volt, violet, warm, line`. No inline hex. Reusable effects are classes in `globals.css`.
-   Since 2026-11-01 the public site is **light** (void = canvas #faf9f5, volt = teal action #006b60);
+   Since 2026-11-10 the public site is **redesign v3** (D14, `docs/spec/redesign-v3-motion.md`): void = ivory #f8f5ee,
+   ink #121a1d, volt = vermilion #c43d15 (volt on ink is 3.38:1: only ≥ 24 px), Antonio 600 display + DM Sans text;
    the admin keeps the dark set via `[data-theme="dark"]` on `src/app/admin/layout.tsx`.
    `--color-warm` fails text contrast: fills and decoration only.
-   Tailwind v4 is CSS-first: there is no `tailwind.config.js` and there should not be one.
+   Tailwind v4 is CSS-first: there is no `tailwind.config.js` and there should not be one. Custom CSS outside a
+   layer beats every utility: put helper classes in `@layer components` (`.btn-volt`'s unlayered
+   `position: relative` silently overrides the `fixed` utility).
+   v3 scenes are `data-scene` / `data-*` hooks built in `Motion.tsx` (hero, rise, line, demo-stack, wipe, rail, step,
+   scatter, close); content stays readable server HTML, GSAP only transforms it.
 7. Honour `prefers-reduced-motion` everywhere; `?motion=force` is the QA override.
 
 ## Danger zones
