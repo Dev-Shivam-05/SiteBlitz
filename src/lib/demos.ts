@@ -5,6 +5,8 @@
  * Sample prices are labelled as samples on the page.
  */
 
+import type { PhotoId } from "./photos";
+
 export type DemoId = "salon" | "coaching" | "showroom";
 
 export interface DemoItem {
@@ -21,6 +23,9 @@ export interface Demo {
   brand: string;
   brandMark: string;
   theme: string;
+  /** licensed stand-in photographs (src/lib/photos.ts): the hero and one detail */
+  photo: PhotoId;
+  detailPhoto: PhotoId;
   heroKicker: string;
   heroTitle: string;
   heroText: string;
@@ -53,6 +58,8 @@ export const DEMOS: Record<DemoId, Demo> = {
     brand: "Rose & Comb",
     brandMark: "R&C",
     theme: "demo-salon",
+    photo: "salonInterior",
+    detailPhoto: "salonBasin",
     heroKicker: "Hair · Skin · Bridal",
     heroTitle: "A little time, just for you.",
     heroText:
@@ -92,6 +99,8 @@ export const DEMOS: Record<DemoId, Demo> = {
     brand: "BrightPath Classes",
     brandMark: "BP",
     theme: "demo-coaching",
+    photo: "coachingClassroom",
+    detailPhoto: "coachingChairs",
     heroKicker: "Std 8–12 · JEE / NEET foundation",
     heroTitle: "The right batch, explained clearly.",
     heroText:
@@ -131,6 +140,8 @@ export const DEMOS: Record<DemoId, Demo> = {
     brand: "Oakline Furnishings",
     brandMark: "OF",
     theme: "demo-showroom",
+    photo: "showroomInterior",
+    detailPhoto: "showroomDining",
     heroKicker: "Furniture · Décor · Custom orders",
     heroTitle: "See the collection before you visit.",
     heroText:

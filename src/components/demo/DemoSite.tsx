@@ -1,21 +1,20 @@
+import Image from "next/image";
 import Link from "next/link";
-import { BookOpen, CalendarClock, GraduationCap, Lamp, MapPin, Scissors, Sofa, Sparkles } from "lucide-react";
+import { CalendarClock, MapPin } from "lucide-react";
 import type { Demo } from "@/lib/demos";
+import { PHOTOS } from "@/lib/photos";
 import { SITE } from "@/lib/site";
 import { FROM_PRICE, inr } from "@/lib/offer";
+import { PhotoCredits } from "@/components/site/PhotoCredits";
 import { DemoEnquiry } from "./DemoEnquiry";
-
-const ART = {
-  salon: [Scissors, Sparkles],
-  coaching: [GraduationCap, BookOpen],
-  showroom: [Sofa, Lamp],
-} as const;
 
 /** One fictional business website, rendered from src/lib/demos.ts. Deliberately not wrapped in the
  *  SiteBlitz Shell: it must look like a client's own site, with SiteBlitz present only in the ribbon
- *  and the closing call to action. */
+ *  and the closing call to action. Photographs are licensed stand-ins (src/lib/photos.ts), never the
+ *  fictional business's own premises. */
 export function DemoSite({ demo }: { demo: Demo }) {
-  const [IconA, IconB] = ART[demo.id];
+  const hero = PHOTOS[demo.photo];
+  const detail = PHOTOS[demo.detailPhoto];
   return (
     <div className={`${demo.theme} demo-root min-h-screen`}>
       <div className="demo-ribbon sticky top-0 z-50 px-4 py-2 text-center text-[11px] font-semibold leading-snug sm:text-xs">
@@ -52,14 +51,16 @@ export function DemoSite({ demo }: { demo: Demo }) {
             </a>
           </div>
         </div>
-        <div className="demo-art relative aspect-[4/3.4] overflow-hidden rounded-[2rem]" aria-hidden>
-          <div className="demo-art-shape-a absolute" />
-          <div className="demo-art-shape-b absolute" />
-          <IconA className="demo-art-icon absolute left-[14%] top-[18%] h-16 w-16 md:h-20 md:w-20" strokeWidth={1.2} />
-          <IconB className="demo-art-icon absolute bottom-[16%] right-[14%] h-14 w-14 md:h-16 md:w-16" strokeWidth={1.2} />
-          <span className="demo-art-label absolute bottom-5 left-5 rounded-full px-3 py-1 text-[11px] font-semibold">
-            Illustration · real photos go here
-          </span>
+        <div className="demo-photo relative aspect-[4/3.4] overflow-hidden rounded-[2rem]">
+          {/* Eager + priority: this frame is the demo's first impression and the screenshot source for the home page */}
+          <Image
+            src={hero.src}
+            alt={hero.alt}
+            fill
+            priority
+            sizes="(min-width: 768px) 45vw, 100vw"
+            className="object-cover"
+          />
         </div>
       </section>
 
@@ -84,15 +85,20 @@ export function DemoSite({ demo }: { demo: Demo }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 py-14 md:px-8 md:py-20">
-        <h2 className="demo-heading text-2xl md:text-3xl">{demo.highlightsTitle}</h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {demo.highlights.map((h) => (
-            <div key={h.label} className="demo-soft rounded-2xl p-5">
-              <p className="font-bold">{h.label}</p>
-              <p className="mt-1.5 text-sm leading-relaxed opacity-85">{h.value}</p>
-            </div>
-          ))}
+      <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 md:grid-cols-[1fr_1.1fr] md:px-8 md:py-20">
+        <div className="demo-photo relative aspect-[4/3] overflow-hidden rounded-[2rem]">
+          <Image src={detail.src} alt={detail.alt} fill sizes="(min-width: 768px) 45vw, 100vw" className="object-cover" />
+        </div>
+        <div>
+          <h2 className="demo-heading text-2xl md:text-3xl">{demo.highlightsTitle}</h2>
+          <div className="mt-8 grid gap-4">
+            {demo.highlights.map((h) => (
+              <div key={h.label} className="demo-soft rounded-2xl p-5">
+                <p className="font-bold">{h.label}</p>
+                <p className="mt-1.5 text-sm leading-relaxed opacity-85">{h.value}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -151,6 +157,7 @@ export function DemoSite({ demo }: { demo: Demo }) {
       <footer className="px-5 py-8 text-center text-xs opacity-75 md:px-8">
         SiteBlitz concept demonstration. {demo.brand} is not a real business; no products, services or appointments
         are offered through this page. <Link href="/" className="underline">Return to SiteBlitz</Link>
+        <PhotoCredits ids={[demo.photo, demo.detailPhoto]} className="mt-2" />
       </footer>
     </div>
   );
