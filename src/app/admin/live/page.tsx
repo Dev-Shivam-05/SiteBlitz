@@ -2,6 +2,7 @@
 
 import { AdminShell, PageHeader, Card, DbNotice } from "@/components/admin/AdminShell";
 import { useApi, fmtDuration, fmtDate, flagEmoji } from "@/components/admin/useApi";
+import { LiveGlobe } from "@/components/admin/LiveGlobe";
 
 interface LiveResp {
   ok: boolean;
@@ -39,6 +40,31 @@ export default function LivePage() {
         }
       />
       <DbNotice error={error} />
+
+      {/* spec v4 row 13: the globe, with the same visitors as the list below */}
+      <Card className="mb-4 overflow-hidden">
+        <div className="grid items-center gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+          <LiveGlobe visitors={(d?.liveSessions || []).map((s) => ({ city: s.geo?.city, countryCode: s.geo?.countryCode }))} />
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-faint">On the site now</p>
+            <p className="admin-title mt-3 text-[clamp(64px,9vw,120px)] tabular-nums text-volt">{d?.liveSessions.length ?? 0}</p>
+            <p className="mt-2 text-sm text-muted">
+              {d && d.liveSessions.length === 0
+                ? "Nobody right now. Each visitor appears as a volt dot on the globe."
+                : "Each volt dot is a visitor in the last 5 minutes. Drag the globe to turn it."}
+            </p>
+            {d && d.liveSessions.length > 0 && (
+              <ul className="mt-5 flex flex-wrap gap-2">
+                {d.liveSessions.slice(0, 12).map((s) => (
+                  <li key={s.sid} className="rounded-full border border-line bg-raised px-3 py-1.5 text-xs">
+                    {flagEmoji(s.geo?.countryCode)} {s.geo?.city || s.geo?.countryCode || "Unknown"}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      </Card>
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>

@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Phone, Mail, MessageCircle, Search } from "lucide-react";
+import { Phone, Mail, MessageCircle, Search, LayoutList, Columns3 } from "lucide-react";
 import { AdminShell, PageHeader, Card, DbNotice } from "@/components/admin/AdminShell";
 import { useApi, fmtDate, sendJson } from "@/components/admin/useApi";
 import { LEAD_STATUSES, formatInr, type LeadStatus } from "@/lib/leadops";
 import { istDayStart, istYmd } from "@/lib/today";
+import { LeadBoard } from "@/components/admin/LeadBoard";
 
 interface LeadRow {
   _id: string;
@@ -110,13 +111,21 @@ export default function LeadsPage() {
   const [noteText, setNoteText] = useState("");
   const [editFor, setEditFor] = useState<string | null>(null);
   const [edit, setEdit] = useState<EditState | null>(null);
+  // spec v4 row 14: list or board, remembered on this device; a ?q= deep link always opens the list
+  const [view, setView] = useState<"list" | "board">("list");
 
   // Telegram alerts link here as /admin/leads?q=SB-XXXX. Read on mount rather than with
   // useSearchParams, which would need a Suspense boundary for the static build.
   useEffect(() => {
     const initial = new URLSearchParams(window.location.search).get("q") || "";
     if (initial) { setQInput(initial); setQ(initial); }
+    else if (localStorage.getItem("sb_leads_view") === "board") setView("board");
   }, []);
+
+  const switchView = (v: "list" | "board") => {
+    setView(v);
+    try { localStorage.setItem("sb_leads_view", v); } catch { /* private mode: not remembered */ }
+  };
 
   useEffect(() => {
     const t = setTimeout(() => { setQ(qInput.trim()); setPage(1); }, 300);
@@ -185,6 +194,20 @@ export default function LeadsPage() {
         title="Leads"
         sub={d ? `${d.total} lead${d.total === 1 ? "" : "s"}${q ? ` matching “${q}”` : ""}` : "Every enquiry, captured and scored"}
         right={
+          <div className="flex flex-wrap items-center gap-2">
+          <div role="group" aria-label="View" className="flex rounded-2xl border border-line p-1">
+            {([["list", "List", LayoutList], ["board", "Board", Columns3]] as const).map(([v, label, Icon]) => (
+              <button
+                key={v}
+                onClick={() => switchView(v)}
+                aria-pressed={view === v}
+                className={`flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold ${view === v ? "bg-volt text-void" : "text-muted hover:text-ink"}`}
+              >
+                <Icon size={14} /> {label}
+              </button>
+            ))}
+          </div>
+          {view === "list" && (
           <div className="flex flex-wrap gap-1 rounded-2xl border border-line p-1">
             {STATUSES.map((s) => (
               <button
@@ -197,6 +220,8 @@ export default function LeadsPage() {
                 {s}
               </button>
             ))}
+          </div>
+          )}
           </div>
         }
       />
@@ -215,6 +240,17 @@ export default function LeadsPage() {
 
       <DbNotice error={error} />
 
+      {view === "board" ? (
+        <LeadBoard
+          q={q}
+          onOpen={(l) => {
+            switchView("list");
+            setStatus("all");
+            setQInput(l.ref || l.name);
+          }}
+        />
+      ) : (
+      <>
       <div className="space-y-3">
         {(d?.leads || []).map((l) => {
           const due = l.nextActionAt ? dueText(l.nextActionAt) : null;
@@ -429,6 +465,8 @@ export default function LeadsPage() {
             Next →
           </button>
         </div>
+      )}
+      </>
       )}
     </AdminShell>
   );

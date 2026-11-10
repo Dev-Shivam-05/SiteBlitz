@@ -8,6 +8,7 @@ import {
 import { AdminShell, PageHeader, Card, DbNotice } from "@/components/admin/AdminShell";
 import { CapacityControl } from "@/components/admin/CapacityControl";
 import { useApi, fmtDuration, flagEmoji, fmtDate } from "@/components/admin/useApi";
+import { CountUp, Sparkline, useTokens } from "@/components/admin/Spark";
 
 interface Stats {
   ok: boolean;
@@ -32,20 +33,26 @@ const RANGES = [
   { label: "90d", days: 90 },
 ];
 
-function Kpi({ label, value, hint, prev, curr }: { label: string; value: string; hint?: string; prev?: number; curr?: number }) {
+/** KPI card (spec v4 row 15): the number counts up, the change vs the previous period sits beside it, and a
+ *  sparkline from the traffic series runs underneath where the series has that measure. */
+function Kpi({
+  label, value, format, hint, prev, curr, series,
+}: { label: string; value: number; format?: (n: number) => string; hint?: string; prev?: number; curr?: number; series?: number[] }) {
   let delta: number | null = null;
   if (prev !== undefined && curr !== undefined && prev > 0) {
     delta = Math.round(((curr - prev) / prev) * 100);
   }
   return (
-    <Card>
-      <p className="text-xs uppercase tracking-widest text-faint">{label}</p>
-      <div className="mt-2 flex items-baseline gap-2">
-        <p className="font-display text-3xl font-bold tabular-nums">{value}</p>
+    <Card className="group relative overflow-hidden">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-faint">{label}</p>
+      <div className="mt-3 flex items-baseline gap-2">
+        <p className="admin-title text-[2.1rem] tabular-nums">
+          <CountUp value={value} format={format} />
+        </p>
         {delta !== null && (
           <span
-            className={`text-xs font-semibold tabular-nums ${
-              delta > 0 ? "text-volt" : delta < 0 ? "text-red-300" : "text-faint"
+            className={`rounded-full px-2 py-0.5 text-[11px] font-semibold tabular-nums ${
+              delta > 0 ? "bg-volt/10 text-volt" : delta < 0 ? "bg-red-400/10 text-red-300" : "text-faint"
             }`}
             title="vs previous period"
           >
@@ -54,6 +61,7 @@ function Kpi({ label, value, hint, prev, curr }: { label: string; value: string;
         )}
       </div>
       {hint && <p className="mt-1 text-xs text-muted">{hint}</p>}
+      {series && <Sparkline values={series} />}
     </Card>
   );
 }
@@ -88,6 +96,7 @@ export default function AdminDashboard() {
   const [days, setDays] = useState(7);
   const { data, loading, error } = useApi<Stats>(`/api/admin/stats?days=${days}`, 30_000);
   const s = data && data.ok ? data : null;
+  const c = useTokens(["volt", "violet", "faint", "raised", "muted"] as const);
 
   return (
     <AdminShell>
@@ -126,42 +135,42 @@ export default function AdminDashboard() {
       {s && (
         <>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-            <Kpi label="Unique visitors" value={String(s.totals.visitors)} prev={s.prevTotals?.visitors} curr={s.totals.visitors} />
-            <Kpi label="Sessions" value={String(s.totals.sessions)} prev={s.prevTotals?.sessions} curr={s.totals.sessions} />
-            <Kpi label="Pageviews" value={String(s.totals.pageviews)} prev={s.prevTotals?.pageviews} curr={s.totals.pageviews} />
-            <Kpi label="Avg. session" value={fmtDuration(s.totals.avgDuration)} />
-            <Kpi label="Bounce rate" value={`${Math.round(s.totals.bounceRate)}%`} />
+            <Kpi label="Unique visitors" value={s.totals.visitors} prev={s.prevTotals?.visitors} curr={s.totals.visitors} />
+            <Kpi label="Sessions" value={s.totals.sessions} prev={s.prevTotals?.sessions} curr={s.totals.sessions} series={s.series.map((x) => x.sessions)} />
+            <Kpi label="Pageviews" value={s.totals.pageviews} prev={s.prevTotals?.pageviews} curr={s.totals.pageviews} series={s.series.map((x) => x.views)} />
+            <Kpi label="Avg. session" value={s.totals.avgDuration} format={fmtDuration} />
+            <Kpi label="Bounce rate" value={s.totals.bounceRate} format={(n) => `${Math.round(n)}%`} />
           </div>
 
           <Card className="mt-4">
             <h3 className="text-sm font-semibold">Traffic</h3>
-            <div className="mt-4 h-64">
+            <div className="mt-4 h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={s.series} margin={{ left: -18, right: 8, top: 4 }}>
                   <defs>
                     <linearGradient id="views" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#ccff00" stopOpacity={0.35} />
-                      <stop offset="100%" stopColor="#ccff00" stopOpacity={0} />
+                      <stop offset="0%" stopColor={c.volt} stopOpacity={0.35} />
+                      <stop offset="100%" stopColor={c.volt} stopOpacity={0} />
                     </linearGradient>
                     <linearGradient id="sess" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#7c5cff" stopOpacity={0.3} />
-                      <stop offset="100%" stopColor="#7c5cff" stopOpacity={0} />
+                      <stop offset="0%" stopColor={c.violet} stopOpacity={0.3} />
+                      <stop offset="100%" stopColor={c.violet} stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid stroke="rgba(245,245,240,0.06)" vertical={false} />
-                  <XAxis dataKey="date" stroke="#55555e" fontSize={11} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#55555e" fontSize={11} tickLine={false} axisLine={false} allowDecimals={false} />
+                  <XAxis dataKey="date" stroke={c.faint} fontSize={11} tickLine={false} axisLine={false} />
+                  <YAxis stroke={c.faint} fontSize={11} tickLine={false} axisLine={false} allowDecimals={false} />
                   <Tooltip
                     contentStyle={{
-                      background: "#1a1a20",
+                      background: c.raised,
                       border: "1px solid rgba(245,245,240,0.1)",
                       borderRadius: 12,
                       fontSize: 12,
                     }}
-                    labelStyle={{ color: "#9b9ba3" }}
+                    labelStyle={{ color: c.muted }}
                   />
-                  <Area type="monotone" dataKey="views" stroke="#ccff00" strokeWidth={2} fill="url(#views)" name="Pageviews" />
-                  <Area type="monotone" dataKey="sessions" stroke="#7c5cff" strokeWidth={2} fill="url(#sess)" name="Sessions" />
+                  <Area type="monotone" dataKey="views" stroke={c.volt} strokeWidth={2} fill="url(#views)" name="Pageviews" />
+                  <Area type="monotone" dataKey="sessions" stroke={c.violet} strokeWidth={2} fill="url(#sess)" name="Sessions" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
