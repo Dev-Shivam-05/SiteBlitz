@@ -1,0 +1,9 @@
+# Agenda - SiteBlitz multi-page site + SEO ranking - 2026-11-10
+
+1. Information architecture: the exact page list, URLs and main nav for a real multi-page site in the v4 theme (the live v2 had Work / Services / Pricing / Proof / Studio / Contact); which of the 10 home scenes stay on home and which move to their own page.
+2. Keyword map: one primary query + 2-3 secondary per page, chosen from the autocomplete evidence; which queries a new Gujarat studio can realistically win in 3-6 months and which belong to directories, big agencies or ads.
+3. City pages: should SiteBlitz publish service pages for Surat / Navsari / Vadodara / Ahmedabad / Vapi (all show live autocomplete demand), given the truthful-location rule ("based in Gujarat", founder in South Gujarat) and Google's doorway-page policy - and if yes, exactly what makes each page non-doorway.
+4. Brand name #1 including misspellings (Site Blitz, sitblitz, siteblits, sight blitz): domain choice, entity signals (Organization schema alternateName, sameAs, Google Business Profile, directories), Search Console + Bing Webmaster steps, and the clash with StackBlitz and a French "SiteBlitz" company.
+5. Technical SEO for the Next.js build: per-page title/H1/meta, BreadcrumbList / Service / FAQ / WebPage schema, sitemap lastModified (today it is the build time for every URL), internal linking, OG images, llms.txt, Hindi/Hinglish content for queries like "website banane ka kharcha".
+6. Performance budget for the new pages: what each inner page may load (the WebGL hero stays home-only), the home TBT of 364 ms (lab, 4x CPU), page-curtain transitions vs INP, and the CWV targets per page.
+7. Motion on inner pages: exactly which v4 scene or entrance each page gets (hero entrance + 1-2 moments), with the phone and reduced-motion versions, without copying the home.

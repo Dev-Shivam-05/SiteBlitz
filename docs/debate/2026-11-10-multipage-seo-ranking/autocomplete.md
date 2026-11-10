@@ -1,0 +1,33 @@
+# Live autocomplete 2026-11-10 (G = Google hl=en gl=in from a Gujarat IP; B = Bing en-IN; Brave's API refused the script)
+A demand signal (what people type), not a volume number. Brand rows: Google knows 'siteblitz' only as itself; Bing suggests unrelated words (stabilizer, stieglitz, site blizzard) = Bing does not know the entity.
+
+- **website development** G: ~ company in ahmedabad; ~ company; ~ in ahmedabad; ~ company in rajkot; ~ cost | B: ~ services; ~ company
+- **website development company in** G: ~ ahmedabad; ~ rajkot; ~ vadodara; ~ india; ~ bangalore; ~ delhi | B: ~ india; ~ dehradun; ~ europe
+- **website development company in surat** G: - | B: website development company surat; website development company in gurgaon; website development company in coimbatore
+- **website developer in navsari** G: web developer jobs in navsari | B: it company in navsari; website designer in varanasi; navsari is a city
+- **website designer in navsari** G: website developer in navsari | B: it company in navsari; website designer in varanasi; website designer in india
+- **website design surat** G: web design surat; website design agency surat; website design company surat; web design company surat; best website designer in surat | B: website design sutton coldfield; website design stratford upon avon
+- **web design company in gujarat** G: website designing company in gujarat; best website designing company in gujarat; dynamic website designing company in gujarat; web development companies in ahmedabad; web development companies in india | B: web design company in surat; web design company gujarat; web design company in india
+- **website development cost in india** G: ~ 2026; website design cost in india; website creation cost in india; shopify ~; wordpress ~ | B: wordpress ~; shopify ~
+- **website banane ka kharcha** G: ~ kitna aata hai; ~ kitna hota hai; ek ~; ek ~ kitna aata hai | B: website banane ka cost; ghar banane ka naksha; website banane ka tarika
+- **website kaise banaye business ke liye** G: apne business ke liye website kaise banaye; online business ke liye website kaise banaye | B: new website kaise banaye; youtube ke liye video kaise banaye; online website kaise banaye
+- **website banwana hai** G: (only itself) | B: -
+- **website for small business india** G: ecommerce ~; website builder for small business india; website designers for small business in india; best website builder for small business india; static website price for small business in india | B: top website builders for small business india; best website hosting for small business india; best website creator for small business india
+- **website for restaurant** G: ~ booking usa; ~ bookings crossword clue; ~s bookings; ~ jobs; ~ bookings america | B: ~ bookings; ~ reservations
+- **website for clinic** G: ~al trials; ~al studies; website for dental clinic; website for mayo clinic; website for cleveland clinic | B: ~al trials; clinicaltrials gov website
+- **website for doctors** G: ~ appointment; ~ note; ~ reviews; ~ without borders; websites for doctors in india | B: website for doctor ratings; website for doctor reviews
+- **one page website** G: ~ template; ~ template free; ~ examples; ~ design; ~ cost | B: ~ template; ~ examples
+- **landing page design** G: ~ templates; ~ figma; ~ ideas; ~ inspiration; ~ ai | B: ~ ideas; ~ templates
+- **ecommerce website development** G: ~ cost in india; ~ services; ~ agency; ~ company in mumbai; ~ course | B: ~ services; ~ company
+- **website in 48 hours** G: where is 48 hours; is 48 hours 2 days; 48 hour forecast | B: 48 hours official website; what is 48 hours from now; website in 24 hours
+- **cheap website design india** G: low cost website design india; what is the average cost of website design in india; cost of website design uk; cheapest website in india | B: cheap website design company india; cheap ecommerce website design india; website design in india
+- **best website designer near me** G: best website developer near me; top rated website designer near me; top rated website developer near me; best web design near me; where to buy designers for cheap | B: ~ cost; ~ reviews; ~ portfolio
+- **website developer near me** G: ~ with fees; ~ freelancer; ~ open now; ~ within 1.6 km; ~ within 800m | B: ~ reviews; ~ freelance
+- **business website price** G: ~ in india; ~ in pakistan; commercial website price; company website price; corporate website price | B: business website privacy laws; business website privacy policy template; business website privacy policy checklist
+- **website design company in ahmedabad** G: web design company in ahmedabad; web designing company in ahmedabad for fresher; ecommerce ~; website design & development company in ahmedabad; static ~ | B: website designing company in ghaziabad; web development company in ahmedabad
+- **website design vadodara** G: web design company vadodara; best website design in vadodara; web design charges; what is the average cost of website design in india | B: at design studio vadodara website
+- **website design valsad** G: - | B: -
+- **website design vapi** G: web design vapi; website design company in vapi | B: website design capital allowances; website design kapiti
+- **website redesign** G: ~ ai; ~ case study; ~ ai free; ~ cost; ~ rfp | B: ~ near me; ~ services
+- **website maintenance charges** G: ~ in india; ~ tds rate; ~ hsn code; website maintenance cost; website maintenance cost per month | B: ~ tds rate; tds on ~
+- **google business profile website** G: ~ login; ~ builder; ~ link; ~ free; ~ not approved | B: ~ login; ~ builder

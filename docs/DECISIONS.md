@@ -179,3 +179,35 @@ agency's. Restraint read as ordinary twice (light teal 1/10, v3). Speed is prote
 - Leads board loads the first 25 leads per status; the list view keeps paging. List/Board is remembered per device.
 
 **Why:** each is the lightest option that meets the spec; none adds a claim, a price or a data collection.
+
+## D17 — Multi-page site and search work, built overnight (2026-11-11)
+
+**Decision:** taken by Claude Code during the owner's 9-hour "build whatever you can; SEO must be extraordinary"
+instruction, after four ChatGPT rounds (`docs/debate/2026-11-10-multipage-seo-ranking/RESULT.md`). Each is reversible.
+- Navigation is real pages (Work, Services, Pricing, Process, Studio, Contact) from one registry (`src/lib/pages.ts`,
+  `src/lib/routes.ts`); the home page keeps all ten v4 scenes and links each to its page. FAQ joins the phone menu.
+- Brand entity: schema.org `Organization` (ProfessionalService is deprecated), region-only address, alternateName
+  "Site Blitz" only (said visibly on /faq and /about). No misspellings are written anywhere; `sameAs` waits for real
+  profiles.
+- robots.txt names search and AI crawlers and **allows the training crawlers too** (GPTBot, ClaudeBot,
+  Google-Extended, Applebot-Extended) for the widest AI visibility. ChatGPT advised separating training from search;
+  the owner can remove those names in `src/app/robots.ts`.
+- Prices: SEO & GEO (was "from Rs 9,999"), Care plans (Rs 2,499/month) and Project rescue (from Rs 17,999) now say
+  "priced by written quote": none of those prices is in `offer.ts` (D11). Landing pages keep Rs 7,999 only within the
+  Launch scope. Restore any of them only by adding it to `offer.ts`.
+- Content truth pass on every service, industry page and guide (no 48-hour promise without ready-to-build, no client
+  analytics dashboards, no ranking or Lighthouse-score promises, withdrawn Growth/Scale plans removed). Guide byline is
+  "SiteBlitz Studio": the founder's name had appeared on six posts (content rule: it never appears).
+- New original asset: the Gujarat business-listing website study (`/research/...` + Surat page), built from Overture Maps
+  Places 2026-10-21.0, counts only, aggregates offered under **CC BY 4.0** with credit to SiteBlitz and Overture.
+  Classes are named for what was measured ("low-reuse website URL", not "own website"); no business is named.
+- One Roman-Hindi guide (`/blog/website-banane-ka-kharcha`) paired with the English cost guide via hreflang
+  en / hi-Latn / hi. No templated city pages (doorway risk); no other language pages yet.
+- Inner-page motion: CSS-only hero entrance (H1 lines rise in masks, transform only, drawn volt rule, CSS-drawn
+  strokes), one or two moments per page, per-block scroll fades removed. Body font `display: optional` to stop swap
+  reflow (lab CLS 0.17 -> 0.00 on the research pages). Preloader and curtain unchanged (D15).
+- IndexNow key `public/1f93564764360cbcd2221f16935413ca.txt` (public by protocol); submission is the founder's step
+  after the domain is live (`docs/SEO-LAUNCH-CHECKLIST.md`).
+
+**Why:** the owner asked for multi-page, top search visibility and AI visibility without inventing anything; every
+choice above either removes a false or inconsistent claim or adds content only the studio can publish truthfully.

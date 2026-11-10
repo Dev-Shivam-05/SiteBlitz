@@ -69,16 +69,21 @@ on the owner's explicit 9-hour instruction, each unit committed and verified on 
 
 | # | Phase | Status |
 |---|---|---|
-| SEO-0 | ChatGPT debate: IA, keyword map, city pages, brand + misspellings, technical SEO, perf budget, inner-page motion | doing |
-| SEO-1 | Search foundation: route registry (nav, footer, sitemap, llms.txt from one list), real-page nav, footer links every indexable page, one JSON-LD graph (brand entity + alternate names), breadcrumbs, real sitemap lastmod, named AI crawlers, generated llms.txt (the static one said Mumbai, $ and withdrawn prices), v4 OG cards, root-canonical bug | doing |
-| SEO-2 | Keyword-mapped title / H1 / meta on every page; new `/faq` | todo |
-| SEO-3 | Inner pages (P-INNER) onto v4 with a hero entrance + 1-2 moments each, truthful copy | todo |
-| SEO-4 | Keyword pages agreed in the debate (cost guide, Gujarat / city pages, Hinglish guide) | todo |
-| SEO-5 | Off-site checklist for the founder (domain, Search Console, Bing, Brave submit, IndexNow, Google Business Profile, directories) | todo |
-| SEO-6 | Verification: tests + build, 390/1440 + reduced-motion shots, vitals, structured-data check, handoff | todo |
+| SEO-0 | ChatGPT debate: IA, keyword map, city pages, brand + misspellings, technical SEO, perf budget, inner-page motion | **done** 4 rounds, `RESULT.md` |
+| SEO-1 | Search foundation: route registry (nav, footer, sitemap, llms.txt from one list), real-page nav, footer links every indexable page, one JSON-LD graph, breadcrumbs, real sitemap lastmod, named crawlers, generated llms.txt, root-canonical bug | **done** `a53f286` |
+| SEO-2 | Keyword-mapped title / H1 / meta on every page (register from round 2); `/faq` | **done** `a53f286`..`7b76a74` |
+| SEO-3 | Inner pages onto v4 (P-INNER): PageHero entrance, hero figures, one or two moments per page; truthful copy; content truth pass over all JSON | **done** `80ed4ed`, `8f8f7ad` |
+| SEO-4 | Original asset: Gujarat business-listing website study + Surat page + CSV + Dataset JSON-LD; Roman-Hindi cost guide | **done** `7b5dd65`, `cfe66f7`, `5b02a82` |
+| SEO-5 | Founder off-site checklist, IndexNow key + manifest + change-only submit scripts | **done** (dry runs only) `cfe66f7` |
+| SEO-6 | Verification: tests, build, rendered-HTML audit (37 URLs, 0 problems), 1440/390/320 shots, reduced motion, lab vitals | **done** `7b76a74`, `5f2fabf` — not deployed, not pushed (see HANDOFF) |
+| SEO-7 | Validation study: what a missing / recorded website link really means (structured review sample) | todo — debate r4 Q3.1 |
+| SEO-8 | One India state/UT comparison on the same method (national host frequency once, states as anchors) | todo — debate r4 Q3.2 |
+| SEO-9 | Single-business website-link checker (Overture snapshot only; index the tool page only; licence check first) | todo — debate r4 Q3.3 |
 
 ## Next 3
 
+0. **Owner: push and review the multi-page + search build** (`git -C E:\Temp\SiteBlitz push origin v2-redesign`), then
+   the founder steps in `docs/SEO-LAUNCH-CHECKLIST.md` (name check, domain, hosting, NEXT_PUBLIC_SITE_URL, Search Console).
 1. **Owner reviews v4** on `localhost:3000` / the Preview, on a phone first; collect changes in one list.
 2. **P-INNER:** `/about`, `/services`, `/work`, `/proof`, `/contact`, `/pricing` onto the v4 layout and voice (≤ 8 files);
    they still carry old copy such as "Violent execution" and "dominate online".
