@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/site/JsonLd";
 import { Close } from "@/components/site/sections/Home";
 import { PAGES } from "@/lib/pages";
 import { STUDY, num, pct } from "@/lib/research";
+import { INDIA } from "@/lib/researchIndia";
 import { breadcrumbNode, graph, pageMeta, webPageNode, type Crumb } from "@/lib/seo";
 
 const PATH = PAGES.research.path;
@@ -19,7 +20,7 @@ const ld = graph(
   breadcrumbNode(CRUMBS)
 );
 
-/** /research: the index of studies. One study today; each new one adds a card here and a row in pages.ts. */
+/** /research: the index of studies. Each study adds a card here and a row in pages.ts. */
 export default function ResearchIndex() {
   const T = STUDY.total;
   return (
@@ -34,8 +35,24 @@ export default function ResearchIndex() {
       <section aria-label="Studies" className="bg-void pb-[14vh]">
         <div className="mx-auto max-w-[1440px] px-4 md:px-8">
           <Link
-            href={STUDY.path}
+            href={INDIA.path}
             className="group grid gap-6 rounded-3xl border border-line bg-surface p-7 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-volt/50 md:grid-cols-[1fr_auto] md:items-end md:p-10"
+          >
+            <div>
+              <p className="kicker text-volt">Study · version {INDIA.version} · {INDIA.published}</p>
+              <h2 className="display mt-4 text-[clamp(28px,7vw,40px)] md:text-[clamp(40px,3.4vw,60px)]">How often do business listings in India carry a website link?</h2>
+              <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-muted md:text-lg">
+                {num(INDIA.total.n)} listing records in 17 trades across {INDIA.states.length} states and union territories:{" "}
+                {pct(INDIA.total.n - INDIA.total.none, INDIA.total.n)} carry any website URL. State and trade tables, method and a CSV.
+              </p>
+            </div>
+            <span aria-hidden className="flex h-14 w-14 items-center justify-center rounded-full border border-line text-xl transition-all duration-300 group-hover:-rotate-45 group-hover:border-volt group-hover:bg-volt group-hover:text-void">
+              →
+            </span>
+          </Link>
+          <Link
+            href={STUDY.path}
+            className="group mt-6 grid gap-6 rounded-3xl border border-line bg-surface p-7 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-volt/50 md:grid-cols-[1fr_auto] md:items-end md:p-10"
           >
             <div>
               <p className="kicker text-volt">Study · version {STUDY.version} · {STUDY.published}</p>

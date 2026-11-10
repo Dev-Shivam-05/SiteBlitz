@@ -5,6 +5,7 @@ import { absUrl } from "./seo";
 import { PAGES, servicePages, industryPages, guidePages } from "./routes";
 import { DEEP_SERVICES } from "@/content";
 import { STUDY, num, pct } from "./research";
+import { INDIA } from "./researchIndia";
 
 /**
  * llms.txt (https://llmstxt.org) and llms-full.txt, generated from the same sources as the pages. The old static
@@ -58,6 +59,11 @@ export function llmsTxt(): string {
       `website URLs in ${num(STUDY.total.n)} Gujarat listing records (no brand recorded) across 17 trades: ${pct(STUDY.total.own, STUDY.total.n)} carry a low-reuse website URL (not a verified ownership count); by city and trade, with method, limits and CSV`
     ),
     line(PAGES.studySurat.label, PAGES.studySurat.path, "Surat's 17 trades against the rest of Gujarat, same rules"),
+    line(
+      PAGES.studyIndia.label,
+      PAGES.studyIndia.path,
+      `website URLs in ${num(INDIA.total.n)} Indian listing records across 17 trades, by state and union territory: ${pct(INDIA.total.n - INDIA.total.none, INDIA.total.n)} carry any website URL`
+    ),
     "",
     "## Guides",
     ...guidePages().map((e) => line(e.label, e.path)),

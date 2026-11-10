@@ -10,6 +10,7 @@ import sitemap from "@/app/sitemap";
 import robots from "@/app/robots";
 import { STUDY, restOfGujarat, csv as researchCsv } from "@/lib/research";
 import { BLOG_POSTS } from "@/content";
+import { INDIA } from "@/lib/researchIndia";
 
 /* SEO-1: the search surface (sitemap, nav, footer, structured data, llms.txt) is generated from one registry. These
    checks fail when a registered URL has no page, a page is unreachable, or a machine-readable file drifts from the
@@ -210,5 +211,21 @@ describe("IndexNow", () => {
     const keys = readdirSync("public").filter((f) => /^[a-f0-9]{32}\.txt$/.test(f));
     expect(keys).toHaveLength(1);
     expect(readFileSync(join("public", keys[0]), "utf8").trim()).toBe(keys[0].replace(".txt", ""));
+  });
+});
+
+describe("India study", () => {
+  it("puts every record in exactly one class and every record in a state or the unclear bucket", () => {
+    const check = (s: { n: number; own: number; shared: number; directory: number; none: number }, where: string) =>
+      expect(s.own + s.shared + s.directory + s.none, where).toBe(s.n);
+    check(INDIA.total, "India");
+    for (const s of INDIA.states) check(s, s.name);
+    expect(INDIA.states.reduce((a, s) => a + s.n, 0) + INDIA.unclear.n).toBe(INDIA.total.n);
+    expect(INDIA.trades.reduce((a, t) => a + t.n, 0)).toBe(INDIA.total.n);
+  });
+
+  it("lists only the 36 states and union territories", () => {
+    expect(INDIA.states.length).toBeLessThanOrEqual(36);
+    expect(new Set(INDIA.states.map((s) => s.name)).size).toBe(INDIA.states.length);
   });
 });
