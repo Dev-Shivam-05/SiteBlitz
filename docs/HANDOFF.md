@@ -58,3 +58,6 @@ Previous handoff (v4 showcase, V1–V6) is in git history: `git show 905c5b7:doc
 - Next phases on the board: SEO-7 validation study, SEO-8 India state comparison, SEO-9 website-link checker.
 - Watch out: `.ph-soft` must stay transform-only (opacity made hero figures the late LCP element); grid children that
   hold wide tables need `min-w-0` and the scroll box `relative` (sr-only captions escaped and widened the page).
+
+- Push result (2026-11-11 01:25 IST): `git push origin v2-redesign` was **blocked by the Claude OS guard hook** ("the check itself
+  failed (cannot read the current branch: spawnSync git ENOENT)"). The branch is 30 commits ahead; the owner runs the push.
