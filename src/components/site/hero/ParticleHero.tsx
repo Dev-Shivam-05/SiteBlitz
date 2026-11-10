@@ -78,6 +78,7 @@ export function ParticleHero({ desktopCount = 20000, phoneCount = 6000 }: { desk
     };
 
     let idle: number | undefined;
+    let cleanupWake = () => {};
     if (force || !isLowPowerDevice()) {
       const boot = () => {
         import("./particles")
@@ -99,14 +100,32 @@ export function ParticleHero({ desktopCount = 20000, phoneCount = 6000 }: { desk
           })
           .catch(fallBack);
       };
-      idle =
-        "requestIdleCallback" in window
-          ? window.requestIdleCallback(boot, { timeout: 1500 })
-          : (setTimeout(boot, 400) as unknown as number);
+      // The poster is pixel-identical to the first particle frame, so the engine can wait: it boots on the first
+      // sign of a person (pointer, touch, scroll, key) or 2 s after the page has loaded, whichever comes first,
+      // and stays out of the busy loading window.
+      let booted = false;
+      const go = () => {
+        if (booted) return;
+        booted = true;
+        cleanupWake();
+        idle = "requestIdleCallback" in window ? window.requestIdleCallback(boot, { timeout: 800 }) : (setTimeout(boot, 50) as unknown as number);
+      };
+      const wakeEvents = ["pointermove", "pointerdown", "touchstart", "scroll", "keydown"] as const;
+      wakeEvents.forEach((ev) => window.addEventListener(ev, go, { passive: true, once: true }));
+      const onLoad = () => (wakeTimer = setTimeout(go, 2000));
+      let wakeTimer: ReturnType<typeof setTimeout> | undefined;
+      if (document.readyState === "complete") onLoad();
+      else window.addEventListener("load", onLoad, { once: true });
+      cleanupWake = () => {
+        wakeEvents.forEach((ev) => window.removeEventListener(ev, go));
+        window.removeEventListener("load", onLoad);
+        clearTimeout(wakeTimer);
+      };
     }
 
     return () => {
       disposed = true;
+      cleanupWake();
       if (idle !== undefined && "cancelIdleCallback" in window) window.cancelIdleCallback(idle);
       cancelAnimationFrame(raf);
       io.disconnect();

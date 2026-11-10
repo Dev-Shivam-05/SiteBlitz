@@ -295,15 +295,20 @@ export async function createHeroEngine(o: HeroEngineOptions): Promise<HeroEngine
     gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
   };
 
-  const layout = () => {
+  // yields to the browser between the heavy steps of the first build, so none of them is a long task
+  const nextTask = () => new Promise<void>((r) => setTimeout(r, 0));
+  const layout = async (pause = false) => {
     const sr = stage.getBoundingClientRect();
     W = Math.max(1, sr.width);
     H = Math.max(1, sr.height);
     dpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
+    if (pause) await nextTask();
     if (!sampleMark(sr)) return false;
+    if (pause) await nextTask();
     samplePhone(sr);
+    if (pause) await nextTask();
     upload(bA, aA);
     upload(bB, aB);
     upload(bCol, aCol);
@@ -313,7 +318,8 @@ export async function createHeroEngine(o: HeroEngineOptions): Promise<HeroEngine
     upload(bOff, off);
     return true;
   };
-  if (!layout()) return null;
+  await nextTask();
+  if (!(await layout(true))) return null;
 
   /* pointer and finger */
   let mx = -1e5;
@@ -475,7 +481,7 @@ export async function createHeroEngine(o: HeroEngineOptions): Promise<HeroEngine
       gl.drawArrays(gl.POINTS, 0, N);
     },
     resize() {
-      if (!lost) layout();
+      if (!lost) void layout();
     },
     dispose() {
       window.removeEventListener("pointermove", onPointer);

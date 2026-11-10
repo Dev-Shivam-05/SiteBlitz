@@ -62,15 +62,18 @@ function useLenis() {
 function useAnimEngine(pathname: string) {
   useEffect(() => {
     if (prefersReduced()) return;
+    let alive = true;
     const ctx = gsap.context(() => {
       // Yielding scheduler: above-the-fold (data-now) scenes build immediately;
       // everything else is spread across idle frames so no single long task
-      // blocks the main thread (keeps Total Blocking Time low).
+      // blocks the main thread (keeps Total Blocking Time low). Each queued scene runs through ctx.add, so the
+      // context records it and reverts it on the next route; a queue left over from a previous page stops.
       const queue: (() => void)[] = [];
       const schedule = (fn: () => void) => queue.push(fn);
       const drain = () => {
+        if (!alive) return;
         const start = performance.now();
-        while (queue.length && performance.now() - start < 6) queue.shift()!();
+        while (queue.length && performance.now() - start < 6) ctx.add(queue.shift()!);
         if (queue.length) {
           if ("requestIdleCallback" in window)
             window.requestIdleCallback(drain, { timeout: 400 });
@@ -174,12 +177,14 @@ function useAnimEngine(pathname: string) {
         else schedule(() => buildAnim(el)); // deferred, yielded
       }
 
-      schedule(() => {
       /* ===== Redesign v4 scenes (docs/spec/redesign-v4-showcase.md). Phone and desktop values differ, so each
          scene is built inside one matchMedia; content is server-rendered and only transformed here. The hero is
-         driven by hero/ParticleHero.tsx (its own rAF loop and WebGL), not from here. */
+         driven by hero/ParticleHero.tsx (its own rAF loop and WebGL), not from here. Every scene is its own
+         scheduled task, so building them never adds up to one long task. */
       const v4 = gsap.matchMedia();
       const BP = { desk: "(min-width: 768px)", phone: "(max-width: 767px)" };
+
+      schedule(() => {
 
       /* Signature strokes: each volt path (pathLength=100) draws itself while its block crosses the screen.
          autoRound off: GSAP rounds px values by default, which made the stroke jump from hidden to whole. */
@@ -196,6 +201,9 @@ function useAnimEngine(pathname: string) {
         );
       }
 
+      });
+
+      schedule(() => {
       /* Giant price: rises out of its clipped section */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-rise]")) {
         v4.add(BP, (c) => {
@@ -212,6 +220,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Drift collage: every frame travels at its own speed (data-drift, ±) through the whole section, with a
          slight turn, so the captures float past the sticky heading at different depths. */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-drift]")) {
@@ -232,6 +243,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Concept wall: on tall desktops the section holds (CSS sticky) while the three cards rise and straighten in
          turn; elsewhere each card rises once as it arrives. */
       const hall = document.querySelector<HTMLElement>("[data-hall]");
@@ -258,6 +272,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Packages track: when every panel fits the screen, the section holds while the rail slides sideways by
          exactly the scroll distance; a mouse drag on the rail scrolls the page by the same amount. Otherwise
          (short screens, a panel too tall) the panels stay stacked. */
@@ -343,6 +360,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Process: a step's number fills volt once it reaches 70% of the screen */
       for (const step of gsap.utils.toArray<HTMLElement>("[data-step]")) {
         ScrollTrigger.create({
@@ -353,6 +373,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Promise: letters start scattered and assemble as the section scrolls in (scrubbed, reversible).
          SplitText keeps an aria-label with the whole phrase. Offsets are deterministic, not random per load. */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-scatter]")) {
@@ -383,6 +406,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Close: the ground turns volt when the section is 60% up the screen (and back when you return) */
       const close = document.querySelector<HTMLElement>("[data-close]");
       if (close) {
@@ -393,6 +419,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Hairlines draw once as their section arrives */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-line]")) {
         gsap.fromTo(
@@ -408,6 +437,9 @@ function useAnimEngine(pathname: string) {
         );
       }
 
+      });
+
+      schedule(() => {
       /* Hero: content zooms away and dims as you leave it (cinema hand-off) */
       const heroPin = document.querySelector<HTMLElement>("[data-hero-pin]");
       const heroContent = document.querySelector<HTMLElement>("[data-hero-content]");
@@ -427,6 +459,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Horizontal work gallery (desktop only; matchMedia re-evaluates on resize)
          + velocity skew so cards lean into fast scrolls */
       const hwrap = document.querySelector<HTMLElement>("[data-hscroll]");
@@ -455,6 +490,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Sticky card stack: each card pins, then compresses + dims under the next */
       const stacks = gsap.utils.toArray<HTMLElement>("[data-stack]");
       for (const stack of stacks) {
@@ -478,6 +516,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Section background morph: main canvas tints as chapters change */
       const shifts = gsap.utils.toArray<HTMLElement>("[data-bgshift]");
       const mainEl = document.querySelector<HTMLElement>("main");
@@ -509,6 +550,9 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      });
+
+      schedule(() => {
       /* Process progress line */
       const pline = document.querySelector<HTMLElement>("[data-progress-line]");
       if (pline) {
@@ -529,6 +573,9 @@ function useAnimEngine(pathname: string) {
         );
       }
 
+      });
+
+      schedule(() => {
       /* Marquees: GSAP-driven so scroll velocity can bend their speed */
       const marquees = gsap.utils.toArray<HTMLElement>("[data-marquee-inner]");
       if (marquees.length) {
@@ -570,6 +617,7 @@ function useAnimEngine(pathname: string) {
     });
 
     return () => {
+      alive = false;
       ctx.revert();
     };
   }, [pathname]);
