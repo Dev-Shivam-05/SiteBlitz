@@ -26,6 +26,18 @@ Previous handoff (v4 showcase, V1–V6) is in git history: `git show 905c5b7:doc
 - **Debate:** 5 ChatGPT rounds, `docs/debate/2026-11-10-multipage-seo-ranking/RESULT.md`. ChatGPT approves the three
   research pages for launch after your review; every figure is worded as "URL retained after filtering".
 
+## Files changed
+- `src/lib/pages.ts`, `src/lib/routes.ts` — one page registry for nav, footer, sitemap and llms.txt.
+- `src/lib/seo.ts`, `src/components/site/JsonLd.tsx`, `Breadcrumbs.tsx` — page metadata helper and the JSON-LD graph.
+- `src/lib/llms.ts`, `src/app/llms.txt`, `src/app/llms-full.txt` — generated llms files (static `public/llms.txt` removed).
+- `src/app/{sitemap,robots,layout,opengraph-image}.ts(x)`, `src/lib/og.tsx` + 7 route `opengraph-image.tsx` — real lastmod, named crawlers, no root canonical, OG cards.
+- `src/components/site/PageHero.tsx`, `globals.css`, `Motion.tsx`, `Preloader.tsx`, `Navbar.tsx`, `Footer.tsx` — v4 inner-page hero, CSS entrance, draw-now strokes, nav and footer from the registry.
+- `src/app/{services,services/[slug],work,process,about,contact,pricing,faq,blog,blog/[slug],for/[slug],website-in-48-hours,proof,book,tools/grader}/page.tsx` — inner pages on the v4 layout with truthful copy.
+- `src/app/research/**`, `src/lib/research.ts`, `src/lib/researchIndia.ts`, `src/components/site/ResearchParts.tsx` — Gujarat, Surat and India studies with CSV routes.
+- `src/content/generated/*.json`, `src/content/index.ts`, `src/lib/site.ts` — content truth pass, Roman-Hindi guide, FAQ groups, service lines; dead v3 sections deleted.
+- `scripts/seo-audit.mjs`, `scripts/indexnow*.mjs`, `public/<key>.txt`, `tests/seo.test.ts` — audit, IndexNow tooling, 83 new tests.
+- `docs/SEO-LAUNCH-CHECKLIST.md`, `docs/debate/2026-11-10-multipage-seo-ranking/` — founder steps and the 5-round debate.
+
 ## Verified (local production build, `next start -p 3100`)
 - `npm run build` exit 0. `npx vitest run --hookTimeout 60000`: 14 files, **261 tests** (was 178).
 - `node scripts/seo-audit.mjs --base http://localhost:3100`: 38 sitemap URLs, 41 internal links, **0 problems**

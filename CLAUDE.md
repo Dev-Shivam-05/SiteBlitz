@@ -41,6 +41,20 @@ ode_modules` and stop those PIDs.
 - E2E without touching production: run the cached `~/.cache/mongodb-binaries/mongod-x64-win32-8.2.6.exe` on a
   scratch dbpath and port, then `next start` with `MONGODB_URI` and test-only `ADMIN_*`, `JWT_SECRET`, `CRON_SECRET` env.
 
+## Search and inner pages (learned 2026-11-11, SEO-0..8)
+- A new public page is registered in `src/lib/pages.ts` (or derived in `src/lib/routes.ts`); `tests/seo.test.ts` fails
+  if a registered URL has no page, a footer link 404s or an indexable page is unreachable. Metadata comes from
+  `pageMeta()` in `src/lib/seo.ts`; structured data from its node builders (never hand-written JSON-LD).
+- Rendered check: `node scripts/seo-audit.mjs --base http://localhost:3100` against `next start` (canonicals, h1,
+  unique titles/descriptions, JSON-LD ids, OG images, every internal link).
+- Inner-page heroes use `PageHero`; `.ph-soft` must stay transform-only (an opacity fade made hero figures the late LCP
+  element, 2.8-3.4 s). Hero text lines of 16-17 characters at most on long headings, or the display font re-wraps on load.
+- A wide table needs its scroll box `relative` (an sr-only `<caption>` escaped and widened the page) and grid children
+  `[&>*]:min-w-0`. The body font is `display: optional` on purpose (swap reflow gave CLS 0.17).
+- Research pages: every figure is a "URL retained after filtering" (the extract keeps one filtered URL per record);
+  never "has a website" or "own website". Data comes from `E:\SiteBlitz-World-Business-Data` via scratch scripts in
+  `E:	mp\_sb_research`; counts only, no business names.
+
 ## Conventions — follow these, don't improve them
 1. API routes return `{ ok: boolean, ... }`; errors `{ ok:false, error }` with a real status code.
    `/api/track` is the deliberate exception: always 204, never throws.

@@ -19,9 +19,10 @@ Status: `todo` · `doing` · `done` · `blocked`
 
 ## Now
 
-**Redesign v4 "showcase" is built (D15, V1–V6).** One dark brand for the site and the admin: WebGL particle hero that
-flies into a concept phone, drawn volt strokes, drift collage, concept wall, sideways package track, Ctrl+K admin with a
-live globe and a leads board. Spec `docs/spec/redesign-v4-showcase.md`. Next: the owner reviews it, then inner pages.
+**Multi-page + search build is done locally (SEO-0..6, SEO-8; 2026-11-11, D17).** Real-page navigation in the v4 theme,
+inner pages redesigned with truthful copy, one JSON-LD graph, generated llms.txt, Gujarat / Surat / India research studies,
+Roman-Hindi cost guide, IndexNow tooling. 261 tests; rendered audit 38 URLs, 0 problems. Not pushed (guard hook), not
+deployed. Next: the owner pushes and reviews, then the founder steps in `docs/SEO-LAUNCH-CHECKLIST.md`.
 
 ## First-client programme (2026-11-01, built in one execution cycle at the founder's request)
 
