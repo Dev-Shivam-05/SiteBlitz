@@ -90,3 +90,6 @@
 - Owner review of v4, then Phase P-INNER: `/about`, `/services`, `/work`, `/proof`, `/contact`, `/pricing` onto the v4 layout and voice (≤ 8 files).
 - First command: `git -C E:\Temp\SiteBlitz push origin v2-redesign` (if not pushed), then open the Preview on a phone.
 - Watch out for: scenes must stay separate `schedule()` tasks run through `ctx.add` in `Motion.tsx`, or they leak across client navigations. `overflow: hidden` on any ancestor of a sticky stage silently kills the pin (use `overflow: clip`).
+
+- Push result (2026-11-10): `git push origin v2-redesign` was **blocked by the Claude OS guard hook** (its own check failed:
+  `git log --format=%H%x00%B%x01 v2-redesign 2> --not --remotes=origin`). Branch is 18 commits ahead; the owner runs the push.
