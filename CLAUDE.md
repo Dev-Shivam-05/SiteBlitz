@@ -29,8 +29,15 @@ ode_modules` and stop those PIDs.
   `npx vitest run --hookTimeout 60000` tells slow from broken. Lab TBT is not comparable then either.
 - Photos: Unsplash and Codrops sit behind bot checks — do not bypass. Licensed stand-ins come from Wikimedia
   Commons via the design skill's `photos.mjs search`; credit each in `src/lib/photos.ts` (footer line).
+- Scroll scenes: `node scripts/frames.mjs --page / --width 1440 --at "[data-hall]:0.5,#pricing:0.3" [--hover sel]
+  [--eval js] [--cookie ..]` shoots one Chrome session at many scroll positions (pinned/sticky scenes; real-mouse hover).
+- Admin with data: start the scratch mongod + `next start -p 3100` (see E2E line below), then `node scripts/e2e-seed.mjs`
+  runs VERIFY section E 1-6, seeds 12 QA leads and 8 visits through the real API and prints the admin cookie.
 - Reference sites: `docs/debate/2026-11-10-motion-reference/tools/ref-scroll.mjs --url <site> --name x [--w 390]`
   scrolls a live site with real wheel events and probes GSAP/Lenis/WebGL/fonts/bytes; tile frames with ffmpeg.
+- GSAP rounds px values (`autoRound`): sub-pixel props such as `strokeDashoffset` need `autoRound: false`.
+  `overflow: hidden` on an ancestor kills `position: sticky` (it becomes the scroll container): use `overflow: clip`.
+  With Lenis on, `scrollIntoView` does not move the page in tests: use `window.__lenis.scrollTo(y, {immediate:true})`.
 - E2E without touching production: run the cached `~/.cache/mongodb-binaries/mongod-x64-win32-8.2.6.exe` on a
   scratch dbpath and port, then `next start` with `MONGODB_URI` and test-only `ADMIN_*`, `JWT_SECRET`, `CRON_SECRET` env.
 
@@ -48,15 +55,19 @@ ode_modules` and stop those PIDs.
    build the GSAP scene. Never hand-write GSAP inside a component.
 6. Colours come from the `@theme` tokens in `globals.css` — `void, surface, raised, ink, muted,
    faint, volt, violet, warm, line`. No inline hex. Reusable effects are classes in `globals.css`.
-   Since 2026-11-10 the public site is **redesign v3** (D14, `docs/spec/redesign-v3-motion.md`): void = ivory #f8f5ee,
-   ink #121a1d, volt = vermilion #c43d15 (volt on ink is 3.38:1: only ≥ 24 px), Antonio 600 display + DM Sans text;
-   the admin keeps the dark set via `[data-theme="dark"]` on `src/app/admin/layout.tsx`.
+   Since 2026-11-10 (D15) the site and the admin share **redesign v4 "showcase"** (`docs/spec/redesign-v4-showcase.md`):
+   void #0a0a0c, ink #f5f5f0, volt #ccff00 (text on volt is void), Mona Sans 800 at 125% width (`.display`) with
+   Instrument Serif italic accent words (`.serif`) and DM Sans text. `[data-theme="dark"]` on the admin layout is only a
+   scope hook now; the root tokens are the same set.
    `--color-warm` fails text contrast: fills and decoration only.
    Tailwind v4 is CSS-first: there is no `tailwind.config.js` and there should not be one. Custom CSS outside a
    layer beats every utility: put helper classes in `@layer components` (`.btn-volt`'s unlayered
    `position: relative` silently overrides the `fixed` utility).
-   v3 scenes are `data-scene` / `data-*` hooks built in `Motion.tsx` (hero, rise, line, demo-stack, wipe, rail, step,
-   scatter, close); content stays readable server HTML, GSAP only transforms it.
+   v4 scenes are data-* hooks built in `Motion.tsx`: `data-draw` (volt strokes, pathLength 100), `data-rise`,
+   `data-drift`, `data-hall`, `data-htrack` (adds `.is-track` only when every panel fits), `data-step`, `data-scatter`,
+   `data-close` (`.is-lit`). The hero is NOT in Motion.tsx: `hero/ParticleHero.tsx` runs its own rAF, writes `--p` on
+   `[data-hero]` for the CSS, and lazy-loads the WebGL engine `hero/particles.ts` (static poster fallback).
+   Every scene is its own `schedule()` task and runs through `ctx.add`, or it leaks across client navigations.
 7. Honour `prefers-reduced-motion` everywhere; `?motion=force` is the QA override.
 
 ## Danger zones

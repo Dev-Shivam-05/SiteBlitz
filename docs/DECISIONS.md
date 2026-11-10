@@ -163,3 +163,19 @@ Main reference Lando Norris (Awwwards SOTY 2025), WebGL moment after Lusion (SOT
 **Why:** the owner rated v3 "not worth it": the site is SiteBlitz's portfolio piece and must impress like an award
 agency's. Restraint read as ordinary twice (light teal 1/10, v3). Speed is protected by deferral and fallbacks
 (static poster, low-power detection, reduced motion), not by dropping the effects.
+
+---
+
+## D16 — Choices made while building v4 (2026-11-10)
+
+**Decision:** recorded here because the build had to pick them; all within the approved D15 spec.
+- Hero headline "Websites people *remember.*"; the particles fly into the **showroom** concept (`/demo/showroom`), the
+  one demo whose capture reads best as a phone. The static wordmark is the poster, so no-WebGL looks the same.
+- The particle engine is plain WebGL 1 (no three.js, ~4 KB gz). It boots on the first pointer/touch/scroll/key or 2 s
+  after load: lab TBT on `/` fell from 748 to 364 ms (mobile 4x CPU); LCP 1.28 s, CLS 0.001.
+- `cobe` (MIT, ~7 KB) added for the admin Live globe. Visitors carry only country + city, so dots sit on a static
+  centroid table (`src/lib/geo-centroids.ts`); no coordinates are collected.
+- The footer credits only the three photographs the v4 home shows (the textile-shop hero photo left with v3).
+- Leads board loads the first 25 leads per status; the list view keeps paging. List/Board is remembered per device.
+
+**Why:** each is the lightest option that meets the spec; none adds a claim, a price or a data collection.

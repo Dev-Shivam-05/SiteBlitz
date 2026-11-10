@@ -19,9 +19,9 @@ Status: `todo` · `doing` · `done` · `blocked`
 
 ## Now
 
-**Redesign v3 is built and pushed (Preview only).** The owner chose a new direction (D14): Horeca Social-led scroll
-motion, Antonio/DM Sans, ivory/ink/vermilion, real photographs in the demos. Spec `docs/spec/redesign-v3-motion.md`,
-phases R1–R5 below. Next: inner pages onto v3, then the founder's release decision.
+**Redesign v4 "showcase" is built (D15, V1–V6).** One dark brand for the site and the admin: WebGL particle hero that
+flies into a concept phone, drawn volt strokes, drift collage, concept wall, sideways package track, Ctrl+K admin with a
+live globe and a leads board. Spec `docs/spec/redesign-v4-showcase.md`. Next: the owner reviews it, then inner pages.
 
 ## First-client programme (2026-11-01, built in one execution cycle at the founder's request)
 
@@ -47,7 +47,7 @@ phases R1–R5 below. Next: inner pages onto v3, then the founder's release deci
 | R3 | Stacked demo cards + VISIBLE. type wipe | **done** `7f053d4` |
 | R4 | Packages rail, process, assembling promise, native FAQ, ink close, WhatsApp pill, desktop-only Lenis | **done** `9e6cb57` |
 | R5 | Production verification + QA fixes (portrait hero crop, focus, tap size, AA contrast) | **done** `7b5c0c1` — gate OPEN 83 (by-design conflicts, see HANDOFF) |
-| P-INNER | /pricing, /about, /services, /contact, /work, /proof onto the v3 layout and voice | todo |
+| P-INNER | /pricing, /about, /services, /contact, /work, /proof onto the v4 layout and voice | todo |
 
 ## Redesign v4 "showcase" (2026-11-10, owner: "go for all do not stop until everything is done")
 
@@ -55,17 +55,18 @@ Spec: `docs/spec/redesign-v4-showcase.md` (D15). Supersedes v3 visually.
 
 | # | Phase | Status |
 |---|---|---|
-| V1 | Dark tokens, Mona Sans + Instrument Serif, preloader, cursor, magnetic buttons, volt page curtain | doing |
-| V2 | WebGL particle hero (wordmark → showroom phone) with static poster | todo |
-| V3 | Signature strokes, drift collage + hall of fame, sideways packages, process path, close, footer | todo |
-| V4 | Admin shell: command bar, shortcuts, phone tab bar, aria-current, drawer a11y | todo |
-| V5 | Admin Live globe, Leads board, Overview KPI count-up + sparklines | todo |
-| V6 | Full verification (public + admin, reduced motion, vitals), handoff, push | todo |
+| V1 | Dark tokens, Mona Sans + Instrument Serif, preloader, cursor, magnetic buttons, volt page curtain | **done** `6f3356d` |
+| V2 | WebGL particle hero (wordmark → showroom phone) with static poster | **done** `7f26ffb` |
+| V3 | Signature strokes, drift collage + hall of fame, sideways packages, process path, close, footer | **done** `5b6a77d` |
+| V4 | Admin shell: command bar, shortcuts, phone tab bar, aria-current, drawer a11y | **done** `dd01c63` |
+| V5 | Admin Live globe, Leads board, Overview KPI count-up + sparklines | **done** `c571f9b` |
+| V6 | Full verification (public + admin, reduced motion, vitals), handoff, push | **done** `d5de77a` — push: see HANDOFF |
 
 ## Next 3
 
-1. **Owner reviews the Preview** of `v2-redesign` on a phone; collect changes in one list.
-2. **P-INNER:** inner pages onto v3 (≤ 8 files), replacing old copy such as "Violent execution".
+1. **Owner reviews v4** on `localhost:3000` / the Preview, on a phone first; collect changes in one list.
+2. **P-INNER:** `/about`, `/services`, `/work`, `/proof`, `/contact`, `/pricing` onto the v4 layout and voice (≤ 8 files);
+   they still carry old copy such as "Violent execution" and "dominate online".
 3. **Founder approval** of prices, site and ads, then L1 release on the chosen host (Netlify Free vs Vercel Pro).
 
 ## Transformation programme (master prompt v1.1, agreed 2026-10-31)
