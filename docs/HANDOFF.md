@@ -26,7 +26,7 @@
   - No overflow and no console errors on 12 pages at 320 / 390 / 1440.
   - Scroll captures at 1440 and 390 show every scene firing.
   - Lab LCP 1.79 s, CLS 0.
-- **Pushed:** branch `v2-redesign` (Preview only). Production is untouched.
+- **Committed, NOT pushed:** 9 commits on `v2-redesign` (`0607c70`..HEAD). The Claude OS guard hook blocked `git push` (its own check failed: `git log ... --not --remotes=origin`). Owner runs `git push origin v2-redesign` (Preview only; production untouched).
 
 ## Files changed
 - `docs/debate/2026-11-10-motion-reference/*` — reference shortlist evidence, 2 ChatGPT rounds, RESULT, `tools/ref-scroll.mjs` (live scroll capture + probe).
