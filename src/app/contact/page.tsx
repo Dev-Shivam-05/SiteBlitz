@@ -11,7 +11,7 @@ import { ORG_ID, breadcrumbNode, graph, pageMeta, webPageNode, type Crumb } from
 
 const PATH = PAGES.contact.path;
 const TITLE = "Contact the Website Studio";
-const DESCRIPTION = `Tell SiteBlitz about your business on WhatsApp (${SITE.phone}) or with the short form. We reply ${SITE.replyHours} with a matching demo, the price and next steps.`;
+const DESCRIPTION = `Tell SiteBlitz about your business on WhatsApp (${SITE.phone}) or the short form. Replies ${SITE.replyHours} with a demo, the price and next steps.`;
 const CRUMBS: Crumb[] = [{ name: "Contact", path: PATH }];
 
 export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PATH });

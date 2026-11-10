@@ -11,7 +11,7 @@ import { absUrl, breadcrumbNode, graph, pageMeta, webPageNode, type Crumb } from
 const PATH = PAGES.process.path;
 const TITLE = "Website Design & Build Process";
 const DESCRIPTION =
-  "How a SiteBlitz website goes from your first WhatsApp message to launch: four steps, what you provide, what starts the delivery clock and what happens at handover.";
+  "How a SiteBlitz website goes from first WhatsApp message to launch: four steps, what you provide and what starts the delivery clock.";
 const CRUMBS: Crumb[] = [{ name: "Process", path: PATH }];
 
 export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PATH });

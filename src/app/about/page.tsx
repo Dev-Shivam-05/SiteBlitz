@@ -12,7 +12,7 @@ import { ORG_ID, breadcrumbNode, graph, pageMeta, webPageNode, type Crumb } from
 const PATH = PAGES.about.path;
 const TITLE = "About SiteBlitz, a Gujarat-based Website Studio";
 const DESCRIPTION =
-  "SiteBlitz is a small website studio based in Gujarat, working with businesses across India: demo first, price and scope in writing, the site handed over in your name.";
+  "SiteBlitz is a small website studio based in Gujarat, working across India: demo first, price and scope in writing, the site handed over in your name.";
 const CRUMBS: Crumb[] = [{ name: "Studio", path: PATH }];
 
 export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PATH });

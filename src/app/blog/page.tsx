@@ -1,14 +1,23 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
 import { BLOG_POSTS } from "@/content";
+import { PageHero } from "@/components/site/PageHero";
+import { JsonLd } from "@/components/site/JsonLd";
+import { Close } from "@/components/site/sections/Home";
+import { PAGES } from "@/lib/pages";
+import { breadcrumbNode, graph, pageMeta, webPageNode, type Crumb } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Insights — Honest Notes on Websites That Sell",
-  description:
-    "No AI-farm listicles. Practical, honest writing on websites, speed, local SEO and AI search for business owners in India and beyond.",
-  alternates: { canonical: "/blog" },
-};
+const TITLE = "Small Business Website Guides";
+const DESCRIPTION =
+  "Plain guides on website costs, planning, Google visibility, speed and AI search for business owners in India, in English and Hindi (Roman script).";
+const CRUMBS: Crumb[] = [{ name: "Guides", path: PAGES.blog.path }];
+
+export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PAGES.blog.path });
+
+const ld = graph(
+  webPageNode({ path: PAGES.blog.path, name: TITLE, description: DESCRIPTION, type: "CollectionPage", crumbs: CRUMBS, dateModified: PAGES.blog.updated }),
+  breadcrumbNode(CRUMBS)
+);
 
 const CLUSTER_LABEL: Record<string, string> = {
   "smb-india": "Websites for Indian SMBs",
@@ -18,28 +27,29 @@ const CLUSTER_LABEL: Record<string, string> = {
 export default function BlogIndex() {
   return (
     <Shell>
-      <section className="mx-auto max-w-7xl px-5 pb-14 pt-32 md:px-8 md:pt-44">
-        <p className="text-xs uppercase tracking-[0.25em] text-volt">
-          Insights
-        </p>
-        <h1 className="font-display mt-3 text-4xl font-bold tracking-tight md:text-7xl" data-anim="chars" data-now>
-          Notes from the <span className="font-accent italic text-volt">build floor</span>
-        </h1>
-        <p className="mt-6 max-w-xl text-muted">
-          Written by a human who ships websites, not a content farm. Every piece is something we
-          actually explain to clients — published so you can use it even if you never hire us.
-        </p>
-      </section>
+      <JsonLd data={ld} />
+      <PageHero
+        crumbs={CRUMBS}
+        kicker="Guides"
+        lines={["Website guides", <span key="g" className="serif text-volt">for business owners.</span>]}
+        lead={
+          <p>
+            What a website costs, what it must have, how Google and AI tools find it, and how to judge a quote. Useful even
+            if you never hire us. One guide is also in Hindi (Roman script).
+          </p>
+        }
+      />
 
-      <section className="mx-auto max-w-7xl px-5 pb-24 md:px-8">
-        <div className="grid gap-4 md:grid-cols-2">
+      <section aria-label="All guides" className="mx-auto max-w-[1440px] px-4 pb-[12vh] md:px-8">
+        <div className="grid gap-4 md:grid-cols-2 [&>*]:min-w-0">
           {BLOG_POSTS.map((p, i) => (
             <Link
               key={p.slug}
               href={`/blog/${p.slug}`}
               data-track={`blog_card_${p.slug}`}
               data-cursor-label="Read"
-              className="group flex flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-colors hover:border-volt/30"
+              lang={p.lang}
+              className="group flex flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-volt/40"
             >
               <div>
                 <p className="text-[10px] uppercase tracking-[0.25em] text-volt">
@@ -62,6 +72,7 @@ export default function BlogIndex() {
           ))}
         </div>
       </section>
+      <Close />
     </Shell>
   );
 }

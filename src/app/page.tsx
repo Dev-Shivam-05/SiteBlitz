@@ -18,9 +18,9 @@ import { faqNode, graph, pageMeta, webPageNode } from "@/lib/seo";
 import { JsonLd } from "@/components/site/JsonLd";
 
 const TITLE = "SiteBlitz — Gujarat-based Website Design & Development Studio";
-const DESCRIPTION = `SiteBlitz is a Gujarat-based website studio for businesses across India. One-page websites from ${inr(
-  FROM_PRICE
-)}, three pages ${inr(businessPkg.priceInr as number)}. See working demos and review a concept before you pay.`;
+const DESCRIPTION = `Gujarat-based website studio for businesses across India. One page ${inr(FROM_PRICE)}, three pages ${inr(
+  businessPkg.priceInr as number
+)}. See working demos and a concept before you pay.`;
 
 export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: "/", absoluteTitle: true });
 

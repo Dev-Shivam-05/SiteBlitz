@@ -52,8 +52,11 @@ export function pageMeta(m: PageMetaInput): Metadata {
       description: m.description,
       ...(m.publishedTime ? { publishedTime: m.publishedTime } : {}),
       ...(m.modifiedTime ? { modifiedTime: m.modifiedTime } : {}),
+      // A page-level openGraph object replaces the parent's, which dropped the root card on every page without its
+      // own opengraph-image file (found by scripts/seo-audit.mjs). A segment's own opengraph-image file still wins.
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "SiteBlitz, a Gujarat-based website studio" }],
     },
-    twitter: { card: "summary_large_image", title: fullTitle, description: m.description },
+    twitter: { card: "summary_large_image", title: fullTitle, description: m.description, images: ["/opengraph-image"] },
   };
 }
 

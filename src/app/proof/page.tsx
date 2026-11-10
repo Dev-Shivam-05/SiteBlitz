@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMeta } from "@/lib/seo";
 import { Shell } from "@/components/site/Shell";
 import { dbConnect, dbConfigured } from "@/lib/db";
 import { Session, Pageview } from "@/lib/models";
@@ -9,12 +9,12 @@ import { SITE } from "@/lib/site";
 // number on the strip stays real-time via /api/proof polling.
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: "Live Proof — Real Numbers, Publicly Measured",
+export const metadata = pageMeta({
+  title: "Website Performance & Test Methods",
   description:
-    "SiteBlitz publishes its own live analytics: real visitors, real-user Core Web Vitals, and deploy history, measured on this site and published as it happens.",
-  alternates: { canonical: "/proof" },
-};
+    "This site's own live numbers: real visits and real-user Core Web Vitals, measured on this site and published as they happen, with how each figure is measured.",
+  path: "/proof",
+});
 
 function median(values: number[]): number | null {
   if (!values.length) return null;
@@ -116,8 +116,8 @@ async function ProofContent() {
         </h1>
         <p className="mt-6 max-w-xl text-muted" data-anim="fade-up" data-now data-delay="0.3">
           Most agency websites show you counters that animate to invented numbers. This page is
-          the opposite: everything below is measured by our own analytics engine — the same one we
-          build for clients — from real visits to this site.{" "}
+          the opposite: everything below is measured by this site&rsquo;s own first-party analytics,
+          from real visits to this site.{" "}
           <span className="font-accent italic text-ink">No estimates. No decoration.</span>
         </p>
 
@@ -232,12 +232,11 @@ async function ProofContent() {
       <section className="border-t border-line">
         <div className="mx-auto max-w-5xl px-5 py-16 text-center md:px-8 md:py-24">
           <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
-            Want your website measured like this?
+            How does your website compare?
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm text-muted" data-anim="fade-up">
-            Every site we ship includes this same first-party analytics engine — visitors, sources,
-            funnels and Core Web Vitals — in your own private dashboard. Or start by grading your
-            current site free.
+            Run the free website check on your current site: 20 checks on SEO basics, speed signals,
+            mobile setup and trust, in about ten seconds.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4" data-anim="fade-up">
             <a href="/tools/grader" data-track="proof_to_grader" className="btn-volt rounded-full px-7 py-4 text-sm font-semibold">

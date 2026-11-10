@@ -130,7 +130,16 @@ export default async function PostPage({
         p.author === "SiteBlitz Studio" ? { "@id": ORG_ID } : { "@type": "Person", name: p.author, jobTitle: p.authorRole },
       publisher: { "@id": ORG_ID },
       mainEntityOfPage: { "@id": `${absUrl(path)}#webpage` },
-      ...(otherLangs.length ? { workTranslation: otherLangs.map(([, s]) => ({ "@id": `${absUrl(postPath(s))}#article` })) } : {}),
+      ...(otherLangs.length
+        ? {
+            workTranslation: otherLangs.map(([lang, s]) => ({
+              "@type": "BlogPosting",
+              "@id": `${absUrl(postPath(s))}#article`,
+              url: absUrl(postPath(s)),
+              inLanguage: lang,
+            })),
+          }
+        : {}),
     },
     {
       "@type": "FAQPage",
