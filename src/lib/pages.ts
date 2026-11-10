@@ -41,6 +41,7 @@ export const PAGES = {
   blog: p("/blog", "Guides", "2026-11-11", 0.6, "weekly"),
   research: p("/research", "Research", "2026-11-11", 0.6),
   studyGujarat: p("/research/gujarat-business-websites-2026", "Gujarat business website data 2026", "2026-11-11", 0.8),
+  studySurat: p("/research/gujarat-business-websites-2026/surat", "Surat business website data 2026", "2026-11-11", 0.7),
   privacy: p("/privacy", "Privacy policy", "2026-11-01", 0.2, "yearly"),
   terms: p("/terms", "Terms of service", "2026-11-01", 0.2, "yearly"),
   refunds: p("/refunds", "Refund policy", "2026-11-01", 0.2, "yearly"),

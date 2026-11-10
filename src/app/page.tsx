@@ -17,7 +17,7 @@ import { PAGES } from "@/lib/pages";
 import { faqNode, graph, pageMeta, webPageNode } from "@/lib/seo";
 import { JsonLd } from "@/components/site/JsonLd";
 
-const TITLE = "SiteBlitz — Website Design & Development Studio in Gujarat";
+const TITLE = "SiteBlitz — Gujarat-based Website Design & Development Studio";
 const DESCRIPTION = `SiteBlitz is a Gujarat-based website studio for businesses across India. One-page websites from ${inr(
   FROM_PRICE
 )}, three pages ${inr(businessPkg.priceInr as number)}. See working demos and review a concept before you pay.`;

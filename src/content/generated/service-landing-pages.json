@@ -4,7 +4,7 @@
   "name": "Landing Pages",
   "eyebrow": "One page, one action",
   "headline": "Landing pages built around *one action*.",
-  "promise": "A single page for one offer or one ad campaign, arranged around one action such as a WhatsApp message or an enquiry. It is the one-page Launch package: ₹7,999, live 2 working days after ready-to-build.",
+  "promise": "A single page for one offer or one ad campaign, arranged around one action such as a WhatsApp message or an enquiry. A one-page landing page within the Launch package is ₹7,999, live 2 working days after ready-to-build. Requirements outside the package are priced by written quote.",
   "startingPriceINR": 7999,
   "timeline": "2 working days after ready-to-build",
   "included": [
@@ -82,6 +82,10 @@
     {
       "q": "What do you need from me to start?",
       "a": "The offer, the page text, your logo and photos, and access to your domain. Anything missing, we flag before the clock starts."
+    },
+    {
+      "q": "Is every landing page ₹7,999?",
+      "a": "Only one that fits the Launch package: one responsive page, your business information, WhatsApp and call buttons, basic technical SEO and one revision round. Integrations, tracking set-ups or custom features are priced by written quote."
     }
   ],
   "relatedWorkSlugs": [

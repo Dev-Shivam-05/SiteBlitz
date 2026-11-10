@@ -45,7 +45,7 @@
     },
     {
       "type": "p",
-      "text": "Here's the uncomfortable part: a cheap quote doesn't shrink all five lines. It deletes three of them. You get engineering-free design, content pasted as-is, and no maintenance plan — which is fine right up until it isn't."
+      "text": "A low quote is not automatically bad work. But whatever a quote leaves out of these five lines becomes your job, or a charge later, so ask which lines it covers."
     },
     {
       "type": "h2",
@@ -58,7 +58,7 @@
     {
       "type": "list",
       "items": [
-        "Client-side rendering that Google struggles to index, so the site technically exists but never ranks",
+        "Main content that search engines find hard to read, because nobody checked how the pages render",
         "Ten unoptimised images per page, each a multi-megabyte photo straight off a phone",
         "Shared hosting that slows to a crawl exactly when traffic arrives",
         "No analytics, so nobody ever learns the site isn't working",
@@ -131,7 +131,7 @@
   "faq": [
     {
       "q": "Is a ₹3,000 website ever worth it?",
-      "a": "Sometimes — if you only need a digital visiting card and you understand that nothing under the hood is engineered. Don't expect it to rank on Google, load fast on mobile, or generate leads. It's a placeholder, not a growth asset."
+      "a": "It can be, for simple needs. ₹3,000 here is only an example, not a SiteBlitz package. Don't decide on price alone: check a demo, how it works on a phone, the scope, renewal charges and what is handed over to you."
     },
     {
       "q": "What does SiteBlitz charge, and what's included?",

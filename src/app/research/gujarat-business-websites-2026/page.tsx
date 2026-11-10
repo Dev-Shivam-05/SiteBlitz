@@ -3,26 +3,28 @@ import { Shell } from "@/components/site/Shell";
 import { PageHero } from "@/components/site/PageHero";
 import { JsonLd } from "@/components/site/JsonLd";
 import { Close, Stroke } from "@/components/site/sections/Home";
+import { Legend, MethodList, SplitBar, TradeCategories, splitLabel } from "@/components/site/ResearchParts";
 import { PAGES } from "@/lib/pages";
 import { SITE } from "@/lib/site";
 import { absUrl, breadcrumbNode, graph, ORG_ID, pageMeta, webPageNode, type Crumb } from "@/lib/seo";
 import {
-  STUDY,
-  cityAnchor,
-  detailCities,
+  CITY_PAGES,
   DETAIL_CITY_MIN,
   MIN_CELL,
+  STUDY,
+  cityAnchor,
+  cityPath,
+  detailCities,
   num,
   pct,
   share,
   tradesByOwnShare,
-  type Split,
 } from "@/lib/research";
 
 const PATH = STUDY.path;
 const T = STUDY.total;
 const TITLE = "Gujarat Business Website Data 2026";
-const DESCRIPTION = `${pct(T.own, T.n)} of ${num(T.n)} local-trade listing records in Gujarat link to a website of their own. City and trade tables, method and CSV, from Overture's October 2026 data.`;
+const DESCRIPTION = `Website links in ${num(T.n)} Gujarat listing records across 17 selected trades, from Overture's October 2026 data: city and trade tables, method and CSV.`;
 const CRUMBS: Crumb[] = [
   { name: "Research", path: PAGES.research.path },
   { name: "Gujarat business websites 2026", path: PATH },
@@ -37,26 +39,16 @@ export const metadata = pageMeta({
   modifiedTime: STUDY.updated,
 });
 
-const live = STUDY.validation.liveCheck;
-const answered = live.outcomes.answered ?? 0;
-
 const ld = graph(
-  webPageNode({
-    path: PATH,
-    name: TITLE,
-    description: DESCRIPTION,
-    crumbs: CRUMBS,
-    dateModified: STUDY.updated,
-    about: { "@id": `${absUrl(PATH)}#dataset` },
-  }),
+  webPageNode({ path: PATH, name: TITLE, description: DESCRIPTION, crumbs: CRUMBS, dateModified: STUDY.updated, about: { "@id": `${absUrl(PATH)}#dataset` } }),
   breadcrumbNode(CRUMBS),
   {
     "@type": "Dataset",
     "@id": `${absUrl(PATH)}#dataset`,
     name: "Gujarat business-listing website study 2026",
-    description: `How often independent listing records in 17 local trades in Gujarat, India link to a website of their own, a chain or marketplace page, or no website. ${num(
+    description: `How often listing records in 17 selected trades in Gujarat, India carry a URL of an own website, a shared or chain URL, a directory URL or no URL. ${num(
       T.n
-    )} records from the Overture Maps Places release ${STUDY.sourceRelease}; city and trade aggregates.`,
+    )} records with no brand recorded, from the Overture Maps Places release ${STUDY.sourceRelease}; city and trade aggregates.`,
     url: absUrl(PATH),
     creator: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
@@ -66,12 +58,7 @@ const ld = graph(
     temporalCoverage: STUDY.sourceRelease,
     spatialCoverage: { "@type": "Place", name: "Gujarat, India" },
     measurementTechnique: "Classification of the website field of Overture Maps Places listing records by host",
-    variableMeasured: [
-      "Listing records",
-      "Records linking to an own website",
-      "Records linking only to a chain or marketplace page",
-      "Records with no website recorded",
-    ],
+    variableMeasured: ["Listing records", "Own website URL", "Shared or chain URL", "Directory or marketplace URL", "No URL recorded"],
     isBasedOn: "https://docs.overturemaps.org/guides/places/",
     license: "https://creativecommons.org/licenses/by/4.0/",
     isAccessibleForFree: true,
@@ -80,35 +67,11 @@ const ld = graph(
   }
 );
 
-/** A record split drawn as one bar: own website in volt, chain/marketplace page in ink, none recorded as the track. */
-function SplitBar({ s, label }: { s: Split; label: string }) {
-  return (
-    <div className="flex h-3 w-full overflow-hidden rounded-full bg-raised" role="img" aria-label={label}>
-      <span className="h-full bg-volt" style={{ width: `${share(s.own, s.n)}%` }} />
-      <span className="h-full bg-ink/45" style={{ width: `${share(s.shared, s.n)}%` }} />
-    </div>
-  );
-}
-
-const Legend = () => (
-  <p className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-    <span className="inline-flex items-center gap-2">
-      <span aria-hidden className="h-3 w-3 rounded-full bg-volt" /> Own website
-    </span>
-    <span className="inline-flex items-center gap-2">
-      <span aria-hidden className="h-3 w-3 rounded-full bg-ink/45" /> Chain or marketplace page only
-    </span>
-    <span className="inline-flex items-center gap-2">
-      <span aria-hidden className="h-3 w-3 rounded-full bg-raised ring-1 ring-line" /> No website recorded
-    </span>
-  </p>
-);
-
 const th = "px-3 py-3 text-left font-semibold text-ink md:px-4";
 const td = "px-3 py-3 tabular-nums md:px-4";
 
-/** /research/gujarat-business-websites-2026 (SEO-4): original data the studio can stand behind, built from open map
- *  data and worded as listing records throughout (debate round 2). The one moment is the trade chart wiping in. */
+/** /research/gujarat-business-websites-2026 (SEO-4): original data the studio can stand behind, worded as listing
+ *  records throughout (debate rounds 2-3). The one moment is the trade chart wiping in. */
 export default function GujaratWebsiteStudy() {
   const trades = tradesByOwnShare();
   const lowest = trades[0];
@@ -123,10 +86,10 @@ export default function GujaratWebsiteStudy() {
         lines={["How often do Gujarat", "business listings include", <span key="w" className="serif text-volt">a website?</span>]}
         lead={
           <p>
-            We looked at {num(T.n)} listing records of independent local businesses in 17 trades across Gujarat, from the
-            open Overture Maps data released on 21 October 2026. {pct(T.own, T.n)} link to a website of their own,{" "}
-            {pct(T.shared, T.n)} link only to a chain or marketplace page, and {pct(T.none, T.n)} have no website recorded.
-            These are listing records, not a census of every business.
+            We looked at {num(T.n)} listing records in 17 selected trades across Gujarat, all with no brand recorded, from the
+            open Overture Maps data released on 21 October 2026. {pct(T.own, T.n)} carry the URL of a website of their own,{" "}
+            {pct(T.shared, T.n)} a shared or chain URL, {pct(T.directory, T.n)} a directory page, and {pct(T.none, T.n)} no URL
+            at all. These are listing records, not a census of businesses.
           </p>
         }
         actions={
@@ -150,7 +113,7 @@ export default function GujaratWebsiteStudy() {
                 className="pointer-events-none absolute -inset-x-[8%] -inset-y-[22%] h-[144%] w-[116%] text-volt"
               />
             </p>
-            <p className="mt-6 max-w-[30ch] text-base text-muted">of local-trade listing records in Gujarat link to a website of their own.</p>
+            <p className="mt-6 max-w-[30ch] text-base text-muted">of listing records in 17 trades carry an own-website URL.</p>
           </div>
         }
       />
@@ -162,13 +125,13 @@ export default function GujaratWebsiteStudy() {
             <div>
               <p className="kicker text-volt">By trade</p>
               <h2 id="trades-title" className="display mt-4 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.8vw,68px)]">
-                Restaurants and phone shops <span className="serif text-volt">trail.</span>
+                Phone shops and restaurants <span className="serif text-volt">trail.</span>
               </h2>
               <p className="mt-6 max-w-[44ch] text-base leading-relaxed text-muted">
-                {lowest.label} have the lowest share of records with an own website ({pct(lowest.own, lowest.n)} of{" "}
-                {num(lowest.n)}); {highest.label.toLowerCase()} the highest ({pct(highest.own, highest.n)} of{" "}
-                {num(highest.n)}). Trades whose shops are often franchise branches, such as phone shops, car dealers and
-                pharmacies, show the largest share of chain pages.
+                {lowest.label} have the lowest share of records with an own-website URL ({pct(lowest.own, lowest.n)} of{" "}
+                {num(lowest.n)}); {highest.label.toLowerCase()} the highest ({pct(highest.own, highest.n)} of {num(highest.n)}).
+                Trades whose shops are often franchise branches, such as car and bike dealers, phone shops and pharmacies,
+                show the largest share of shared or chain URLs.
               </p>
               <div className="mt-6">
                 <Legend />
@@ -182,10 +145,7 @@ export default function GujaratWebsiteStudy() {
                     <span className="font-semibold text-volt">{pct(t.own, t.n)}</span> own
                   </span>
                   <span className="col-span-2 md:order-2 md:col-span-1">
-                    <SplitBar
-                      s={t}
-                      label={`${t.label}: ${pct(t.own, t.n)} own website, ${pct(t.shared, t.n)} chain or marketplace page, ${pct(t.none, t.n)} none recorded, of ${num(t.n)} records`}
-                    />
+                    <SplitBar s={t} label={splitLabel(t.label, t)} />
                   </span>
                 </li>
               ))}
@@ -205,29 +165,44 @@ export default function GujaratWebsiteStudy() {
             Cities with at least 1,500 place records of any kind. Differences between cities partly reflect their mix of
             trades and how completely each was mapped, so compare a trade with the same trade, not a city with a city.
           </p>
-          <div className="mt-10 relative overflow-x-auto rounded-2xl border border-line">
-            <table className="w-full min-w-[720px] text-sm md:text-base">
-              <caption className="sr-only">Website records by Gujarat city, 17 local trades, independent listing records</caption>
+          {CITY_PAGES.map((name) => (
+            <Link
+              key={name}
+              href={cityPath(name)}
+              className="group mt-8 flex items-center justify-between gap-6 rounded-2xl border border-volt/40 bg-surface p-6 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-volt"
+            >
+              <span>
+                <span className="kicker block text-volt">City study</span>
+                <span className="mt-2 block text-lg font-semibold">{name}: all 17 trades against the rest of Gujarat</span>
+              </span>
+              <span aria-hidden className="text-xl text-volt transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          ))}
+          <div className="relative mt-10 overflow-x-auto rounded-2xl border border-line">
+            <table className="w-full min-w-[760px] text-sm md:text-base">
+              <caption className="sr-only">Website URLs in listing records by Gujarat city, 17 selected trades</caption>
               <thead className="border-b border-line bg-surface">
                 <tr>
                   <th scope="col" className={th}>City</th>
-                  <th scope="col" className={`${th} text-right`}>Trade records</th>
+                  <th scope="col" className={`${th} text-right`}>Records</th>
                   <th scope="col" className={`${th} text-right`}>Own website</th>
-                  <th scope="col" className={`${th} text-right`}>Chain / marketplace page</th>
-                  <th scope="col" className={`${th} text-right`}>None recorded</th>
-                  <th scope="col" className={`${th} w-[28%]`}>
+                  <th scope="col" className={`${th} text-right`}>Shared / chain</th>
+                  <th scope="col" className={`${th} text-right`}>Directory</th>
+                  <th scope="col" className={`${th} text-right`}>No URL</th>
+                  <th scope="col" className={`${th} w-[24%]`}>
                     <span className="sr-only">Split</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {STUDY.cities.map((c) => {
+                  const own = (CITY_PAGES as readonly string[]).includes(c.name);
                   const detail = c.n >= DETAIL_CITY_MIN;
                   return (
                     <tr key={c.name} className="border-b border-line last:border-0">
                       <th scope="row" className={`${th} whitespace-nowrap`}>
-                        {detail ? (
-                          <a href={`#${cityAnchor(c.name)}`} className="underline-offset-4 hover:text-volt hover:underline">
+                        {own || detail ? (
+                          <a href={own ? cityPath(c.name) : `#${cityAnchor(c.name)}`} className="underline-offset-4 hover:text-volt hover:underline">
                             {c.name}
                           </a>
                         ) : (
@@ -237,9 +212,10 @@ export default function GujaratWebsiteStudy() {
                       <td className={`${td} text-right text-muted`}>{num(c.n)}</td>
                       <td className={`${td} text-right font-semibold text-ink`}>{pct(c.own, c.n)}</td>
                       <td className={`${td} text-right text-muted`}>{pct(c.shared, c.n)}</td>
+                      <td className={`${td} text-right text-muted`}>{pct(c.directory, c.n)}</td>
                       <td className={`${td} text-right text-muted`}>{pct(c.none, c.n)}</td>
                       <td className={td}>
-                        <SplitBar s={c} label={`${c.name}: ${pct(c.own, c.n)} own website`} />
+                        <SplitBar s={c} label={splitLabel(c.name, c)} />
                       </td>
                     </tr>
                   );
@@ -251,14 +227,16 @@ export default function GujaratWebsiteStudy() {
                   <td className={`${td} text-right text-muted`}>{num(T.n)}</td>
                   <td className={`${td} text-right font-semibold text-volt`}>{pct(T.own, T.n)}</td>
                   <td className={`${td} text-right text-muted`}>{pct(T.shared, T.n)}</td>
+                  <td className={`${td} text-right text-muted`}>{pct(T.directory, T.n)}</td>
                   <td className={`${td} text-right text-muted`}>{pct(T.none, T.n)}</td>
                   <td className={td}>
-                    <SplitBar s={T} label={`All Gujarat: ${pct(T.own, T.n)} own website`} />
+                    <SplitBar s={T} label={splitLabel("All Gujarat", T)} />
                   </td>
                 </tr>
               </tfoot>
             </table>
           </div>
+          <p className="mt-4 text-sm text-faint">&ldquo;All Gujarat&rdquo; covers every city, including those below 1,500 records.</p>
           <div className="mt-5">
             <Legend />
           </div>
@@ -274,8 +252,8 @@ export default function GujaratWebsiteStudy() {
               Inside each <span className="serif text-volt">city.</span>
             </h2>
             <p className="mt-6 max-w-[44ch] text-base leading-relaxed text-muted">
-              Cities with at least {num(DETAIL_CITY_MIN)} trade records. A trade is shown when the city has {MIN_CELL} or more records for it;
-              smaller counts swing too much to compare.
+              Cities with at least {num(DETAIL_CITY_MIN)} trade records. A trade is shown when the city has {MIN_CELL} or more
+              records for it; smaller counts swing too much to compare.
             </p>
           </div>
           <div className="border-t border-ink/15">
@@ -285,7 +263,7 @@ export default function GujaratWebsiteStudy() {
                   <span>
                     <span className="block text-lg font-semibold md:text-xl">{c.name}</span>
                     <span className="mt-1 block text-sm text-muted">
-                      {num(c.n)} records · {pct(c.own, c.n)} own website · {pct(c.none, c.n)} none recorded
+                      {num(c.n)} records · {pct(c.own, c.n)} own website URL · {pct(c.none, c.n)} no URL
                     </span>
                   </span>
                   <span
@@ -296,15 +274,16 @@ export default function GujaratWebsiteStudy() {
                   </span>
                 </summary>
                 <div className="relative overflow-x-auto pb-6">
-                  <table className="w-full min-w-[520px] text-sm">
-                    <caption className="sr-only">{c.name}: website records by trade</caption>
+                  <table className="w-full min-w-[560px] text-sm">
+                    <caption className="sr-only">{c.name}: website URLs in listing records by trade</caption>
                     <thead>
                       <tr className="border-b border-line text-faint">
                         <th scope="col" className="py-2 pr-3 text-left font-semibold">Trade</th>
                         <th scope="col" className="px-3 py-2 text-right font-semibold">Records</th>
                         <th scope="col" className="px-3 py-2 text-right font-semibold">Own website</th>
-                        <th scope="col" className="px-3 py-2 text-right font-semibold">Chain / marketplace</th>
-                        <th scope="col" className="py-2 pl-3 text-right font-semibold">None recorded</th>
+                        <th scope="col" className="px-3 py-2 text-right font-semibold">Shared / chain</th>
+                        <th scope="col" className="px-3 py-2 text-right font-semibold">Directory</th>
+                        <th scope="col" className="py-2 pl-3 text-right font-semibold">No URL</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -318,6 +297,7 @@ export default function GujaratWebsiteStudy() {
                             <td className="px-3 py-2.5 text-right tabular-nums text-muted">{num(g.n)}</td>
                             <td className="px-3 py-2.5 text-right font-semibold tabular-nums text-ink">{pct(g.own, g.n)}</td>
                             <td className="px-3 py-2.5 text-right tabular-nums text-muted">{pct(g.shared, g.n)}</td>
+                            <td className="px-3 py-2.5 text-right tabular-nums text-muted">{pct(g.directory, g.n)}</td>
                             <td className="py-2.5 pl-3 text-right tabular-nums text-muted">{pct(g.none, g.n)}</td>
                           </tr>
                         ))}
@@ -339,67 +319,10 @@ export default function GujaratWebsiteStudy() {
               How we counted, <span className="serif text-volt">and what it misses.</span>
             </h2>
           </div>
-          <ol className="list-decimal space-y-5 pl-5 text-base leading-relaxed text-muted marker:text-volt md:text-lg">
-            <li>
-              <strong className="text-ink">Source.</strong> {STUDY.source}, the India extract with places marked permanently
-              closed removed. Overture combines data from several providers; a place record is a map listing, not a
-              registered business.
-            </li>
-            <li>
-              <strong className="text-ink">Which records.</strong> Records in Gujarat in 17 local trades (the category lists
-              are below), and only independent ones: records that carry a brand name were left out, so chain branches with
-              a known brand do not count. Places of worship, schools, banks, ATMs, landmarks and transport were never in
-              the trades.
-            </li>
-            <li>
-              <strong className="text-ink">Own website.</strong> The record lists a website URL whose host is not shared by{" "}
-              {STUDY.sharedHostMin} or more trade records in Gujarat and is not a marketplace or listing site (for example
-              IndiaMART, JustDial, OYO, Google profile links or store-locator pages). Social media profiles never count. A
-              website on a builder subdomain (Wix, Blogger and similar) counts as own.
-            </li>
-            <li>
-              <strong className="text-ink">Chain or marketplace page.</strong> A URL on a host shared by{" "}
-              {STUDY.sharedHostMin} or more records, or on a marketplace or listing site. Of{" "}
-              {num(STUDY.validation.tradeRecordsWithUrl)} trade records with a URL, {num(STUDY.validation.hostsSharedBy3Plus)}{" "}
-              hosts were shared this way; the largest are pharmacy, phone and store-locator networks whose brand field was
-              empty.
-            </li>
-            <li>
-              <strong className="text-ink">City.</strong> The city as the source gives it in the address. A record without
-              a state took the state most other records of the same city carry. City boundaries are not municipal limits.
-            </li>
-            <li>
-              <strong className="text-ink">Does a recorded website still work?</strong> On {live.date.split("-").reverse().join(".")} we
-              requested {live.sample} randomly chosen own-website URLs once each. {answered} answered;{" "}
-              {live.outcomes["no dns"] ?? 0} had no DNS record any more, {live.outcomes["http 4xx"] ?? 0} returned a 4xx
-              error and {live.outcomes["connection failed"] ?? 0} refused the connection. A recorded website is not always a
-              working one, so the own-website share is an upper bound for working sites. It is one small sample from one
-              connection, not a measured rate.
-            </li>
-            <li>
-              <strong className="text-ink">What it cannot tell you.</strong> &ldquo;No website recorded&rdquo; does not mean a
-              business has no website: the map listing may simply not carry it. Listings miss many businesses and duplicate
-              some. The numbers describe the records, and no margin of error applies to them.
-            </li>
-          </ol>
+          <MethodList />
         </div>
         <div className="mx-auto mt-12 max-w-[1440px] px-4 md:px-8">
-          <details className="faq-item group border-y border-ink/15">
-            <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-semibold">
-              The categories in each trade
-              <span aria-hidden className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-xl text-volt transition-transform duration-200 group-open:rotate-45">
-                +
-              </span>
-            </summary>
-            <dl className="grid gap-x-10 gap-y-4 pb-8 text-sm md:grid-cols-2 [&>*]:min-w-0">
-              {STUDY.tradeRules.map((t) => (
-                <div key={t.id}>
-                  <dt className="font-semibold text-ink">{t.label}</dt>
-                  <dd className="mt-1 text-muted">{t.categories.join(", ")}</dd>
-                </div>
-              ))}
-            </dl>
-          </details>
+          <TradeCategories />
         </div>
       </section>
 
@@ -414,8 +337,8 @@ export default function GujaratWebsiteStudy() {
           </div>
           <div className="space-y-6 text-base leading-relaxed text-muted md:text-lg">
             <p>
-              The city and trade counts are free to reuse under CC BY 4.0. Please credit &ldquo;SiteBlitz analysis of
-              Overture Maps Places data (release {STUDY.sourceRelease})&rdquo; and link to this page.
+              The city and trade counts are free to reuse under CC BY 4.0. Please credit &ldquo;SiteBlitz analysis of Overture
+              Maps Places data (release {STUDY.sourceRelease})&rdquo; and link to this page.
             </p>
             <p>
               <a href={STUDY.csvPath} download className="btn-line inline-flex h-[52px] items-center rounded-full px-7 text-base font-semibold text-ink">
@@ -446,8 +369,8 @@ export default function GujaratWebsiteStudy() {
           </h2>
           <div className="mt-8 grid gap-8 text-base leading-relaxed text-muted md:grid-cols-3 md:text-lg [&>*]:min-w-0">
             <p>
-              Check what Google and map apps show for your business, and add your website address to your Google Business
-              Profile if you have one.
+              A missing website link in a listing is a reason to check the listing, not proof that a business has no website.
+              Add your website address to your Google Business Profile if you have one.
             </p>
             <p>
               If you have a website, check that it still opens on a phone. Our{" "}

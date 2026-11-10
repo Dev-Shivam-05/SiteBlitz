@@ -8,6 +8,8 @@ import { PACKAGES, inr } from "@/lib/offer";
 import { SITE } from "@/lib/site";
 import sitemap from "@/app/sitemap";
 import robots from "@/app/robots";
+import { STUDY, restOfGujarat, csv as researchCsv } from "@/lib/research";
+import { BLOG_POSTS } from "@/content";
 
 /* SEO-1: the search surface (sitemap, nav, footer, structured data, llms.txt) is generated from one registry. These
    checks fail when a registered URL has no page, a page is unreachable, or a machine-readable file drifts from the
@@ -145,5 +147,68 @@ describe("every public page declares its canonical URL", () => {
   it.each(files)("%s", (f) => {
     const src = readFileSync(f, "utf8");
     expect(/canonical|pageMeta\(/.test(src)).toBe(true);
+  });
+});
+
+describe("research study", () => {
+  it("puts every record in exactly one class, for every city and trade", () => {
+    const check = (s: { n: number; own: number; shared: number; directory: number; none: number }, where: string) =>
+      expect(s.own + s.shared + s.directory + s.none, where).toBe(s.n);
+    check(STUDY.total, "Gujarat");
+    for (const t of STUDY.trades) check(t, t.label);
+    for (const c of STUDY.cities) {
+      check(c, c.name);
+      for (const [id, g] of Object.entries(c.groups)) check(g, `${c.name}/${id}`);
+    }
+  });
+
+  it("adds trades up to the Gujarat total (no record counted twice)", () => {
+    expect(STUDY.trades.reduce((a, t) => a + t.n, 0)).toBe(STUDY.total.n);
+  });
+
+  it("never leaves a negative rest-of-Gujarat cell", () => {
+    for (const c of STUDY.cities) {
+      const rest = restOfGujarat(c);
+      for (const g of [rest.total, ...Object.values(rest.groups)]) {
+        for (const v of Object.values(g)) expect(v).toBeGreaterThanOrEqual(0);
+      }
+    }
+  });
+
+  it("does not call no-brand records independent businesses, or the share an upper bound", () => {
+    const src = ["src/app/research/gujarat-business-websites-2026/page.tsx", "src/app/research/page.tsx", "src/components/site/ResearchParts.tsx"]
+      .map((f) => readFileSync(f, "utf8"))
+      .join("\n")
+      .split("\n")
+      .filter((l) => !/^\s*(\/\/|\*|\/\*)/.test(l)) // comments may name the rule they enforce
+      .join("\n");
+    expect(src).not.toMatch(/independent (listing records|businesses|local)/i);
+    expect(src).not.toMatch(/upper bound/i);
+  });
+
+  it("serves a CSV whose rows match the header", () => {
+    const lines = researchCsv().trim().split("\n").filter((l) => !l.startsWith("#"));
+    const width = lines[0].split(",").length;
+    for (const l of lines.slice(1)) expect(l.match(/("[^"]*"|[^,]+)/g)?.length).toBe(width);
+  });
+});
+
+describe("hreflang pairs", () => {
+  it("are reciprocal: every translation lists the other side back", () => {
+    for (const p of BLOG_POSTS) {
+      for (const [, slug] of Object.entries(p.translations ?? {})) {
+        const other = BLOG_POSTS.find((b) => b.slug === slug);
+        expect(other, `${p.slug} -> ${slug}`).toBeDefined();
+        expect(Object.values(other!.translations ?? {})).toContain(p.slug);
+      }
+    }
+  });
+});
+
+describe("IndexNow", () => {
+  it("has exactly one key file, named after its own content", () => {
+    const keys = readdirSync("public").filter((f) => /^[a-f0-9]{32}\.txt$/.test(f));
+    expect(keys).toHaveLength(1);
+    expect(readFileSync(join("public", keys[0]), "utf8").trim()).toBe(keys[0].replace(".txt", ""));
   });
 });

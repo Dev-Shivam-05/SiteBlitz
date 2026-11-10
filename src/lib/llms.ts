@@ -55,8 +55,9 @@ export function llmsTxt(): string {
     line(
       PAGES.studyGujarat.label,
       PAGES.studyGujarat.path,
-      `how often ${num(STUDY.total.n)} independent local-trade listing records in Gujarat link to an own website (${pct(STUDY.total.own, STUDY.total.n)}), by city and trade, with method and CSV`
+      `website URLs in ${num(STUDY.total.n)} Gujarat listing records (no brand recorded) across 17 trades: ${pct(STUDY.total.own, STUDY.total.n)} carry an own-website URL; by city and trade, with method, limits and CSV`
     ),
+    line(PAGES.studySurat.label, PAGES.studySurat.path, "Surat's 17 trades against the rest of Gujarat, same rules"),
     "",
     "## Guides",
     ...guidePages().map((e) => line(e.label, e.path)),

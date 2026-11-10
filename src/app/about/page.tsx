@@ -133,8 +133,8 @@ export default function AboutPage() {
               We publish <span className="serif text-volt">what we learn.</span>
             </h2>
             <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-muted md:text-lg">
-              Our first study counts how often {STUDY.total.n.toLocaleString("en-IN")} listing records of local businesses in
-              Gujarat link to a website, by city and trade.{" "}
+              Our first study counts website links in {STUDY.total.n.toLocaleString("en-IN")} listing records of local businesses in
+              Gujarat, by city and trade.{" "}
               <Link href={STUDY.path} className="text-ink underline underline-offset-4 hover:text-volt">
                 Read the Gujarat study
               </Link>

@@ -6,13 +6,20 @@ import { SITE } from "./site";
  * release 2026-10-21.0 by E:\tmp\_sb_research\gujarat_final.py (scratch, not in the repo); no business names, phones or
  * URLs are stored. The page and the CSV both read this module, so a number can only change in the JSON.
  *
- * Wording rule (debate round 2): these are listing RECORDS. "No website recorded" is not "the business has no website".
+ * Wording rules (debate rounds 2-3): these are listing RECORDS with no brand recorded in the source, not "independent
+ * businesses". "No URL recorded" is not "the business has no website". Trades are defined by activity, never by how
+ * many of their records carry a website.
  */
 
+/** One record falls in exactly one class (study v1.0 method, debate round 3):
+ *  own - a URL on a host that no other two trade records use; shared - a host used by 3+ records or a chain store
+ *  locator (branches, franchises or duplicate listings: a flag, not proof); directory - a listing or marketplace page
+ *  about the business; none - no URL recorded. */
 export interface Split {
   n: number;
   own: number;
   shared: number;
+  directory: number;
   none: number;
 }
 
@@ -33,6 +40,14 @@ export const STUDY = {
   published: "2026-11-11",
   updated: "2026-11-11",
   version: "1.0",
+  liveCheck: data.validation.liveCheck as {
+    ranAt: string;
+    frame: string;
+    unit: string;
+    sample: number;
+    seed: number;
+    outcomes: Record<string, number>;
+  },
   source: data.source,
   sourceRelease: data.sourceRelease,
   sharedHostMin: data.rules.sharedHostMin,
@@ -59,23 +74,47 @@ export const detailCities = () => STUDY.cities.filter((c) => c.n >= DETAIL_CITY_
 
 export const cityAnchor = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
+const minus = (a: Split, b: Split): Split => ({
+  n: a.n - b.n,
+  own: a.own - b.own,
+  shared: a.shared - b.shared,
+  directory: a.directory - b.directory,
+  none: a.none - b.none,
+});
+
+/** The rest of Gujarat for a city: Gujarat counts minus the city's counts, per trade (debate round 3: compare a city
+ *  with the rest of the state, subtracting counts before computing shares, so the city is not in its own benchmark). */
+export function restOfGujarat(city: CityRow): { total: Split; groups: Record<string, Split> } {
+  const groups: Record<string, Split> = {};
+  for (const t of STUDY.trades) {
+    const c = city.groups[t.id] ?? { n: 0, own: 0, shared: 0, directory: 0, none: 0 };
+    groups[t.id] = minus(t, c);
+  }
+  return { total: minus(STUDY.total, city), groups };
+}
+
+/** City pages that exist as their own study page (approved: Surat, debate round 3). */
+export const CITY_PAGES = ["Surat"] as const;
+export const cityPath = (name: string) => `${STUDY.path}/${cityAnchor(name)}`;
+export const getCity = (name: string) => STUDY.cities.find((c) => c.name === name);
+
 export function csv(): string {
-  const head = ["city", "trade", "records", "own_website", "chain_or_marketplace_page_only", "no_website_recorded"];
+  const head = ["city", "trade", "records", "own_website_url", "shared_or_chain_url", "directory_or_marketplace_url", "no_url_recorded"];
   const rows: (string | number)[][] = [];
   for (const c of STUDY.cities) {
-    rows.push([c.name, "all 17 trades", c.n, c.own, c.shared, c.none]);
+    rows.push([c.name, "all 17 trades", c.n, c.own, c.shared, c.directory, c.none]);
     for (const t of STUDY.trades) {
       const g = c.groups[t.id];
-      if (g && g.n) rows.push([c.name, t.label, g.n, g.own, g.shared, g.none]);
+      if (g && g.n) rows.push([c.name, t.label, g.n, g.own, g.shared, g.directory, g.none]);
     }
   }
-  rows.push(["Gujarat (all cities)", "all 17 trades", STUDY.total.n, STUDY.total.own, STUDY.total.shared, STUDY.total.none]);
-  for (const t of STUDY.trades) rows.push(["Gujarat (all cities)", t.label, t.n, t.own, t.shared, t.none]);
+  rows.push(["Gujarat (all cities)", "all 17 trades", STUDY.total.n, STUDY.total.own, STUDY.total.shared, STUDY.total.directory, STUDY.total.none]);
+  for (const t of STUDY.trades) rows.push(["Gujarat (all cities)", t.label, t.n, t.own, t.shared, t.directory, t.none]);
   const q = (v: string | number) => (typeof v === "number" ? String(v) : `"${v.replace(/"/g, '""')}"`);
   const preamble = [
     `# SiteBlitz - Gujarat business-listing website study, version ${STUDY.version}, published ${STUDY.published}`,
-    `# Source: ${STUDY.source}. Independent (no brand) listing records in 17 local trades. City rows: Gujarat cities with 1,500+ place records; "Gujarat (all cities)" rows: the whole state.`,
-    `# own_website: a website URL whose host is not shared by ${STUDY.sharedHostMin}+ records and is not a marketplace or listing site.`,
+    `# Source: ${STUDY.source}. Listing records with no brand recorded, 17 selected trades. City rows: Gujarat cities with 1,500+ place records; "Gujarat (all cities)" rows: the whole state.`,
+    `# Classes: own_website_url = host not used by ${STUDY.sharedHostMin - 1}+ other trade records; shared_or_chain_url = host used by ${STUDY.sharedHostMin}+ records or a chain store locator; directory_or_marketplace_url = a listing about the business; no_url_recorded.`,
     `# Counts describe listing records, not every business in a city. Method: ${SITE.url}${STUDY.path}#method`,
     "# Attribution: Overture Maps Foundation (overturemaps.org); CDLA-Permissive-2.0, Apache-2.0 (Foursquare), CC0 (AllThePlaces).",
   ];

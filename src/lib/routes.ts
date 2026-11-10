@@ -61,6 +61,7 @@ export function footerColumns(): FooterColumn[] {
       links: [
         link(PAGES.research, "Research"),
         link(PAGES.studyGujarat, "Gujarat website data 2026"),
+        link(PAGES.studySurat, "Surat website data 2026"),
         link(PAGES.blog, "All guides"),
         link(PAGES.grader),
         link(PAGES.proof, "Performance"),

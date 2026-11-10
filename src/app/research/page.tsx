@@ -41,7 +41,7 @@ export default function ResearchIndex() {
               <p className="kicker text-volt">Study · version {STUDY.version} · {STUDY.published}</p>
               <h2 className="display mt-4 text-[clamp(28px,7vw,40px)] md:text-[clamp(40px,3.4vw,60px)]">How often do Gujarat business listings include a website?</h2>
               <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-muted md:text-lg">
-                {num(T.n)} independent listing records in 17 local trades and {STUDY.cities.length} cities: {pct(T.own, T.n)} link to a
+                {num(T.n)} listing records with no brand recorded, in 17 trades and {STUDY.cities.length} cities: {pct(T.own, T.n)} carry the URL of a
                 website of their own. City and trade tables, method, limits and a CSV.
               </p>
             </div>
