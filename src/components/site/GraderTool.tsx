@@ -187,14 +187,14 @@ export function GraderTool() {
           <div className="rounded-3xl border border-volt/30 bg-surface p-8 text-center">
             <p className="font-display text-2xl font-bold">
               {failed.length > 0 ? (
-                <>Every ✕ above is fixable in <span className="text-volt">one 48-hour build</span>.</>
+                <>Most of these are <span className="text-volt">fixable in a rebuild</span>.</>
               ) : (
-                <>Imagine what we could do <span className="text-volt">beyond the basics</span>.</>
+                <>The basics <span className="text-volt">are in place</span>.</>
               )}
             </p>
             <p className="mx-auto mt-2 max-w-md text-sm text-muted">
-              Send us this report — the brief call is free and you&rsquo;ll get the fix plan even
-              if you never hire us.
+              Send us this report: on the free brief call we say what we would fix first and what it would cost,
+              with no obligation to hire us.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <Link href="/book" data-track="grader_to_book" className="btn-volt rounded-full px-7 py-3.5 text-sm font-semibold">

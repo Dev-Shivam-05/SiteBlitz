@@ -147,7 +147,7 @@ export function BookingForm() {
           data-track="booking_confirm"
           className="btn-volt rounded-full px-7 py-3.5 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-40"
         >
-          {state === "sending" ? "Booking…" : "Lock the slot →"}
+          {state === "sending" ? "Sending…" : "Request this time →"}
         </button>
         <p className="text-xs text-faint">
           30 minutes · free · no deck, no pressure
