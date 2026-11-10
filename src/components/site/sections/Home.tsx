@@ -1,61 +1,128 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DEMO_LIST } from "@/lib/demos";
+import { PHOTOS } from "@/lib/photos";
 import { PROCESS_STEPS, SITE } from "@/lib/site";
-import { businessPkg, inr, launchPkg } from "@/lib/offer";
-import { DemoSwitcher } from "../DemoSwitcher";
+import { FROM_PRICE, inr, launchPkg } from "@/lib/offer";
 import { PricingPlans } from "./PricingPlans";
+import { WhatsAppIcon } from "../WhatsAppIcon";
 
-/* Home page sections, in the psychology-led order agreed in
-   docs/debate/2026-11-01-ads-psychology-redesign/03_chatgpt.md: what it is and what it costs ->
-   see it working -> how buying works -> price and terms -> honest comparison -> questions -> next step.
+/* Redesign v3 home (docs/spec/redesign-v3-motion.md): the motion grammar of the reference (Horeca Social)
+   carried by SiteBlitz's own content. Every scene is complete, readable server HTML; Motion.tsx only adds
+   transforms through data-scene hooks, so nothing waits for JavaScript and reduced motion shows it all static.
    Copy rule: no invented reviews, client counts, results or guarantees. */
 
 const WA_DEMO = "Hi SiteBlitz, I'd like to see a website demo for my business and the package details.";
+const LAUNCH_DELIVERY = launchPkg.delivery; // "2 working days after ready-to-build"
 
+/** 01 — Hero: a full-bleed shop photograph, the offer on a solid ink panel, the concept phone on the photo. */
 export function HomeHero() {
+  const photo = PHOTOS.heroShop;
   return (
-    <section className="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-16 pt-24 md:grid-cols-[1.15fr_1fr] md:px-8 md:pb-24 md:pt-32">
-      <div>
-        <p className="text-sm font-medium text-muted">{SITE.locationLine}</p>
-        <h1 className="font-display mt-4 text-[2.35rem] font-extrabold leading-[1.05] tracking-tight md:text-[3.4rem]">
-          Websites that help customers understand your business<span className="text-volt"> — and get in touch.</span>
+    <section data-scene="hero" className="relative h-[100svh] min-h-[640px] md:min-h-[720px]">
+      <div data-hero-frame className="hero-frame absolute inset-0 overflow-hidden bg-ink">
+        <Image src={photo.src} alt={photo.alt} fill priority sizes="100vw" className="object-cover" />
+        {/* The concept phone: decorative (the same demo is linked, with its disclosure, further down) */}
+        <div
+          aria-hidden
+          className="phone-frame absolute right-4 top-[88px] w-[118px] overflow-hidden sm:w-[150px] md:bottom-[10vh] md:right-[8vw] md:top-auto md:w-[clamp(220px,22vw,320px)]"
+        >
+          <Image
+            src="/demos/showroom.png"
+            alt=""
+            width={780}
+            height={1624}
+            sizes="(min-width: 768px) 22vw, 150px"
+            className="block h-auto w-full"
+          />
+        </div>
+      </div>
+
+      <div
+        data-hero-words
+        className="absolute inset-x-3 bottom-3 rounded-[20px] bg-ink p-6 text-void sm:inset-x-4 sm:bottom-4 md:inset-x-auto md:bottom-12 md:left-8 md:max-w-[min(760px,58vw)] md:rounded-[28px] md:p-12"
+      >
+        <p className="kicker text-void/75">{SITE.locationLine}</p>
+        <h1 className="display mt-4 text-[clamp(50px,14vw,72px)] md:text-[clamp(88px,8.6vw,132px)]">
+          Websites.
+          <br />
+          {/* volt on ink is 3.38:1, allowed here only because the headline is >= 50 px (AA large text) */}
+          <span className="text-volt">From {inr(FROM_PRICE)}.</span>
         </h1>
-        <p className="mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-          Professional, mobile-friendly websites for local businesses. See working demos, know the price upfront,
-          and review a homepage concept for your own business before you pay.
+        <p className="mt-5 max-w-[34ch] text-base leading-relaxed text-void/85 md:text-lg">
+          Mobile-first websites for salons, coaching classes and showrooms.
         </p>
-        <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wider text-faint">One page</dt>
-            <dd className="font-display text-2xl font-extrabold">{inr(launchPkg.priceInr as number)}</dd>
-          </div>
-          <div>
-            <dt className="text-xs font-semibold uppercase tracking-wider text-faint">Three pages</dt>
-            <dd className="font-display text-2xl font-extrabold">{inr(businessPkg.priceInr as number)}</dd>
-          </div>
-          <div className="self-end text-sm text-muted">One-time · no GST added · custom work by quote</div>
-        </dl>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <p className="mt-2 text-sm font-semibold text-void">
+          Launch: {launchPkg.pages} · {LAUNCH_DELIVERY}.
+        </p>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <a
             href={SITE.whatsapp(WA_DEMO)}
             target="_blank"
             rel="noopener noreferrer"
             data-track="hero_whatsapp"
-            className="btn-volt rounded-full px-7 py-4 text-center text-base font-semibold"
+            className="btn-volt flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold"
           >
-            Chat on WhatsApp
+            <WhatsAppIcon className="h-5 w-5" color="currentColor" /> Chat on WhatsApp
           </a>
-          <Link href="#demos" data-track="hero_demos" className="btn-ghost rounded-full px-7 py-4 text-center text-base font-semibold text-ink">
-            Explore working demos
+          <Link
+            href="#demos"
+            data-track="hero_demos"
+            className="btn-line flex h-[52px] items-center justify-center rounded-full px-7 text-base font-semibold"
+          >
+            View live concepts
           </Link>
         </div>
-        <p className="mt-5 text-sm text-muted">
-          No invented reviews. No guaranteed rankings. Real demos, a written scope, and you approve the design before
-          paying.
-        </p>
       </div>
-      <DemoSwitcher />
+    </section>
+  );
+}
+
+/** 02 — The giant price: the reference's big rising number, but SiteBlitz's one hard fact instead of a count. */
+export function GiantPrice() {
+  return (
+    <section aria-labelledby="price-title" className="overflow-hidden bg-void pb-[10vh] pt-[14vh] md:pt-[18vh]">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+        <p className="kicker text-volt">The Launch package</p>
+        <h2 id="price-title" className="sr-only">
+          Launch package price: {inr(FROM_PRICE)}
+        </h2>
+        <p
+          aria-hidden
+          data-rise
+          className="display mt-4 whitespace-nowrap pb-[0.2em] text-[34vw] leading-[0.85] text-volt md:text-[min(26vw,380px)]"
+        >
+          {inr(FROM_PRICE)}
+        </p>
+        <div className="mt-6 flex flex-col gap-2 border-t border-ink/15 pt-6 md:flex-row md:items-baseline md:justify-between">
+          <p className="text-lg font-semibold md:text-2xl">
+            {launchPkg.pages} website · {LAUNCH_DELIVERY}
+          </p>
+          <p className="text-sm text-muted md:text-base">
+            Paid in two parts: {inr(launchPkg.payments![0])} + {inr(launchPkg.payments![1])} · no GST added
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** 03 — Statement bridge: a hairline and one short line between the big scenes (1820 Productions' rhythm). */
+export function Statement() {
+  return (
+    <section className="bg-void py-[12vh]">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+        <div data-line className="h-px w-full origin-left bg-ink" />
+        <div className="mt-8 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
+          <h2 className="display text-[clamp(44px,11vw,64px)] md:text-[clamp(64px,6.4vw,104px)]">
+            Your website should make enquiries easy.
+          </h2>
+          <p className="max-w-[42ch] text-base leading-relaxed text-muted md:text-lg">
+            Customers should understand what you offer, see what it costs and reach you on WhatsApp in a few taps.
+            That is what every SiteBlitz page is built around.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

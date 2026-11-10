@@ -1,15 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Instrument_Serif } from "next/font/google";
+import { Antonio, DM_Sans, Instrument_Serif } from "next/font/google";
 import { SITE } from "@/lib/site";
 import { FROM_PRICE, inr } from "@/lib/offer";
 import { Tracker } from "@/components/site/Tracker";
 import "./globals.css";
 
-/* One variable sans for headings and body (FD-41: fewer font files on the critical path); the serif
-   italic is kept only for short accent words. The CSS variable names stay so no component changes. */
-const manrope = Manrope({
+/* Redesign v3 (docs/spec/redesign-v3-motion.md): Antonio 600 for display type, DM Sans for text.
+   Antonio needs latin-ext because the rupee sign (U+20B9) lives in that subset; the browser only fetches
+   it when a ₹ is on the page (unicode-range). DM Sans has no ₹, so body-size prices fall back to the
+   system sans, as they did before. Instrument Serif stays for the concept demos' own headings. */
+const antonio = Antonio({
+  subsets: ["latin", "latin-ext"],
+  weight: ["600"],
+  variable: "--font-antonio",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-grotesk",
+  weight: ["400", "600"],
+  variable: "--font-dm",
   display: "swap",
 });
 
@@ -22,7 +32,7 @@ const instrument = Instrument_Serif({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#faf9f5",
+  themeColor: "#f8f5ee",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
@@ -99,7 +109,7 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${antonio.variable} ${dmSans.variable} ${instrument.variable}`}>
       <body>
         {/* without JS, reveal-on-scroll elements must simply be visible */}
         <noscript>

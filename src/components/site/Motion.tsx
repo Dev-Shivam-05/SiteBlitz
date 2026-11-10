@@ -171,6 +171,68 @@ function useAnimEngine(pathname: string) {
       }
 
       schedule(() => {
+      /* ===== Redesign v3 scenes (docs/spec/redesign-v3-motion.md). Phone and desktop values differ, so
+         each scene is built inside one matchMedia; content is server-rendered and only transformed here. */
+      const v3 = gsap.matchMedia();
+      const BP = { desk: "(min-width: 768px)", phone: "(max-width: 767px)" };
+
+      /* 01 Hero: the photograph frame shrinks and rounds as the first scroll begins; the words lift
+         separately so they stay legible instead of shrinking with the photo. */
+      const heroScene = document.querySelector<HTMLElement>('[data-scene="hero"]');
+      if (heroScene) {
+        const frame = heroScene.querySelector<HTMLElement>("[data-hero-frame]");
+        const words = heroScene.querySelector<HTMLElement>("[data-hero-words]");
+        v3.add(BP, (c) => {
+          const desk = Boolean(c.conditions?.desk);
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: heroScene,
+              start: "top top",
+              end: desk ? "+=75%" : "+=55%",
+              scrub: 0.3,
+            },
+          });
+          if (frame) tl.to(frame, { scale: desk ? 0.88 : 0.93, borderRadius: desk ? 28 : 20, ease: "none" }, 0);
+          if (words) tl.to(words, { y: desk ? -0.08 * window.innerHeight : -24, ease: "none" }, 0);
+        });
+      }
+
+      /* 02 Giant price: rises out of its clipped section (the reference's big count, with a real price) */
+      for (const el of gsap.utils.toArray<HTMLElement>("[data-rise]")) {
+        v3.add(BP, (c) => {
+          const desk = Boolean(c.conditions?.desk);
+          gsap.fromTo(
+            el,
+            { yPercent: desk ? 40 : 24 },
+            {
+              yPercent: 0,
+              ease: "none",
+              scrollTrigger: {
+                trigger: el.closest("section") || el,
+                start: "top 82%",
+                end: desk ? "top 35%" : "top 40%",
+                scrub: 0.3,
+              },
+            }
+          );
+        });
+      }
+
+      /* 03 Hairlines draw once as their section arrives */
+      for (const el of gsap.utils.toArray<HTMLElement>("[data-line]")) {
+        gsap.fromTo(
+          el,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            duration: window.innerWidth < 768 ? 0.28 : 0.45,
+            ease: "power2.out",
+            transformOrigin: "left center",
+            scrollTrigger: { trigger: el, start: "top 75%", once: true },
+          }
+        );
+      }
+
       /* Hero: content zooms away and dims as you leave it (cinema hand-off) */
       const heroPin = document.querySelector<HTMLElement>("[data-hero-pin]");
       const heroContent = document.querySelector<HTMLElement>("[data-hero-content]");

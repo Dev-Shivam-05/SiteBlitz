@@ -1,25 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Light, product-led palette agreed in docs/debate/2026-11-01-ads-psychology-redesign (FD-41).
-     Token names are kept from the dark era so every component re-themes without a rename:
-     void = page canvas, volt = the primary action colour. Contrast measured on void / surface / raised:
-     ink 13.9 / 14.6 / 12.6 · muted 6.5 / 6.9 / 5.9 · faint 5.1 / 5.4 / 4.7 · volt 6.1 / 6.4 / 5.5 —
-     all clear WCAG AA 4.5:1. --color-warm is 1.7:1 on canvas: fills and decoration only, never text. */
-  --color-void: #faf9f5;
+  /* Redesign v3 palette (docs/spec/redesign-v3-motion.md): ivory, near-black ink, vermilion action.
+     Token names are kept from earlier eras so every component re-themes without a rename:
+     void = page canvas, volt = the action colour. Measured contrast: ink on void 16.19 · muted 6.40 ·
+     faint 5.19 · volt 4.79 on void, 5.22 on white, 4.28 on raised (large text only), 3.38 on ink
+     (>= 24 px only) · white on volt 5.22. --color-warm is decoration only, never text.
+     There is no violet: --color-violet is a legacy alias of the action colour. */
+  --color-void: #f8f5ee;
   --color-surface: #ffffff;
-  --color-raised: #f1eee6;
-  --color-ink: #182b36;
-  --color-muted: #4f5c64;
-  --color-faint: #606c73;
-  --color-volt: #006b60;
-  --color-volt-dim: #00564d;
-  --color-violet: #e7b877;
-  --color-warm: #e7b877;
-  --color-line: rgba(24, 43, 54, 0.11);
+  --color-raised: #eee8dd;
+  --color-ink: #121a1d;
+  --color-muted: #535b5b;
+  --color-faint: #606968;
+  --color-volt: #c43d15;
+  --color-volt-dim: #a3330f;
+  --color-violet: #c43d15;
+  --color-warm: #ffe6cb;
+  --color-line: #d3c9bc;
 
-  --font-display: var(--font-grotesk), system-ui, sans-serif;
-  --font-body: var(--font-grotesk), system-ui, sans-serif;
+  --font-display: var(--font-antonio), var(--font-dm), system-ui, sans-serif;
+  --font-body: var(--font-dm), system-ui, sans-serif;
   --font-accent: var(--font-instrument), Georgia, serif;
 
   --animate-marquee: marquee 28s linear infinite;
@@ -76,11 +77,11 @@ body {
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--color-void); }
 ::-webkit-scrollbar-thumb {
-  background: rgba(24, 43, 54, 0.22);
+  background: rgba(18, 26, 29, 0.22);
   border-radius: 8px;
   border: 2px solid var(--color-void);
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(24, 43, 54, 0.36); }
+::-webkit-scrollbar-thumb:hover { background: rgba(18, 26, 29, 0.36); }
 
 /* ---- typography helpers ---- */
 .font-display { font-family: var(--font-display); }
@@ -88,7 +89,7 @@ body {
 
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(24, 43, 54, 0.3);
+  -webkit-text-stroke: 1px rgba(18, 26, 29, 0.3);
 }
 
 .text-balance { text-wrap: balance; }
@@ -213,9 +214,16 @@ body {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
 }
 .btn-volt:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   background: var(--color-volt-dim);
-  box-shadow: 0 10px 30px -12px rgba(0, 107, 96, 0.55);
+  box-shadow: 0 10px 30px -12px rgba(196, 61, 21, 0.55);
+}
+/* buttons step up on hover and press on click (spec: hover layer) */
+.btn-volt:active,
+.btn-ghost:active,
+.btn-line:active {
+  transform: translateY(1px) scale(0.98);
+  transition-duration: 0.08s;
 }
 .btn-volt:focus-visible,
 .btn-ghost:focus-visible {
@@ -228,10 +236,64 @@ body {
   transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-ghost:hover {
-  border-color: rgba(24, 43, 54, 0.35);
-  background: rgba(24, 43, 54, 0.04);
-  transform: translateY(-2px);
+  border-color: rgba(18, 26, 29, 0.35);
+  background: rgba(18, 26, 29, 0.04);
+  transform: translateY(-1px);
 }
+
+/* outline button for dark (ink) grounds */
+.btn-line {
+  border: 1.5px solid rgba(248, 245, 238, 0.55);
+  color: var(--color-void);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-line:hover {
+  border-color: var(--color-void);
+  background: rgba(248, 245, 238, 0.08);
+  transform: translateY(-1px);
+}
+.btn-line:focus-visible {
+  outline: 2px solid var(--color-void);
+  outline-offset: 3px;
+}
+
+/* ---- redesign v3 type ---- */
+.display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+}
+@media (min-width: 768px) {
+  .display { letter-spacing: -0.025em; }
+}
+.kicker {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* nav pills sit on the hero photograph, so each carries its own solid ground */
+.pill {
+  background: var(--color-void);
+  color: var(--color-ink);
+  border-radius: 999px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease;
+}
+.pill:hover { transform: translateY(-1px); }
+.pill:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 3px; }
+
+/* hero: the photograph frame is the element the scroll scene scales and rounds */
+.hero-frame { transform-origin: 50% 0%; will-change: transform; }
+
+/* hero entrance, once on load, CSS only so first paint never waits for JS. Transform only (no opacity), so the
+   headline is painted at once; fill-mode backwards so the scroll scene's inline transforms win afterwards. */
+@keyframes hero-in { from { transform: translateY(36px); } to { transform: none; } }
+@keyframes hero-photo-in { from { transform: scale(1.08); } to { transform: none; } }
+[data-hero-words] { animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s backwards; }
+[data-hero-frame] > img { animation: hero-photo-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 
 /* ---- card hover sheen ---- */
 .card-hover {
@@ -239,8 +301,8 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-4px);
-  border-color: rgba(0, 107, 96, 0.35);
-  box-shadow: 0 18px 40px -24px rgba(24, 43, 54, 0.35);
+  border-color: rgba(196, 61, 21, 0.35);
+  box-shadow: 0 18px 40px -24px rgba(18, 26, 29, 0.35);
 }
 
 /* ---- admin ---- */
@@ -282,7 +344,7 @@ body {
 .sweep-link .sweep-fill {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(0, 107, 96, 0.12), transparent);
+  background: linear-gradient(90deg, transparent, rgba(196, 61, 21, 0.12), transparent);
   transform: translateX(-110%);
   transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
   pointer-events: none;
@@ -390,9 +452,9 @@ body {
 .phone-frame {
   border: 10px solid var(--color-ink);
   border-radius: 2.6rem;
-  box-shadow: 0 40px 80px -40px rgba(24, 43, 54, 0.55), 0 0 0 1px rgba(24, 43, 54, 0.08);
+  box-shadow: 0 40px 80px -40px rgba(18, 26, 29, 0.55), 0 0 0 1px rgba(18, 26, 29, 0.08);
   background: var(--color-ink);
 }
 /* no notch: it covered the demo's disclosure ribbon in the screenshot */
 
-.card-recommended { box-shadow: 0 24px 60px -36px rgba(0, 107, 96, 0.6); }
+.card-recommended { box-shadow: 0 24px 60px -36px rgba(196, 61, 21, 0.6); }

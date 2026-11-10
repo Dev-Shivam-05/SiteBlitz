@@ -41,7 +41,10 @@ headline stays ≤ 3 lines). Buttons ≥ 44 px tall, DM Sans 600.
 | # | Scene | Desktop | Phone | Reduced motion |
 |---|---|---|---|---|
 | 01 | Hero: full-bleed shop photo, ink panel with the headline, sub-line "Mobile-first websites for salons, coaching classes and showrooms.", fact "Launch: 1 page · 2 working days after ready-to-build.", buttons Chat on WhatsApp / View live concepts; phone frame with the showroom concept screenshot ("CONCEPT DEMO" on it) | frame scale 1 → 0.88, radius 0 → 28 px, headline y 0 → -8vh over the first 75vh, scrub 0.3, no pin | scale 1 → 0.93, radius 20 px, -24 px over 55svh; phone frame 150 px | static |
-| 02 | Giant price `₹7,999` + "1-page website · 2 working days after ready-to-build" | 22vw (≤ 320 px), y 40% → 0, section top 82% → 35%, scrub 0.3 | 20vw, y 24% → 0, ends 40% | static |
+| 02 | Giant price `₹7,999` + "1-page website · 2 working days after ready-to-build" | 26vw (≤ 380 px), y 40% → 0, section top 82% → 35%, scrub 0.3 | 34vw, y 24% → 0, ends 40% | static |
+
+Amended in R2 (2026-11-10): the debate's 22vw / 20vw assumed a wider face; Antonio is condensed, so at 20vw
+the price filled only half a phone screen. 34vw / 26vw make it span roughly 85% / 67% of the width.
 | 03 | Statement bridge "YOUR WEBSITE SHOULD MAKE ENQUIRIES EASY." with a hairline | hairline scaleX 0 → 1, 450 ms power2.out at top 75% | 280 ms | static |
 | 04 | Demo stack: salon → coaching → showroom, each card = screenshot + name + one line + "View live concept" | CSS sticky top 96 px, wrappers 90svh, previous card 1 → 0.94, scrub 0.3, no JS pin | sticky top 72 px, card ≤ 560 px tall, previous 1 → 0.92; normal flow when landscape or height < 540 px | normal flow |
 | 05 | Type wipe `VISIBLE.` grows until vermilion fills the screen | wrapper 155svh, sticky child 100svh, scale 1 → 3, scrub 0.3 | wrapper 140svh, scale 1 → 2.2 | static vermilion band with the word |

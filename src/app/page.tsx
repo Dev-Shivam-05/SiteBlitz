@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
-import { Compare, DemoShowcase, FinalCTA, HomeHero, HomePricing, HowItWorks } from "@/components/site/sections/Home";
+import {
+  Compare,
+  DemoShowcase,
+  FinalCTA,
+  GiantPrice,
+  HomeHero,
+  HomePricing,
+  HowItWorks,
+  Statement,
+} from "@/components/site/sections/Home";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { FAQS, SITE } from "@/lib/site";
 
@@ -35,6 +44,8 @@ export default function HomePage() {
       {/* Order agreed in docs/debate/2026-11-01-ads-psychology-redesign (R2/FD-36): offer and price ->
           working demos -> how buying works -> pricing and terms -> honest comparison -> questions -> next step */}
       <HomeHero />
+      <GiantPrice />
+      <Statement />
       <DemoShowcase />
       <HowItWorks />
       <HomePricing />

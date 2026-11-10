@@ -4,20 +4,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS, SITE } from "@/lib/site";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
-/** Visible links on desktop (no MENU-only nav, FD-36); a simple sheet on phones. The one primary action
- *  everywhere is WhatsApp, because that is where every sale happens. */
+/** Redesign v3 header (docs/spec/redesign-v3-motion.md): solid pills that read on top of the hero photograph,
+ *  in the spirit of the reference's floating controls. Visible links on desktop; a full-screen sheet on phones.
+ *  The one primary action everywhere is WhatsApp, because that is where every sale happens. */
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -25,25 +19,34 @@ export function Navbar() {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.documentElement.style.overflow = "";
+    };
   }, [open]);
 
   const wa = SITE.whatsapp("Hi SiteBlitz, I'd like to see a website demo and the package details.");
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-[80] transition-[background,border-color] duration-300 ${
-        scrolled || open ? "border-b border-line bg-void/90 backdrop-blur-md" : "border-b border-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 md:px-8">
-        <Link href="/" className="font-display text-lg font-extrabold tracking-tight" data-track="nav_logo" aria-label="SiteBlitz home">
+    <header className="fixed inset-x-0 top-0 z-[80]">
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-3 px-4 md:px-8">
+        <Link
+          href="/"
+          className="pill display flex h-11 items-center px-5 text-[1.35rem] shadow-sm"
+          data-track="nav_logo"
+          aria-label="SiteBlitz home"
+        >
           Site<span className="text-volt">Blitz</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
+        <nav className="pill hidden h-11 items-center gap-1 px-2 shadow-sm md:flex" aria-label="Main">
           {NAV_LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm font-medium text-muted transition-colors hover:text-ink">
+            <Link
+              key={l.href}
+              href={l.href}
+              className="rounded-full px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-raised"
+            >
               {l.label}
             </Link>
           ))}
@@ -55,12 +58,14 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             data-track="nav_whatsapp"
-            className="btn-volt rounded-full px-4 py-2.5 text-sm font-semibold"
+            className="btn-volt flex h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold shadow-sm"
           >
-            Chat on WhatsApp
+            <WhatsAppIcon className="h-[18px] w-[18px]" color="currentColor" />
+            <span className="hidden sm:inline">Chat on WhatsApp</span>
+            <span className="sm:hidden">WhatsApp</span>
           </a>
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line md:hidden"
+            className="pill flex h-11 w-11 items-center justify-center shadow-sm md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -78,17 +83,28 @@ export function Navbar() {
         id="mobile-nav"
         aria-label="Mobile"
         hidden={!open}
-        className="border-t border-line bg-void px-5 pb-6 pt-2 md:hidden"
+        className="fixed inset-x-0 bottom-0 top-[72px] overflow-y-auto bg-ink px-5 pb-10 pt-6 text-void md:hidden"
       >
-        {NAV_LINKS.map((l) => (
-          <Link key={l.href} href={l.href} className="block border-b border-line py-3.5 text-base font-semibold text-ink" onClick={() => setOpen(false)}>
+        {[...NAV_LINKS, { href: "/contact", label: "Contact" }].map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className="display block border-b border-void/15 py-4 text-[2.6rem]"
+            onClick={() => setOpen(false)}
+          >
             {l.label}
           </Link>
         ))}
-        <Link href="/contact" className="block border-b border-line py-3.5 text-base font-semibold text-ink" onClick={() => setOpen(false)}>
-          Contact
-        </Link>
-        <p className="mt-4 text-sm text-muted">{SITE.locationLine}</p>
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="menu_whatsapp"
+          className="btn-volt mt-8 flex h-14 items-center justify-center gap-2 rounded-full text-base font-semibold"
+        >
+          <WhatsAppIcon className="h-5 w-5" color="currentColor" /> Chat on WhatsApp
+        </a>
+        <p className="mt-5 text-sm text-void/75">{SITE.locationLine}</p>
       </nav>
     </header>
   );
