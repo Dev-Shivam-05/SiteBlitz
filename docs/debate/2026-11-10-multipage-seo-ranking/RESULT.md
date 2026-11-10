@@ -1,8 +1,8 @@
-# Review - SiteBlitz multi-page site + SEO ranking - 2026-11-10/11 - 4 rounds - prompt: siteblitz-seo-multipage
+# Review - SiteBlitz multi-page site + SEO ranking - 2026-11-10/11 - 5 rounds - prompt: siteblitz-seo-multipage
 
 The owner asked for a real multi-page site in the v4 theme, the brand name (and misspellings) on top, ranking for
 website-development searches, performance and more animation, then went to sleep with "build whatever you can".
-Rounds: `01`-`04` in this folder. Evidence: `evidence.md`, `autocomplete.md` (live Google/Bing suggestions).
+Rounds: `01`-`05` in this folder. Evidence: `evidence.md`, `autocomplete.md` (live Google/Bing suggestions).
 
 | # | Point | Proposed by | Evidence (file:line / round) | Claude's verdict | Status |
 |---|---|---|---|---|---|
@@ -23,10 +23,13 @@ Rounds: `01`-`04` in this folder. Evidence: `evidence.md`, `autocomplete.md` (li
 | 15 | Preloader / curtain shortening | ChatGPT r1 | D15 owner-locked | rejected for now | owner decision |
 | 16 | IndexNow change-only submissions + founder off-site checklist | ChatGPT r3 | `scripts/indexnow*.mjs`, `docs/SEO-LAUNCH-CHECKLIST.md` | agreed | done (dry runs only) |
 | 17 | Per-page OG cards | ChatGPT r1 | `src/lib/og.tsx` + 6 route cards + default | agreed | done |
+| 18 | India state/UT comparison: one page, national host frequency, states as rows | ChatGPT r4 Q3.2 | `/research/india-business-website-records-2026` | agreed | done `27e62b9` |
+| 19 | Name the measure "URL retained after filtering" on every study page (the extract keeps one filtered URL per record) | ChatGPT r5 | all study pages, CSVs, Dataset, OG | agreed | done `4e4048c` |
+| 20 | Legacy "Jammu and Kashmir (State)" labels not guessed into J&K or Ladakh; unassigned row shown and in CSV; country rule stated | ChatGPT r5 | India page + CSV | agreed | done `4e4048c` |
+| 21 | Separate "country-eligibility unresolved" group for a handful of records with a foreign state name | ChatGPT r5 Q3 | India page method | partly rejected: the extract's country field says IN for them; they stay unassigned and the page says so | done |
 
 ## Recommended next steps (not started)
 - SEO-7: validation study of what a missing or recorded website link means (structured review sample) - ChatGPT r4 Q3.1.
-- SEO-8: one India state/UT comparison on the same method, national host frequency computed once, states as anchors.
 - SEO-9: single-business website-link checker (Overture snapshot only, index the tool page only; record-level licence check first).
 
 ## Points still open
