@@ -1,4 +1,4 @@
-import { FROM_PRICE, businessPkg, inr, launchPkg } from "./offer";
+import { EXCLUSIONS, FROM_PRICE, READY_TO_BUILD, businessPkg, inr, launchPkg } from "./offer";
 
 export const SITE = {
   name: "SiteBlitz",
@@ -21,12 +21,7 @@ export const SITE = {
   founded: 2024,
 } as const;
 
-export const NAV_LINKS = [
-  { href: "/#demos", label: "Live demos" },
-  { href: "/#how", label: "How it works" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/#faq", label: "FAQs" },
-] as const;
+/* Navigation lives in src/lib/pages.ts (MAIN_NAV) since SEO-1: real pages instead of home-page anchors. */
 
 /** The four-step buying process (FD-27): demo first, concept before payment, scope in writing. */
 export const PROCESS_STEPS = [
@@ -99,6 +94,97 @@ export const FAQS = [
     a: "We are building our client portfolio and will not show reviews or results we can't prove. Instead you can open our working demos, review a concept for your own business and get the full scope in writing before you pay.",
   },
 ] as const;
+
+const pay = (p: typeof launchPkg) =>
+  p.payments ? `${inr(p.payments[0])} to start and ${inr(p.payments[1])} on completion` : "as set out in the quotation";
+
+const faq = (q: string) => {
+  const f = FAQS.find((x) => x.q === q);
+  if (!f) throw new Error(`FAQ missing: ${q}`);
+  return f;
+};
+
+/**
+ * The /faq page (SEO-2): every buyer question in one place, grouped, phrased the way people search. Answers are built
+ * from offer.ts and the FAQS above, so a price or term can only change in one file. The home page keeps the short list.
+ */
+export interface QA {
+  q: string;
+  a: string;
+}
+
+export const FAQ_GROUPS: readonly { id: string; title: string; items: readonly QA[] }[] = [
+  {
+    id: "price",
+    title: "Price and payment",
+    items: [
+      {
+        q: "How much does a business website cost with SiteBlitz?",
+        a: `${launchPkg.name}, a one-page website, is ${inr(launchPkg.priceInr as number)}. ${businessPkg.name}, a three-page website, is ${inr(
+          businessPkg.priceInr as number
+        )}. Larger sites, online stores and booking systems are priced by a written quote. These are one-time build prices with no GST added.`,
+      },
+      faq("Are there monthly charges or hidden costs?"),
+      {
+        q: "Do I pay the full amount upfront?",
+        a: `No. ${launchPkg.name}: ${pay(launchPkg)}. ${businessPkg.name}: ${pay(businessPkg)}. Custom projects follow the milestones in their quotation.`,
+      },
+      {
+        q: "What is not included in the price?",
+        a: `${EXCLUSIONS.slice(0, 6).join("; ")}. Each of these is written in your quotation if you need it.`,
+      },
+      faq("Is the personalised homepage concept really free?"),
+    ],
+  },
+  {
+    id: "process",
+    title: "Time and process",
+    items: [
+      faq("How fast can you deliver?"),
+      {
+        q: "What do you need from me to start?",
+        a: `The delivery clock starts when the project is ready to build: ${READY_TO_BUILD.map((r) => r.charAt(0).toLowerCase() + r.slice(1)).join(
+          "; "
+        )}.`,
+      },
+      faq("What if I don't like the concept?"),
+      {
+        q: "Can I see examples before I pay?",
+        a: "Yes. Open the working demo websites for a salon, a coaching class and a showroom. They are fictional businesses built to show what you get, and they are labelled as such. For suitable projects you can also review one homepage concept for your own business before paying.",
+      },
+      {
+        q: "Do you build online stores or booking systems?",
+        a: "Yes, as a custom project. E-commerce, larger catalogues, bookings, more pages and integrations are scoped in writing and priced by quote before any work begins.",
+      },
+    ],
+  },
+  {
+    id: "google",
+    title: "Google and visibility",
+    items: [
+      faq("Will my website show up on Google?"),
+      {
+        q: "Is SEO included?",
+        a: "Every package includes the basic technical SEO setup, and we submit the finished site to Google Search Console. Rankings depend on Google and on your competition, so they are never promised.",
+      },
+      faq("I already have Instagram. Why a website?"),
+      faq("Will my website bring more customers?"),
+    ],
+  },
+  {
+    id: "studio",
+    title: "About SiteBlitz",
+    items: [
+      faq("Where is SiteBlitz based?"),
+      {
+        q: "Is it SiteBlitz or Site Blitz?",
+        a: "SiteBlitz, written as one word. People also write it Site Blitz; it is the same studio, and the WhatsApp number on this site is the one to use.",
+      },
+      faq("Who owns the website and the domain?"),
+      faq("Do you have client reviews?"),
+    ],
+  },
+];
 
 /**
  * Concept studies — how SiteBlitz would build for a sector. NOT client projects: SiteBlitz has no

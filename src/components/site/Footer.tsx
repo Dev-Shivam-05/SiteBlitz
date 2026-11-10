@@ -4,36 +4,10 @@ import { FROM_PRICE, inr } from "@/lib/offer";
 import { SITE_PHOTO_IDS } from "@/lib/photos";
 import { PhotoCredits } from "./PhotoCredits";
 import { WhatsAppIcon } from "./WhatsAppIcon";
+import { footerColumns, LEGAL_LINKS } from "@/lib/routes";
 
-const COLUMNS = [
-  {
-    title: "Website",
-    links: [
-      { href: "/#demos", label: "Live demos" },
-      { href: "/#how", label: "How it works" },
-      { href: "/pricing", label: "Pricing & terms" },
-      { href: "/#faq", label: "FAQs" },
-      { href: "/contact", label: "Contact" },
-    ],
-  },
-  {
-    title: "Demos",
-    links: [
-      { href: "/demo/salon", label: "Salon & beauty" },
-      { href: "/demo/coaching", label: "Coaching & tuition" },
-      { href: "/demo/showroom", label: "Retail & showroom" },
-      { href: "/tools/grader", label: "Free website check" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { href: "/privacy", label: "Privacy policy" },
-      { href: "/terms", label: "Terms of service" },
-      { href: "/refunds", label: "Refund policy" },
-    ],
-  },
-] as const;
+/** Every indexable page is reachable from here (src/lib/routes.ts); the legal row sits under the wordmark. */
+const COLUMNS = footerColumns();
 
 /** Redesign v4 footer: the void ground runs on from the close, the wordmark set edge to edge with its volt half,
  *  and the one credit line for every photograph the site shows. */
@@ -41,7 +15,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-line bg-void text-ink">
       <div className="mx-auto max-w-[1440px] px-4 pb-10 pt-16 md:px-8 md:pt-24">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_repeat(3,1fr)]">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_repeat(4,1fr)]">
           <div>
             <p className="max-w-xs text-base leading-relaxed text-ink/80">
               Business websites with upfront prices from {inr(FROM_PRICE)}, written scope and clear ownership.
@@ -93,7 +67,18 @@ export function Footer() {
         </p>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-line pt-6 text-sm text-muted md:flex-row md:items-start md:justify-between">
-          <p>© {new Date().getFullYear()} SiteBlitz. Demo websites are concept demonstrations, not client projects.</p>
+          <div>
+            <p>© {new Date().getFullYear()} SiteBlitz. Demo websites are concept demonstrations, not client projects.</p>
+            <ul className="mt-2 flex flex-wrap gap-x-5">
+              {LEGAL_LINKS.map((l) => (
+                <li key={l.path}>
+                  <Link href={l.path} className="inline-flex min-h-11 items-center hover:text-ink">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
           <PhotoCredits ids={SITE_PHOTO_IDS} className="max-w-[70ch] md:text-right" />
         </div>
       </div>

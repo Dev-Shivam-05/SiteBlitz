@@ -4,8 +4,10 @@
  *
  *  The inline script runs while the HTML is parsed, before first paint: on any page after the first of a browser
  *  session it marks <html data-seen>, which hides the sheet with CSS. On the first page it marks it at 1.25 s, so a
- *  client-side navigation (which re-mounts this element) never replays it. */
-const SEEN_SCRIPT = `try{var d=document.documentElement,s=window.sessionStorage;if(s.getItem("sb_seen")){d.setAttribute("data-seen","")}else{s.setItem("sb_seen","1");setTimeout(function(){d.setAttribute("data-seen","")},1250)}}catch(e){}`;
+ *  client-side navigation (which re-mounts this element) never replays it. The first page also carries data-first
+ *  until 3 s, which delays CSS page-hero entrances until the sheet has lifted (removed after they have finished, so
+ *  the delay change can never make a running entrance jump). */
+const SEEN_SCRIPT = `try{var d=document.documentElement,s=window.sessionStorage;if(s.getItem("sb_seen")){d.setAttribute("data-seen","")}else{s.setItem("sb_seen","1");d.setAttribute("data-first","");setTimeout(function(){d.setAttribute("data-seen","")},1250);setTimeout(function(){d.removeAttribute("data-first")},3000)}}catch(e){}`;
 
 export function Preloader() {
   return (

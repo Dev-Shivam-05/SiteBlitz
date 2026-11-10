@@ -42,8 +42,12 @@ export function HomeHero() {
           <div className="hero-a mx-auto w-full max-w-[1440px] px-4 pb-6 md:px-8 md:pb-10">
             <div className="grid gap-6 md:grid-cols-[1.3fr_1fr] md:items-end md:gap-10">
               <div>
-                <p className="kicker text-muted">{SITE.locationLine}</p>
-                <h1 id="hero-title" className="display mt-4 text-[clamp(36px,10.4vw,48px)] md:text-[clamp(48px,4.6vw,84px)]">
+                {/* The search phrase is part of the H1 as its visible kicker line (SEO-2): the creative line stays the
+                    headline people see, and the heading still says what the business is and where. */}
+                <h1 id="hero-title" className="display text-[clamp(36px,10.4vw,48px)] md:text-[clamp(48px,4.6vw,84px)]">
+                  <span className="kicker mb-4 block font-body leading-normal text-muted [font-stretch:100%]">
+                    Website design &amp; development · Gujarat, India
+                  </span>
                   Websites people <span className="serif text-volt">remember.</span>
                 </h1>
               </div>
@@ -264,7 +268,10 @@ export function ConceptWall() {
             </h2>
             <p className="max-w-[36ch] text-base text-muted md:text-right">
               <span className="hidden md:inline">Hover a card to scroll through the site. </span>Open one and try it on your
-              phone.
+              phone.{" "}
+              <Link href="/work" data-track="hall_all_work" className="whitespace-nowrap font-semibold text-ink underline-offset-4 hover:text-volt hover:underline">
+                All concept studies →
+              </Link>
             </p>
           </div>
           <div className="mt-8 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
@@ -453,6 +460,13 @@ export function Process() {
             ))}
           </ol>
         </div>
+        <Link
+          href="/process"
+          data-track="how_full_process"
+          className="btn-line mt-14 inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold"
+        >
+          The full process, step by step <span aria-hidden>→</span>
+        </Link>
       </div>
     </section>
   );

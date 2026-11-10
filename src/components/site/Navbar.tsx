@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { NAV_LINKS, SITE } from "@/lib/site";
+import { SITE } from "@/lib/site";
+import { MAIN_NAV, PAGES } from "@/lib/pages";
 import { Magnetic } from "./Magnetic";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
@@ -51,7 +52,10 @@ export function Navbar() {
   }, [open]);
 
   const wa = SITE.whatsapp("Hi SiteBlitz, I'd like to see a website demo and the package details.");
-  const menuLinks = [...NAV_LINKS, { href: "/contact", label: "Contact" }];
+  const nav = MAIN_NAV.map((e) => ({ href: e.path, label: e.label }));
+  const menuLinks = [...nav, { href: PAGES.contact.path, label: PAGES.contact.label }];
+  // A section of the site counts as current for its children too (/services/landing-pages lights "Services").
+  const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
     <header className={`site-header fixed inset-x-0 top-0 z-[80] ${hidden && !open ? "is-hidden" : ""}`}>
@@ -66,19 +70,27 @@ export function Navbar() {
         </Link>
 
         <nav className="pill hidden h-11 items-center gap-1 px-1.5 md:flex" aria-label="Main">
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="group relative rounded-full px-4 py-2 text-sm font-semibold text-ink/85 transition-colors hover:text-ink"
-            >
-              {l.label}
-              <span
-                aria-hidden
-                className="absolute inset-x-4 bottom-1 h-px origin-left scale-x-0 bg-volt transition-transform duration-300 group-hover:scale-x-100"
-              />
-            </Link>
-          ))}
+          {nav.map((l) => {
+            const current = isCurrent(l.href);
+            return (
+              <Link
+                key={l.href}
+                href={l.href}
+                aria-current={current ? "page" : undefined}
+                className={`group relative rounded-full px-4 py-2 text-sm font-semibold transition-colors hover:text-ink ${
+                  current ? "text-ink" : "text-ink/85"
+                }`}
+              >
+                {l.label}
+                <span
+                  aria-hidden
+                  className={`absolute inset-x-4 bottom-1 h-px origin-left bg-volt transition-transform duration-300 group-hover:scale-x-100 ${
+                    current ? "scale-x-100" : "scale-x-0"
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -122,6 +134,7 @@ export function Navbar() {
           <Link
             key={l.href}
             href={l.href}
+            aria-current={isCurrent(l.href) ? "page" : undefined}
             style={{ ["--i" as string]: i }}
             className="menu-item display flex items-baseline justify-between border-b border-line py-4 text-[2.5rem]"
             onClick={() => setOpen(false)}

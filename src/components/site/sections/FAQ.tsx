@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FAQS } from "@/lib/site";
 
 /** 09 — FAQs as native <details> (spec: no scroll theatrics, keyboard and reduced motion for free).
@@ -11,6 +12,13 @@ export function FAQ() {
           <h2 id="faq-title" className="display mt-4 text-[clamp(40px,10.5vw,56px)] md:text-[clamp(56px,4.8vw,84px)]">
             Straight answers <span className="serif text-volt">before you decide.</span>
           </h2>
+          <Link
+            href="/faq"
+            data-track="faq_all"
+            className="btn-line mt-8 inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold"
+          >
+            Every question, by topic <span aria-hidden>→</span>
+          </Link>
         </div>
         <div className="border-t border-ink/15">
           {FAQS.map((f) => (

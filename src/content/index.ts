@@ -38,6 +38,8 @@ export interface BlogPost {
   cluster: string;
   readingMinutes: number;
   date: string;
+  /** Last substantive revision (ISO date); feeds dateModified and the sitemap. Absent = never revised. */
+  updated?: string;
   author: string;
   authorRole: string;
   blocks: PostBlock[];

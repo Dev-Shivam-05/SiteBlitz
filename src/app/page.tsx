@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
 import {
   Close,
@@ -12,36 +11,29 @@ import {
   Statement,
 } from "@/components/site/sections/Home";
 import { FAQ } from "@/components/site/sections/FAQ";
-import { FAQS, SITE } from "@/lib/site";
+import { FAQS } from "@/lib/site";
+import { FROM_PRICE, businessPkg, inr } from "@/lib/offer";
+import { PAGES } from "@/lib/pages";
+import { faqNode, graph, pageMeta, webPageNode } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-};
+const TITLE = "SiteBlitz — Website Design & Development Studio in Gujarat";
+const DESCRIPTION = `SiteBlitz is a Gujarat-based website studio for businesses across India. One-page websites from ${inr(
+  FROM_PRICE
+)}, three pages ${inr(businessPkg.priceInr as number)}. See working demos and review a concept before you pay.`;
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  })),
-};
+export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: "/", absoluteTitle: true });
 
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${SITE.url}/#website`,
-  name: "SiteBlitz",
-  url: SITE.url,
-  publisher: { "@id": `${SITE.url}/#organization` },
-};
+/* The home page adds its own WebPage + the short FAQ to the site graph that the root layout already states. */
+const ld = graph(
+  webPageNode({ path: "/", name: TITLE, description: DESCRIPTION, dateModified: PAGES.home.updated }),
+  faqNode("/", FAQS)
+);
 
 export default function HomePage() {
   return (
     <Shell>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+      <JsonLd data={ld} />
       {/* Redesign v4 scene order (docs/spec/redesign-v4-showcase.md): particle hero that becomes a concept phone ->
           the promise -> the price -> drifting concept captures -> the concept wall -> packages track -> steps ->
           concept promise -> questions -> close. */}

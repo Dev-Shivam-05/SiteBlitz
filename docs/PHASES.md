@@ -62,6 +62,21 @@ Spec: `docs/spec/redesign-v4-showcase.md` (D15). Supersedes v3 visually.
 | V5 | Admin Live globe, Leads board, Overview KPI count-up + sparklines | **done** `c571f9b` |
 | V6 | Full verification (public + admin, reduced motion, vitals), handoff, push | **done** `d5de77a` — push: see HANDOFF |
 
+## Multi-page + search (2026-11-10/11, owner asleep 9 h: "build whatever you can; SEO must be extraordinary")
+
+Debate: `docs/debate/2026-11-10-multipage-seo-ranking/` (prompt `siteblitz-seo-multipage`). Run back to back in one sitting
+on the owner's explicit 9-hour instruction, each unit committed and verified on its own.
+
+| # | Phase | Status |
+|---|---|---|
+| SEO-0 | ChatGPT debate: IA, keyword map, city pages, brand + misspellings, technical SEO, perf budget, inner-page motion | doing |
+| SEO-1 | Search foundation: route registry (nav, footer, sitemap, llms.txt from one list), real-page nav, footer links every indexable page, one JSON-LD graph (brand entity + alternate names), breadcrumbs, real sitemap lastmod, named AI crawlers, generated llms.txt (the static one said Mumbai, $ and withdrawn prices), v4 OG cards, root-canonical bug | doing |
+| SEO-2 | Keyword-mapped title / H1 / meta on every page; new `/faq` | todo |
+| SEO-3 | Inner pages (P-INNER) onto v4 with a hero entrance + 1-2 moments each, truthful copy | todo |
+| SEO-4 | Keyword pages agreed in the debate (cost guide, Gujarat / city pages, Hinglish guide) | todo |
+| SEO-5 | Off-site checklist for the founder (domain, Search Console, Bing, Brave submit, IndexNow, Google Business Profile, directories) | todo |
+| SEO-6 | Verification: tests + build, 390/1440 + reduced-motion shots, vitals, structured-data check, handoff | todo |
+
 ## Next 3
 
 1. **Owner reviews v4** on `localhost:3000` / the Preview, on a phone first; collect changes in one list.
