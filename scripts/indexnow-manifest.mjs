@@ -26,6 +26,10 @@ const decode = (s) =>
   s.replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'");
 const pick = (html, re) => decode((html.match(re) ?? [, ""])[1].trim());
 
+// Pages whose <main> shows live measurements (re-rendered every minute): only their metadata is hashed, otherwise every
+// run would report them changed. Found by running the manifest twice on an unchanged site (debate round 4 check).
+const LIVE_PAGES = new Set(["/proof"]);
+
 const sitemap = await get(new URL("/sitemap.xml", base).href);
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => decode(m[1].trim()));
 const out = {};
@@ -43,12 +47,13 @@ for (const url of urls) {
     .replace(/\s+/g, " ")
     .trim();
   const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]).join("\n");
+  const live = LIVE_PAGES.has(new URL(url).pathname);
   const payload = [
     pick(html, /<title>([^<]*)<\/title>/),
     pick(html, /<meta name="description" content="([^"]*)"/),
     canonical,
-    decode(main),
-    ld,
+    live ? "" : decode(main),
+    live ? "" : ld,
   ].join("\n␞\n");
   out[url] = createHash("sha256").update(payload).digest("hex");
   await new Promise((r) => setTimeout(r, 300));

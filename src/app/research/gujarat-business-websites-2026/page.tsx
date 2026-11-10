@@ -46,7 +46,7 @@ const ld = graph(
     "@type": "Dataset",
     "@id": `${absUrl(PATH)}#dataset`,
     name: "Gujarat business-listing website study 2026",
-    description: `How often listing records in 17 selected trades in Gujarat, India carry a URL of an own website, a shared or chain URL, a directory URL or no URL. ${num(
+    description: `How often listing records in 17 selected trades in Gujarat, India carry a low-reuse website URL, a shared-host or locator-pattern URL, a directory or marketplace URL only, or no URL. ${num(
       T.n
     )} records with no brand recorded, from the Overture Maps Places release ${STUDY.sourceRelease}; city and trade aggregates.`,
     url: absUrl(PATH),
@@ -58,7 +58,7 @@ const ld = graph(
     temporalCoverage: STUDY.sourceRelease,
     spatialCoverage: { "@type": "Place", name: "Gujarat, India" },
     measurementTechnique: "Classification of the website field of Overture Maps Places listing records by host",
-    variableMeasured: ["Listing records", "Own website URL", "Shared or chain URL", "Directory or marketplace URL", "No URL recorded"],
+    variableMeasured: ["Listing records", "Low-reuse website URL", "Shared-host or locator-pattern URL", "Directory/marketplace URL only", "No URL recorded in the website field"],
     isBasedOn: "https://docs.overturemaps.org/guides/places/",
     license: "https://creativecommons.org/licenses/by/4.0/",
     isAccessibleForFree: true,
@@ -87,8 +87,8 @@ export default function GujaratWebsiteStudy() {
         lead={
           <p>
             We looked at {num(T.n)} listing records in 17 selected trades across Gujarat, all with no brand recorded, from the
-            open Overture Maps data released on 21 October 2026. {pct(T.own, T.n)} carry the URL of a website of their own,{" "}
-            {pct(T.shared, T.n)} a shared or chain URL, {pct(T.directory, T.n)} a directory page, and {pct(T.none, T.n)} no URL
+            open Overture Maps data released on 21 October 2026. {pct(T.own, T.n)} carry a low-reuse website URL (a host that at most one other record uses),{" "}
+            {pct(T.shared, T.n)} a shared-host or locator-pattern URL, {pct(T.directory, T.n)} a directory page only, and {pct(T.none, T.n)} no URL
             at all. These are listing records, not a census of businesses.
           </p>
         }
@@ -113,7 +113,7 @@ export default function GujaratWebsiteStudy() {
                 className="pointer-events-none absolute -inset-x-[8%] -inset-y-[22%] h-[144%] w-[116%] text-volt"
               />
             </p>
-            <p className="mt-6 max-w-[30ch] text-base text-muted">of listing records in 17 trades carry an own-website URL.</p>
+            <p className="mt-6 max-w-[30ch] text-base text-muted">of listing records in 17 trades carry a low-reuse website URL. Not a verified ownership count.</p>
           </div>
         }
       />
@@ -128,10 +128,10 @@ export default function GujaratWebsiteStudy() {
                 Phone shops and restaurants <span className="serif text-volt">trail.</span>
               </h2>
               <p className="mt-6 max-w-[44ch] text-base leading-relaxed text-muted">
-                {lowest.label} have the lowest share of records with an own-website URL ({pct(lowest.own, lowest.n)} of{" "}
+                {lowest.label} have the lowest share of records with a low-reuse website URL ({pct(lowest.own, lowest.n)} of{" "}
                 {num(lowest.n)}); {highest.label.toLowerCase()} the highest ({pct(highest.own, highest.n)} of {num(highest.n)}).
                 Trades whose shops are often franchise branches, such as car and bike dealers, phone shops and pharmacies,
-                show the largest share of shared or chain URLs.
+                show the largest share of shared-host or locator-pattern URLs.
               </p>
               <div className="mt-6">
                 <Legend />
@@ -142,7 +142,7 @@ export default function GujaratWebsiteStudy() {
                 <li key={t.id} className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 md:grid-cols-[minmax(0,15rem)_1fr_6.5rem] [&>*]:min-w-0">
                   <span className="text-sm font-semibold text-ink md:text-base">{t.label}</span>
                   <span className="text-right text-sm tabular-nums text-muted md:order-3">
-                    <span className="font-semibold text-volt">{pct(t.own, t.n)}</span> own
+                    <span className="font-semibold text-volt">{pct(t.own, t.n)}</span> low-reuse
                   </span>
                   <span className="col-span-2 md:order-2 md:col-span-1">
                     <SplitBar s={t} label={splitLabel(t.label, t)} />
@@ -185,9 +185,9 @@ export default function GujaratWebsiteStudy() {
                 <tr>
                   <th scope="col" className={th}>City</th>
                   <th scope="col" className={`${th} text-right`}>Records</th>
-                  <th scope="col" className={`${th} text-right`}>Own website</th>
-                  <th scope="col" className={`${th} text-right`}>Shared / chain</th>
-                  <th scope="col" className={`${th} text-right`}>Directory</th>
+                  <th scope="col" className={`${th} text-right`}>Low-reuse URL</th>
+                  <th scope="col" className={`${th} text-right`}>Shared host / locator</th>
+                  <th scope="col" className={`${th} text-right`}>Directory only</th>
                   <th scope="col" className={`${th} text-right`}>No URL</th>
                   <th scope="col" className={`${th} w-[24%]`}>
                     <span className="sr-only">Split</span>
@@ -263,7 +263,7 @@ export default function GujaratWebsiteStudy() {
                   <span>
                     <span className="block text-lg font-semibold md:text-xl">{c.name}</span>
                     <span className="mt-1 block text-sm text-muted">
-                      {num(c.n)} records · {pct(c.own, c.n)} own website URL · {pct(c.none, c.n)} no URL
+                      {num(c.n)} records · {pct(c.own, c.n)} low-reuse URL · {pct(c.none, c.n)} no URL
                     </span>
                   </span>
                   <span
@@ -280,9 +280,9 @@ export default function GujaratWebsiteStudy() {
                       <tr className="border-b border-line text-faint">
                         <th scope="col" className="py-2 pr-3 text-left font-semibold">Trade</th>
                         <th scope="col" className="px-3 py-2 text-right font-semibold">Records</th>
-                        <th scope="col" className="px-3 py-2 text-right font-semibold">Own website</th>
-                        <th scope="col" className="px-3 py-2 text-right font-semibold">Shared / chain</th>
-                        <th scope="col" className="px-3 py-2 text-right font-semibold">Directory</th>
+                        <th scope="col" className="px-3 py-2 text-right font-semibold">Low-reuse URL</th>
+                        <th scope="col" className="px-3 py-2 text-right font-semibold">Shared host / locator</th>
+                        <th scope="col" className="px-3 py-2 text-right font-semibold">Directory only</th>
                         <th scope="col" className="py-2 pl-3 text-right font-semibold">No URL</th>
                       </tr>
                     </thead>

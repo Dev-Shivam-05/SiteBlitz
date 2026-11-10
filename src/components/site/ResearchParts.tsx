@@ -4,10 +4,10 @@ import { STUDY, num, pct, share, type Split } from "@/lib/research";
  *  are drawn and defined identically everywhere. Every bar's values are also printed as text. */
 
 export const CLASS_LABEL = {
-  own: "Own website URL",
-  shared: "Shared or chain URL",
-  directory: "Directory or marketplace URL",
-  none: "No URL recorded",
+  own: "Low-reuse website URL",
+  shared: "Shared-host or locator-pattern URL",
+  directory: "Directory/marketplace URL only",
+  none: "No URL recorded in the website field",
 } as const;
 
 export function SplitBar({ s, label }: { s: Split; label: string }) {
@@ -21,7 +21,7 @@ export function SplitBar({ s, label }: { s: Split; label: string }) {
 }
 
 export const splitLabel = (name: string, s: Split) =>
-  `${name}: ${pct(s.own, s.n)} own website URL, ${pct(s.shared, s.n)} shared or chain URL, ${pct(s.directory, s.n)} directory URL, ${pct(
+  `${name}: ${pct(s.own, s.n)} low-reuse website URL, ${pct(s.shared, s.n)} shared-host or locator-pattern URL, ${pct(s.directory, s.n)} directory URL only, ${pct(
     s.none,
     s.n
   )} no URL, of ${num(s.n)} records`;
@@ -38,15 +38,16 @@ export function Legend() {
   );
 }
 
+/** Diagnostic outcome labels (debate round 4): what the HTTP exchange was, not whether the page serves the business. */
 const OUTCOME_LABEL: Record<string, string> = {
-  ok: "answered with a page (2xx)",
-  "no-dns": "had no DNS record",
-  timeout: "timed out",
-  refused: "refused an automated client (401/403/429)",
-  "http-4xx": "returned another 4xx error",
-  "http-5xx": "returned a server error",
-  failed: "failed to connect",
-  parked: "showed a parked or for-sale page",
+  ok: "HTTP 2xx response (pages flagged parked or for sale counted separately)",
+  "no-dns": "DNS resolution failure during this attempt",
+  timeout: "10-second request deadline exceeded",
+  refused: "HTTP 401, 403 or 429 response",
+  "http-4xx": "other HTTP 4xx response",
+  "http-5xx": "HTTP 5xx response",
+  failed: "other connection failure",
+  parked: "response flagged as parked or for sale",
 };
 
 /** The method, worded per debate round 3: selection by activity, the no-brand population named as such, shared hosts
@@ -74,23 +75,35 @@ export function MethodList() {
       <li>
         <strong className="text-ink">Which records.</strong> Records in Gujarat in 17 selected trades, chosen by what the
         business does (the category lists are below), and only records with no brand recorded in the source. A missing
-        brand is missing information, not proof that a business is independent. Each record has one category, so it is
-        counted once. Places of worship, schools, banks, ATMs, landmarks and transport are not in the trades.
+        brand is missing information, not proof that a business is independent. For this analysis each retained record is
+        assigned to exactly one of the 17 trade groups using its main source category; alternate categories are not
+        expanded into extra rows. Places of worship, schools, banks, ATMs, landmarks and transport are not in the trades.
       </li>
       <li>
-        <strong className="text-ink">Four classes.</strong> Every record falls in one: an <em>own website URL</em> (its
-        host is used by at most one other trade record); a <em>shared or chain URL</em> (a host used by{" "}
-        {STUDY.sharedHostMin} or more records, or a chain&rsquo;s store-locator page: branches, franchises or duplicate
-        listings, a flag rather than proof); a <em>directory or marketplace URL</em> (a listing about the business, such as
-        IndiaMART, Justdial, OYO or a Google profile link); or <em>no URL recorded</em>. Social media profiles never count
-        as a website. Sites on builders such as Wix or Blogger count as own, each by its own address.
+        <strong className="text-ink">The website field.</strong> Our extract keeps one website URL per record: the first
+        recorded URL that is not a social profile or a common listing page (Google, Justdial, Practo, Zomato and similar
+        are removed when the extract is built). So &ldquo;no URL recorded in the website field&rdquo; also covers records
+        whose only links were social profiles or those listings.
       </li>
       <li>
-        <strong className="text-ink">Shared hosts.</strong> Of {num(STUDY.validation.tradeRecordsWithUrl)} trade records with
-        a URL, {num(STUDY.validation.hostsSharedBy3Plus)} hosts were used by {STUDY.sharedHostMin} or more records; the
-        largest belong to pharmacy, phone-shop and store-locator networks whose brand field was empty. The rule can
-        misjudge both ways: a family business with three branches loses its real website to this class, and a chain with
-        two records in the data stays in the own class.
+        <strong className="text-ink">Four classes.</strong> Each record receives one URL classification:{" "}
+        <em>low-reuse website URL</em>, <em>shared-host or locator-pattern URL</em>, <em>directory/marketplace URL only</em>{" "}
+        or <em>no URL recorded in the website field</em>. These describe recorded URLs and our rules; they do not verify
+        website ownership, chain membership, independence or availability. A low-reuse website URL is outside the directory
+        and locator patterns and its host appears in one or two of the {num(STUDY.total.n)} study records. The
+        shared-host class holds hosts appearing in {STUDY.sharedHostMin} or more records, or URLs matching the published
+        locator patterns (a host on singleinterface.com, or one beginning with nearme., store., stores., location.,
+        locations., branch., branches. or pin.). Either class can contain a genuine business website. Directory URLs are
+        listings on sites such as IndiaMART, Justdial, OYO, Practo, Zomato, MagicBricks or Google profile short links.
+        Builder sites such as Wix or Blogger are judged by their own address like any other.
+      </li>
+      <li>
+        <strong className="text-ink">Host frequency.</strong> A host&rsquo;s count is the number of study records whose
+        website URL has that host, counted once across all {num(STUDY.total.n)} records before splitting by city or trade.
+        Of {num(STUDY.validation.tradeRecordsWithUrl)} records with a URL, {num(STUDY.validation.hostsSharedBy3Plus)} hosts
+        appear in {STUDY.sharedHostMin} or more; the largest belong to pharmacy, phone-shop and store-locator networks
+        whose brand field was empty. The rule can misjudge both ways: a family business with three branches lands in the
+        shared-host class, and a chain with two records in the data stays in the low-reuse class.
       </li>
       <li>
         <strong className="text-ink">City.</strong> The city as the source gives it in the address. A record without a
@@ -98,16 +111,19 @@ export function MethodList() {
       </li>
       <li>
         <strong className="text-ink">One diagnostic fetch.</strong> On {ran} IST we made one automated request (10 seconds,
-        no retry) for each of {live.sample} listing records picked at random (seed {live.seed}) from the{" "}
-        {num(STUDY.total.own)} records in the own-website class. Of those {live.sample}:{" "}
-        {outcomes}. This describes one run from one connection. It does not estimate how many Gujarat businesses have a
-        working website.
+        no retry, redirects followed) for each of {live.sample} listing records picked at random (seed {live.seed}) from
+        the {num(STUDY.total.own)} records in the low-reuse class. The outcomes are mutually exclusive: the HTTP status and
+        a parked-page flag (page text saying the domain is for sale, parked or expired) were recorded first, then one
+        outcome assigned. Of those {live.sample}: {outcomes}. A successful HTTP response does not confirm that the page
+        belongs to the business. This describes one run from one connection; it does not estimate how many Gujarat
+        businesses have a working website.
       </li>
       <li>
         <strong className="text-ink">What the numbers are.</strong> A recorded URL does not establish that a website is
         live, usable or correctly linked to the business. Our classification can both miss genuine business websites and
         include URLs that no longer work. These figures measure classified website links in the source records, not
-        verified website ownership or availability, and no margin of error applies to them.
+        verified website ownership or availability, and no margin of error applies to them. Percentages are calculated
+        from the counts before rounding.
       </li>
     </ol>
   );

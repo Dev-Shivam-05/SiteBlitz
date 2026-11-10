@@ -67,7 +67,7 @@ export default function SuratStudy() {
       dateModified: STUDY.updated,
       temporalCoverage: STUDY.sourceRelease,
       spatialCoverage: { "@type": "Place", name: "Surat, Gujarat, India" },
-      variableMeasured: ["Listing records", "Own website URL", "Shared or chain URL", "Directory or marketplace URL", "No URL recorded"],
+      variableMeasured: ["Listing records", "Low-reuse website URL", "Shared-host or locator-pattern URL", "Directory/marketplace URL only", "No URL recorded in the website field"],
       license: "https://creativecommons.org/licenses/by/4.0/",
       isAccessibleForFree: true,
       distribution: { "@type": "DataDownload", encodingFormat: "text/csv", contentUrl: absUrl(STUDY.csvPath) },
@@ -85,9 +85,9 @@ export default function SuratStudy() {
         lead={
           <p>
             Of {num(city.n)} {CITY} listing records with no brand recorded, across 17 selected trades, {pct(city.own, city.n)} carry
-            the URL of a website of their own, {pct(city.shared, city.n)} a shared or chain URL, {pct(city.directory, city.n)} a
-            directory page and {pct(city.none, city.n)} no URL. The rest of Gujarat, counted the same way, is at{" "}
-            {pct(rest.total.own, rest.total.n)} own. These are listing records, not a census of businesses.
+            a low-reuse website URL, {pct(city.shared, city.n)} a shared-host or locator-pattern URL, {pct(city.directory, city.n)} a
+            directory page only and {pct(city.none, city.n)} no URL. The rest of Gujarat, counted the same way, is at{" "}
+            {pct(rest.total.own, rest.total.n)} low-reuse. These are listing records, not a census of businesses.
           </p>
         }
         aside={
@@ -102,7 +102,7 @@ export default function SuratStudy() {
               />
             </p>
             <p className="mt-6 max-w-[30ch] text-base text-muted">
-              own-website URLs in {CITY}, against {pct(rest.total.own, rest.total.n)} in the rest of Gujarat.
+              low-reuse website URLs in {CITY} listing records, against {pct(rest.total.own, rest.total.n)} in the rest of Gujarat.
             </p>
           </div>
         }
@@ -117,20 +117,22 @@ export default function SuratStudy() {
           <p className="mt-6 max-w-[72ch] text-base leading-relaxed text-muted">
             The widest gap below the rest of the state is {below.t.label.toLowerCase()} ({pts(share(below.s.own, below.s.n), share(below.r.own, below.r.n))}
             ); the widest above is {above.t.label.toLowerCase()} ({pts(share(above.s.own, above.s.n), share(above.r.own, above.r.n))}). Differences
-            are in percentage points of own-website URLs. They describe the records and are not tested for statistical
+            are in percentage points of low-reuse website URLs, calculated from the counts before rounding, so a
+            difference may not equal the two rounded shares subtracted. These are descriptive differences within the selected
+            source records, not estimates of differences among all businesses, and they are not tested for statistical
             significance.
           </p>
           <div data-anim="mask" className="relative mt-10 overflow-x-auto rounded-2xl border border-line">
             <table className="w-full min-w-[820px] text-sm md:text-base">
               <caption className="sr-only">
-                {CITY} and the rest of Gujarat: own-website URLs in listing records by trade
+                {CITY} and the rest of Gujarat: low-reuse website URLs in listing records by trade
               </caption>
               <thead className="border-b border-line bg-surface">
                 <tr>
                   <th scope="col" className="px-3 py-3 text-left font-semibold md:px-4">Trade</th>
                   <th scope="col" className="px-3 py-3 text-right font-semibold md:px-4">{CITY} records</th>
-                  <th scope="col" className="px-3 py-3 text-right font-semibold md:px-4">{CITY} own</th>
-                  <th scope="col" className="px-3 py-3 text-right font-semibold md:px-4">Rest of Gujarat own</th>
+                  <th scope="col" className="px-3 py-3 text-right font-semibold md:px-4">{CITY} low-reuse</th>
+                  <th scope="col" className="px-3 py-3 text-right font-semibold md:px-4">Rest of Gujarat low-reuse</th>
                   <th scope="col" className="px-3 py-3 text-right font-semibold md:px-4">Difference</th>
                   <th scope="col" className="px-3 py-3 text-right font-semibold md:px-4">{CITY} no URL</th>
                   <th scope="col" className="w-[22%] px-3 py-3 md:px-4">
