@@ -258,7 +258,7 @@ const DEMO_FULL_HEIGHT: Record<string, number> = { salon: 2158, coaching: 2158, 
 
 /** 05 — The concept wall: three large cards that rise in while the section holds; hovering a card scrolls through
  *  the whole concept site inside it (cursor: VIEW), and a click or tap opens the live demo. */
-export function ConceptWall() {
+export function ConceptWall({ allLink = true }: { allLink?: boolean }) {
   return (
     <section data-hall aria-labelledby="hall-title" className="hall bg-void">
       <div className="hall-stage">
@@ -270,9 +270,11 @@ export function ConceptWall() {
             <p className="max-w-[36ch] text-base text-muted md:text-right">
               <span className="hidden md:inline">Hover a card to scroll through the site. </span>Open one and try it on your
               phone.{" "}
-              <Link href="/work" data-track="hall_all_work" className="whitespace-nowrap font-semibold text-ink underline-offset-4 hover:text-volt hover:underline">
-                All concept studies →
-              </Link>
+              {allLink && (
+                <Link href="/work" data-track="hall_all_work" className="whitespace-nowrap font-semibold text-ink underline-offset-4 hover:text-volt hover:underline">
+                  All concept studies →
+                </Link>
+              )}
             </p>
           </div>
           <div className="mt-8 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">

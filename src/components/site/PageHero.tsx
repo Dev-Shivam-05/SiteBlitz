@@ -73,3 +73,19 @@ export function PageHero({
     </section>
   );
 }
+
+/** A typographic hero aside: one big figure with a drawn volt underline and a short caption. Used where a page has a
+ *  number worth stating (two prices, a count) so the hero's right half carries a fact instead of empty ground. */
+export function HeroFigure({ rows, caption }: { rows: { value: string; label: string }[]; caption?: string }) {
+  return (
+    <div className="mx-auto w-fit lg:ml-auto lg:mr-0">
+      {rows.map((r) => (
+        <div key={r.label} className="flex items-baseline justify-between gap-6 border-b border-line py-4 first:pt-0">
+          <span className="display text-[clamp(48px,14vw,80px)] leading-none md:text-[clamp(64px,6vw,112px)]">{r.value}</span>
+          <span className="kicker text-right text-muted">{r.label}</span>
+        </div>
+      ))}
+      {caption && <p className="kicker mt-6 max-w-[34ch] text-volt">{caption}</p>}
+    </div>
+  );
+}

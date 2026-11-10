@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
-import { PageHero } from "@/components/site/PageHero";
+import { HeroFigure, PageHero } from "@/components/site/PageHero";
 import { JsonLd } from "@/components/site/JsonLd";
 import { Close } from "@/components/site/sections/Home";
 import { FAQ_GROUPS, SITE } from "@/lib/site";
@@ -38,6 +38,11 @@ export default function FaqPage() {
             {ALL.length} questions business owners ask before getting a website: price, time, Google, ownership and who
             we are. If yours is missing, ask it on WhatsApp and get a direct answer.
           </p>
+        }
+        aside={
+          <HeroFigure
+            rows={FAQ_GROUPS.map((g) => ({ value: String(g.items.length).padStart(2, "0"), label: g.title }))}
+          />
         }
       />
 

@@ -705,6 +705,26 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
 .globe-wrap canvas { width: 100%; height: 100%; contain: layout paint size; opacity: 0; transition: opacity 1s ease; }
 .globe-wrap canvas.is-on { opacity: 1; }
 
+/* ---- service index rows (/services): the row fills with volt from the bottom on hover; text turns void ---- */
+.svc-row { position: relative; isolation: isolate; transition: color 0.35s ease; }
+.svc-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-volt);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.svc-row:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 3px; }
+@media (hover: hover) {
+  .svc-row:hover { color: var(--color-void); }
+  .svc-row:hover::before { transform: scaleY(1); }
+  .svc-row:hover .svc-muted { color: rgba(10, 10, 12, 0.72); }
+  .svc-row:hover .svc-arrow { background: var(--color-void); color: var(--color-volt); border-color: var(--color-void); transform: rotate(-45deg); }
+}
+
 /* ---- page hero (PageHero.tsx, SEO-3). CSS-only entrance: it runs at first paint without JavaScript, and the H1
    moves by transform alone inside a clipping mask, so its text is painted from the first frame (LCP). On the first page
    of a session the Preloader marks html[data-first] and the entrance waits for the sheet to lift. ---- */

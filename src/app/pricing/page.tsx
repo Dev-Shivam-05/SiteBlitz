@@ -106,7 +106,7 @@ export default function PricingPage() {
 
       <div className="mx-auto max-w-[1440px] px-4 pb-[10vh] md:px-8">
         <Block id="terms" title="Compare what's included">
-          <div className="overflow-x-auto rounded-2xl border border-line bg-surface">
+          <div className="relative overflow-x-auto rounded-2xl border border-line bg-surface">
             <table className="w-full min-w-[640px] text-left text-sm">
               <caption className="sr-only">What each package includes</caption>
               <thead>
@@ -148,7 +148,7 @@ export default function PricingPage() {
 
         <Block id="costs" title="Domain, hosting and renewal costs">
           <p>We recommend registering your domain in an account you control. Renewal prices depend on the provider, so we write the real figure in your quote instead of guessing one here.</p>
-          <div className="overflow-x-auto rounded-2xl border border-line bg-surface">
+          <div className="relative overflow-x-auto rounded-2xl border border-line bg-surface">
             <table className="w-full min-w-[560px] text-left text-sm">
               <caption className="sr-only">One-time and recurring costs</caption>
               <thead>

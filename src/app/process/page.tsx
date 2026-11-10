@@ -1,126 +1,146 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
-import { Magnetic } from "@/components/site/Magnetic";
-import { SITE } from "@/lib/site";
+import { HeroFigure, PageHero } from "@/components/site/PageHero";
+import { JsonLd } from "@/components/site/JsonLd";
+import { Close, Process } from "@/components/site/sections/Home";
+import { PACKAGES, READY_TO_BUILD, inr } from "@/lib/offer";
+import { PROCESS_STEPS } from "@/lib/site";
+import { PAGES } from "@/lib/pages";
+import { absUrl, breadcrumbNode, graph, pageMeta, webPageNode, type Crumb } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "The 48-Hour Process, Hour by Hour",
-  description:
-    "What actually happens between your brief and your live website: the SiteBlitz 48-hour build, hour-stamped — brief, blueprint, build, launch.",
-  alternates: { canonical: "/process" },
-};
+const PATH = PAGES.process.path;
+const TITLE = "Website Design & Build Process";
+const DESCRIPTION =
+  "How a SiteBlitz website goes from your first WhatsApp message to launch: four steps, what you provide, what starts the delivery clock and what happens at handover.";
+const CRUMBS: Crumb[] = [{ name: "Process", path: PATH }];
 
-const TIMELINE = [
-  {
-    stamp: "H0",
-    title: "The brief",
-    window: "30 minutes, on WhatsApp or a call",
-    text: "We extract the three things that matter: what you sell, who buys it, and why they should pick you. You send whatever assets you have — photos, logo, old site. Missing pieces don't block us; we draft copy and source visuals.",
-    you: "30 minutes of your attention",
-  },
-  {
-    stamp: "H2",
-    title: "Direction lock",
-    window: "same morning",
-    text: "You receive the visual direction and page architecture — the look, the sections, the words on the buttons — before a single component is built. One round of reactions, then we lock it.",
-    you: "a yes, a no, or a 'change this'",
-  },
-  {
-    stamp: "H6",
-    title: "The build begins",
-    window: "design + engineering in one motion",
-    text: "No handoffs between a 'design team' and a 'dev team' — the person designing is the person building. Real content goes in from the start. Server-rendered pages, structured data, image optimisation, analytics wiring.",
-    you: "nothing — go run your business",
-  },
-  {
-    stamp: "H30",
-    title: "Preview on your phone",
-    window: "evening of day two",
-    text: "You get a private link. You tap through it on the same device your customers will use. Revision notes land straight into the build — included in every plan, not sold back to you.",
-    you: "15 minutes of honest reactions",
-  },
-  {
-    stamp: "H42",
-    title: "The wiring",
-    window: "launch prep",
-    text: "Domain connected, SSL live, WhatsApp and forms tested end-to-end, sitemap submitted to Google, analytics dashboard activated. We smoke-test every button — dead CTAs are how other agencies ship; not here.",
-    you: "domain access (we guide you, 5 minutes)",
-  },
-  {
-    stamp: "H48",
-    title: "Live — and measured",
-    window: "launch",
-    text: "Your site is live and your dashboard starts counting real visitors from minute one: who came, from where, on what device, and what they did. You'll see it working instead of wondering.",
-    you: "the login to your own analytics panel",
-  },
-];
+export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PATH });
 
+const ld = graph(
+  webPageNode({ path: PATH, name: TITLE, description: DESCRIPTION, crumbs: CRUMBS, dateModified: PAGES.process.updated, about: { "@id": `${absUrl(PATH)}#steps` } }),
+  breadcrumbNode(CRUMBS),
+  {
+    "@type": "ItemList",
+    "@id": `${absUrl(PATH)}#steps`,
+    name: "From first message to launch",
+    itemListElement: PROCESS_STEPS.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: s.title, description: s.text })),
+  }
+);
+
+const YOU = [
+  "Your business details: services, prices you want shown, area, hours",
+  "The text for each page, your logo and your photographs",
+  "Written approval of the pages, features and price",
+  "Access to your domain, or a decision on which one to buy",
+  "The first payment, after you approve the scope",
+] as const;
+
+const US = [
+  "The design and the build of the agreed pages, phone first",
+  "WhatsApp and call buttons, and the enquiry route",
+  "Basic technical SEO and a Google Search Console submission",
+  "A staging link to review, and one consolidated revision round",
+  "Launch and handover as written in the agreement",
+] as const;
+
+/** /process (SEO-3): the four steps on the drawn path shared with the home page (the moment), then what starts the
+ *  delivery clock and who does what. Replaces an hour-stamped "48 hours" page that promised a dashboard and copywriting
+ *  the offer does not include. */
 export default function ProcessPage() {
   return (
     <Shell>
-      <section className="mx-auto max-w-7xl px-5 pb-14 pt-32 md:px-8 md:pt-44">
-        <p className="text-xs uppercase tracking-[0.25em] text-volt" data-anim="fade-up" data-now>
-          The process
-        </p>
-        <h1 className="font-display mt-3 max-w-4xl text-4xl font-bold leading-[1.02] tracking-tight md:text-7xl" data-anim="chars" data-now>
-          48 hours<span className="text-volt">,</span> hour by <span className="font-accent italic text-volt">hour</span>
-        </h1>
-        <p className="mt-6 max-w-xl text-muted md:text-lg" data-anim="fade-up" data-now data-delay="0.3">
-          &ldquo;Fast&rdquo; usually means &ldquo;rushed&rdquo;. Ours means &ldquo;engineered&rdquo; —
-          the same six checkpoints, in the same order, every single build. Here is exactly what
-          happens after you say go.
-        </p>
+      <JsonLd data={ld} />
+      <PageHero
+        crumbs={CRUMBS}
+        kicker="Process"
+        lines={["From first message", <span key="l" className="serif text-volt">to launch.</span>]}
+        lead={
+          <p>
+            Four steps, the same for every project. You see the direction before you pay, approve the scope in writing,
+            and the delivery clock starts only when the project is ready to build.
+          </p>
+        }
+        aside={
+          <HeroFigure
+            rows={PACKAGES.filter((p) => p.priceInr).map((p) => ({
+              value: p.delivery.split(" ")[0],
+              label: `${p.name}: working days`,
+            }))}
+            caption="Counted from ready-to-build. Custom projects follow the schedule in their quote."
+          />
+        }
+      />
+
+      <Process />
+
+      <section aria-labelledby="clock-title" className="border-t border-line bg-void py-[12vh]">
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-4 md:grid-cols-[4fr_8fr] md:gap-16 md:px-8 [&>*]:min-w-0">
+          <div>
+            <p className="kicker text-volt">The delivery clock</p>
+            <h2 id="clock-title" className="display mt-4 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.8vw,68px)]">
+              When the <span className="serif text-volt">clock starts.</span>
+            </h2>
+          </div>
+          <div>
+            <ol className="space-y-4">
+              {READY_TO_BUILD.map((r, i) => (
+                <li key={r} className="flex items-baseline gap-5 border-b border-line pb-4 text-lg text-ink/90 md:text-xl">
+                  <span className="display shrink-0 text-sm text-volt">{String(i + 1).padStart(2, "0")}</span>
+                  {r}
+                </li>
+              ))}
+            </ol>
+            <dl className="mt-10 grid gap-4 sm:grid-cols-3 [&>*]:min-w-0">
+              {PACKAGES.map((p) => (
+                <div key={p.id} className="rounded-2xl border border-line bg-surface p-6">
+                  <dt className="kicker text-faint">
+                    {p.name} · {p.priceInr ? inr(p.priceInr) : "quote"}
+                  </dt>
+                  <dd className="mt-3 text-lg font-semibold text-ink">{p.delivery}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-6 text-base text-muted">Late content or approvals move the date. We tell you before a delivery date changes.</p>
+          </div>
+        </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-5 pb-20 md:px-8">
-        <div className="relative">
-          <div className="absolute bottom-0 left-[27px] top-0 w-px bg-line md:left-[43px]" aria-hidden />
-          <div className="space-y-8">
-            {TIMELINE.map((t) => (
-              <div key={t.stamp} className="relative flex gap-6 md:gap-10" data-anim="fade-up">
-                <div className="font-display z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-volt/40 bg-void text-sm font-bold text-volt md:h-[88px] md:w-[88px] md:text-xl">
-                  {t.stamp}
-                </div>
-                <div className="rounded-2xl border border-line bg-surface p-6 md:p-7">
-                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                    <h2 className="font-display text-xl font-bold md:text-2xl">{t.title}</h2>
-                    <span className="text-xs uppercase tracking-widest text-volt">{t.window}</span>
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-muted md:text-[15px]">{t.text}</p>
-                  <p className="mt-3 text-xs text-faint">
-                    <span className="font-semibold text-muted">What we need from you:</span> {t.you}
-                  </p>
-                </div>
+      <section aria-labelledby="who-title" className="border-t border-line bg-void py-[12vh]">
+        <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+          <p className="kicker text-volt">Who does what</p>
+          <h2 id="who-title" className="display mt-4 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.8vw,68px)]">
+            Your part, <span className="serif text-volt">our part.</span>
+          </h2>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 [&>*]:min-w-0">
+            {[
+              { title: "You provide", items: YOU },
+              { title: "We do", items: US },
+            ].map((col) => (
+              <div key={col.title} className="rounded-3xl border border-line bg-surface p-7 md:p-9">
+                <h3 className="text-xl font-semibold">{col.title}</h3>
+                <ul className="mt-6 space-y-3">
+                  {col.items.map((it) => (
+                    <li key={it} className="flex gap-3 text-base leading-relaxed text-muted">
+                      <span aria-hidden className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-volt" />
+                      {it}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="mt-14 rounded-2xl border border-volt/30 bg-surface p-7 text-center" data-anim="fade-up">
-          <p className="font-accent text-xl italic text-ink">
-            &ldquo;What if it takes longer?&rdquo; — Multi-page and e-commerce builds get honest
-            timelines up front (4–7 days). The checkpoints stay identical; only the hours stretch.
+          <p className="mt-10 max-w-[70ch] text-base text-muted">
+            Writing your content from scratch, extra pages and ongoing maintenance are not in the packages; each can be
+            quoted. The full list is on{" "}
+            <Link href={`${PAGES.pricing.path}#exclusions`} className="text-ink underline underline-offset-4 hover:text-volt">
+              prices &amp; terms
+            </Link>
+            .
           </p>
         </div>
-
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4" data-anim="fade-up">
-          <Magnetic>
-            <Link href="/book" data-track="process_book" className="btn-volt block rounded-full px-8 py-4 text-base font-semibold">
-              Book your H0 → free brief call
-            </Link>
-          </Magnetic>
-          <a
-            href={SITE.whatsapp("Hi SiteBlitz! I read the 48-hour process. Let's start my brief.")}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="process_wa"
-            className="btn-ghost rounded-full px-8 py-4 text-base text-ink"
-          >
-            Start on WhatsApp
-          </a>
-        </div>
       </section>
+
+      <Close />
     </Shell>
   );
 }

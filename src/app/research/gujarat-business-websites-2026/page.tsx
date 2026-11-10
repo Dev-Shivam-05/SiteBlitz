@@ -205,7 +205,7 @@ export default function GujaratWebsiteStudy() {
             Cities with at least 1,500 place records of any kind. Differences between cities partly reflect their mix of
             trades and how completely each was mapped, so compare a trade with the same trade, not a city with a city.
           </p>
-          <div className="mt-10 overflow-x-auto rounded-2xl border border-line">
+          <div className="mt-10 relative overflow-x-auto rounded-2xl border border-line">
             <table className="w-full min-w-[720px] text-sm md:text-base">
               <caption className="sr-only">Website records by Gujarat city, 17 local trades, independent listing records</caption>
               <thead className="border-b border-line bg-surface">
@@ -295,7 +295,7 @@ export default function GujaratWebsiteStudy() {
                     +
                   </span>
                 </summary>
-                <div className="overflow-x-auto pb-6">
+                <div className="relative overflow-x-auto pb-6">
                   <table className="w-full min-w-[520px] text-sm">
                     <caption className="sr-only">{c.name}: website records by trade</caption>
                     <thead>

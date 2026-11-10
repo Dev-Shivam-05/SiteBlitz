@@ -1,118 +1,150 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
-import { Manifesto } from "@/components/site/sections/Manifesto";
-import { Answers } from "@/components/site/sections/Answers";
-import { CTA } from "@/components/site/sections/CTA";
+import { PageHero } from "@/components/site/PageHero";
+import { JsonLd } from "@/components/site/JsonLd";
+import { Close, Stroke } from "@/components/site/sections/Home";
+import { SITE } from "@/lib/site";
+import { businessPkg, inr, launchPkg } from "@/lib/offer";
+import { PAGES } from "@/lib/pages";
+import { STUDY } from "@/lib/research";
+import { ORG_ID, breadcrumbNode, graph, pageMeta, webPageNode, type Crumb } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Studio — About SiteBlitz",
-  description:
-    "SiteBlitz is an India-based web studio shipping conversion-focused, SEO-first business websites worldwide — with senior craft and startup speed.",
-  alternates: { canonical: "/about" },
-};
+const PATH = PAGES.about.path;
+const TITLE = "About SiteBlitz, a Gujarat-based Website Studio";
+const DESCRIPTION =
+  "SiteBlitz is a small website studio based in Gujarat, working with businesses across India: demo first, price and scope in writing, the site handed over in your name.";
+const CRUMBS: Crumb[] = [{ name: "Studio", path: PATH }];
 
-const VALUES = [
-  {
-    title: "Speed is respect",
-    text: "Your business can't wait six weeks for a brochure. We compress the timeline without compressing the craft — that's the entire point of the studio.",
-  },
-  {
-    title: "Measured, not guessed",
-    text: "Every site ships with real analytics. We don't say 'trust us, it's working' — you watch visitors, sources and enquiries live on your own dashboard.",
-  },
-  {
-    title: "You own everything",
-    text: "Domain, code, content, data. No hostage tactics, no mystery monthly fees. If we keep working together, it's because the results earn it.",
-  },
-  {
-    title: "Search is the battlefield",
-    text: "A beautiful site nobody finds is a painting in a locked room. Technical SEO and Core Web Vitals are built into every page from the first commit.",
-  },
-];
+export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PATH });
 
+const ld = graph(
+  webPageNode({ path: PATH, name: TITLE, description: DESCRIPTION, type: "AboutPage", crumbs: CRUMBS, dateModified: PAGES.about.updated, about: { "@id": ORG_ID } }),
+  breadcrumbNode(CRUMBS)
+);
+
+/** How the studio works: each line is something a buyer can check on this site, not a virtue claim. */
+const WAYS = [
+  {
+    title: "Demo before deposit",
+    text: "You open a working demo website for your kind of business before you pay anything, and for suitable projects you can review a homepage concept for your own business.",
+  },
+  {
+    title: "Prices written down",
+    text: `${inr(launchPkg.priceInr as number)} for one page, ${inr(businessPkg.priceInr as number)} for three, everything else by written quote. What is not included is listed on the pricing page.`,
+  },
+  {
+    title: "Yours at the end",
+    text: "We recommend registering the domain in your own name. The agreement lists what is handed over: the live site, access and your content.",
+  },
+  {
+    title: "No invented proof",
+    text: "No reviews, client logos or results until they are real and can be shown. Demo businesses are labelled fictional, and this site's own speed data is public.",
+  },
+] as const;
+
+const FACTS = [
+  ["Based in", "South Gujarat, India"],
+  ["Works with", "Businesses across India, remotely"],
+  ["Talk to us", `WhatsApp ${SITE.phone}`],
+  ["Replies", SITE.replyHours],
+  ["Started", String(SITE.founded)],
+] as const;
+
+/** /about (SEO-3): who the studio is, in facts a visitor can check. The moment is the statement that tints word by word
+ *  as it is read. Replaces copy that promised indexing and a client analytics engine the offer does not include. */
 export default function AboutPage() {
   return (
     <Shell>
-      <section className="mx-auto max-w-7xl px-5 pb-16 pt-32 md:px-8 md:pt-44">
-        <p className="text-xs uppercase tracking-[0.25em] text-volt">The studio</p>
-        <h1 className="font-display mt-3 text-5xl font-bold tracking-tight md:text-8xl">
-          Small studio<span className="text-volt">.</span>
-          <br />
-          <span className="font-accent italic">Violent</span> execution<span className="text-volt">.</span>
-        </h1>
-        <div className="mt-10 max-w-2xl space-y-5 text-base leading-relaxed text-muted">
+      <JsonLd data={ld} />
+      <PageHero
+        crumbs={CRUMBS}
+        kicker="The studio"
+        lines={["A small studio", <span key="g" className="serif text-volt">based in Gujarat.</span>]}
+        lead={
           <p>
-            SiteBlitz started with a simple observation: most small and mid-size businesses are
-            stuck between overpriced agencies that take two months and template mills that take
-            two hours. Both produce websites that don&apos;t sell.
+            SiteBlitz builds websites for small businesses across India, mostly over WhatsApp. We show a working demo first,
+            write the price and the scope down before any payment, and hand the finished site over in your name.
           </p>
-          <p>
-            We built a third option — a studio that operates like a special-ops team. One brief,
-            one focused build sprint, one launch. Senior-level design and engineering, modern
-            tooling, and an obsession with two numbers:{" "}
-            <span className="text-ink">how fast your site loads</span> and{" "}
-            <span className="text-ink">how many enquiries it generates</span>.
-          </p>
-          <p>
-            Based in South Gujarat — working remotely with businesses across India.
+        }
+        aside={
+          <dl className="rounded-3xl border border-line bg-surface p-7 md:p-9">
+            {FACTS.map(([k, v]) => (
+              <div key={k} className="flex items-baseline justify-between gap-6 border-b border-line py-3 last:border-0">
+                <dt className="kicker text-faint">{k}</dt>
+                <dd className="text-right text-base font-semibold text-ink">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        }
+      />
+
+      <section aria-label="What we believe" className="border-t border-line bg-void py-[16vh]">
+        <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+          <p
+            data-anim="words-scrub"
+            className="max-w-[24ch] text-[clamp(28px,7vw,40px)] font-semibold leading-tight md:text-[clamp(40px,4vw,68px)]"
+          >
+            A small business website has one job: make it easy for the right customer to understand you and get in touch.
           </p>
         </div>
       </section>
 
-      <Answers />
-
-      <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-32">
-        <h2 className="reveal font-display text-4xl font-bold tracking-tight md:text-6xl">
-          What we <span className="font-accent italic text-volt">refuse</span> to compromise
-        </h2>
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {VALUES.map((v, i) => (
-            <div
-              key={v.title}
-              className="reveal card-hover rounded-2xl border border-line bg-surface p-8"
-              data-delay={String((i % 2) * 120)}
-            >
-              <span className="font-display text-4xl font-bold text-outline">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3 className="font-display mt-4 text-xl font-bold">{v.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{v.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* the pledge — our answer to an industry of "1%" counters */}
-      <section className="border-y border-line bg-surface/40">
-        <div className="mx-auto max-w-4xl px-5 py-16 md:px-8 md:py-24">
-          <p className="text-xs uppercase tracking-[0.25em] text-volt" data-anim="fade-up">
-            The no-fake-numbers pledge
-          </p>
-          <h2 className="font-display mt-3 text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
-            Every claim on this site is <span className="font-accent italic text-volt">checkable</span>
+      <section aria-labelledby="ways-title" className="border-t border-line bg-void py-[12vh]">
+        <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+          <p className="kicker text-volt">How we work</p>
+          <h2 id="ways-title" className="display mt-4 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.8vw,68px)]">
+            Four things <span className="relative inline-block">
+              you can check
+              <Stroke
+                viewBox="0 0 300 24"
+                d="M4 15 C 60 5, 120 3, 182 9 S 268 21, 296 7"
+                className="absolute -bottom-[0.14em] left-0 h-[0.22em] w-full text-volt"
+              />
+            </span>
+            .
           </h2>
-          <div className="mt-8 space-y-4 text-[15px] leading-relaxed text-muted" data-anim="fade-up">
-            <p>
-              Agency websites are full of counters that animate to invented numbers, five-star
-              badges that link nowhere, and &ldquo;testimonials&rdquo; from people who don&rsquo;t
-              exist. We&rsquo;ve studied them closely — it&rsquo;s why this site works differently.
+          <ol className="mt-12 grid gap-4 md:grid-cols-2 [&>*]:min-w-0">
+            {WAYS.map((w, i) => (
+              <li key={w.title} className="rounded-2xl border border-line bg-surface p-7 transition-colors duration-300 hover:border-volt/40 md:p-9">
+                <p className="display text-sm text-volt">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-4 text-2xl font-semibold">{w.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-muted">{w.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section aria-labelledby="name-title" className="border-t border-line bg-void py-[12vh]">
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-4 md:grid-cols-2 md:gap-16 md:px-8 [&>*]:min-w-0">
+          <div>
+            <p className="kicker text-volt">The name</p>
+            <h2 id="name-title" className="display mt-4 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.8vw,68px)]">
+              SiteBlitz, <span className="serif text-volt">one word.</span>
+            </h2>
+            <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-muted md:text-lg">
+              People also write it Site Blitz; it is the same studio. The WhatsApp number on this site, {SITE.phone}, is the
+              one to use.
             </p>
-            <ul className="space-y-3">
-              <li className="flex gap-3"><span className="text-volt">✦</span><span>Our traffic, our real-user speed scores and our deploy history are published live at <a href="/proof" className="text-volt underline-offset-4 hover:underline">/proof</a> — measured by the same analytics engine we ship to clients.</span></li>
-              <li className="flex gap-3"><span className="text-volt">✦</span><span>If the hero says &ldquo;2 slots left this week&rdquo;, it&rsquo;s because we set that number in our own admin panel that morning — it is never generated to pressure you.</span></li>
-              <li className="flex gap-3"><span className="text-volt">✦</span><span>No testimonial ships without a name and a way to verify it. Until we have yours, you&rsquo;ll see showcase builds labelled as exactly that.</span></li>
-              <li className="flex gap-3"><span className="text-volt">✦</span><span>We will never promise you &ldquo;#1 on Google&rdquo;. Nobody can. What we promise — speed, indexing, structure, measurement — we can show you working.</span></li>
-            </ul>
-            <p className="font-accent text-lg italic text-ink">
-              If you ever catch a number on this site that can&rsquo;t be verified, tell us and
-              we&rsquo;ll remove it the same day.
+          </div>
+          <div>
+            <p className="kicker text-volt">Open data</p>
+            <h2 className="display mt-4 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.8vw,68px)]">
+              We publish <span className="serif text-volt">what we learn.</span>
+            </h2>
+            <p className="mt-6 max-w-[48ch] text-base leading-relaxed text-muted md:text-lg">
+              Our first study counts how often {STUDY.total.n.toLocaleString("en-IN")} listing records of local businesses in
+              Gujarat link to a website, by city and trade.{" "}
+              <Link href={STUDY.path} className="text-ink underline underline-offset-4 hover:text-volt">
+                Read the Gujarat study
+              </Link>
+              .
             </p>
           </div>
         </div>
       </section>
 
-      <Manifesto />
-      <CTA />
+      <Close />
     </Shell>
   );
 }

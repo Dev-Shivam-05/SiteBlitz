@@ -230,35 +230,23 @@ export const WORK_ITEMS = [
   },
 ] as const;
 
-export const SERVICES = [
-  {
-    title: "Business Websites",
-    text: "Conversion-engineered sites for restaurants, clinics, firms and local businesses. Designed to rank, built to sell.",
-    tags: ["48h delivery", "SEO-ready", "Lead capture"],
-  },
-  {
-    title: "E-commerce & Booking",
-    text: "Storefronts and booking systems that feel effortless on a phone — because that's where your customers are.",
-    tags: ["Payments", "Catalogues", "Reservations"],
-  },
-  {
-    title: "Landing Pages",
-    text: "Single pages with one job: turn ad clicks into enquiries. Built for campaigns, measured to the click.",
-    tags: ["A/B ready", "Ad-friendly", "Fast"],
-  },
-  {
-    title: "Redesigns & Rescues",
-    text: "Slow, dated or invisible on Google? We rebuild on a modern stack and migrate your SEO without losing rankings.",
-    tags: ["Migration", "Speed", "Recovery"],
-  },
-  {
-    title: "SEO & Performance",
-    text: "Technical SEO, Core Web Vitals, structured data and local search. The unglamorous work that prints results.",
-    tags: ["Audits", "Schema", "Local SEO"],
-  },
-  {
-    title: "Care & Growth",
-    text: "Monthly updates, analytics reviews and iteration. Your site keeps getting sharper while you run the business.",
-    tags: ["Updates", "Analytics", "Support"],
-  },
+/** One plain line per service for the /services index (SEO-3). Prices and times come from the service JSON, which
+ *  reads offer.ts values; nothing here may promise rankings, results or times the offer does not state. */
+export const SERVICE_LINES: Record<string, string> = {
+  "business-websites": "One or three pages that say what you do, what it costs and how to reach you, built for phones first.",
+  "landing-pages": "One page for one offer or one ad, arranged around one action: a WhatsApp message or an enquiry.",
+  "ecommerce-and-booking": "Product catalogues, online orders and appointment or table booking, scoped and quoted in writing.",
+  "seo-and-geo": "Technical SEO, structured data and answer-first pages so Google and AI tools can read your site.",
+  "care-plans": "Optional maintenance after launch: edits, updates, backups and checks, with the scope written down.",
+  "project-rescue": "A stalled, broken or outdated site reviewed, then repaired or rebuilt to a written quote.",
+};
+
+/** "Which one do I need?" on /services: a situation a buyer recognises, mapped to one service page. */
+export const SERVICE_FIT = [
+  { when: "You have no website yet", slug: "business-websites" },
+  { when: "You run ads or posts for one offer", slug: "landing-pages" },
+  { when: "You want to sell or take bookings online", slug: "ecommerce-and-booking" },
+  { when: "Your site exists but nobody finds it", slug: "seo-and-geo" },
+  { when: "Your site is broken, half-built or dated", slug: "project-rescue" },
+  { when: "Your site needs changes every month", slug: "care-plans" },
 ] as const;

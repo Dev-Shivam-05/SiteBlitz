@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
 import { Magnetic } from "@/components/site/Magnetic";
 import { FAQS, PROCESS_STEPS, SITE } from "@/lib/site";
 import { PACKAGES, READY_TO_BUILD, inr, launchPkg } from "@/lib/offer";
+import { PAGES } from "@/lib/pages";
+import { absUrl, breadcrumbNode, faqNode, graph, pageMeta, serviceNode, webPageNode, type Crumb } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 
 /* Commercial page for "website in 48 hours" searches (SEO phase, agreed in
    docs/debate/2026-10-31-redesign-seo-direction). Every scope, price and timing statement comes from
@@ -21,60 +24,43 @@ const PAGE_FAQS = [
   faq("Will my website show up on Google?"),
 ].filter((f): f is (typeof FAQS)[number] => Boolean(f));
 
-export const metadata: Metadata = {
-  title: "Business Websites in as Little as 48 Hours",
-  description:
-    "A one-page business website for ₹7,999, delivered in 2 working days (48 hours) once your content is ready. See what's included, what you provide and the terms.",
-  alternates: { canonical: "/website-in-48-hours" },
-};
+const PATH = PAGES.in48.path;
+const TITLE = "One-Page Website in 48 Hours (2 Working Days)";
+const DESCRIPTION = `A one-page business website for ${inr(
+  launchPkg.priceInr as number
+)}, live 2 working days after ready-to-build. What is included, what you provide and what starts the clock.`;
+const CRUMBS: Crumb[] = [{ name: "Website in 48 hours", path: PATH }];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Service",
-      name: "Business website in as little as 48 hours (Launch plan)",
-      serviceType: "Website design and development",
-      provider: { "@id": `${SITE.url}/#organization` },
-      areaServed: "India",
-      offers: {
-        "@type": "Offer",
-        priceCurrency: "INR",
-        price: String(launch.priceInr),
-        url: `${SITE.url}/website-in-48-hours`,
-      },
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
-        { "@type": "ListItem", position: 2, name: "Website in 48 hours", item: `${SITE.url}/website-in-48-hours` },
-      ],
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: PAGE_FAQS.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ],
-};
+export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PATH });
+
+const jsonLd = graph(
+  webPageNode({ path: PATH, name: TITLE, description: DESCRIPTION, crumbs: CRUMBS, dateModified: PAGES.in48.updated, about: { "@id": `${absUrl(PATH)}#service` } }),
+  breadcrumbNode(CRUMBS),
+  serviceNode({
+    path: PATH,
+    name: "One-page business website, 2 working days after ready-to-build (Launch)",
+    serviceType: "Website design and development",
+    description: DESCRIPTION,
+    priceInr: launchPkg.priceInr,
+  }),
+  faqNode(PATH, PAGE_FAQS)
+);
 
 export default function WebsiteIn48HoursPage() {
   return (
     <Shell>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
 
       <section className="mx-auto max-w-7xl px-5 pb-12 pt-32 md:px-8 md:pt-44">
-        <p className="text-xs uppercase tracking-[0.25em] text-volt">Launch plan</p>
-        <h1 className="font-display mt-3 max-w-5xl text-5xl font-bold leading-[1.02] tracking-tight md:text-8xl">
-          A business website in <span className="text-volt">48 hours</span>
+        <Breadcrumbs crumbs={CRUMBS} className="ph-soft mb-8" />
+        <p className="kicker text-volt">Launch plan · one page</p>
+        <h1 className="display mt-4 max-w-5xl text-[clamp(40px,11vw,60px)] md:text-[clamp(64px,7vw,120px)]">
+          A one-page website in <span className="serif text-volt">48 hours.</span>
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-          {launch.tagline} {inr(launch.priceInr as number)}, one-time, no GST added. Delivered in 2 working days
-          once your content and approvals are in, and you review the design before paying.
+          {launch.tagline} {inr(launch.priceInr as number)}, one-time, no GST added. Live 2 working days
+          after ready-to-build: your content, approvals, access and first payment are in. You see the design direction
+          before you pay.
         </p>
         <div className="mt-9 flex flex-wrap items-center gap-4">
           <Magnetic>
@@ -96,7 +82,7 @@ export default function WebsiteIn48HoursPage() {
 
       <div className="mx-auto max-w-4xl space-y-20 px-5 pb-24 md:px-8 md:pb-32">
         <section>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
             Is the 48-hour Launch plan right for you?
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted">
@@ -108,7 +94,7 @@ export default function WebsiteIn48HoursPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
             What&apos;s included in the Launch plan?
           </h2>
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -125,7 +111,7 @@ export default function WebsiteIn48HoursPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
             What do we need from you? (&ldquo;ready to build&rdquo;)
           </h2>
           <ol className="mt-5 list-decimal space-y-1 pl-5 text-base leading-relaxed text-muted">
@@ -136,7 +122,7 @@ export default function WebsiteIn48HoursPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
             How our four-step process works
           </h2>
           <ol className="mt-6 divide-y divide-line border-y border-line">
@@ -155,7 +141,7 @@ export default function WebsiteIn48HoursPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
             What if your website needs more time?
           </h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
@@ -174,7 +160,7 @@ export default function WebsiteIn48HoursPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
             Pricing, payment and ownership
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted">
@@ -186,7 +172,7 @@ export default function WebsiteIn48HoursPage() {
         </section>
 
         <section>
-          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl" data-anim="fade-up">
+          <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl">
             Frequently asked questions
           </h2>
           <div className="mt-6 divide-y divide-line border-y border-line">

@@ -19,13 +19,13 @@ export default function BlogIndex() {
   return (
     <Shell>
       <section className="mx-auto max-w-7xl px-5 pb-14 pt-32 md:px-8 md:pt-44">
-        <p className="text-xs uppercase tracking-[0.25em] text-volt" data-anim="fade-up" data-now>
+        <p className="text-xs uppercase tracking-[0.25em] text-volt">
           Insights
         </p>
         <h1 className="font-display mt-3 text-4xl font-bold tracking-tight md:text-7xl" data-anim="chars" data-now>
           Notes from the <span className="font-accent italic text-volt">build floor</span>
         </h1>
-        <p className="mt-6 max-w-xl text-muted" data-anim="fade-up" data-now data-delay="0.3">
+        <p className="mt-6 max-w-xl text-muted">
           Written by a human who ships websites, not a content farm. Every piece is something we
           actually explain to clients — published so you can use it even if you never hire us.
         </p>
@@ -40,8 +40,6 @@ export default function BlogIndex() {
               data-track={`blog_card_${p.slug}`}
               data-cursor-label="Read"
               className="group flex flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-colors hover:border-volt/30"
-              data-anim="scale-in"
-              data-delay={String((i % 2) * 0.08)}
             >
               <div>
                 <p className="text-[10px] uppercase tracking-[0.25em] text-volt">
