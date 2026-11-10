@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
 import {
   Compare,
-  DemoShowcase,
+  DemoStack,
   FinalCTA,
   GiantPrice,
   HomeHero,
   HomePricing,
   HowItWorks,
   Statement,
+  TypeWipe,
 } from "@/components/site/sections/Home";
 import { FAQ } from "@/components/site/sections/FAQ";
 import { FAQS, SITE } from "@/lib/site";
@@ -46,7 +47,8 @@ export default function HomePage() {
       <HomeHero />
       <GiantPrice />
       <Statement />
-      <DemoShowcase />
+      <DemoStack />
+      <TypeWipe />
       <HowItWorks />
       <HomePricing />
       <Compare />

@@ -285,6 +285,39 @@ body {
 .pill:hover { transform: translateY(-1px); }
 .pill:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 3px; }
 
+/* ivory button for vermilion grounds */
+.btn-ivory {
+  background: var(--color-void);
+  color: var(--color-ink);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.25s ease;
+}
+.btn-ivory:hover { transform: translateY(-1px); background: var(--color-surface); }
+.btn-ivory:active { transform: translateY(1px) scale(0.98); transition-duration: 0.08s; }
+.btn-ivory:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; }
+
+/* 04 demo stack: cards are CSS-sticky siblings, so each new card slides over the last; Motion.tsx only scales
+   the one underneath. Phones cap the card at 560 px so the WhatsApp pill never covers it. */
+.demo-card-v3 {
+  height: min(560px, calc(100svh - 104px));
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+@media (min-width: 768px) {
+  .demo-card-v3 { height: min(720px, calc(100svh - 128px)); }
+}
+.demo-shot img { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.demo-card-v3:hover .demo-shot img { transform: scale(1.02); }
+/* landscape phones and short screens: normal flow, no stacking (spec fallback) */
+@media (max-height: 539px) {
+  .demo-card-v3 { position: relative; top: auto; height: auto; }
+}
+
+/* 05 type wipe: a tall section whose sticky stage holds the word while it grows */
+.wipe-scene { height: 140svh; }
+@media (min-width: 768px) { .wipe-scene { height: 155svh; } }
+.wipe-stage { background: var(--color-void); }
+[data-wipe-word] { color: var(--color-volt); transform-origin: 50% 55%; }
+
 /* hero: the photograph frame is the element the scroll scene scales and rounds */
 .hero-frame { transform-origin: 50% 0%; will-change: transform; }
 
@@ -381,6 +414,12 @@ body {
     white-space: normal;
   }
   .rm-hide { display: none !important; }
+
+  /* redesign v3: every scene rests in normal flow */
+  .demo-card-v3 { position: relative; top: auto; height: auto; }
+  .wipe-scene { height: auto; }
+  .wipe-stage { position: relative; height: 60svh; background: var(--color-volt); }
+  [data-wipe-word] { color: var(--color-void); }
 
   /* The desktop work gallery only reveals cards 3+ by scrolling sideways (GSAP pin), which is
      off under reduced motion — they sat clipped off-screen. Wrap into a two-column grid. */

@@ -127,49 +127,109 @@ export function Statement() {
   );
 }
 
-export function DemoShowcase() {
+/* Card grounds alternate like the reference's stacked service cards: ink, vermilion, raised ivory. */
+const CARD_THEME = [
+  { card: "bg-ink text-void", sub: "text-void/80", btn: "btn-volt", frame: "bg-void/10" },
+  { card: "bg-volt text-surface", sub: "text-surface/90", btn: "btn-ivory", frame: "bg-ink/15" },
+  { card: "bg-raised text-ink", sub: "text-muted", btn: "btn-volt", frame: "bg-ink/8" },
+] as const;
+
+/** 04 — Demo stack: the three concept demos as cards that stack as you scroll (CSS sticky; Motion.tsx scales
+ *  the card underneath). Each card links to the live, clearly labelled concept site. */
+export function DemoStack() {
   return (
-    <section id="demos" className="scroll-mt-20 border-y border-line bg-surface py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-volt">See it working</p>
-        <h2 className="font-display mt-3 max-w-2xl text-3xl font-extrabold tracking-tight md:text-5xl">
-          Don&apos;t just imagine your website. Explore one.
-        </h2>
-        <p className="mt-4 max-w-2xl text-muted">
-          Interactive concept websites that show the design and customer experience we build. They are sample
-          projects, not websites made for paying clients.
-        </p>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {DEMO_LIST.map((d) => (
-            <Link
-              key={d.id}
-              href={`/demo/${d.id}`}
-              data-track={`demos_open_${d.id}`}
-              className="card-hover group flex flex-col overflow-hidden rounded-3xl border border-line bg-void"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden border-b border-line bg-raised">
-                {/* Eager: three small optimised images are the proof a buyer came for; native lazy
-                    loading never fired for them in headless QA, so the section doesn't bet on it. */}
-                <Image
-                  src={`/demos/${d.id}.png`}
-                  alt={`${d.vertical} concept demo`}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  loading="eager"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <span className="absolute left-3 top-3 rounded-full bg-ink px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-void">
-                  Concept demo
-                </span>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-display text-lg font-bold">{d.vertical}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{d.pitch}</p>
-                <span className="mt-5 text-sm font-semibold text-volt">Explore the {d.vertical.split(" ")[0].toLowerCase()} demo →</span>
-              </div>
-            </Link>
-          ))}
+    <section id="demos" aria-labelledby="demos-title" className="scroll-mt-20 bg-void pb-[12vh] pt-[6vh]">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+        <p className="kicker text-volt">Concept demos · fictional businesses</p>
+        <div className="mt-4 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
+          <h2 id="demos-title" className="display text-[clamp(44px,11vw,64px)] md:text-[clamp(64px,6.4vw,104px)]">
+            Concept sites for three trades.
+          </h2>
+          <p className="max-w-[44ch] text-base leading-relaxed text-muted md:text-lg">
+            Each one is a working website for a made-up business. Open it on your phone, tap through it and try the
+            enquiry: that is the standard your own site is built to.
+          </p>
         </div>
+
+        <div data-demo-stack className="mt-12 flex flex-col gap-[8vh] md:mt-16">
+          {DEMO_LIST.map((d, i) => {
+            const t = CARD_THEME[i % CARD_THEME.length];
+            return (
+              <article
+                key={d.id}
+                data-demo-card
+                aria-labelledby={`demo-${d.id}-title`}
+                className={`demo-card-v3 sticky top-[72px] grid grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-[20px] md:top-[96px] md:grid-cols-[5fr_7fr] md:grid-rows-1 md:rounded-[28px] ${t.card}`}
+              >
+                <div className="order-2 flex flex-col p-6 md:order-1 md:p-12">
+                  <p className={`kicker ${t.sub}`}>
+                    Concept {String(i + 1).padStart(2, "0")} · {d.brand}
+                  </p>
+                  <h3 id={`demo-${d.id}-title`} className="display mt-3 text-[clamp(40px,10vw,56px)] md:mt-5 md:text-[clamp(56px,5.4vw,88px)]">
+                    {d.vertical}
+                  </h3>
+                  <p className={`mt-3 max-w-[38ch] text-base leading-relaxed md:mt-5 md:text-lg ${t.sub}`}>{d.pitch}</p>
+                  <div className="mt-5 md:mt-auto md:pt-8">
+                    <Link
+                      href={`/demo/${d.id}`}
+                      data-track={`demos_open_${d.id}`}
+                      className={`${t.btn} inline-flex h-[52px] items-center justify-center rounded-full px-7 text-base font-semibold`}
+                    >
+                      View live concept
+                    </Link>
+                  </div>
+                </div>
+                <div className={`order-1 flex items-start justify-center overflow-hidden px-6 pt-6 md:order-2 md:items-center md:p-10 ${t.frame}`}>
+                  {/* Phone: the 390 px capture; desktop: the 1440 px capture in a browser frame */}
+                  <div className="demo-shot w-full max-w-[300px] overflow-hidden rounded-t-[18px] md:hidden">
+                    <Image
+                      src={`/demos/${d.id}.png`}
+                      alt={`${d.vertical} concept website on a phone`}
+                      width={780}
+                      height={1624}
+                      sizes="300px"
+                      loading="eager"
+                      className="block h-auto w-full"
+                    />
+                  </div>
+                  <div className="demo-shot hidden w-full overflow-hidden rounded-[14px] bg-surface shadow-2xl md:block">
+                    <div className="flex h-8 items-center gap-1.5 border-b border-line px-3" aria-hidden>
+                      <span className="h-2.5 w-2.5 rounded-full bg-line" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-line" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-line" />
+                      <span className="ml-3 truncate text-xs text-muted">siteblitz · /demo/{d.id}</span>
+                    </div>
+                    <Image
+                      src={`/demos/${d.id}-desktop.webp`}
+                      alt={`${d.vertical} concept website on a laptop`}
+                      width={1440}
+                      height={900}
+                      sizes="(min-width: 768px) 52vw, 1px"
+                      loading="eager"
+                      className="block h-auto w-full"
+                    />
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** 05 — Type wipe: one word grows until its vermilion fills the screen (the reference's "VIBES" moment). */
+export function TypeWipe() {
+  return (
+    <section data-scene="wipe" aria-labelledby="wipe-title" className="wipe-scene relative">
+      <h2 id="wipe-title" className="sr-only">
+        Make your business visible online
+      </h2>
+      <div data-wipe-stage className="wipe-stage sticky top-0 flex h-[100svh] items-center justify-center overflow-hidden">
+        <p aria-hidden data-wipe-word className="display whitespace-nowrap text-[26vw] leading-none md:text-[22vw]">
+          Visible.
+        </p>
       </div>
     </section>
   );

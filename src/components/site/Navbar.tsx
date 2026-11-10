@@ -58,7 +58,7 @@ export function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             data-track="nav_whatsapp"
-            className="btn-volt flex h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold shadow-sm"
+            className="btn-volt flex h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold shadow-sm ring-2 ring-void"
           >
             <WhatsAppIcon className="h-[18px] w-[18px]" color="currentColor" />
             <span className="hidden sm:inline">Chat on WhatsApp</span>

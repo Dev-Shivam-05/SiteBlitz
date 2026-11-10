@@ -218,6 +218,43 @@ function useAnimEngine(pathname: string) {
         });
       }
 
+      /* 04 Demo stack: as the next card slides up to its sticky line, the one underneath settles back.
+         Short screens (landscape phones) get the CSS normal-flow fallback, so no scene there. */
+      const demoStack = document.querySelector<HTMLElement>("[data-demo-stack]");
+      if (demoStack) {
+        const cards = Array.from(demoStack.querySelectorAll<HTMLElement>("[data-demo-card]"));
+        v3.add({ ...BP, tall: "(min-height: 540px)" }, (c) => {
+          if (!c.conditions?.tall) return;
+          const desk = Boolean(c.conditions?.desk);
+          cards.forEach((card, i) => {
+            const next = cards[i + 1];
+            if (!next) return;
+            gsap.to(card, {
+              scale: desk ? 0.94 : 0.92,
+              ease: "none",
+              scrollTrigger: { trigger: next, start: "top 65%", end: `top ${desk ? 96 : 72}px`, scrub: 0.3 },
+            });
+          });
+        });
+      }
+
+      /* 05 Type wipe: the word grows while its stage holds, then the stage turns the word's own vermilion,
+         so the colour fills the screen (the reference's word-to-colour transition). */
+      const wipe = document.querySelector<HTMLElement>('[data-scene="wipe"]');
+      if (wipe) {
+        const stage = wipe.querySelector<HTMLElement>("[data-wipe-stage]");
+        const word = wipe.querySelector<HTMLElement>("[data-wipe-word]");
+        const volt = getComputedStyle(document.documentElement).getPropertyValue("--color-volt").trim();
+        v3.add(BP, (c) => {
+          const desk = Boolean(c.conditions?.desk);
+          const tl = gsap.timeline({
+            scrollTrigger: { trigger: wipe, start: "top top", end: "bottom bottom", scrub: 0.3 },
+          });
+          if (word) tl.to(word, { scale: desk ? 3 : 2.2, ease: "none", duration: 1 }, 0);
+          if (stage && volt) tl.to(stage, { backgroundColor: volt, ease: "none", duration: 0.4 }, 0.6);
+        });
+      }
+
       /* 03 Hairlines draw once as their section arrives */
       for (const el of gsap.utils.toArray<HTMLElement>("[data-line]")) {
         gsap.fromTo(
