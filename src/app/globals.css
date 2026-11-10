@@ -725,6 +725,11 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
   html[data-first] .ph-soft { animation-delay: calc(var(--i, 0) * 80ms + 1000ms); }
   html[data-first] .ph-rule { animation-delay: 1.3s; }
 }
+@media (prefers-reduced-motion: no-preference) {
+  [data-draw="now"] { stroke-dasharray: 100 100; animation: draw-now 1.3s cubic-bezier(0.65, 0, 0.35, 1) 0.55s both; }
+  html[data-first] [data-draw="now"] { animation-delay: 1.5s; }
+}
+@keyframes draw-now { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 @keyframes ph-rise { from { transform: translateY(108%); } }
 @keyframes ph-soft { from { opacity: 0; transform: translateY(18px); } }
 @keyframes ph-rule { from { transform: scaleX(0); } }

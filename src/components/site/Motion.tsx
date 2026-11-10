@@ -188,7 +188,8 @@ function useAnimEngine(pathname: string) {
 
       /* Signature strokes: each volt path (pathLength=100) draws itself while its block crosses the screen.
          autoRound off: GSAP rounds px values by default, which made the stroke jump from hidden to whole. */
-      for (const path of gsap.utils.toArray<SVGPathElement>("[data-draw]")) {
+      // data-draw="now" strokes (page heroes) draw themselves with CSS on load (globals.css, "draw-now"); skip them here.
+      for (const path of gsap.utils.toArray<SVGPathElement>('[data-draw]:not([data-draw="now"])')) {
         gsap.fromTo(
           path,
           { strokeDasharray: "100 100", strokeDashoffset: 100 },

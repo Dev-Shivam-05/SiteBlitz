@@ -3,9 +3,13 @@ import { SITE } from "@/lib/site";
 
 const PRIVATE = ["/admin", "/api/"];
 
-/** AI answer engines and their search crawlers, named on purpose: SiteBlitz wants to be cited by ChatGPT search,
- *  Claude, Perplexity, Gemini and Copilot. A crawler that has its own group ignores the "*" group, so each named
- *  group repeats the private paths. */
+/** Search engines and AI crawlers, named on purpose. SiteBlitz wants to be found and cited by ChatGPT search, Claude,
+ *  Perplexity, Gemini and Copilot. The training crawlers (GPTBot, ClaudeBot, Google-Extended, Applebot-Extended) are
+ *  allowed too, chosen for the owner's stated goal of the widest AI visibility: this is public marketing copy, and models
+ *  that have read it can name the studio.
+ *  That is a business decision, reversible here (docs/DECISIONS.md D17); search inclusion does not depend on it.
+ *  A crawler that has its own group ignores the "*" group, so each named group repeats the private paths. Robots
+ *  rules only ask crawlers to stay out: /admin and /api/admin are protected by authentication (src/middleware.ts). */
 const AI_AND_SEARCH_BOTS = [
   "Googlebot",
   "Bingbot",

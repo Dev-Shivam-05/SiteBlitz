@@ -39,10 +39,12 @@ export const PAGES = {
   in48: p("/website-in-48-hours", "Website in 48 hours", "2026-11-11", 0.8),
   grader: p("/tools/grader", "Free website check", "2026-11-01", 0.7),
   blog: p("/blog", "Guides", "2026-11-11", 0.6, "weekly"),
+  research: p("/research", "Research", "2026-11-11", 0.6),
+  studyGujarat: p("/research/gujarat-business-websites-2026", "Gujarat business website data 2026", "2026-11-11", 0.8),
   privacy: p("/privacy", "Privacy policy", "2026-11-01", 0.2, "yearly"),
   terms: p("/terms", "Terms of service", "2026-11-01", 0.2, "yearly"),
   refunds: p("/refunds", "Refund policy", "2026-11-01", 0.2, "yearly"),
 } as const satisfies Record<string, PageEntry>;
 
 /** Main navigation: real pages, no home anchors - every item is a URL a search engine can rank on its own. */
-export const MAIN_NAV = [PAGES.work, PAGES.services, PAGES.pricing, PAGES.process, PAGES.about] as const;
+export const MAIN_NAV = [PAGES.work, PAGES.services, PAGES.pricing, PAGES.process, PAGES.about, PAGES.contact] as const;

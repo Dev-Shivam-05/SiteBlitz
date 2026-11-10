@@ -53,7 +53,8 @@ export function Navbar() {
 
   const wa = SITE.whatsapp("Hi SiteBlitz, I'd like to see a website demo and the package details.");
   const nav = MAIN_NAV.map((e) => ({ href: e.path, label: e.label }));
-  const menuLinks = [...nav, { href: PAGES.contact.path, label: PAGES.contact.label }];
+  // The phone sheet adds the pages a phone visitor looks for that the desktop pill keeps in the footer.
+  const menuLinks = [...nav, { href: PAGES.faq.path, label: PAGES.faq.label }];
   // A section of the site counts as current for its children too (/services/landing-pages lights "Services").
   const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 

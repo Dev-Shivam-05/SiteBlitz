@@ -42,9 +42,9 @@ export default function FaqPage() {
       />
 
       <section aria-label="Questions by topic" className="bg-void pb-[14vh]">
-        <div className="mx-auto grid max-w-[1440px] gap-12 px-4 md:grid-cols-[4fr_8fr] md:gap-16 md:px-8">
+        <div className="mx-auto grid max-w-[1440px] gap-12 px-4 md:grid-cols-[4fr_8fr] md:gap-16 md:px-8 [&>*]:min-w-0">
           <nav aria-label="Topics" className="md:sticky md:top-[104px] md:self-start">
-            <ol className="grid grid-cols-2 gap-2 md:grid-cols-1">
+            <ol className="grid grid-cols-2 gap-2 md:grid-cols-1 [&>*]:min-w-0">
               {FAQ_GROUPS.map((g, n) => (
                 <li key={g.id}>
                   <a
@@ -66,7 +66,7 @@ export default function FaqPage() {
             {FAQ_GROUPS.map((g, n) => (
               <section key={g.id} id={g.id} aria-labelledby={`${g.id}-title`} className="scroll-mt-28">
                 <p className="kicker text-volt">0{n + 1}</p>
-                <h2 id={`${g.id}-title`} data-anim="fade-up" className="display mt-3 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.6vw,64px)]">
+                <h2 id={`${g.id}-title`} className="display mt-3 text-[clamp(32px,8vw,44px)] md:text-[clamp(44px,3.6vw,64px)]">
                   {g.title}
                 </h2>
                 <div className="mt-8 border-t border-ink/15">

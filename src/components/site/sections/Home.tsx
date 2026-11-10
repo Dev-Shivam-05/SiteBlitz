@@ -15,11 +15,12 @@ import { ParticleHero } from "../hero/ParticleHero";
 const WA_DEMO = "Hi SiteBlitz, I'd like to see a website demo for my business and the package details.";
 const LAUNCH_DELIVERY = launchPkg.delivery; // "2 working days after ready-to-build"
 
-/** A hand-drawn volt stroke that Motion.tsx draws as its section scrolls in ([data-draw]); fully drawn when static. */
-function Stroke({ d, viewBox, className }: { d: string; viewBox: string; className: string }) {
+/** A hand-drawn volt stroke that Motion.tsx draws as its section scrolls in ([data-draw]); fully drawn when static.
+ *  `now` draws it once on load with CSS instead (page heroes, where a scroll scrub would already be complete). */
+export function Stroke({ d, viewBox, className, now = false }: { d: string; viewBox: string; className: string; now?: boolean }) {
   return (
     <svg aria-hidden viewBox={viewBox} preserveAspectRatio="none" fill="none" className={`stroke-draw ${className}`}>
-      <path data-draw d={d} pathLength={100} stroke="currentColor" strokeLinecap="round" />
+      <path data-draw={now ? "now" : ""} d={d} pathLength={100} stroke="currentColor" strokeLinecap="round" />
     </svg>
   );
 }

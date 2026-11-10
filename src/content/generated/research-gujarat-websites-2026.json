@@ -1,0 +1,3136 @@
+{
+ "source": "Overture Maps Foundation, Places theme, release 2026-10-21.0",
+ "sourceRelease": "2026-10-21",
+ "analysed": "2026-11-11",
+ "rules": {
+  "sharedHostMin": 3,
+  "trades": [
+   {
+    "id": "restaurants",
+    "label": "Restaurants, cafés & bakeries",
+    "categories": [
+     "restaurant",
+     "indian_restaurant",
+     "fast_food_restaurant",
+     "cafe",
+     "vegetarian_restaurant",
+     "chinese_restaurant",
+     "bakery"
+    ]
+   },
+   {
+    "id": "beauty",
+    "label": "Beauty parlours, hair salons & spas",
+    "categories": [
+     "beauty_salon",
+     "hair_salon",
+     "barber",
+     "spa"
+    ]
+   },
+   {
+    "id": "clothing",
+    "label": "Clothing stores & boutiques",
+    "categories": [
+     "clothing_store",
+     "womens_clothing_store",
+     "mens_clothing_store",
+     "childrens_clothing_store",
+     "fashion_and_apparel_store",
+     "fashion_boutique"
+    ]
+   },
+   {
+    "id": "jewellery",
+    "label": "Jewellery stores",
+    "categories": [
+     "jewelry_store"
+    ]
+   },
+   {
+    "id": "health",
+    "label": "Hospitals, clinics & doctors",
+    "categories": [
+     "hospital",
+     "doctors_office",
+     "dental_clinic",
+     "general_dentistry",
+     "pediatric_clinic",
+     "vision_or_eye_care_clinic",
+     "laboratory_testing"
+    ]
+   },
+   {
+    "id": "pharmacy",
+    "label": "Pharmacies & medical stores",
+    "categories": [
+     "pharmacy",
+     "medical_supply_store"
+    ]
+   },
+   {
+    "id": "realestate",
+    "label": "Real estate agents & builders",
+    "categories": [
+     "real_estate_service",
+     "real_estate_agent",
+     "home_developer"
+    ]
+   },
+   {
+    "id": "hotels",
+    "label": "Hotels",
+    "categories": [
+     "hotel"
+    ]
+   },
+   {
+    "id": "grocery",
+    "label": "Grocery stores",
+    "categories": [
+     "grocery_store"
+    ]
+   },
+   {
+    "id": "mobile",
+    "label": "Mobile & electronics shops",
+    "categories": [
+     "mobile_phone_store",
+     "electronics_store"
+    ]
+   },
+   {
+    "id": "home",
+    "label": "Furniture & hardware stores",
+    "categories": [
+     "furniture_store",
+     "hardware_store"
+    ]
+   },
+   {
+    "id": "events",
+    "label": "Event planners, caterers & photographers",
+    "categories": [
+     "party_and_event_planning",
+     "wedding_planning",
+     "caterer",
+     "event_photography_service"
+    ]
+   },
+   {
+    "id": "coaching",
+    "label": "Coaching & tuition classes",
+    "categories": [
+     "tutoring_service",
+     "computer_coaching",
+     "language_school",
+     "music_school"
+    ]
+   },
+   {
+    "id": "fitness",
+    "label": "Gyms & fitness trainers",
+    "categories": [
+     "gym",
+     "fitness_trainer"
+    ]
+   },
+   {
+    "id": "vehicles",
+    "label": "Car & bike dealers",
+    "categories": [
+     "auto_dealer",
+     "motorcycle_dealer"
+    ]
+   },
+   {
+    "id": "interiors",
+    "label": "Interior designers",
+    "categories": [
+     "interior_design"
+    ]
+   },
+   {
+    "id": "accountants",
+    "label": "Accountants",
+    "categories": [
+     "accountant"
+    ]
+   }
+  ]
+ },
+ "trades": {
+  "total": {
+   "n": 92579,
+   "own": 20915,
+   "shared": 6362,
+   "none": 65302
+  },
+  "groups": [
+   {
+    "id": "restaurants",
+    "label": "Restaurants, cafés & bakeries",
+    "n": 13787,
+    "own": 1965,
+    "shared": 721,
+    "none": 11101
+   },
+   {
+    "id": "beauty",
+    "label": "Beauty parlours, hair salons & spas",
+    "n": 6192,
+    "own": 1117,
+    "shared": 145,
+    "none": 4930
+   },
+   {
+    "id": "clothing",
+    "label": "Clothing stores & boutiques",
+    "n": 12701,
+    "own": 2806,
+    "shared": 923,
+    "none": 8972
+   },
+   {
+    "id": "jewellery",
+    "label": "Jewellery stores",
+    "n": 3374,
+    "own": 899,
+    "shared": 235,
+    "none": 2240
+   },
+   {
+    "id": "health",
+    "label": "Hospitals, clinics & doctors",
+    "n": 12727,
+    "own": 3489,
+    "shared": 487,
+    "none": 8751
+   },
+   {
+    "id": "pharmacy",
+    "label": "Pharmacies & medical stores",
+    "n": 2998,
+    "own": 429,
+    "shared": 428,
+    "none": 2141
+   },
+   {
+    "id": "realestate",
+    "label": "Real estate agents & builders",
+    "n": 6795,
+    "own": 2248,
+    "shared": 277,
+    "none": 4270
+   },
+   {
+    "id": "hotels",
+    "label": "Hotels",
+    "n": 5780,
+    "own": 1587,
+    "shared": 439,
+    "none": 3754
+   },
+   {
+    "id": "grocery",
+    "label": "Grocery stores",
+    "n": 2176,
+    "own": 331,
+    "shared": 43,
+    "none": 1802
+   },
+   {
+    "id": "mobile",
+    "label": "Mobile & electronics shops",
+    "n": 6448,
+    "own": 674,
+    "shared": 1101,
+    "none": 4673
+   },
+   {
+    "id": "home",
+    "label": "Furniture & hardware stores",
+    "n": 3963,
+    "own": 922,
+    "shared": 319,
+    "none": 2722
+   },
+   {
+    "id": "events",
+    "label": "Event planners, caterers & photographers",
+    "n": 6152,
+    "own": 1595,
+    "shared": 103,
+    "none": 4454
+   },
+   {
+    "id": "coaching",
+    "label": "Coaching & tuition classes",
+    "n": 2517,
+    "own": 935,
+    "shared": 343,
+    "none": 1239
+   },
+   {
+    "id": "fitness",
+    "label": "Gyms & fitness trainers",
+    "n": 1910,
+    "own": 397,
+    "shared": 76,
+    "none": 1437
+   },
+   {
+    "id": "vehicles",
+    "label": "Car & bike dealers",
+    "n": 2890,
+    "own": 536,
+    "shared": 581,
+    "none": 1773
+   },
+   {
+    "id": "interiors",
+    "label": "Interior designers",
+    "n": 1452,
+    "own": 652,
+    "shared": 126,
+    "none": 674
+   },
+   {
+    "id": "accountants",
+    "label": "Accountants",
+    "n": 717,
+    "own": 333,
+    "shared": 15,
+    "none": 369
+   }
+  ],
+  "cities": [
+   {
+    "name": "Ahmedabad",
+    "n": 26111,
+    "own": 7161,
+    "shared": 1990,
+    "none": 16960,
+    "groups": {
+     "restaurants": {
+      "n": 3960,
+      "own": 717,
+      "shared": 234,
+      "none": 3009
+     },
+     "beauty": {
+      "n": 1912,
+      "own": 417,
+      "shared": 58,
+      "none": 1437
+     },
+     "clothing": {
+      "n": 3164,
+      "own": 661,
+      "shared": 260,
+      "none": 2243
+     },
+     "jewellery": {
+      "n": 911,
+      "own": 278,
+      "shared": 44,
+      "none": 589
+     },
+     "health": {
+      "n": 3650,
+      "own": 1309,
+      "shared": 257,
+      "none": 2084
+     },
+     "pharmacy": {
+      "n": 868,
+      "own": 157,
+      "shared": 173,
+      "none": 538
+     },
+     "realestate": {
+      "n": 2541,
+      "own": 1020,
+      "shared": 107,
+      "none": 1414
+     },
+     "hotels": {
+      "n": 1071,
+      "own": 295,
+      "shared": 125,
+      "none": 651
+     },
+     "grocery": {
+      "n": 500,
+      "own": 82,
+      "shared": 14,
+      "none": 404
+     },
+     "mobile": {
+      "n": 1295,
+      "own": 168,
+      "shared": 230,
+      "none": 897
+     },
+     "home": {
+      "n": 981,
+      "own": 301,
+      "shared": 58,
+      "none": 622
+     },
+     "events": {
+      "n": 2202,
+      "own": 600,
+      "shared": 47,
+      "none": 1555
+     },
+     "coaching": {
+      "n": 918,
+      "own": 339,
+      "shared": 197,
+      "none": 382
+     },
+     "fitness": {
+      "n": 585,
+      "own": 158,
+      "shared": 44,
+      "none": 383
+     },
+     "vehicles": {
+      "n": 627,
+      "own": 176,
+      "shared": 84,
+      "none": 367
+     },
+     "interiors": {
+      "n": 649,
+      "own": 327,
+      "shared": 53,
+      "none": 269
+     },
+     "accountants": {
+      "n": 277,
+      "own": 156,
+      "shared": 5,
+      "none": 116
+     }
+    }
+   },
+   {
+    "name": "Surat",
+    "n": 16494,
+    "own": 4131,
+    "shared": 885,
+    "none": 11478,
+    "groups": {
+     "restaurants": {
+      "n": 1953,
+      "own": 258,
+      "shared": 120,
+      "none": 1575
+     },
+     "beauty": {
+      "n": 1158,
+      "own": 215,
+      "shared": 31,
+      "none": 912
+     },
+     "clothing": {
+      "n": 4232,
+      "own": 1391,
+      "shared": 196,
+      "none": 2645
+     },
+     "jewellery": {
+      "n": 796,
+      "own": 304,
+      "shared": 40,
+      "none": 452
+     },
+     "health": {
+      "n": 2044,
+      "own": 532,
+      "shared": 54,
+      "none": 1458
+     },
+     "pharmacy": {
+      "n": 426,
+      "own": 60,
+      "shared": 35,
+      "none": 331
+     },
+     "realestate": {
+      "n": 949,
+      "own": 266,
+      "shared": 19,
+      "none": 664
+     },
+     "hotels": {
+      "n": 472,
+      "own": 110,
+      "shared": 34,
+      "none": 328
+     },
+     "grocery": {
+      "n": 381,
+      "own": 59,
+      "shared": 1,
+      "none": 321
+     },
+     "mobile": {
+      "n": 932,
+      "own": 106,
+      "shared": 180,
+      "none": 646
+     },
+     "home": {
+      "n": 636,
+      "own": 121,
+      "shared": 50,
+      "none": 465
+     },
+     "events": {
+      "n": 971,
+      "own": 243,
+      "shared": 11,
+      "none": 717
+     },
+     "coaching": {
+      "n": 430,
+      "own": 177,
+      "shared": 40,
+      "none": 213
+     },
+     "fitness": {
+      "n": 392,
+      "own": 76,
+      "shared": 13,
+      "none": 303
+     },
+     "vehicles": {
+      "n": 384,
+      "own": 70,
+      "shared": 50,
+      "none": 264
+     },
+     "interiors": {
+      "n": 221,
+      "own": 89,
+      "shared": 9,
+      "none": 123
+     },
+     "accountants": {
+      "n": 117,
+      "own": 54,
+      "shared": 2,
+      "none": 61
+     }
+    }
+   },
+   {
+    "name": "Vadodara",
+    "n": 8989,
+    "own": 2257,
+    "shared": 751,
+    "none": 5981,
+    "groups": {
+     "restaurants": {
+      "n": 1569,
+      "own": 247,
+      "shared": 70,
+      "none": 1252
+     },
+     "beauty": {
+      "n": 707,
+      "own": 158,
+      "shared": 16,
+      "none": 533
+     },
+     "clothing": {
+      "n": 852,
+      "own": 172,
+      "shared": 85,
+      "none": 595
+     },
+     "jewellery": {
+      "n": 207,
+      "own": 56,
+      "shared": 13,
+      "none": 138
+     },
+     "health": {
+      "n": 1273,
+      "own": 400,
+      "shared": 79,
+      "none": 794
+     },
+     "pharmacy": {
+      "n": 342,
+      "own": 51,
+      "shared": 83,
+      "none": 208
+     },
+     "realestate": {
+      "n": 1035,
+      "own": 369,
+      "shared": 84,
+      "none": 582
+     },
+     "hotels": {
+      "n": 342,
+      "own": 107,
+      "shared": 53,
+      "none": 182
+     },
+     "grocery": {
+      "n": 145,
+      "own": 28,
+      "shared": 5,
+      "none": 112
+     },
+     "mobile": {
+      "n": 484,
+      "own": 59,
+      "shared": 134,
+      "none": 291
+     },
+     "home": {
+      "n": 369,
+      "own": 84,
+      "shared": 27,
+      "none": 258
+     },
+     "events": {
+      "n": 631,
+      "own": 169,
+      "shared": 15,
+      "none": 447
+     },
+     "coaching": {
+      "n": 301,
+      "own": 120,
+      "shared": 28,
+      "none": 153
+     },
+     "fitness": {
+      "n": 232,
+      "own": 53,
+      "shared": 3,
+      "none": 176
+     },
+     "vehicles": {
+      "n": 225,
+      "own": 46,
+      "shared": 53,
+      "none": 126
+     },
+     "interiors": {
+      "n": 195,
+      "own": 100,
+      "shared": 3,
+      "none": 92
+     },
+     "accountants": {
+      "n": 80,
+      "own": 38,
+      "shared": 0,
+      "none": 42
+     }
+    }
+   },
+   {
+    "name": "Rajkot",
+    "n": 5798,
+    "own": 1311,
+    "shared": 328,
+    "none": 4159,
+    "groups": {
+     "restaurants": {
+      "n": 785,
+      "own": 119,
+      "shared": 47,
+      "none": 619
+     },
+     "beauty": {
+      "n": 485,
+      "own": 66,
+      "shared": 4,
+      "none": 415
+     },
+     "clothing": {
+      "n": 687,
+      "own": 109,
+      "shared": 62,
+      "none": 516
+     },
+     "jewellery": {
+      "n": 333,
+      "own": 96,
+      "shared": 14,
+      "none": 223
+     },
+     "health": {
+      "n": 787,
+      "own": 222,
+      "shared": 17,
+      "none": 548
+     },
+     "pharmacy": {
+      "n": 149,
+      "own": 21,
+      "shared": 14,
+      "none": 114
+     },
+     "realestate": {
+      "n": 347,
+      "own": 77,
+      "shared": 16,
+      "none": 254
+     },
+     "hotels": {
+      "n": 263,
+      "own": 72,
+      "shared": 34,
+      "none": 157
+     },
+     "grocery": {
+      "n": 128,
+      "own": 24,
+      "shared": 0,
+      "none": 104
+     },
+     "mobile": {
+      "n": 382,
+      "own": 53,
+      "shared": 51,
+      "none": 278
+     },
+     "home": {
+      "n": 400,
+      "own": 143,
+      "shared": 16,
+      "none": 241
+     },
+     "events": {
+      "n": 485,
+      "own": 138,
+      "shared": 9,
+      "none": 338
+     },
+     "coaching": {
+      "n": 115,
+      "own": 49,
+      "shared": 8,
+      "none": 58
+     },
+     "fitness": {
+      "n": 103,
+      "own": 26,
+      "shared": 1,
+      "none": 76
+     },
+     "vehicles": {
+      "n": 150,
+      "own": 27,
+      "shared": 19,
+      "none": 104
+     },
+     "interiors": {
+      "n": 124,
+      "own": 45,
+      "shared": 13,
+      "none": 66
+     },
+     "accountants": {
+      "n": 75,
+      "own": 24,
+      "shared": 3,
+      "none": 48
+     }
+    }
+   },
+   {
+    "name": "Gandhinagar",
+    "n": 1868,
+    "own": 483,
+    "shared": 179,
+    "none": 1206,
+    "groups": {
+     "restaurants": {
+      "n": 382,
+      "own": 56,
+      "shared": 24,
+      "none": 302
+     },
+     "beauty": {
+      "n": 143,
+      "own": 28,
+      "shared": 4,
+      "none": 111
+     },
+     "clothing": {
+      "n": 110,
+      "own": 27,
+      "shared": 24,
+      "none": 59
+     },
+     "jewellery": {
+      "n": 38,
+      "own": 4,
+      "shared": 3,
+      "none": 31
+     },
+     "health": {
+      "n": 256,
+      "own": 68,
+      "shared": 19,
+      "none": 169
+     },
+     "pharmacy": {
+      "n": 39,
+      "own": 6,
+      "shared": 6,
+      "none": 27
+     },
+     "realestate": {
+      "n": 298,
+      "own": 103,
+      "shared": 9,
+      "none": 186
+     },
+     "hotels": {
+      "n": 103,
+      "own": 41,
+      "shared": 11,
+      "none": 51
+     },
+     "grocery": {
+      "n": 39,
+      "own": 7,
+      "shared": 1,
+      "none": 31
+     },
+     "mobile": {
+      "n": 98,
+      "own": 30,
+      "shared": 24,
+      "none": 44
+     },
+     "home": {
+      "n": 46,
+      "own": 9,
+      "shared": 5,
+      "none": 32
+     },
+     "events": {
+      "n": 116,
+      "own": 38,
+      "shared": 6,
+      "none": 72
+     },
+     "coaching": {
+      "n": 75,
+      "own": 37,
+      "shared": 16,
+      "none": 22
+     },
+     "fitness": {
+      "n": 41,
+      "own": 11,
+      "shared": 4,
+      "none": 26
+     },
+     "vehicles": {
+      "n": 43,
+      "own": 6,
+      "shared": 14,
+      "none": 23
+     },
+     "interiors": {
+      "n": 31,
+      "own": 6,
+      "shared": 9,
+      "none": 16
+     },
+     "accountants": {
+      "n": 10,
+      "own": 6,
+      "shared": 0,
+      "none": 4
+     }
+    }
+   },
+   {
+    "name": "Jamnagar",
+    "n": 1433,
+    "own": 273,
+    "shared": 113,
+    "none": 1047,
+    "groups": {
+     "restaurants": {
+      "n": 211,
+      "own": 26,
+      "shared": 11,
+      "none": 174
+     },
+     "beauty": {
+      "n": 105,
+      "own": 12,
+      "shared": 0,
+      "none": 93
+     },
+     "clothing": {
+      "n": 180,
+      "own": 28,
+      "shared": 17,
+      "none": 135
+     },
+     "jewellery": {
+      "n": 53,
+      "own": 9,
+      "shared": 10,
+      "none": 34
+     },
+     "health": {
+      "n": 169,
+      "own": 43,
+      "shared": 2,
+      "none": 124
+     },
+     "pharmacy": {
+      "n": 53,
+      "own": 4,
+      "shared": 1,
+      "none": 48
+     },
+     "realestate": {
+      "n": 74,
+      "own": 18,
+      "shared": 3,
+      "none": 53
+     },
+     "hotels": {
+      "n": 86,
+      "own": 25,
+      "shared": 11,
+      "none": 50
+     },
+     "grocery": {
+      "n": 52,
+      "own": 6,
+      "shared": 3,
+      "none": 43
+     },
+     "mobile": {
+      "n": 104,
+      "own": 7,
+      "shared": 18,
+      "none": 79
+     },
+     "home": {
+      "n": 111,
+      "own": 35,
+      "shared": 10,
+      "none": 66
+     },
+     "events": {
+      "n": 82,
+      "own": 23,
+      "shared": 0,
+      "none": 59
+     },
+     "coaching": {
+      "n": 49,
+      "own": 13,
+      "shared": 6,
+      "none": 30
+     },
+     "fitness": {
+      "n": 25,
+      "own": 7,
+      "shared": 2,
+      "none": 16
+     },
+     "vehicles": {
+      "n": 49,
+      "own": 7,
+      "shared": 14,
+      "none": 28
+     },
+     "interiors": {
+      "n": 16,
+      "own": 3,
+      "shared": 5,
+      "none": 8
+     },
+     "accountants": {
+      "n": 14,
+      "own": 7,
+      "shared": 0,
+      "none": 7
+     }
+    }
+   },
+   {
+    "name": "Bhavnagar",
+    "n": 1066,
+    "own": 201,
+    "shared": 83,
+    "none": 782,
+    "groups": {
+     "restaurants": {
+      "n": 212,
+      "own": 25,
+      "shared": 4,
+      "none": 183
+     },
+     "beauty": {
+      "n": 65,
+      "own": 16,
+      "shared": 0,
+      "none": 49
+     },
+     "clothing": {
+      "n": 123,
+      "own": 12,
+      "shared": 20,
+      "none": 91
+     },
+     "jewellery": {
+      "n": 40,
+      "own": 7,
+      "shared": 7,
+      "none": 26
+     },
+     "health": {
+      "n": 164,
+      "own": 43,
+      "shared": 0,
+      "none": 121
+     },
+     "pharmacy": {
+      "n": 53,
+      "own": 11,
+      "shared": 4,
+      "none": 38
+     },
+     "realestate": {
+      "n": 36,
+      "own": 9,
+      "shared": 0,
+      "none": 27
+     },
+     "hotels": {
+      "n": 68,
+      "own": 22,
+      "shared": 7,
+      "none": 39
+     },
+     "grocery": {
+      "n": 28,
+      "own": 8,
+      "shared": 1,
+      "none": 19
+     },
+     "mobile": {
+      "n": 90,
+      "own": 12,
+      "shared": 22,
+      "none": 56
+     },
+     "home": {
+      "n": 39,
+      "own": 8,
+      "shared": 5,
+      "none": 26
+     },
+     "events": {
+      "n": 47,
+      "own": 8,
+      "shared": 0,
+      "none": 39
+     },
+     "coaching": {
+      "n": 28,
+      "own": 8,
+      "shared": 4,
+      "none": 16
+     },
+     "fitness": {
+      "n": 18,
+      "own": 2,
+      "shared": 0,
+      "none": 16
+     },
+     "vehicles": {
+      "n": 39,
+      "own": 5,
+      "shared": 9,
+      "none": 25
+     },
+     "interiors": {
+      "n": 11,
+      "own": 3,
+      "shared": 0,
+      "none": 8
+     },
+     "accountants": {
+      "n": 5,
+      "own": 2,
+      "shared": 0,
+      "none": 3
+     }
+    }
+   },
+   {
+    "name": "Anand",
+    "n": 1131,
+    "own": 267,
+    "shared": 121,
+    "none": 743,
+    "groups": {
+     "restaurants": {
+      "n": 156,
+      "own": 25,
+      "shared": 8,
+      "none": 123
+     },
+     "beauty": {
+      "n": 73,
+      "own": 18,
+      "shared": 3,
+      "none": 52
+     },
+     "clothing": {
+      "n": 185,
+      "own": 39,
+      "shared": 36,
+      "none": 110
+     },
+     "jewellery": {
+      "n": 35,
+      "own": 10,
+      "shared": 4,
+      "none": 21
+     },
+     "health": {
+      "n": 182,
+      "own": 65,
+      "shared": 0,
+      "none": 117
+     },
+     "pharmacy": {
+      "n": 64,
+      "own": 5,
+      "shared": 22,
+      "none": 37
+     },
+     "realestate": {
+      "n": 55,
+      "own": 16,
+      "shared": 0,
+      "none": 39
+     },
+     "hotels": {
+      "n": 63,
+      "own": 13,
+      "shared": 4,
+      "none": 46
+     },
+     "grocery": {
+      "n": 25,
+      "own": 7,
+      "shared": 1,
+      "none": 17
+     },
+     "mobile": {
+      "n": 71,
+      "own": 12,
+      "shared": 21,
+      "none": 38
+     },
+     "home": {
+      "n": 46,
+      "own": 8,
+      "shared": 10,
+      "none": 28
+     },
+     "events": {
+      "n": 65,
+      "own": 22,
+      "shared": 0,
+      "none": 43
+     },
+     "coaching": {
+      "n": 31,
+      "own": 9,
+      "shared": 5,
+      "none": 17
+     },
+     "fitness": {
+      "n": 26,
+      "own": 4,
+      "shared": 1,
+      "none": 21
+     },
+     "vehicles": {
+      "n": 47,
+      "own": 10,
+      "shared": 6,
+      "none": 31
+     },
+     "interiors": {
+      "n": 3,
+      "own": 1,
+      "shared": 0,
+      "none": 2
+     },
+     "accountants": {
+      "n": 4,
+      "own": 3,
+      "shared": 0,
+      "none": 1
+     }
+    }
+   },
+   {
+    "name": "Morbi",
+    "n": 774,
+    "own": 173,
+    "shared": 46,
+    "none": 555,
+    "groups": {
+     "restaurants": {
+      "n": 85,
+      "own": 14,
+      "shared": 4,
+      "none": 67
+     },
+     "beauty": {
+      "n": 61,
+      "own": 7,
+      "shared": 0,
+      "none": 54
+     },
+     "clothing": {
+      "n": 72,
+      "own": 7,
+      "shared": 5,
+      "none": 60
+     },
+     "jewellery": {
+      "n": 28,
+      "own": 3,
+      "shared": 3,
+      "none": 22
+     },
+     "health": {
+      "n": 119,
+      "own": 16,
+      "shared": 1,
+      "none": 102
+     },
+     "pharmacy": {
+      "n": 14,
+      "own": 3,
+      "shared": 0,
+      "none": 11
+     },
+     "realestate": {
+      "n": 33,
+      "own": 20,
+      "shared": 0,
+      "none": 13
+     },
+     "hotels": {
+      "n": 78,
+      "own": 22,
+      "shared": 8,
+      "none": 48
+     },
+     "grocery": {
+      "n": 16,
+      "own": 1,
+      "shared": 1,
+      "none": 14
+     },
+     "mobile": {
+      "n": 65,
+      "own": 5,
+      "shared": 11,
+      "none": 49
+     },
+     "home": {
+      "n": 40,
+      "own": 11,
+      "shared": 3,
+      "none": 26
+     },
+     "events": {
+      "n": 66,
+      "own": 31,
+      "shared": 0,
+      "none": 35
+     },
+     "coaching": {
+      "n": 8,
+      "own": 0,
+      "shared": 0,
+      "none": 8
+     },
+     "fitness": {
+      "n": 16,
+      "own": 2,
+      "shared": 0,
+      "none": 14
+     },
+     "vehicles": {
+      "n": 35,
+      "own": 10,
+      "shared": 9,
+      "none": 16
+     },
+     "interiors": {
+      "n": 24,
+      "own": 16,
+      "shared": 0,
+      "none": 8
+     },
+     "accountants": {
+      "n": 14,
+      "own": 5,
+      "shared": 1,
+      "none": 8
+     }
+    }
+   },
+   {
+    "name": "Vapi",
+    "n": 964,
+    "own": 211,
+    "shared": 106,
+    "none": 647,
+    "groups": {
+     "restaurants": {
+      "n": 144,
+      "own": 24,
+      "shared": 16,
+      "none": 104
+     },
+     "beauty": {
+      "n": 56,
+      "own": 12,
+      "shared": 1,
+      "none": 43
+     },
+     "clothing": {
+      "n": 131,
+      "own": 19,
+      "shared": 28,
+      "none": 84
+     },
+     "jewellery": {
+      "n": 19,
+      "own": 2,
+      "shared": 2,
+      "none": 15
+     },
+     "health": {
+      "n": 111,
+      "own": 38,
+      "shared": 4,
+      "none": 69
+     },
+     "pharmacy": {
+      "n": 31,
+      "own": 2,
+      "shared": 7,
+      "none": 22
+     },
+     "realestate": {
+      "n": 76,
+      "own": 30,
+      "shared": 2,
+      "none": 44
+     },
+     "hotels": {
+      "n": 66,
+      "own": 23,
+      "shared": 3,
+      "none": 40
+     },
+     "grocery": {
+      "n": 19,
+      "own": 3,
+      "shared": 0,
+      "none": 16
+     },
+     "mobile": {
+      "n": 83,
+      "own": 10,
+      "shared": 28,
+      "none": 45
+     },
+     "home": {
+      "n": 39,
+      "own": 8,
+      "shared": 4,
+      "none": 27
+     },
+     "events": {
+      "n": 70,
+      "own": 14,
+      "shared": 0,
+      "none": 56
+     },
+     "coaching": {
+      "n": 21,
+      "own": 3,
+      "shared": 0,
+      "none": 18
+     },
+     "fitness": {
+      "n": 29,
+      "own": 5,
+      "shared": 1,
+      "none": 23
+     },
+     "vehicles": {
+      "n": 51,
+      "own": 12,
+      "shared": 10,
+      "none": 29
+     },
+     "interiors": {
+      "n": 12,
+      "own": 3,
+      "shared": 0,
+      "none": 9
+     },
+     "accountants": {
+      "n": 6,
+      "own": 3,
+      "shared": 0,
+      "none": 3
+     }
+    }
+   },
+   {
+    "name": "Junagadh",
+    "n": 882,
+    "own": 132,
+    "shared": 73,
+    "none": 677,
+    "groups": {
+     "restaurants": {
+      "n": 113,
+      "own": 17,
+      "shared": 7,
+      "none": 89
+     },
+     "beauty": {
+      "n": 63,
+      "own": 3,
+      "shared": 4,
+      "none": 56
+     },
+     "clothing": {
+      "n": 97,
+      "own": 7,
+      "shared": 13,
+      "none": 77
+     },
+     "jewellery": {
+      "n": 40,
+      "own": 9,
+      "shared": 3,
+      "none": 28
+     },
+     "health": {
+      "n": 156,
+      "own": 25,
+      "shared": 0,
+      "none": 131
+     },
+     "pharmacy": {
+      "n": 25,
+      "own": 3,
+      "shared": 4,
+      "none": 18
+     },
+     "realestate": {
+      "n": 24,
+      "own": 4,
+      "shared": 0,
+      "none": 20
+     },
+     "hotels": {
+      "n": 97,
+      "own": 33,
+      "shared": 6,
+      "none": 58
+     },
+     "grocery": {
+      "n": 20,
+      "own": 1,
+      "shared": 1,
+      "none": 18
+     },
+     "mobile": {
+      "n": 87,
+      "own": 6,
+      "shared": 17,
+      "none": 64
+     },
+     "home": {
+      "n": 29,
+      "own": 1,
+      "shared": 7,
+      "none": 21
+     },
+     "events": {
+      "n": 45,
+      "own": 11,
+      "shared": 0,
+      "none": 34
+     },
+     "coaching": {
+      "n": 22,
+      "own": 6,
+      "shared": 2,
+      "none": 14
+     },
+     "fitness": {
+      "n": 16,
+      "own": 2,
+      "shared": 0,
+      "none": 14
+     },
+     "vehicles": {
+      "n": 31,
+      "own": 2,
+      "shared": 9,
+      "none": 20
+     },
+     "interiors": {
+      "n": 10,
+      "own": 0,
+      "shared": 0,
+      "none": 10
+     },
+     "accountants": {
+      "n": 7,
+      "own": 2,
+      "shared": 0,
+      "none": 5
+     }
+    }
+   },
+   {
+    "name": "Bharuch",
+    "n": 867,
+    "own": 169,
+    "shared": 82,
+    "none": 616,
+    "groups": {
+     "restaurants": {
+      "n": 149,
+      "own": 21,
+      "shared": 11,
+      "none": 117
+     },
+     "beauty": {
+      "n": 57,
+      "own": 13,
+      "shared": 2,
+      "none": 42
+     },
+     "clothing": {
+      "n": 91,
+      "own": 11,
+      "shared": 10,
+      "none": 70
+     },
+     "jewellery": {
+      "n": 27,
+      "own": 3,
+      "shared": 3,
+      "none": 21
+     },
+     "health": {
+      "n": 124,
+      "own": 36,
+      "shared": 3,
+      "none": 85
+     },
+     "pharmacy": {
+      "n": 35,
+      "own": 4,
+      "shared": 6,
+      "none": 25
+     },
+     "realestate": {
+      "n": 47,
+      "own": 11,
+      "shared": 3,
+      "none": 33
+     },
+     "hotels": {
+      "n": 47,
+      "own": 12,
+      "shared": 5,
+      "none": 30
+     },
+     "grocery": {
+      "n": 26,
+      "own": 1,
+      "shared": 0,
+      "none": 25
+     },
+     "mobile": {
+      "n": 71,
+      "own": 13,
+      "shared": 15,
+      "none": 43
+     },
+     "home": {
+      "n": 48,
+      "own": 10,
+      "shared": 4,
+      "none": 34
+     },
+     "events": {
+      "n": 41,
+      "own": 8,
+      "shared": 1,
+      "none": 32
+     },
+     "coaching": {
+      "n": 21,
+      "own": 6,
+      "shared": 1,
+      "none": 14
+     },
+     "fitness": {
+      "n": 17,
+      "own": 3,
+      "shared": 0,
+      "none": 14
+     },
+     "vehicles": {
+      "n": 45,
+      "own": 8,
+      "shared": 11,
+      "none": 26
+     },
+     "interiors": {
+      "n": 18,
+      "own": 8,
+      "shared": 7,
+      "none": 3
+     },
+     "accountants": {
+      "n": 3,
+      "own": 1,
+      "shared": 0,
+      "none": 2
+     }
+    }
+   },
+   {
+    "name": "Navsari",
+    "n": 799,
+    "own": 145,
+    "shared": 64,
+    "none": 590,
+    "groups": {
+     "restaurants": {
+      "n": 128,
+      "own": 20,
+      "shared": 9,
+      "none": 99
+     },
+     "beauty": {
+      "n": 52,
+      "own": 4,
+      "shared": 1,
+      "none": 47
+     },
+     "clothing": {
+      "n": 144,
+      "own": 23,
+      "shared": 9,
+      "none": 112
+     },
+     "jewellery": {
+      "n": 43,
+      "own": 8,
+      "shared": 3,
+      "none": 32
+     },
+     "health": {
+      "n": 90,
+      "own": 26,
+      "shared": 3,
+      "none": 61
+     },
+     "pharmacy": {
+      "n": 21,
+      "own": 2,
+      "shared": 3,
+      "none": 16
+     },
+     "realestate": {
+      "n": 28,
+      "own": 10,
+      "shared": 4,
+      "none": 14
+     },
+     "hotels": {
+      "n": 36,
+      "own": 10,
+      "shared": 2,
+      "none": 24
+     },
+     "grocery": {
+      "n": 24,
+      "own": 6,
+      "shared": 0,
+      "none": 18
+     },
+     "mobile": {
+      "n": 70,
+      "own": 5,
+      "shared": 16,
+      "none": 49
+     },
+     "home": {
+      "n": 36,
+      "own": 6,
+      "shared": 2,
+      "none": 28
+     },
+     "events": {
+      "n": 38,
+      "own": 8,
+      "shared": 0,
+      "none": 30
+     },
+     "coaching": {
+      "n": 23,
+      "own": 5,
+      "shared": 2,
+      "none": 16
+     },
+     "fitness": {
+      "n": 28,
+      "own": 4,
+      "shared": 1,
+      "none": 23
+     },
+     "vehicles": {
+      "n": 31,
+      "own": 5,
+      "shared": 9,
+      "none": 17
+     },
+     "interiors": {
+      "n": 5,
+      "own": 2,
+      "shared": 0,
+      "none": 3
+     },
+     "accountants": {
+      "n": 2,
+      "own": 1,
+      "shared": 0,
+      "none": 1
+     }
+    }
+   },
+   {
+    "name": "Mehsana",
+    "n": 702,
+    "own": 130,
+    "shared": 62,
+    "none": 510,
+    "groups": {
+     "restaurants": {
+      "n": 93,
+      "own": 13,
+      "shared": 5,
+      "none": 75
+     },
+     "beauty": {
+      "n": 49,
+      "own": 6,
+      "shared": 0,
+      "none": 43
+     },
+     "clothing": {
+      "n": 79,
+      "own": 17,
+      "shared": 6,
+      "none": 56
+     },
+     "jewellery": {
+      "n": 19,
+      "own": 2,
+      "shared": 2,
+      "none": 15
+     },
+     "health": {
+      "n": 94,
+      "own": 22,
+      "shared": 3,
+      "none": 69
+     },
+     "pharmacy": {
+      "n": 22,
+      "own": 2,
+      "shared": 7,
+      "none": 13
+     },
+     "realestate": {
+      "n": 49,
+      "own": 9,
+      "shared": 0,
+      "none": 40
+     },
+     "hotels": {
+      "n": 43,
+      "own": 10,
+      "shared": 0,
+      "none": 33
+     },
+     "grocery": {
+      "n": 19,
+      "own": 3,
+      "shared": 2,
+      "none": 14
+     },
+     "mobile": {
+      "n": 79,
+      "own": 8,
+      "shared": 20,
+      "none": 51
+     },
+     "home": {
+      "n": 27,
+      "own": 5,
+      "shared": 6,
+      "none": 16
+     },
+     "events": {
+      "n": 53,
+      "own": 10,
+      "shared": 0,
+      "none": 43
+     },
+     "coaching": {
+      "n": 16,
+      "own": 8,
+      "shared": 2,
+      "none": 6
+     },
+     "fitness": {
+      "n": 11,
+      "own": 2,
+      "shared": 0,
+      "none": 9
+     },
+     "vehicles": {
+      "n": 41,
+      "own": 9,
+      "shared": 9,
+      "none": 23
+     },
+     "interiors": {
+      "n": 5,
+      "own": 2,
+      "shared": 0,
+      "none": 3
+     },
+     "accountants": {
+      "n": 3,
+      "own": 2,
+      "shared": 0,
+      "none": 1
+     }
+    }
+   },
+   {
+    "name": "Valsad",
+    "n": 732,
+    "own": 107,
+    "shared": 61,
+    "none": 564,
+    "groups": {
+     "restaurants": {
+      "n": 157,
+      "own": 12,
+      "shared": 10,
+      "none": 135
+     },
+     "beauty": {
+      "n": 33,
+      "own": 2,
+      "shared": 0,
+      "none": 31
+     },
+     "clothing": {
+      "n": 67,
+      "own": 11,
+      "shared": 9,
+      "none": 47
+     },
+     "jewellery": {
+      "n": 26,
+      "own": 2,
+      "shared": 1,
+      "none": 23
+     },
+     "health": {
+      "n": 100,
+      "own": 25,
+      "shared": 3,
+      "none": 72
+     },
+     "pharmacy": {
+      "n": 32,
+      "own": 4,
+      "shared": 4,
+      "none": 24
+     },
+     "realestate": {
+      "n": 44,
+      "own": 9,
+      "shared": 1,
+      "none": 34
+     },
+     "hotels": {
+      "n": 56,
+      "own": 12,
+      "shared": 2,
+      "none": 42
+     },
+     "grocery": {
+      "n": 27,
+      "own": 3,
+      "shared": 0,
+      "none": 24
+     },
+     "mobile": {
+      "n": 65,
+      "own": 6,
+      "shared": 22,
+      "none": 37
+     },
+     "home": {
+      "n": 30,
+      "own": 4,
+      "shared": 2,
+      "none": 24
+     },
+     "events": {
+      "n": 28,
+      "own": 6,
+      "shared": 1,
+      "none": 21
+     },
+     "coaching": {
+      "n": 22,
+      "own": 7,
+      "shared": 1,
+      "none": 14
+     },
+     "fitness": {
+      "n": 17,
+      "own": 0,
+      "shared": 0,
+      "none": 17
+     },
+     "vehicles": {
+      "n": 21,
+      "own": 1,
+      "shared": 5,
+      "none": 15
+     },
+     "interiors": {
+      "n": 5,
+      "own": 3,
+      "shared": 0,
+      "none": 2
+     },
+     "accountants": {
+      "n": 2,
+      "own": 0,
+      "shared": 0,
+      "none": 2
+     }
+    }
+   },
+   {
+    "name": "Bhuj",
+    "n": 842,
+    "own": 179,
+    "shared": 59,
+    "none": 604,
+    "groups": {
+     "restaurants": {
+      "n": 121,
+      "own": 13,
+      "shared": 6,
+      "none": 102
+     },
+     "beauty": {
+      "n": 49,
+      "own": 8,
+      "shared": 0,
+      "none": 41
+     },
+     "clothing": {
+      "n": 124,
+      "own": 20,
+      "shared": 13,
+      "none": 91
+     },
+     "jewellery": {
+      "n": 35,
+      "own": 3,
+      "shared": 3,
+      "none": 29
+     },
+     "health": {
+      "n": 119,
+      "own": 35,
+      "shared": 1,
+      "none": 83
+     },
+     "pharmacy": {
+      "n": 33,
+      "own": 2,
+      "shared": 0,
+      "none": 31
+     },
+     "realestate": {
+      "n": 32,
+      "own": 10,
+      "shared": 0,
+      "none": 22
+     },
+     "hotels": {
+      "n": 104,
+      "own": 50,
+      "shared": 11,
+      "none": 43
+     },
+     "grocery": {
+      "n": 18,
+      "own": 1,
+      "shared": 0,
+      "none": 17
+     },
+     "mobile": {
+      "n": 64,
+      "own": 3,
+      "shared": 12,
+      "none": 49
+     },
+     "home": {
+      "n": 41,
+      "own": 7,
+      "shared": 3,
+      "none": 31
+     },
+     "events": {
+      "n": 29,
+      "own": 7,
+      "shared": 0,
+      "none": 22
+     },
+     "coaching": {
+      "n": 17,
+      "own": 7,
+      "shared": 2,
+      "none": 8
+     },
+     "fitness": {
+      "n": 14,
+      "own": 2,
+      "shared": 0,
+      "none": 12
+     },
+     "vehicles": {
+      "n": 33,
+      "own": 5,
+      "shared": 8,
+      "none": 20
+     },
+     "interiors": {
+      "n": 2,
+      "own": 2,
+      "shared": 0,
+      "none": 0
+     },
+     "accountants": {
+      "n": 7,
+      "own": 4,
+      "shared": 0,
+      "none": 3
+     }
+    }
+   },
+   {
+    "name": "Ankleshwar",
+    "n": 546,
+    "own": 89,
+    "shared": 39,
+    "none": 418,
+    "groups": {
+     "restaurants": {
+      "n": 76,
+      "own": 9,
+      "shared": 3,
+      "none": 64
+     },
+     "beauty": {
+      "n": 26,
+      "own": 2,
+      "shared": 1,
+      "none": 23
+     },
+     "clothing": {
+      "n": 58,
+      "own": 6,
+      "shared": 2,
+      "none": 50
+     },
+     "jewellery": {
+      "n": 12,
+      "own": 2,
+      "shared": 1,
+      "none": 9
+     },
+     "health": {
+      "n": 80,
+      "own": 28,
+      "shared": 1,
+      "none": 51
+     },
+     "pharmacy": {
+      "n": 30,
+      "own": 5,
+      "shared": 7,
+      "none": 18
+     },
+     "realestate": {
+      "n": 50,
+      "own": 10,
+      "shared": 2,
+      "none": 38
+     },
+     "hotels": {
+      "n": 50,
+      "own": 7,
+      "shared": 3,
+      "none": 40
+     },
+     "grocery": {
+      "n": 8,
+      "own": 0,
+      "shared": 0,
+      "none": 8
+     },
+     "mobile": {
+      "n": 40,
+      "own": 2,
+      "shared": 6,
+      "none": 32
+     },
+     "home": {
+      "n": 38,
+      "own": 3,
+      "shared": 4,
+      "none": 31
+     },
+     "events": {
+      "n": 26,
+      "own": 8,
+      "shared": 0,
+      "none": 18
+     },
+     "coaching": {
+      "n": 9,
+      "own": 1,
+      "shared": 0,
+      "none": 8
+     },
+     "fitness": {
+      "n": 18,
+      "own": 4,
+      "shared": 0,
+      "none": 14
+     },
+     "vehicles": {
+      "n": 19,
+      "own": 1,
+      "shared": 7,
+      "none": 11
+     },
+     "interiors": {
+      "n": 5,
+      "own": 1,
+      "shared": 2,
+      "none": 2
+     },
+     "accountants": {
+      "n": 1,
+      "own": 0,
+      "shared": 0,
+      "none": 1
+     }
+    }
+   },
+   {
+    "name": "Gandhidham",
+    "n": 627,
+    "own": 120,
+    "shared": 63,
+    "none": 444,
+    "groups": {
+     "restaurants": {
+      "n": 92,
+      "own": 16,
+      "shared": 9,
+      "none": 67
+     },
+     "beauty": {
+      "n": 47,
+      "own": 4,
+      "shared": 0,
+      "none": 43
+     },
+     "clothing": {
+      "n": 85,
+      "own": 8,
+      "shared": 14,
+      "none": 63
+     },
+     "jewellery": {
+      "n": 28,
+      "own": 6,
+      "shared": 3,
+      "none": 19
+     },
+     "health": {
+      "n": 62,
+      "own": 10,
+      "shared": 1,
+      "none": 51
+     },
+     "pharmacy": {
+      "n": 16,
+      "own": 1,
+      "shared": 1,
+      "none": 14
+     },
+     "realestate": {
+      "n": 31,
+      "own": 15,
+      "shared": 0,
+      "none": 16
+     },
+     "hotels": {
+      "n": 53,
+      "own": 13,
+      "shared": 13,
+      "none": 27
+     },
+     "grocery": {
+      "n": 14,
+      "own": 2,
+      "shared": 2,
+      "none": 10
+     },
+     "mobile": {
+      "n": 65,
+      "own": 5,
+      "shared": 11,
+      "none": 49
+     },
+     "home": {
+      "n": 21,
+      "own": 4,
+      "shared": 0,
+      "none": 17
+     },
+     "events": {
+      "n": 36,
+      "own": 9,
+      "shared": 1,
+      "none": 26
+     },
+     "coaching": {
+      "n": 14,
+      "own": 3,
+      "shared": 1,
+      "none": 10
+     },
+     "fitness": {
+      "n": 13,
+      "own": 2,
+      "shared": 0,
+      "none": 11
+     },
+     "vehicles": {
+      "n": 35,
+      "own": 12,
+      "shared": 6,
+      "none": 17
+     },
+     "interiors": {
+      "n": 9,
+      "own": 5,
+      "shared": 1,
+      "none": 3
+     },
+     "accountants": {
+      "n": 6,
+      "own": 5,
+      "shared": 0,
+      "none": 1
+     }
+    }
+   },
+   {
+    "name": "Nadiad",
+    "n": 611,
+    "own": 120,
+    "shared": 35,
+    "none": 456,
+    "groups": {
+     "restaurants": {
+      "n": 88,
+      "own": 11,
+      "shared": 2,
+      "none": 75
+     },
+     "beauty": {
+      "n": 51,
+      "own": 9,
+      "shared": 1,
+      "none": 41
+     },
+     "clothing": {
+      "n": 80,
+      "own": 13,
+      "shared": 6,
+      "none": 61
+     },
+     "jewellery": {
+      "n": 33,
+      "own": 4,
+      "shared": 0,
+      "none": 29
+     },
+     "health": {
+      "n": 105,
+      "own": 25,
+      "shared": 2,
+      "none": 78
+     },
+     "pharmacy": {
+      "n": 21,
+      "own": 1,
+      "shared": 6,
+      "none": 14
+     },
+     "realestate": {
+      "n": 30,
+      "own": 5,
+      "shared": 0,
+      "none": 25
+     },
+     "hotels": {
+      "n": 25,
+      "own": 12,
+      "shared": 3,
+      "none": 10
+     },
+     "grocery": {
+      "n": 17,
+      "own": 2,
+      "shared": 0,
+      "none": 15
+     },
+     "mobile": {
+      "n": 68,
+      "own": 9,
+      "shared": 10,
+      "none": 49
+     },
+     "home": {
+      "n": 18,
+      "own": 5,
+      "shared": 1,
+      "none": 12
+     },
+     "events": {
+      "n": 29,
+      "own": 11,
+      "shared": 0,
+      "none": 18
+     },
+     "coaching": {
+      "n": 16,
+      "own": 5,
+      "shared": 0,
+      "none": 11
+     },
+     "fitness": {
+      "n": 11,
+      "own": 3,
+      "shared": 0,
+      "none": 8
+     },
+     "vehicles": {
+      "n": 17,
+      "own": 3,
+      "shared": 4,
+      "none": 10
+     },
+     "interiors": {
+      "n": 1,
+      "own": 1,
+      "shared": 0,
+      "none": 0
+     },
+     "accountants": {
+      "n": 1,
+      "own": 1,
+      "shared": 0,
+      "none": 0
+     }
+    }
+   },
+   {
+    "name": "Himatnagar",
+    "n": 554,
+    "own": 116,
+    "shared": 26,
+    "none": 412,
+    "groups": {
+     "restaurants": {
+      "n": 78,
+      "own": 11,
+      "shared": 1,
+      "none": 66
+     },
+     "beauty": {
+      "n": 25,
+      "own": 2,
+      "shared": 0,
+      "none": 23
+     },
+     "clothing": {
+      "n": 71,
+      "own": 10,
+      "shared": 1,
+      "none": 60
+     },
+     "jewellery": {
+      "n": 17,
+      "own": 1,
+      "shared": 1,
+      "none": 15
+     },
+     "health": {
+      "n": 117,
+      "own": 31,
+      "shared": 3,
+      "none": 83
+     },
+     "pharmacy": {
+      "n": 19,
+      "own": 5,
+      "shared": 3,
+      "none": 11
+     },
+     "realestate": {
+      "n": 23,
+      "own": 6,
+      "shared": 1,
+      "none": 16
+     },
+     "hotels": {
+      "n": 39,
+      "own": 15,
+      "shared": 1,
+      "none": 23
+     },
+     "grocery": {
+      "n": 10,
+      "own": 4,
+      "shared": 0,
+      "none": 6
+     },
+     "mobile": {
+      "n": 43,
+      "own": 4,
+      "shared": 3,
+      "none": 36
+     },
+     "home": {
+      "n": 21,
+      "own": 7,
+      "shared": 0,
+      "none": 14
+     },
+     "events": {
+      "n": 32,
+      "own": 6,
+      "shared": 0,
+      "none": 26
+     },
+     "coaching": {
+      "n": 14,
+      "own": 5,
+      "shared": 2,
+      "none": 7
+     },
+     "fitness": {
+      "n": 8,
+      "own": 1,
+      "shared": 0,
+      "none": 7
+     },
+     "vehicles": {
+      "n": 32,
+      "own": 6,
+      "shared": 10,
+      "none": 16
+     },
+     "interiors": {
+      "n": 4,
+      "own": 2,
+      "shared": 0,
+      "none": 2
+     },
+     "accountants": {
+      "n": 1,
+      "own": 0,
+      "shared": 0,
+      "none": 1
+     }
+    }
+   },
+   {
+    "name": "Palanpur",
+    "n": 543,
+    "own": 93,
+    "shared": 43,
+    "none": 407,
+    "groups": {
+     "restaurants": {
+      "n": 54,
+      "own": 6,
+      "shared": 2,
+      "none": 46
+     },
+     "beauty": {
+      "n": 21,
+      "own": 2,
+      "shared": 0,
+      "none": 19
+     },
+     "clothing": {
+      "n": 56,
+      "own": 6,
+      "shared": 3,
+      "none": 47
+     },
+     "jewellery": {
+      "n": 22,
+      "own": 1,
+      "shared": 1,
+      "none": 20
+     },
+     "health": {
+      "n": 132,
+      "own": 33,
+      "shared": 1,
+      "none": 98
+     },
+     "pharmacy": {
+      "n": 20,
+      "own": 1,
+      "shared": 0,
+      "none": 19
+     },
+     "realestate": {
+      "n": 46,
+      "own": 10,
+      "shared": 1,
+      "none": 35
+     },
+     "hotels": {
+      "n": 35,
+      "own": 14,
+      "shared": 2,
+      "none": 19
+     },
+     "grocery": {
+      "n": 10,
+      "own": 0,
+      "shared": 1,
+      "none": 9
+     },
+     "mobile": {
+      "n": 46,
+      "own": 5,
+      "shared": 13,
+      "none": 28
+     },
+     "home": {
+      "n": 27,
+      "own": 3,
+      "shared": 7,
+      "none": 17
+     },
+     "events": {
+      "n": 17,
+      "own": 2,
+      "shared": 0,
+      "none": 15
+     },
+     "coaching": {
+      "n": 9,
+      "own": 1,
+      "shared": 3,
+      "none": 5
+     },
+     "fitness": {
+      "n": 13,
+      "own": 2,
+      "shared": 0,
+      "none": 11
+     },
+     "vehicles": {
+      "n": 27,
+      "own": 5,
+      "shared": 9,
+      "none": 13
+     },
+     "interiors": {
+      "n": 2,
+      "own": 1,
+      "shared": 0,
+      "none": 1
+     },
+     "accountants": {
+      "n": 6,
+      "own": 1,
+      "shared": 0,
+      "none": 5
+     }
+    }
+   },
+   {
+    "name": "Patan",
+    "n": 395,
+    "own": 59,
+    "shared": 37,
+    "none": 299,
+    "groups": {
+     "restaurants": {
+      "n": 44,
+      "own": 3,
+      "shared": 2,
+      "none": 39
+     },
+     "beauty": {
+      "n": 17,
+      "own": 0,
+      "shared": 0,
+      "none": 17
+     },
+     "clothing": {
+      "n": 39,
+      "own": 6,
+      "shared": 2,
+      "none": 31
+     },
+     "jewellery": {
+      "n": 19,
+      "own": 1,
+      "shared": 1,
+      "none": 17
+     },
+     "health": {
+      "n": 90,
+      "own": 17,
+      "shared": 3,
+      "none": 70
+     },
+     "pharmacy": {
+      "n": 13,
+      "own": 2,
+      "shared": 0,
+      "none": 11
+     },
+     "realestate": {
+      "n": 8,
+      "own": 2,
+      "shared": 0,
+      "none": 6
+     },
+     "hotels": {
+      "n": 27,
+      "own": 8,
+      "shared": 0,
+      "none": 19
+     },
+     "grocery": {
+      "n": 10,
+      "own": 0,
+      "shared": 0,
+      "none": 10
+     },
+     "mobile": {
+      "n": 55,
+      "own": 3,
+      "shared": 11,
+      "none": 41
+     },
+     "home": {
+      "n": 9,
+      "own": 2,
+      "shared": 3,
+      "none": 4
+     },
+     "events": {
+      "n": 10,
+      "own": 3,
+      "shared": 0,
+      "none": 7
+     },
+     "coaching": {
+      "n": 13,
+      "own": 5,
+      "shared": 1,
+      "none": 7
+     },
+     "fitness": {
+      "n": 7,
+      "own": 0,
+      "shared": 0,
+      "none": 7
+     },
+     "vehicles": {
+      "n": 31,
+      "own": 6,
+      "shared": 14,
+      "none": 11
+     },
+     "interiors": {
+      "n": 3,
+      "own": 1,
+      "shared": 0,
+      "none": 2
+     },
+     "accountants": {
+      "n": 0,
+      "own": 0,
+      "shared": 0,
+      "none": 0
+     }
+    }
+   },
+   {
+    "name": "Sanand",
+    "n": 383,
+    "own": 108,
+    "shared": 21,
+    "none": 254,
+    "groups": {
+     "restaurants": {
+      "n": 52,
+      "own": 6,
+      "shared": 3,
+      "none": 43
+     },
+     "beauty": {
+      "n": 23,
+      "own": 12,
+      "shared": 0,
+      "none": 11
+     },
+     "clothing": {
+      "n": 22,
+      "own": 4,
+      "shared": 1,
+      "none": 17
+     },
+     "jewellery": {
+      "n": 5,
+      "own": 1,
+      "shared": 0,
+      "none": 4
+     },
+     "health": {
+      "n": 38,
+      "own": 11,
+      "shared": 0,
+      "none": 27
+     },
+     "pharmacy": {
+      "n": 14,
+      "own": 5,
+      "shared": 0,
+      "none": 9
+     },
+     "realestate": {
+      "n": 62,
+      "own": 21,
+      "shared": 1,
+      "none": 40
+     },
+     "hotels": {
+      "n": 60,
+      "own": 24,
+      "shared": 4,
+      "none": 32
+     },
+     "grocery": {
+      "n": 5,
+      "own": 1,
+      "shared": 0,
+      "none": 4
+     },
+     "mobile": {
+      "n": 22,
+      "own": 0,
+      "shared": 5,
+      "none": 17
+     },
+     "home": {
+      "n": 19,
+      "own": 4,
+      "shared": 0,
+      "none": 15
+     },
+     "events": {
+      "n": 26,
+      "own": 10,
+      "shared": 0,
+      "none": 16
+     },
+     "coaching": {
+      "n": 5,
+      "own": 2,
+      "shared": 1,
+      "none": 2
+     },
+     "fitness": {
+      "n": 1,
+      "own": 0,
+      "shared": 0,
+      "none": 1
+     },
+     "vehicles": {
+      "n": 20,
+      "own": 4,
+      "shared": 6,
+      "none": 10
+     },
+     "interiors": {
+      "n": 6,
+      "own": 3,
+      "shared": 0,
+      "none": 3
+     },
+     "accountants": {
+      "n": 3,
+      "own": 0,
+      "shared": 0,
+      "none": 3
+     }
+    }
+   },
+   {
+    "name": "Bardoli",
+    "n": 489,
+    "own": 86,
+    "shared": 26,
+    "none": 377,
+    "groups": {
+     "restaurants": {
+      "n": 78,
+      "own": 9,
+      "shared": 3,
+      "none": 66
+     },
+     "beauty": {
+      "n": 26,
+      "own": 1,
+      "shared": 2,
+      "none": 23
+     },
+     "clothing": {
+      "n": 81,
+      "own": 12,
+      "shared": 7,
+      "none": 62
+     },
+     "jewellery": {
+      "n": 19,
+      "own": 6,
+      "shared": 1,
+      "none": 12
+     },
+     "health": {
+      "n": 80,
+      "own": 15,
+      "shared": 0,
+      "none": 65
+     },
+     "pharmacy": {
+      "n": 14,
+      "own": 3,
+      "shared": 0,
+      "none": 11
+     },
+     "realestate": {
+      "n": 22,
+      "own": 8,
+      "shared": 0,
+      "none": 14
+     },
+     "hotels": {
+      "n": 16,
+      "own": 2,
+      "shared": 0,
+      "none": 14
+     },
+     "grocery": {
+      "n": 9,
+      "own": 3,
+      "shared": 0,
+      "none": 6
+     },
+     "mobile": {
+      "n": 43,
+      "own": 6,
+      "shared": 6,
+      "none": 31
+     },
+     "home": {
+      "n": 23,
+      "own": 7,
+      "shared": 0,
+      "none": 16
+     },
+     "events": {
+      "n": 19,
+      "own": 4,
+      "shared": 0,
+      "none": 15
+     },
+     "coaching": {
+      "n": 14,
+      "own": 2,
+      "shared": 0,
+      "none": 12
+     },
+     "fitness": {
+      "n": 7,
+      "own": 1,
+      "shared": 0,
+      "none": 6
+     },
+     "vehicles": {
+      "n": 28,
+      "own": 2,
+      "shared": 7,
+      "none": 19
+     },
+     "interiors": {
+      "n": 10,
+      "own": 5,
+      "shared": 0,
+      "none": 5
+     },
+     "accountants": {
+      "n": 0,
+      "own": 0,
+      "shared": 0,
+      "none": 0
+     }
+    }
+   }
+  ]
+ },
+ "allRecords": {
+  "india": {
+   "n": 4673948,
+   "web": 1852898
+  },
+  "gujarat": {
+   "n": 330474,
+   "web": 132620
+  },
+  "cities": [
+   {
+    "name": "Ahmedabad",
+    "n": 88419,
+    "web": 42066
+   },
+   {
+    "name": "Surat",
+    "n": 52578,
+    "web": 20908
+   },
+   {
+    "name": "Vadodara",
+    "n": 29363,
+    "web": 13396
+   },
+   {
+    "name": "Rajkot",
+    "n": 21495,
+    "web": 9499
+   },
+   {
+    "name": "Gandhinagar",
+    "n": 6696,
+    "web": 3362
+   },
+   {
+    "name": "Jamnagar",
+    "n": 5250,
+    "web": 2375
+   },
+   {
+    "name": "Bhavnagar",
+    "n": 4233,
+    "web": 1840
+   },
+   {
+    "name": "Anand",
+    "n": 3828,
+    "web": 1850
+   },
+   {
+    "name": "Morbi",
+    "n": 3713,
+    "web": 1910
+   },
+   {
+    "name": "Vapi",
+    "n": 3387,
+    "web": 1490
+   },
+   {
+    "name": "Junagadh",
+    "n": 3176,
+    "web": 1158
+   },
+   {
+    "name": "Bharuch",
+    "n": 2990,
+    "web": 1143
+   },
+   {
+    "name": "Navsari",
+    "n": 2775,
+    "web": 991
+   },
+   {
+    "name": "Mehsana",
+    "n": 2658,
+    "web": 1213
+   },
+   {
+    "name": "Valsad",
+    "n": 2612,
+    "web": 974
+   },
+   {
+    "name": "Bhuj",
+    "n": 2531,
+    "web": 911
+   },
+   {
+    "name": "Ankleshwar",
+    "n": 2124,
+    "web": 838
+   },
+   {
+    "name": "Gandhidham",
+    "n": 2108,
+    "web": 887
+   },
+   {
+    "name": "Nadiad",
+    "n": 1898,
+    "web": 622
+   },
+   {
+    "name": "Himatnagar",
+    "n": 1703,
+    "web": 545
+   },
+   {
+    "name": "Palanpur",
+    "n": 1650,
+    "web": 590
+   },
+   {
+    "name": "Patan",
+    "n": 1591,
+    "web": 602
+   },
+   {
+    "name": "Sanand",
+    "n": 1526,
+    "web": 656
+   },
+   {
+    "name": "Bardoli",
+    "n": 1523,
+    "web": 468
+   }
+  ]
+ },
+ "validation": {
+  "tradeRecordsWithUrl": 27277,
+  "distinctHosts": 19855,
+  "hostsSharedBy3Plus": 596,
+  "largestSharedHosts": [
+   "apollopharmacy.in",
+   "samsungexclusivestores.in",
+   "indiamart.com",
+   "cuemath.com",
+   "oyorooms.com",
+   "stores.myvi.in",
+   "stores.medkart.in",
+   "pin.phonewale.store",
+   "urbancompanymumbai.com",
+   "nearme.bajajfinserv.in",
+   "g.page",
+   "location-data-api.singleinterface.com"
+  ],
+  "liveCheck": {
+   "date": "2026-11-11",
+   "sample": 60,
+   "seed": 20261111,
+   "outcomes": {
+    "answered": 34,
+    "no dns": 21,
+    "http 4xx": 3,
+    "connection failed": 2
+   }
+  }
+ }
+}

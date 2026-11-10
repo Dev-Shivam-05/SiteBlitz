@@ -58,7 +58,14 @@ export function footerColumns(): FooterColumn[] {
     },
     {
       title: "Guides & tools",
-      links: [link(PAGES.blog, "All guides"), link(PAGES.grader), link(PAGES.proof), link(PAGES.book)],
+      links: [
+        link(PAGES.research, "Research"),
+        link(PAGES.studyGujarat, "Gujarat website data 2026"),
+        link(PAGES.blog, "All guides"),
+        link(PAGES.grader),
+        link(PAGES.proof, "Performance"),
+        link(PAGES.book),
+      ],
     },
   ];
 }

@@ -4,6 +4,7 @@ import { PACKAGES, EXCLUSIONS, READY_TO_BUILD, inr, fromPrice } from "./offer";
 import { absUrl } from "./seo";
 import { PAGES, servicePages, industryPages, guidePages } from "./routes";
 import { DEEP_SERVICES } from "@/content";
+import { STUDY, num, pct } from "./research";
 
 /**
  * llms.txt (https://llmstxt.org) and llms-full.txt, generated from the same sources as the pages. The old static
@@ -49,6 +50,13 @@ export function llmsTxt(): string {
     "",
     "## Industries",
     ...industryPages().map((e) => line(e.label, e.path)),
+    "",
+    "## Research",
+    line(
+      PAGES.studyGujarat.label,
+      PAGES.studyGujarat.path,
+      `how often ${num(STUDY.total.n)} independent local-trade listing records in Gujarat link to an own website (${pct(STUDY.total.own, STUDY.total.n)}), by city and trade, with method and CSV`
+    ),
     "",
     "## Guides",
     ...guidePages().map((e) => line(e.label, e.path)),

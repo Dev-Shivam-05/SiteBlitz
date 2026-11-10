@@ -73,12 +73,13 @@ const offerNodes = () =>
     seller: { "@id": ORG_ID },
   }));
 
-/** The business entity. ProfessionalService is a LocalBusiness subtype, so it can carry areaServed and a region-only
- *  address (no street or city is published: truthful-location rule FD-22). sameAs stays out until real, verified
- *  profiles exist (Google Business Profile, LinkedIn ...): an unverifiable sameAs weakens the entity. */
+/** The business entity. Plain Organization (schema.org deprecated the generic ProfessionalService type; debate round 2):
+ *  a region-only address (no street or city is published: truthful-location rule FD-22), what it offers as an
+ *  OfferCatalog, and Service nodes on the pages that sell each service. sameAs stays out until real, verified profiles
+ *  exist (Google Business Profile, LinkedIn ...): an unverifiable sameAs weakens the entity. */
 export function organizationNode(): Node {
   return {
-    "@type": ["ProfessionalService", "Organization"],
+    "@type": "Organization",
     "@id": ORG_ID,
     name: SITE.name,
     alternateName: [...BRAND_ALTERNATE_NAMES],
@@ -109,8 +110,6 @@ export function organizationNode(): Node {
         closes: "21:00",
       },
     },
-    priceRange: `${inr(FROM_PRICE)} and up`,
-    currenciesAccepted: "INR",
     knowsAbout: [
       "Website design",
       "Website development",

@@ -18,6 +18,7 @@ export function PageHero({
   actions,
   aside,
   id = "page-title",
+  size = "xl",
 }: {
   crumbs: readonly Crumb[];
   kicker: string;
@@ -27,17 +28,23 @@ export function PageHero({
   actions?: ReactNode;
   aside?: ReactNode;
   id?: string;
+  /** "lg" for long question-style headings (research), "xl" for short page names. */
+  size?: "xl" | "lg";
 }) {
+  const scale =
+    size === "lg"
+      ? "text-[clamp(34px,8.6vw,52px)] md:text-[clamp(46px,4.4vw,84px)]"
+      : "text-[clamp(40px,11vw,64px)] md:text-[clamp(64px,7vw,128px)]";
   return (
     <section aria-labelledby={id} className="page-hero relative overflow-clip bg-void pb-[9vh] pt-28 md:pb-[12vh] md:pt-36">
       <div className="mx-auto max-w-[1440px] px-4 md:px-8">
         <Breadcrumbs crumbs={crumbs} className="ph-soft" />
-        <div className={`mt-8 grid items-end gap-12 md:mt-12 ${aside ? "lg:grid-cols-[1.25fr_1fr] lg:gap-16" : ""}`}>
+        <div className={`mt-8 grid items-end gap-12 md:mt-12 ${aside ? "lg:grid-cols-[1.25fr_1fr] lg:gap-16" : ""} [&>*]:min-w-0`}>
           <div>
             <p className="kicker ph-soft text-volt" style={i(1)}>
               {kicker}
             </p>
-            <h1 id={id} className="display mt-5 text-[clamp(40px,11vw,64px)] md:text-[clamp(64px,7vw,128px)]">
+            <h1 id={id} className={`display mt-5 ${scale}`}>
               {lines.map((l, n) => (
                 <span key={n} className="ph-mask">
                   <span className="ph-line" style={i(n + 1)}>
