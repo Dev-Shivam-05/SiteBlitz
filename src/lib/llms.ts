@@ -62,7 +62,7 @@ export function llmsTxt(): string {
     line(
       PAGES.studyIndia.label,
       PAGES.studyIndia.path,
-      `website URLs in ${num(INDIA.total.n)} Indian listing records across 17 trades, by state and union territory: ${pct(INDIA.total.n - INDIA.total.none, INDIA.total.n)} carry any website URL`
+      `website URLs in ${INDIA.total.n.toLocaleString("en-US")} Indian listing records across 17 trades, by state and union territory: ${pct(INDIA.total.n - INDIA.total.none, INDIA.total.n)} carry any website URL`
     ),
     "",
     "## Guides",

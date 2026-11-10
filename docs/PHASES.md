@@ -77,7 +77,7 @@ on the owner's explicit 9-hour instruction, each unit committed and verified on 
 | SEO-5 | Founder off-site checklist, IndexNow key + manifest + change-only submit scripts | **done** (dry runs only) `cfe66f7` |
 | SEO-6 | Verification: tests, build, rendered-HTML audit (37 URLs, 0 problems), 1440/390/320 shots, reduced motion, lab vitals | **done** `7b76a74`, `5f2fabf` — not deployed, not pushed (see HANDOFF) |
 | SEO-7 | Validation study: what a missing / recorded website link really means (structured review sample) | todo — debate r4 Q3.1 |
-| SEO-8 | One India state/UT comparison on the same method (national host frequency once, states as anchors) | todo — debate r4 Q3.2 |
+| SEO-8 | One India state/UT comparison on the same method (national host frequency once, states as anchors) | **done** `27e62b9` (review: debate round 5) |
 | SEO-9 | Single-business website-link checker (Overture snapshot only; index the tool page only; licence check first) | todo — debate r4 Q3.3 |
 
 ## Next 3
