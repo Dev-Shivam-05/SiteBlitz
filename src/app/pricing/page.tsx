@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
 import { PricingPlans } from "@/components/site/sections/PricingPlans";
-import { FinalCTA } from "@/components/site/sections/Home";
+import { Close } from "@/components/site/sections/Home";
 import { EXCLUSIONS, PACKAGES, READY_TO_BUILD, businessPkg, inr, launchPkg } from "@/lib/offer";
 import { SITE } from "@/lib/site";
 
@@ -180,7 +180,7 @@ export default function PricingPage() {
         </Block>
       </div>
 
-      <FinalCTA />
+      <Close />
     </Shell>
   );
 }

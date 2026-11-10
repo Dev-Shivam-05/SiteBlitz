@@ -257,7 +257,9 @@ body {
   outline-offset: 3px;
 }
 
-/* ---- redesign v3 type ---- */
+/* ---- redesign v3 type ----
+   In @layer components so Tailwind utilities (leading-*, text-*, bg-*) can still override these on an element. */
+@layer components {
 .display {
   font-family: var(--font-display);
   font-weight: 600;
@@ -284,6 +286,7 @@ body {
 }
 .pill:hover { transform: translateY(-1px); }
 .pill:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 3px; }
+}
 
 /* ivory button for vermilion grounds */
 .btn-ivory {
@@ -317,6 +320,58 @@ body {
 @media (min-width: 768px) { .wipe-scene { height: 155svh; } }
 .wipe-stage { background: var(--color-void); }
 [data-wipe-word] { color: var(--color-volt); transform-origin: 50% 55%; }
+
+/* 06 packages rail: the package in view is marked (desktop rail row; phone card). Fixed 112 px slots, so the
+   1.035 widen never pushes its neighbours. */
+.rail-row {
+  transform-origin: 0 50%;
+  box-shadow: inset 0 0 0 transparent;
+  transition: transform 0.28s cubic-bezier(0.33, 1, 0.68, 1), background 0.28s cubic-bezier(0.33, 1, 0.68, 1),
+    color 0.28s cubic-bezier(0.33, 1, 0.68, 1), box-shadow 0.28s cubic-bezier(0.33, 1, 0.68, 1);
+}
+.rail-row:hover { border-color: var(--color-ink); }
+.rail-row.is-active {
+  background: var(--color-ink);
+  color: var(--color-void);
+  transform: scaleX(1.035);
+  box-shadow: inset 4px 0 0 var(--color-volt);
+}
+.rail-row.is-active .rail-sub { color: rgba(248, 245, 238, 0.75); }
+@media (max-width: 767px) {
+  .pkg-panel { transition: border-color 0.28s ease, box-shadow 0.28s ease; }
+  .pkg-panel.is-active { border-color: var(--color-volt); box-shadow: inset 0 0 0 1px var(--color-volt); }
+}
+
+/* 07 process: a step turns vermilion when it arrives */
+.step .step-n { transition: color 0.35s cubic-bezier(0.33, 1, 0.68, 1); }
+.step.is-active .step-n { color: var(--color-volt); }
+
+/* 10 close: ivory until it arrives, then the ground turns ink and runs into the footer */
+.close-scene { background: var(--color-void); color: var(--color-ink); transition: background 0.35s ease, color 0.35s ease; }
+.close-scene .close-kicker { color: var(--color-volt); }
+.close-scene .close-sub { color: var(--color-muted); transition: color 0.35s ease; }
+.close-scene .close-ghost { border-color: rgba(18, 26, 29, 0.35); transition: border-color 0.35s ease, transform 0.25s ease; }
+.close-scene .close-ghost:hover { transform: translateY(-1px); border-color: currentColor; }
+.close-scene.is-dark { background: var(--color-ink); color: var(--color-void); }
+.close-scene.is-dark .close-sub { color: rgba(248, 245, 238, 0.78); }
+.close-scene.is-dark .close-ghost { border-color: rgba(248, 245, 238, 0.55); }
+
+/* persistent WhatsApp pill. Position is set here (not a utility) because .btn-volt's position: relative is
+   unlayered and would beat Tailwind's layered "fixed". "translate" is separate from "transform", so the
+   button's hover step still works. */
+.wa-pill {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  translate: 0 160%;
+  opacity: 0;
+  pointer-events: none;
+  transition: translate 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.wa-pill.is-visible { translate: 0 0; opacity: 1; pointer-events: auto; }
+@media (max-width: 767px) {
+  .wa-pill { left: 16px; right: 16px; bottom: calc(12px + env(safe-area-inset-bottom)); }
+}
 
 /* hero: the photograph frame is the element the scroll scene scales and rounds */
 .hero-frame { transform-origin: 50% 0%; will-change: transform; }

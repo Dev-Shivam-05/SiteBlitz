@@ -3,8 +3,7 @@ import Link from "next/link";
 import { DEMO_LIST } from "@/lib/demos";
 import { PHOTOS } from "@/lib/photos";
 import { PROCESS_STEPS, SITE } from "@/lib/site";
-import { FROM_PRICE, inr, launchPkg } from "@/lib/offer";
-import { PricingPlans } from "./PricingPlans";
+import { CONCEPT_CAP_PER_WEEK, FROM_PRICE, PACKAGES, inr, launchPkg } from "@/lib/offer";
 import { WhatsAppIcon } from "../WhatsAppIcon";
 
 /* Redesign v3 home (docs/spec/redesign-v3-motion.md): the motion grammar of the reference (Horeca Social)
@@ -138,7 +137,7 @@ const CARD_THEME = [
  *  the card underneath). Each card links to the live, clearly labelled concept site. */
 export function DemoStack() {
   return (
-    <section id="demos" aria-labelledby="demos-title" className="scroll-mt-20 bg-void pb-[12vh] pt-[6vh]">
+    <section id="demos" data-wa="demos" aria-labelledby="demos-title" className="scroll-mt-20 bg-void pb-[12vh] pt-[6vh]">
       <div className="mx-auto max-w-[1440px] px-4 md:px-8">
         <p className="kicker text-volt">Concept demos · fictional businesses</p>
         <div className="mt-4 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
@@ -235,126 +234,207 @@ export function TypeWipe() {
   );
 }
 
-export function HowItWorks() {
+/** 06 — Packages: a sticky rail of the three packages beside their full details (PX PUSH's package focus).
+ *  Every price, split and term is static HTML from offer.ts; Motion.tsx only marks the package in view. */
+export function Packages() {
   return (
-    <section id="how" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-16 md:px-8 md:py-24">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-volt">How it works</p>
-      <h2 className="font-display mt-3 max-w-2xl text-3xl font-extrabold tracking-tight md:text-5xl">
-        A clear process, before any payment.
-      </h2>
-      <ol className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {PROCESS_STEPS.map((s) => (
-          <li key={s.n} className="rounded-3xl border border-line bg-surface p-6">
-            <p className="font-display text-sm font-extrabold text-volt">{s.n}</p>
-            <h3 className="font-display mt-3 text-lg font-bold">{s.title}</h3>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-faint">{s.time}</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted">{s.text}</p>
-          </li>
-        ))}
-      </ol>
-      <a
-        href={SITE.whatsapp("Hi SiteBlitz, I'd like to discuss a website for my business.")}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-track="how_whatsapp"
-        className="btn-volt mt-8 inline-block rounded-full px-7 py-3.5 text-sm font-semibold"
-      >
-        Discuss your website
-      </a>
-    </section>
-  );
-}
-
-export function HomePricing() {
-  return (
-    <section id="pricing" className="scroll-mt-20 border-y border-line bg-raised/60 py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-volt">Pricing</p>
-        <h2 className="font-display mt-3 text-3xl font-extrabold tracking-tight md:text-5xl">
-          Clear prices. Work agreed in writing.
-        </h2>
-        <div className="mt-10">
-          <PricingPlans headingLevel="h3" />
+    <section id="pricing" data-wa="pricing" aria-labelledby="pricing-title" className="scroll-mt-20 bg-void pb-[14vh] pt-[12vh]">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+        <p className="kicker text-volt">Packages</p>
+        <div className="mt-4 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end">
+          <h2 id="pricing-title" className="display text-[clamp(44px,11vw,64px)] md:text-[clamp(64px,6.4vw,104px)]">
+            Three ways to start.
+          </h2>
+          <p className="max-w-[44ch] text-base leading-relaxed text-muted md:text-lg">
+            Fixed prices with no GST added. The pages, the timeline and what is not included are written down before
+            you pay anything.
+          </p>
         </div>
-      </div>
-    </section>
-  );
-}
 
-const COMPARE_ROWS = [
-  ["Who builds it?", "You", "Depends on the person", "The SiteBlitz team"],
-  ["Scope and timeline", "You manage them", "Agreed individually", "Written before payment"],
-  ["See the design first?", "Templates only", "Varies", "Concept for your business"],
-  ["Domain ownership", "Depends on setup", "Must be agreed", "Your own account (recommended)"],
-  ["Ongoing costs", "Platform + domain plans", "Depends on arrangement", "Disclosed before you buy"],
-  ["Support", "Depends on plan", "Depends on agreement", "Defined in the project terms"],
-] as const;
+        <div data-rail className="mt-12 md:mt-16 md:grid md:grid-cols-[38fr_62fr] md:gap-12">
+          <nav aria-label="Packages" className="hidden md:sticky md:top-[104px] md:block md:self-start">
+            <ol className="flex flex-col gap-3">
+              {PACKAGES.map((p) => (
+                <li key={p.id}>
+                  <a
+                    href={`#pkg-${p.id}`}
+                    data-rail-row={p.id}
+                    className="rail-row flex h-[112px] items-center justify-between gap-4 rounded-[20px] border border-line bg-surface px-7"
+                  >
+                    <span>
+                      <span className="display block text-[40px]">{p.name}</span>
+                      <span className="rail-sub text-sm text-muted">{p.pages}</span>
+                    </span>
+                    <span className="display text-[40px]">{p.priceInr ? inr(p.priceInr) : "Quote"}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
 
-export function Compare() {
-  return (
-    <section className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-volt">Choose what fits</p>
-      <h2 className="font-display mt-3 max-w-3xl text-3xl font-extrabold tracking-tight md:text-5xl">
-        Different ways to get a website. Pick the right one for you.
-      </h2>
-      <p className="mt-4 max-w-2xl text-muted">
-        A website builder suits you if you want to design it yourself. A freelancer may suit you if their process
-        and availability fit. SiteBlitz is a defined service with working demos, a written scope and a review step.
-        We don&apos;t claim every business needs us.
-      </p>
-      <div className="mt-8 overflow-x-auto rounded-3xl border border-line bg-surface">
-        <table className="w-full min-w-[620px] text-left text-sm">
-          <caption className="sr-only">Comparison of website options</caption>
-          <thead>
-            <tr className="border-b border-line">
-              <th scope="col" className="p-4 font-semibold text-faint">What matters</th>
-              <th scope="col" className="p-4 font-semibold">DIY builder</th>
-              <th scope="col" className="p-4 font-semibold">Freelancer</th>
-              <th scope="col" className="bg-volt/10 p-4 font-bold text-volt">SiteBlitz</th>
-            </tr>
-          </thead>
-          <tbody>
-            {COMPARE_ROWS.map(([label, a, b, c]) => (
-              <tr key={label} className="border-b border-line last:border-0">
-                <th scope="row" className="p-4 font-semibold">{label}</th>
-                <td className="p-4 text-muted">{a}</td>
-                <td className="p-4 text-muted">{b}</td>
-                <td className="bg-volt/[0.06] p-4 font-medium">{c}</td>
-              </tr>
+          <div className="flex flex-col gap-6">
+            {PACKAGES.map((p) => (
+              <article
+                key={p.id}
+                id={`pkg-${p.id}`}
+                data-rail-panel={p.id}
+                aria-labelledby={`pkg-${p.id}-title`}
+                className="pkg-panel scroll-mt-28 rounded-[20px] border border-line bg-surface p-6 md:min-h-[65svh] md:rounded-[28px] md:p-12"
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 id={`pkg-${p.id}-title`} className="display text-[44px] md:text-[56px]">
+                    {p.name}
+                  </h3>
+                  <span className="rounded-full bg-raised px-3 py-1 text-sm font-semibold">{p.pages}</span>
+                  {p.recommended && (
+                    <span className="rounded-full bg-volt px-3 py-1 text-sm font-semibold text-surface">Most complete</span>
+                  )}
+                </div>
+                <p className="mt-3 max-w-[48ch] text-base leading-relaxed text-muted md:text-lg">{p.tagline}</p>
+                <p className="display mt-6 pb-[0.12em] text-[64px] text-volt md:text-[96px]">{p.priceInr ? inr(p.priceInr) : "By quote"}</p>
+                <p className="mt-1 text-sm text-muted">
+                  {p.priceInr ? "One-time build price · no GST added" : "Priced to the agreed scope"}
+                </p>
+                <p className="mt-4 text-base font-semibold">{p.delivery}</p>
+                <ul className="mt-6 grid gap-2.5 md:grid-cols-2">
+                  {p.includes.map((f) => (
+                    <li key={f} className="flex gap-2.5 text-base text-ink">
+                      <span className="mt-0.5 font-semibold text-volt" aria-hidden>
+                        ✓
+                      </span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                {p.payments && (
+                  <p className="mt-6 rounded-xl bg-raised px-4 py-3 text-sm leading-relaxed text-ink">
+                    Pay {inr(p.payments[0])} after you approve the design and scope, {inr(p.payments[1])} after you
+                    approve the finished site.
+                  </p>
+                )}
+                <a
+                  href={SITE.whatsapp(
+                    p.priceInr
+                      ? `Hi SiteBlitz, I'm interested in the ${p.name} website (${inr(p.priceInr)}). My business is: `
+                      : "Hi SiteBlitz, I need a custom website quote. My business is: "
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-track={`pricing_whatsapp_${p.id}`}
+                  className={`mt-8 inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold ${
+                    p.recommended ? "btn-volt" : "btn-ghost text-ink"
+                  }`}
+                >
+                  <WhatsAppIcon className="h-5 w-5" color="currentColor" />
+                  {p.priceInr ? `Ask about ${p.name}` : "Request a custom quote"}
+                </a>
+              </article>
             ))}
-          </tbody>
-        </table>
+            <p className="text-sm text-muted">
+              Prices cover the website build. Domain, hosting, renewals and optional maintenance are written in your
+              quotation before you pay.{" "}
+              <Link href="/pricing#terms" className="font-semibold text-volt underline-offset-4 hover:underline">
+                See the full terms
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-export function FinalCTA() {
+/** 07 — Four steps: each step lights up and draws its line as it arrives (1820's statement rhythm). */
+export function Process() {
   return (
-    <section className="bg-ink px-5 py-16 text-void md:px-8 md:py-24">
-      <div className="mx-auto max-w-3xl text-center">
-        <h2 className="font-display text-3xl font-extrabold tracking-tight md:text-5xl">
-          Let&apos;s see what a website could look like for your business.
+    <section id="how" data-wa="process" aria-labelledby="how-title" className="scroll-mt-20 bg-raised py-[14vh]">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+        <p className="kicker text-volt">How it works</p>
+        <h2 id="how-title" className="display mt-4 max-w-[16ch] text-[clamp(44px,11vw,64px)] md:text-[clamp(64px,6.4vw,104px)]">
+          Four steps. You approve before you pay.
         </h2>
-        <p className="mx-auto mt-4 max-w-xl leading-relaxed opacity-85">
-          Tell us what your business does. We&apos;ll share a relevant working demo and explain the options, price and
-          next steps. No pressure to buy.
+        <ol data-steps className="mt-12 grid gap-10 md:mt-16 md:grid-cols-4 md:gap-8">
+          {PROCESS_STEPS.map((s) => (
+            <li key={s.n} data-step className="step">
+              <div data-step-line className="h-[3px] w-full origin-left bg-ink" />
+              <p className="step-n display mt-5 text-[72px] md:text-[96px]">{s.n}</p>
+              <h3 className="mt-2 text-xl font-semibold">{s.title}</h3>
+              <p className="kicker mt-2 text-muted">{s.time}</p>
+              <p className="mt-3 text-base leading-relaxed text-muted">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+/** 08 — The promise: scattered letters assemble on scroll (the reference's "NOTHING BUT THE TRUTH"); the
+ *  qualifier is plain text from the first frame, never animated in. */
+export function ConceptPromise() {
+  return (
+    <section data-wa="concept" aria-labelledby="promise-title" className="overflow-hidden bg-void py-[16vh]">
+      <div className="mx-auto max-w-[1440px] px-4 text-center md:px-8">
+        <h2
+          id="promise-title"
+          data-scatter
+          className="display mx-auto max-w-[12ch] text-[clamp(60px,17vw,96px)] md:max-w-none md:text-[clamp(96px,10.5vw,176px)]"
+        >
+          See it before you pay
+        </h2>
+        <p className="mx-auto mt-8 max-w-[56ch] text-base leading-relaxed text-muted md:text-lg">
+          Qualified businesses can review a personalised homepage concept before the first payment, subject to weekly
+          availability ({CONCEPT_CAP_PER_WEEK} concepts a week). It is a design preview, not a finished website.
         </p>
-        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <a
-            href={SITE.whatsapp(WA_DEMO)}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="final_whatsapp"
-            className="rounded-full bg-void px-7 py-4 text-base font-semibold text-ink"
-          >
-            Start a WhatsApp conversation
-          </a>
-          <Link href="#demos" className="rounded-full border border-void/40 px-7 py-4 text-base font-semibold">
-            Explore our demos
-          </Link>
+        <a
+          href={SITE.whatsapp("Hi SiteBlitz, I'd like to ask about a homepage concept for my business. My business is: ")}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track="promise_whatsapp"
+          className="btn-volt mt-8 inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold"
+        >
+          <WhatsAppIcon className="h-5 w-5" color="currentColor" /> Ask about a concept
+        </a>
+      </div>
+    </section>
+  );
+}
+
+/** 10 — The close: the ground turns ink as it arrives and runs straight into the footer. */
+export function Close() {
+  return (
+    <section data-close data-wa="close" aria-labelledby="close-title" className="close-scene py-[16vh]">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8">
+        <p className="kicker close-kicker">Start here</p>
+        <h2 id="close-title" className="display mt-4 text-[clamp(64px,18vw,104px)] md:text-[clamp(104px,11vw,184px)]">
+          Let&apos;s build your website.
+        </h2>
+        <div className="mt-8 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
+          <p className="close-sub max-w-[52ch] text-base leading-relaxed md:text-lg">
+            Tell us what your business does and what customers should be able to do. We reply with the matching
+            concept demo, the price and the next step. No pressure to buy.
+          </p>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a
+              href={SITE.whatsapp(WA_DEMO)}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="final_whatsapp"
+              className="btn-volt inline-flex h-14 items-center justify-center gap-2 rounded-full px-8 text-lg font-semibold"
+            >
+              <WhatsAppIcon className="h-5 w-5" color="currentColor" /> Chat on WhatsApp
+            </a>
+            <Link
+              href="/pricing"
+              className="close-ghost inline-flex h-14 items-center justify-center rounded-full border-[1.5px] px-8 text-lg font-semibold"
+            >
+              Pricing &amp; terms
+            </Link>
+          </div>
         </div>
-        <p className="mt-6 text-xs opacity-75">Replies {SITE.replyHours} · {SITE.locationLine}</p>
+        <p className="close-sub mt-10 text-sm">
+          Replies {SITE.replyHours} · {SITE.locationLine}
+        </p>
       </div>
     </section>
   );

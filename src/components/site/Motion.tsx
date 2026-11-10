@@ -21,14 +21,17 @@ function prefersReduced(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-/** Lenis smooth scrolling wired into GSAP's ticker + ScrollTrigger. */
+/** Lenis smooth scrolling wired into GSAP's ticker + ScrollTrigger. Desktop pointers only (spec v3): on touch
+ *  the native scroll is smoother and Lenis broke the reference site's mobile build; reduced motion skips it. */
 function useLenis() {
   useEffect(() => {
     if (prefersReduced()) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
       smoothWheel: true,
+      syncTouch: false,
+      wheelMultiplier: 1,
     });
     window.__lenis = lenis;
     lenis.on("scroll", ScrollTrigger.update);
@@ -252,6 +255,89 @@ function useAnimEngine(pathname: string) {
           });
           if (word) tl.to(word, { scale: desk ? 3 : 2.2, ease: "none", duration: 1 }, 0);
           if (stage && volt) tl.to(stage, { backgroundColor: volt, ease: "none", duration: 0.4 }, 0.6);
+        });
+      }
+
+      /* 06 Packages: mark the package in view (desktop: its rail row when the panel crosses 55%; phone: the card
+         whose middle is inside the central 40%). Discrete class toggles, no scrub; prices never move. */
+      const panels = gsap.utils.toArray<HTMLElement>("[data-rail-panel]");
+      if (panels.length) {
+        v3.add(BP, (c) => {
+          const desk = Boolean(c.conditions?.desk);
+          const rows = new Map(
+            gsap.utils.toArray<HTMLElement>("[data-rail-row]").map((r) => [r.dataset.railRow, r] as const)
+          );
+          const triggers = panels.map((panel) =>
+            ScrollTrigger.create({
+              trigger: panel,
+              start: desk ? "top 55%" : "center 70%",
+              end: desk ? "bottom 55%" : "center 30%",
+              toggleClass: desk ? undefined : { targets: panel, className: "is-active" },
+              onToggle: (self) => {
+                if (desk) rows.get(panel.dataset.railPanel)?.classList.toggle("is-active", self.isActive);
+              },
+            })
+          );
+          return () => {
+            triggers.forEach((t) => t.kill());
+            rows.forEach((r) => r.classList.remove("is-active"));
+            panels.forEach((p) => p.classList.remove("is-active"));
+          };
+        });
+      }
+
+      /* 07 Process: a step lights up and draws its line once it reaches 70% of the screen */
+      for (const step of gsap.utils.toArray<HTMLElement>("[data-step]")) {
+        const line = step.querySelector<HTMLElement>("[data-step-line]");
+        if (line) gsap.set(line, { scaleX: 0, transformOrigin: "left center" });
+        ScrollTrigger.create({
+          trigger: step,
+          start: "top 70%",
+          once: true,
+          onEnter: () => {
+            step.classList.add("is-active");
+            if (line) gsap.to(line, { scaleX: 1, duration: window.innerWidth < 768 ? 0.25 : 0.35, ease: "power2.out" });
+          },
+        });
+      }
+
+      /* 08 Promise: letters start scattered and assemble as the section scrolls in (scrubbed, reversible).
+         SplitText keeps an aria-label with the whole phrase. Offsets are deterministic, not random per load. */
+      for (const el of gsap.utils.toArray<HTMLElement>("[data-scatter]")) {
+        v3.add(BP, (c) => {
+          const desk = Boolean(c.conditions?.desk);
+          const split = new SplitText(el, { type: "chars,words" });
+          const k = desk ? 1 : 0.5;
+          const rotMax = desk ? 7 : 4;
+          gsap.fromTo(
+            split.chars,
+            {
+              x: (i: number) => (((i * 37) % 11) / 5 - 1) * 24 * k,
+              y: (i: number) => (((i * 53) % 13) / 6 - 1) * 50 * k,
+              rotation: (i: number) => (((i * 29) % 9) / 4 - 1) * rotMax,
+              opacity: 0.2,
+            },
+            {
+              x: 0,
+              y: 0,
+              rotation: 0,
+              opacity: 1,
+              ease: "none",
+              stagger: 0.01,
+              scrollTrigger: { trigger: el, start: "top 80%", end: "top 32%", scrub: desk ? 0.35 : 0.3 },
+            }
+          );
+          return () => split.revert();
+        });
+      }
+
+      /* 10 Close: the ground turns ink when the section is 60% up the screen (and back when you return) */
+      const close = document.querySelector<HTMLElement>("[data-close]");
+      if (close) {
+        ScrollTrigger.create({
+          trigger: close,
+          start: "top 60%",
+          toggleClass: { targets: close, className: "is-dark" },
         });
       }
 

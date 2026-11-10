@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Shell } from "@/components/site/Shell";
 import {
-  Compare,
+  Close,
+  ConceptPromise,
   DemoStack,
-  FinalCTA,
   GiantPrice,
   HomeHero,
-  HomePricing,
-  HowItWorks,
+  Packages,
+  Process,
   Statement,
   TypeWipe,
 } from "@/components/site/sections/Home";
@@ -42,18 +42,19 @@ export default function HomePage() {
     <Shell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
-      {/* Order agreed in docs/debate/2026-11-01-ads-psychology-redesign (R2/FD-36): offer and price ->
-          working demos -> how buying works -> pricing and terms -> honest comparison -> questions -> next step */}
+      {/* Redesign v3 scene order (docs/spec/redesign-v3-motion.md, reference Horeca Social): offer and price ->
+          the price as a fact -> why -> working concept demos -> type wipe -> packages -> steps -> concept promise ->
+          questions -> close. The comparison table and defensive lines were removed by the owner-approved spec. */}
       <HomeHero />
       <GiantPrice />
       <Statement />
       <DemoStack />
       <TypeWipe />
-      <HowItWorks />
-      <HomePricing />
-      <Compare />
+      <Packages />
+      <Process />
+      <ConceptPromise />
       <FAQ />
-      <FinalCTA />
+      <Close />
     </Shell>
   );
 }
