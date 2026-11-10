@@ -1,10 +1,10 @@
 {
   "slug": "restaurants",
   "industry": "Restaurants",
-  "metaTitle": "Restaurant Website Design India | Live in 48 Hours",
-  "metaDescription": "Restaurant websites that fill tables: instant menus, WhatsApp ordering, reservations and local SEO. Designed and live in 48 hours by SiteBlitz.",
-  "headline": "A restaurant website that *fills tables* — not just screens.",
-  "sub": "Menus that load instantly, bookings in two taps, and local search working while you run service. Designed, engineered and live in as little as 48 hours.",
+  "metaTitle": "Restaurant Website Design in India, from ₹7,999",
+  "metaDescription": "Restaurant websites with a readable menu, opening hours, map and a one-tap WhatsApp table request. From ₹7,999, live 2 working days after ready-to-build.",
+  "headline": "A restaurant website that makes *booking a table* easy.",
+  "sub": "A menu that opens quickly on a phone, a WhatsApp table request in a tap or two, and the basics Google needs to read you. Live 2 working days after ready-to-build.",
   "painPoints": [
     {
       "title": "The PDF menu problem",
@@ -22,11 +22,11 @@
   "mustHaves": [
     {
       "title": "A menu that loads before the craving fades",
-      "text": "Server-rendered pages, no PDFs, 90+ Lighthouse performance targets. Your full menu, readable on any phone, on any network, instantly."
+      "text": "Server-rendered pages and no PDF menus. Your full menu, readable on a phone over mobile data."
     },
     {
-      "title": "Reservations in two taps",
-      "text": "Table booking and WhatsApp ordering built in. A diner sees the butter chicken, taps once to chat, taps again to confirm. Done."
+      "title": "A table request in two taps",
+      "text": "A WhatsApp button with the table request already typed. A diner sees the butter chicken, taps once to open the chat and sends. A full online booking system is custom work, quoted separately."
     },
     {
       "title": "A shot at \"restaurant near me\"",
@@ -45,7 +45,7 @@
   "faqs": [
     {
       "q": "How fast can my restaurant website go live?",
-      "a": "A sharp one-page site on the Launch package (₹7,999, one page, delivered in 2 working days once your content is ready). Need a menu, gallery and contact page? The Business package (₹17,999) covers three pages in 7 working days once ready."
+      "a": "A sharp one-page site on the Launch package (₹7,999, one page, delivered in 2 working days once the project is ready to build). Need a menu, gallery and contact page? The Business package (₹17,999) covers three pages in 7 working days once ready."
     },
     {
       "q": "Can customers book a table or order directly from the site?",
@@ -56,5 +56,5 @@
       "a": "Nobody honest can promise you a number. What a good restaurant site does is remove the reasons people give up: a menu that crawls on a phone, no clear way to book, hours and directions out of reach. We build every restaurant site around one action — booking a table — and you don't have to take our word for how we build: this site's own live analytics and real-user Core Web Vitals are public at /proof."
     }
   ],
-  "cta": "Get your restaurant live in 48 hours"
+  "cta": "Get your restaurant online 2 working days after ready-to-build"
 }

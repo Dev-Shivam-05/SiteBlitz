@@ -5,12 +5,12 @@
   "cluster": "speed-conversion",
   "readingMinutes": 5,
   "date": "2026-07-10",
-  "author": "Shivam Bhadoriya",
-  "authorRole": "Founder, SiteBlitz",
+  "author": "SiteBlitz Studio",
+  "authorRole": "Website studio, Gujarat",
   "blocks": [
     {
       "type": "p",
-      "text": "Every founder we talk to asks a version of the same question: do I need a full website, or will one good page do? The honest answer is that it depends on exactly one thing — where your next customer comes from. Get that right and the decision mostly makes itself. Get it wrong and you either pay for pages nobody visits, or you starve Google of the pages it needs to find you. Here is the framework we use with SiteBlitz clients, trade-offs included."
+      "text": "Every founder we talk to asks a version of the same question: do I need a full website, or will one good page do? The honest answer is that it depends on exactly one thing — where your next customer comes from. Get that right and the decision mostly makes itself. Get it wrong and you either pay for pages nobody visits, or you starve Google of the pages it needs to find you. Here is the framework we use when advising business owners, trade-offs included."
     },
     {
       "type": "h2",
@@ -37,7 +37,7 @@
       "items": [
         "You're running paid ads. Meta and Google ads convert best onto a single page that mirrors the ad's promise — same offer, same words, one button. Sending ad traffic to a generic homepage is the fastest way to burn a budget.",
         "You sell one thing to one audience. A single service, a single offer, a single city. Extra pages would just be extra places to lose people.",
-        "You're validating something new. A new business, a new offer, a new market. Get a page live in 48 hours, point some traffic at it, and find out whether anyone actually enquires before you invest further.",
+        "You're validating something new. A new business, a new offer, a new market. Get a page live 2 working days after ready-to-build, point some traffic at it, and find out whether anyone actually enquires before you invest further.",
         "You have a hard deadline. A launch, a season, an event. One page live this week beats ten pages live next month."
       ]
     },
@@ -98,7 +98,7 @@
     },
     {
       "type": "p",
-      "text": "At SiteBlitz, the landing-page route is the Launch package: ₹7,999 for a one-page site, delivered in 2 working days once your content is ready. The small-business website route is the Business package: ₹17,999 for three agreed pages, delivered in 7 working days once ready. E-commerce, booking or more pages are quoted to scope. Every site ships with server-rendered pages, basic SEO, WhatsApp buttons and a clear enquiry path."
+      "text": "At SiteBlitz, the landing-page route is the Launch package: ₹7,999 for a one-page site, delivered in 2 working days once the project is ready to build. The small-business website route is the Business package: ₹17,999 for three agreed pages, delivered in 7 working days once ready. E-commerce, booking or more pages are quoted to scope. Every site ships with server-rendered pages, basic SEO, WhatsApp buttons and a clear enquiry path."
     },
     {
       "type": "p",
@@ -107,7 +107,7 @@
   ],
   "keyTakeaways": [
     "Decide based on where your next customer comes from: paid ads and single offers favour a landing page; search discovery and trust-heavy decisions favour a full website.",
-    "A landing page can be live in 48 hours and is the cheapest way to validate demand — but on its own it will rank for very few search terms.",
+    "A landing page can be live 2 working days after ready-to-build and is the cheapest way to validate demand — but on its own it will rank for very few search terms.",
     "Most growing businesses end up with both: a website as the foundation, plus a focused landing page for each campaign."
   ],
   "faq": [
@@ -119,5 +119,6 @@
       "q": "Will a one-page site rank on Google?",
       "a": "For your brand name and a couple of closely related terms, yes. For a spread of local or service keywords, no — ranking broadly needs a dedicated page per topic, which is exactly what a full website gives you."
     }
-  ]
+  ],
+  "updated": "2026-11-11"
 }

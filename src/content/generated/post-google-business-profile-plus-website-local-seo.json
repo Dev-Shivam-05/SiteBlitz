@@ -5,12 +5,12 @@
   "cluster": "smb-india",
   "readingMinutes": 6,
   "date": "2026-07-10",
-  "author": "Shivam Bhadoriya",
-  "authorRole": "Founder, SiteBlitz",
+  "author": "SiteBlitz Studio",
+  "authorRole": "Website studio, Gujarat",
   "blocks": [
     {
       "type": "p",
-      "text": "Search for 'dentist near me' anywhere in India and watch what Google does. First, a map with three businesses. Then the regular results underneath. Two contests, two scoreboards. Your Google Business Profile competes on the map. Your website competes below it — and quietly feeds the map at the same time. Most small businesses treat these as separate chores, done badly on separate days. They are one machine with two visible parts. The whole thing can be wired together in a weekend, and this is the exact sequence we use."
+      "text": "Search for 'dentist near me' anywhere in India and watch what Google does. First, a map with three businesses. Then the regular results underneath. Two contests, two scoreboards. Your Google Business Profile competes on the map. Your website competes below it — and quietly feeds the map at the same time. Most small businesses treat these as separate chores, done badly on separate days. They are one machine with two visible parts. The whole thing can be wired together in a weekend, and this is the sequence we recommend."
     },
     {
       "type": "h2",
@@ -22,7 +22,7 @@
     },
     {
       "type": "p",
-      "text": "It compounds, too. A strong profile sends searchers to a page that answers their question and captures the lead. That engagement flows back as a signal. A weak website leaks the traffic your profile earned. A weak profile starves the website of local visibility. Fix both, or you are rowing with one oar."
+      "text": "It compounds, too. A strong profile sends searchers to a page that answers their question and captures the lead. Google says prominence draws on what it knows about a business across the web. A weak website leaks the traffic your profile earned. A weak profile starves the website of local visibility. Fix both, or you are rowing with one oar."
     },
     {
       "type": "h2",
@@ -106,7 +106,7 @@
     },
     {
       "type": "p",
-      "text": "You can do everything above yourself this weekend — genuinely, it's free and it works. If you'd rather have the website side handled, SiteBlitz builds server-rendered pages with LocalBusiness structured data and WhatsApp buttons. The one-page Launch package is ₹7,999 and is delivered in 2 working days once your content is ready. Either way: wire the machine together. The map is waiting."
+      "text": "You can do everything above yourself this weekend — genuinely, it's free and it works. If you'd rather have the website side handled, SiteBlitz builds server-rendered pages with LocalBusiness structured data and WhatsApp buttons. The one-page Launch package is ₹7,999 and is delivered in 2 working days once the project is ready to build. Either way: wire the machine together. The map is waiting."
     }
   ],
   "keyTakeaways": [
@@ -117,11 +117,12 @@
   "faq": [
     {
       "q": "Do I still need a website if my Google Business Profile gets calls already?",
-      "a": "Yes. The profile rents visibility on Google's terms — it can be suspended, edited by 'suggestions', or outranked overnight. Your website is the asset you own: it converts visitors, ranks for searches the map pack never shows, and backs up every claim your profile makes. The businesses that dominate local search run both."
+      "a": "Yes. The profile rents visibility on Google's terms — it can be suspended, edited by 'suggestions', or outranked overnight. Your website is the asset you own: it converts visitors, ranks for searches the map pack never shows, and backs up every claim your profile makes. Running both gives you the best chance in local search."
     },
     {
       "q": "How long before this weekend of work shows results?",
       "a": "Profile edits — categories, hours, services — usually reflect within days. Ranking movement is slower: typically weeks to a few months depending on how competitive your category and city are. Be suspicious of anyone promising a number-one spot in a week. Consistency plus reviews plus a fast, aligned website is what moves you, and it compounds."
     }
-  ]
+  ],
+  "updated": "2026-11-11"
 }

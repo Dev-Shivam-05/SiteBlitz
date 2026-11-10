@@ -1,95 +1,92 @@
 {
   "slug": "business-websites",
-  "metaTitle": "Small Business Website Design from ₹7,999",
+  "metaTitle": "Small Business Website Design, from ₹7,999",
   "name": "Business Websites",
-  "eyebrow": "Flagship service",
-  "headline": "Your business, online and converting in *48 hours*.",
-  "promise": "Most business websites are digital brochures nobody reads. We build the other kind: fast, server-rendered, engineered around one job — turning visitors into enquiries. Brief us at hour zero; by hour 48 you are live, indexed and measurable.",
+  "eyebrow": "Main service",
+  "headline": "A clear website for your *small business*.",
+  "promise": "A one-page or three-page website that tells customers what you do, what it costs and how to reach you, built for phones first. One page is ₹7,999 and goes live 2 working days after ready-to-build; three pages are ₹17,999 and take 7 working days.",
   "startingPriceINR": 7999,
-  "timeline": "48 hours",
+  "timeline": "2 or 7 working days after ready-to-build",
   "included": [
     {
-      "title": "Conversion-engineered design",
-      "text": "Every section exists to move a visitor toward contacting you. Clear offer, visible proof, one obvious next step — no decorative filler."
+      "title": "One clear job per page",
+      "text": "Each page leads to one action: a WhatsApp message, a call or an enquiry. Your services, prices and location sit where a visitor looks first."
     },
     {
-      "title": "Server-rendered SEO",
-      "text": "Your pages arrive as real HTML, not a JavaScript puzzle for Google to solve. Search engines index exactly what your customers see."
+      "title": "Built for the phone first",
+      "text": "Most of your visitors will open the site on a phone, so the layout, buttons and text sizes are designed there first and then widened for a computer."
     },
     {
-      "title": "90+ Lighthouse targets",
-      "text": "We build to 90+ Lighthouse scores across performance, accessibility, best practices and SEO. Slow sites lose customers before the first word loads."
+      "title": "WhatsApp and call buttons",
+      "text": "One tap opens a WhatsApp chat with a message already typed, or starts a call. No form is needed for a customer to reach you."
     },
     {
-      "title": "Structured data",
-      "text": "Schema.org markup tells Google what your business is, where it operates and what it offers. That is how you earn rich results, not just blue links."
+      "title": "Basic technical SEO",
+      "text": "Page titles and descriptions, a sitemap and structured data that describe your business, and a Google Search Console submission at launch. Google decides rankings."
     },
     {
-      "title": "First-party analytics dashboard",
-      "text": "Your own dashboard showing visitors, traffic sources and funnels — no third-party snooping, no spreadsheet exports. You see what is working from day one."
+      "title": "Your content, arranged well",
+      "text": "We format the text, photos and details you send into a clean layout. Writing your content from scratch is not part of the package."
     },
     {
-      "title": "WhatsApp and lead capture",
-      "text": "One-tap WhatsApp chat plus a lead form that lands enquiries where you will actually read them. Built in, wired up, tested before launch."
+      "title": "One revision round",
+      "text": "One consolidated list of reasonable changes inside the agreed design, collected together and done together before launch."
     }
   ],
   "process": [
     {
-      "step": "Brief",
-      "time": "H0",
-      "text": "A focused call or written brief. We nail down your offer, your customers and the single action the site must drive. You hand over logo, photos and answers — we handle the rest."
+      "step": "Tell us what you need",
+      "time": "One WhatsApp chat",
+      "text": "Your business, what customers should be able to do on the site and when you want it. No technical brief needed."
     },
     {
-      "step": "Design",
-      "time": "H6",
-      "text": "We shape the page around your conversion goal: headline, proof, pricing, call to action. You review a live preview link, not a PDF mockup."
+      "step": "See the direction",
+      "time": "Before you pay",
+      "text": "Open the working demo for your kind of business. For suitable projects we prepare a homepage concept you can review free."
     },
     {
-      "step": "Build",
-      "time": "H24",
-      "text": "Server-rendered code, structured data, analytics, WhatsApp and lead capture — assembled and tested against our 90+ Lighthouse targets on real devices."
+      "step": "Agree scope and price",
+      "time": "In writing",
+      "text": "Pages, features, content, timeline and costs are written down. You approve them, then make the first payment."
     },
     {
-      "step": "Launch",
-      "time": "H48",
-      "text": "Domain connected, SSL live, sitemap submitted, dashboard handed over. Your site is public and already measuring its first visitors."
+      "step": "Build, review, launch",
+      "time": "2 or 7 working days",
+      "text": "Counted from ready-to-build. You review a staging link, we make the agreed revisions, then the site goes live."
     }
   ],
   "stack": [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Vercel Edge Network",
-    "Schema.org structured data",
-    "First-party analytics",
-    "WhatsApp Business integration",
-    "Core Web Vitals monitoring"
+    "Mobile-first design",
+    "WhatsApp and call buttons",
+    "Basic technical SEO",
+    "Google Search Console submission",
+    "One consolidated revision round"
   ],
   "faqs": [
     {
-      "q": "Is 48 hours actually realistic?",
-      "a": "Yes — the clock starts the moment your brief is complete. The Launch plan is a one-page site with a tight, proven structure, which is exactly why it can move this fast. Larger builds get honest timelines: 4 days on Growth, 7 on Scale."
+      "q": "Is 2 working days realistic?",
+      "a": "For one page, yes, counted from ready-to-build: your content, access and first payment are with us and the scope is agreed. Three pages take 7 working days."
     },
     {
       "q": "What do you need from me?",
-      "a": "Your logo, a handful of photos and answers to a short brief — roughly 30 minutes of your time. If your photos are rough, we will tell you and work with what converts. No content? We write the first draft from your brief."
+      "a": "Your business details, logo, photos and the text for each page, plus access to your domain if you have one. We tell you what is missing before the clock starts."
     },
     {
       "q": "What if I need more than one page?",
-      "a": "Move up a package. Business (₹17,999) covers three agreed pages, delivered in 7 working days once the project is ready to build. E-commerce, bookings or more pages are quoted to the agreed scope. Same engineering standards on every package."
+      "a": "The Business package covers three agreed pages for ₹17,999. More pages, an online store or booking are scoped and priced by written quote."
     },
     {
-      "q": "Will my site actually show up on Google?",
-      "a": "We cannot promise rankings — anyone who does is selling you something. What we do promise: server-rendered pages, structured data and clean indexing, so Google can read every word."
+      "q": "Will my site show up on Google?",
+      "a": "We set up the technical basics and submit the site to Google Search Console. Google alone decides if and when a page is indexed or ranked, so nobody can honestly guarantee it."
     },
     {
       "q": "How do I know the site is working after launch?",
-      "a": "Your first-party analytics dashboard shows visitors, where they came from and how they move toward contacting you. We hold ourselves to the same standard — our own live analytics and real-user Core Web Vitals are public at /proof. Check ours before you buy."
+      "a": "Enquiries arrive on your WhatsApp or phone, and Search Console shows the searches that brought visitors. Optional maintenance after launch is quoted separately."
     }
   ],
   "relatedWorkSlugs": [
     "restaurant",
     "law"
   ],
-  "cta": "Brief us today. Be live before the weekend."
+  "cta": "Tell us about your business and we will reply with the matching demo, the price and the next step."
 }

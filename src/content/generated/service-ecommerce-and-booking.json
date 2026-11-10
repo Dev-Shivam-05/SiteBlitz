@@ -1,94 +1,92 @@
 {
   "slug": "ecommerce-and-booking",
+  "metaTitle": "Ecommerce & Booking Website Development",
   "name": "E-commerce & Booking",
-  "eyebrow": "Revenue engine",
-  "headline": "Sell, book, get paid — *while you sleep*.",
-  "promise": "A store or booking engine is not a brochure. It is a machine that turns visitors into payments, and it has to work at 2 a.m. without you. We build the whole machine in 7 days — catalogue, checkout, reservations, confirmations, analytics — and switch it on.",
+  "eyebrow": "Custom project",
+  "headline": "Websites that *sell or take bookings*.",
+  "promise": "Online stores, product catalogues and appointment or table booking are custom projects. We agree the catalogue, payments, booking rules and schedule in writing, give you a fixed quote, and build only after you approve it.",
   "startingPriceINR": 0,
-  "timeline": "7 days",
+  "timeline": "Written schedule in the quotation",
   "included": [
     {
-      "title": "Razorpay & Stripe, wired in",
-      "text": "UPI, cards, netbanking, wallets, international payments. Money goes straight to your account — we never touch it."
+      "title": "Scope written first",
+      "text": "Products, categories, delivery areas, booking slots, cancellations and refunds are agreed in writing before any build starts."
     },
     {
-      "title": "A catalogue built to sell",
-      "text": "Clean product pages, instant search, filters that make sense."
+      "title": "Payments you control",
+      "text": "We connect a payment gateway account you open in your own name, such as Razorpay, and test it before launch. Gateway fees are paid to the provider."
     },
     {
-      "title": "Booking that runs itself",
-      "text": "Tables, appointments, time slots — with automatic confirmations and zero double-bookings. New bookings ping you on WhatsApp the moment they land."
+      "title": "Booking rules that hold",
+      "text": "Time slots, capacity and confirmations set up to your rules, and tested so the same slot cannot be booked twice."
     },
     {
-      "title": "Speed as a sales tactic",
-      "text": "Server-rendered pages tuned for 90+ Lighthouse scores. A slow checkout is where carts go to die, so ours doesn't keep anyone waiting."
+      "title": "Catalogue built for phones",
+      "text": "Product or service pages a customer can browse comfortably on a phone, with prices and options clear before checkout."
     },
     {
-      "title": "Your funnel, visible",
-      "text": "A first-party analytics dashboard shows visitors, traffic sources, and exactly where people drop off between product view and payment. No guessing, no third-party snooping."
+      "title": "Order and booking alerts",
+      "text": "New orders and bookings reach you by email or WhatsApp, as agreed in the quotation."
     },
     {
-      "title": "Found on Google",
-      "text": "Structured data for products, prices and availability, so your listings can show rich results in search. SEO is baked into the build, not bolted on after."
+      "title": "Basic technical SEO",
+      "text": "Titles, descriptions and structured data for your products or services, and a Search Console submission. Google decides rankings."
     }
   ],
   "process": [
     {
-      "step": "Blueprint",
-      "time": "Day 0",
-      "text": "One call. We map your catalogue, payment flows, booking rules and edge cases — refunds, no-shows, out-of-stock — before a single pixel is drawn."
+      "step": "Map what you sell",
+      "time": "First conversation",
+      "text": "Your products or services, how customers pay or book, and the rules you already follow at the counter."
     },
     {
-      "step": "Build",
-      "time": "Day 1–3",
-      "text": "Design and engineering run in parallel: product pages, checkout, the booking engine, WhatsApp alerts. You see real progress, not mockups."
+      "step": "Written quote",
+      "time": "Before any build",
+      "text": "Scope, milestones, payments and a schedule. You approve it or walk away."
     },
     {
-      "step": "Money test",
-      "time": "Day 4–5",
-      "text": "We push real transactions through Razorpay and Stripe, hammer the booking flow for double-bookings and failures, and fix anything that flinches."
+      "step": "Build and test",
+      "time": "As scheduled",
+      "text": "Pages, checkout or booking, then real test orders and bookings on a staging site."
     },
     {
-      "step": "Launch",
-      "time": "Day 6–7",
-      "text": "DNS, SSL, analytics live. Then a walkthrough where we hand you the keys and show you how to run it yourself."
+      "step": "Launch and hand over",
+      "time": "After your approval",
+      "text": "The site goes live, and you get the logins and a walkthrough of how to manage products or bookings."
     }
   ],
   "stack": [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "Razorpay",
-    "Stripe",
-    "MongoDB",
-    "Vercel"
+    "Written scope and milestones",
+    "Payment gateway in your name",
+    "Booking rules tested before launch",
+    "Mobile-first design",
+    "Basic technical SEO"
   ],
   "faqs": [
     {
-      "q": "Razorpay or Stripe — which one do I need?",
-      "a": "Razorpay covers India best: UPI, netbanking, local cards and wallets. Stripe is the stronger pick for international customers. We wire in whichever fits your buyers — or both, and route payments accordingly."
+      "q": "Which payment gateway do I need?",
+      "a": "For most Indian businesses a gateway such as Razorpay covers UPI, cards and net banking. You open the account in your own name; we connect and test it."
     },
     {
-      "q": "Is 7 days really enough for a full store?",
-      "a": "For up to 10 pages with e-commerce or booking, yes — the Day 0 blueprint is what makes it possible. If your catalogue is unusually large or your booking rules are genuinely exotic, we tell you on that first call, not on day six."
+      "q": "How long does an online store take?",
+      "a": "It depends on the number of products, payment and delivery rules and integrations. Your quotation states the schedule once the scope is agreed."
     },
     {
       "q": "What are the ongoing costs?",
-      "a": "Payment gateways charge their standard per-transaction fees, paid directly to Razorpay or Stripe — none of it comes to us. Beyond that, your only recurring costs are hosting and your domain, both of which stay in your name."
+      "a": "Gateway fees, your domain renewal and hosting, and any paid plugins or services. Each is written in your quotation before you pay. Maintenance is optional and quoted separately."
     },
     {
-      "q": "How do I manage products and bookings after launch?",
-      "a": "From your own dashboard — update prices, stock and time slots without calling us. New orders and bookings arrive as WhatsApp alerts, and customers get automatic confirmations."
+      "q": "Can I manage products and bookings myself?",
+      "a": "Yes, as agreed in the scope. You get the logins and a walkthrough at handover."
     },
     {
-      "q": "Will it stay fast as my catalogue grows?",
-      "a": "Yes. Pages are server-rendered and images are optimised automatically, so page 200 loads like page 1. We publish our own live Core Web Vitals at /proof — hold us to the same standard."
+      "q": "Is e-commerce included in the ₹7,999 or ₹17,999 packages?",
+      "a": "No. Those packages exclude online payments, e-commerce and advanced booking. They are custom work, priced by written quote."
     }
   ],
   "relatedWorkSlugs": [
     "fashion",
     "restaurant"
   ],
-  "cta": "Tell us what you sell. We'll build the machine that sells it."
+  "cta": "Tell us what you sell or what customers book, and we will reply with the questions that set the quote."
 }

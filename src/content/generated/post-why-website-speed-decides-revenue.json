@@ -5,8 +5,8 @@
   "cluster": "speed-conversion",
   "readingMinutes": 5,
   "date": "2026-07-10",
-  "author": "Shivam Bhadoriya",
-  "authorRole": "Founder, SiteBlitz",
+  "author": "SiteBlitz Studio",
+  "authorRole": "Website studio, Gujarat",
   "blocks": [
     {
       "type": "p",
@@ -79,7 +79,7 @@
     },
     {
       "type": "p",
-      "text": "The fixes are unglamorous: right-sized images in modern formats, only the scripts you truly need, and HTML rendered on the server so the page arrives ready to read. Every SiteBlitz build ships server-rendered with 90+ Lighthouse targets for exactly this reason — not for the badge, for the queue."
+      "text": "The fixes are unglamorous: right-sized images in modern formats, only the scripts you truly need, and HTML rendered on the server so the page arrives ready to read. Every SiteBlitz build ships server-rendered and is checked with Lighthouse on mobile for exactly this reason — not for the badge, for the queue."
     },
     {
       "type": "h2",
@@ -122,11 +122,12 @@
   "faq": [
     {
       "q": "What is a good load time for a business website in India?",
-      "a": "Aim for an LCP under 2.5 seconds on mobile — Google's bar for real users. On mid-range phones over 4G, hitting it takes server-rendered pages, properly sized images and minimal scripts. Every SiteBlitz plan, including Launch at ₹7,999, is built to 90+ Lighthouse targets."
+      "a": "Aim for an LCP under 2.5 seconds on mobile — Google's bar for real users. On mid-range phones over 4G, hitting it takes server-rendered pages, properly sized images and minimal scripts. Every SiteBlitz plan, including Launch at ₹7,999, is checked with Lighthouse on mobile before launch."
     },
     {
       "q": "How do I check if my current site is slow?",
       "a": "Paste your URL into PageSpeed Insights and read the mobile tab, then open your site on a phone over mobile data with WiFi off. If the main content takes more than about 2.5 seconds to appear, or the layout jumps while loading, you are losing visitors before they ever see your offer."
     }
-  ]
+  ],
+  "updated": "2026-11-11"
 }

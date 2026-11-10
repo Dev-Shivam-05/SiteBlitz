@@ -5,8 +5,8 @@
   "cluster": "speed-conversion",
   "readingMinutes": 6,
   "date": "2026-07-10",
-  "author": "Shivam Bhadoriya",
-  "authorRole": "Founder, SiteBlitz",
+  "author": "SiteBlitz Studio",
+  "authorRole": "Website studio, Gujarat",
   "blocks": [
     {
       "type": "p",
@@ -34,7 +34,7 @@
     },
     {
       "type": "p",
-      "text": "GEO is at that same stage right now. The machinery is public. The techniques cost little. Most businesses haven't done any of it. That gap is the whole opportunity — and like the map pack, it will close. Sources these systems learn to retrieve and trust get cited repeatedly. Latecomers fight over what's left."
+      "text": "GEO is at that same stage right now. The machinery is public. The techniques cost little. Any business that hasn't started can start this week. That gap is the whole opportunity — and like the map pack, it will close. Sources these systems learn to retrieve and trust get cited repeatedly. Latecomers fight over what's left."
     },
     {
       "type": "h2",
@@ -92,7 +92,7 @@
     },
     {
       "type": "p",
-      "text": "Every SiteBlitz build ships server-rendered, with structured data and 90+ Lighthouse score targets as standard — not as an add-on — because the fundamentals of GEO turn out to be the fundamentals of a fast, honest website. It's the same reason we publish our own live analytics and real-user Core Web Vitals at /proof: verifiable beats claimed, for humans and machines alike. GEO doesn't replace that work. It compounds it — the pages search engines trust are the pages answer engines cite."
+      "text": "Every SiteBlitz build ships server-rendered, with structured data and a Lighthouse check on mobile as standard — not as an add-on — because the fundamentals of GEO turn out to be the fundamentals of a fast, honest website. It's the same reason we publish our own live analytics and real-user Core Web Vitals at /proof: verifiable beats claimed, for humans and machines alike. GEO doesn't replace that work. It compounds it — the pages search engines trust are the pages answer engines cite."
     },
     {
       "type": "p",
@@ -113,5 +113,6 @@
       "q": "Is llms.txt actually worth adding today?",
       "a": "Yes, because the cost is near zero. It's an emerging convention, not a guarantee — no major AI company publishes what it does with the file. But it takes minutes to create, can't hurt, and positions you early if it becomes standard, the way sitemap.xml adopters were ready when search engines standardised on it."
     }
-  ]
+  ],
+  "updated": "2026-11-11"
 }

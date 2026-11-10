@@ -1,94 +1,92 @@
 {
   "slug": "seo-and-geo",
+  "metaTitle": "Technical SEO & AI Search Setup for Small Business",
   "name": "SEO & GEO",
-  "eyebrow": "Growth service",
-  "headline": "Get found by Google. Get *quoted by AI*.",
-  "promise": "Search is splitting in two. People still Google, but they increasingly ask ChatGPT, Gemini and AI Overviews — and those engines only recommend businesses they can read, parse and cite. We build you for both: technical and local SEO for the rankings, GEO for the AI answers your customers are already reading.",
-  "startingPriceINR": 9999,
-  "timeline": "14 days + ongoing",
+  "eyebrow": "Search groundwork",
+  "headline": "Help Google and AI tools *read your website*.",
+  "promise": "Technical SEO, structured data and clear answers on your pages, so search engines and AI answer tools can understand what you offer and where. Scoped and priced by written quote; rankings and citations are never promised.",
+  "startingPriceINR": 0,
+  "timeline": "Written schedule in the quotation",
   "included": [
     {
-      "title": "Technical SEO audit and fixes",
-      "text": "We crawl your site the way Google does, then fix what we find: indexing gaps, broken canonicals, sitemap issues, slow pages. Boring work. It moves rankings."
+      "title": "Technical SEO check and fixes",
+      "text": "We look for what stops Google reading your site, such as missing titles, blocked pages, broken links, wrong canonicals or a missing sitemap, and fix what the quote covers."
     },
     {
-      "title": "Local SEO setup",
-      "text": "Google Business Profile tuned properly, consistent name-address-phone across the web, and location pages built for the searches people actually type. This is how nearby customers find you first."
+      "title": "Local search basics",
+      "text": "Your business name, phone and area written the same way across your site and profiles, and advice on your Google Business Profile if you are eligible for one."
     },
     {
-      "title": "GEO: Generative Engine Optimization",
-      "text": "GEO is simple to explain: when someone asks ChatGPT or Google's AI for 'the best clinic in Pune', the AI assembles an answer from sources it trusts. We structure your site so you are quotable, citable source material — not invisible."
+      "title": "Structured data",
+      "text": "Schema.org markup for your business, services and questions, so machines can read the facts your pages state. It never adds ratings or reviews you do not have."
     },
     {
-      "title": "Structured data everywhere",
-      "text": "Schema.org markup for your business, services, FAQs and reviews. It is the machine-readable layer that both search crawlers and AI engines lean on when deciding who you are."
+      "title": "Answer-first pages",
+      "text": "We restructure key pages so each question a customer asks gets a short, direct answer, using your content and your facts."
     },
     {
-      "title": "Answer-first content",
-      "text": "We rewrite key pages as clear, direct answers to real questions. Humans skim them happily; AI engines lift them verbatim. One format, two audiences."
+      "title": "AI search readiness",
+      "text": "Pages that AI answer tools can fetch and quote: clear headings, plain facts, and crawler access set the way you choose."
     },
     {
-      "title": "Monthly reporting you can read",
-      "text": "Rankings movement, traffic sources and enquiries in your first-party analytics dashboard — the same one we publish for ourselves at /proof. No 40-page PDF. Just what changed and what we're doing next."
+      "title": "Search Console set up",
+      "text": "Your site verified in Google Search Console with a sitemap submitted, so you can see the searches that find you."
     }
   ],
   "process": [
     {
-      "step": "Audit and baseline",
-      "time": "Day 1",
-      "text": "Full technical crawl, local presence check and AI-visibility test: we literally ask the major AI engines about your category and record whether you appear. That baseline is how we measure everything after."
+      "step": "Look first",
+      "time": "Before any quote",
+      "text": "We check your site and how it shows up in search today, and tell you what we found."
     },
     {
-      "step": "Technical foundation",
-      "time": "Day 4",
-      "text": "Indexing, speed, structured data and Core Web Vitals fixes ship first. Nothing ranks — anywhere — on a broken foundation."
+      "step": "Written quote",
+      "time": "In writing",
+      "text": "The fixes and pages in scope, the schedule and the price. You approve before work starts."
     },
     {
-      "step": "Local + GEO layer",
-      "time": "Day 8",
-      "text": "Google Business Profile overhaul, location pages, and your core pages restructured into the quotable, answer-first format AI engines cite."
+      "step": "Fix the foundation",
+      "time": "As scheduled",
+      "text": "Technical fixes and structured data first, because content cannot help a page Google cannot read."
     },
     {
-      "step": "Live, then ongoing",
-      "time": "Day 14",
-      "text": "Foundation sprint done. From here it's monthly cycles: fresh answer content, monitoring, and a plain-language report on movement."
+      "step": "Answer pages",
+      "time": "As scheduled",
+      "text": "Key pages restructured into direct answers, then the sitemap resubmitted."
     }
   ],
   "stack": [
-    "Schema.org JSON-LD",
     "Google Search Console",
-    "Google Business Profile",
-    "Core Web Vitals (CrUX field data)",
-    "Server-side rendering",
-    "llms.txt",
-    "Bing Webmaster Tools",
-    "Entity and topic mapping"
+    "Schema.org structured data",
+    "Sitemap and canonical checks",
+    "Answer-first page structure",
+    "llms.txt"
   ],
   "faqs": [
     {
       "q": "What is GEO, in plain words?",
-      "a": "When someone asks ChatGPT, Gemini or Google's AI Overviews a question, the AI writes an answer using sources it can read and trust. GEO is the craft of being one of those sources — clear structure, direct answers, machine-readable markup. Think of it as SEO for the answer instead of the ranking."
+      "a": "Generative engine optimisation means making your pages easy for AI answer tools such as ChatGPT search or Google's AI features to read and quote: clear facts, direct answers and pages they can fetch."
     },
     {
-      "q": "Can you guarantee me #1 on Google?",
-      "a": "No, and we'll say it plainly: nobody can promise #1, and anyone who does is lying to you. Google's results shift daily and no agency controls them. What we commit to is the work — fixes, structure, content — and honest reporting on what moved."
+      "q": "Can you guarantee #1 on Google?",
+      "a": "No, and nobody honestly can. Google decides rankings. We remove technical reasons a page is skipped and make what you offer clear."
     },
     {
       "q": "How is GEO different from regular SEO?",
-      "a": "SEO earns you a spot in a list of links. GEO earns you a mention inside the answer itself. They share the same foundations — fast site, clear structure, real expertise — which is why we sell them as one service, not two."
+      "a": "Mostly it is the same groundwork. SEO helps a page rank in a list of results; GEO helps an AI answer tool understand and quote it. Clear facts and structure help both."
     },
     {
       "q": "How long until I see results?",
-      "a": "Technical fixes land inside the 14-day sprint; ranking movement typically takes weeks to months, and we won't pretend otherwise. Steady, compounding work — not magic."
+      "a": "Technical fixes are done on the schedule in your quote. What Google and AI tools do with them takes weeks to months and is outside anyone's control."
     },
     {
-      "q": "Why do GEO now instead of waiting?",
-      "a": "Because AI answers usually mention a handful of businesses, and early, well-structured sources tend to be the ones that get picked up. Most of your competitors haven't heard of GEO yet. That gap is the opportunity."
+      "q": "Is SEO included in the website packages?",
+      "a": "Basic technical SEO is included in every package. This service is for deeper work on an existing site, priced by written quote."
     }
   ],
   "relatedWorkSlugs": [
     "clinic",
     "law"
   ],
-  "cta": "Want to be the business AI recommends? Let's find out where you stand."
+  "cta": "Send us your website address and we will tell you what we see before quoting anything."
 }

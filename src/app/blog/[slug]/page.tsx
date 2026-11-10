@@ -6,11 +6,27 @@ import { Shell } from "@/components/site/Shell";
 import { BLOG_POSTS, getPost, type PostBlock } from "@/content";
 import { DEEP_SERVICES } from "@/content";
 import { SITE } from "@/lib/site";
+import { absUrl, breadcrumbNode, graph, ORG_ID, pageMeta, webPageNode, type Crumb } from "@/lib/seo";
+import { JsonLd } from "@/components/site/JsonLd";
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { PAGES } from "@/lib/pages";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((p) => ({ slug: p.slug }));
+}
+
+const postPath = (slug: string) => `/blog/${slug}`;
+
+/** hreflang map for a post with translations: itself, each equivalent, and plain "hi" as the fallback for Hindi in
+ *  Roman script while it is the only Hindi version (debate round 2, R2). Both posts list each other. */
+function languageAlternates(p: { slug: string; lang?: string; translations?: Record<string, string> }) {
+  if (!p.translations) return undefined;
+  const map: Record<string, string> = { [p.lang ?? "en"]: absUrl(postPath(p.slug)) };
+  for (const [lang, slug] of Object.entries(p.translations)) map[lang] = absUrl(postPath(slug));
+  if (map["hi-Latn"] && !map.hi) map.hi = map["hi-Latn"];
+  return map;
 }
 
 export async function generateMetadata({
@@ -21,12 +37,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const p = getPost(slug);
   if (!p) return {};
-  return {
+  const meta = pageMeta({
     title: p.metaTitle ?? p.title,
     description: p.description,
-    alternates: { canonical: `/blog/${p.slug}` },
-    openGraph: { type: "article", publishedTime: p.date, authors: [p.author] },
-  };
+    path: postPath(p.slug),
+    type: "article",
+    publishedTime: p.date,
+    modifiedTime: p.updated ?? p.date,
+  });
+  const languages = languageAlternates(p);
+  return languages ? { ...meta, alternates: { ...meta.alternates, languages } } : meta;
 }
 
 function Block({ b }: { b: PostBlock }) {
@@ -88,51 +108,64 @@ export default async function PostPage({
   const p = getPost(slug);
   if (!p) notFound();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: SITE.url },
-          { "@type": "ListItem", position: 2, name: "Insights", item: `${SITE.url}/blog` },
-          { "@type": "ListItem", position: 3, name: p.title, item: `${SITE.url}/blog/${p.slug}` },
-        ],
-      },
-      {
-        "@type": "BlogPosting",
-        headline: p.title,
-        description: p.description,
-        datePublished: p.date,
-        // Studio-written posts are credited to the organisation, not to a person who did not write them.
-        author:
-          p.author === "SiteBlitz Studio"
-            ? { "@id": `${SITE.url}/#organization` }
-            : { "@type": "Person", name: p.author, jobTitle: p.authorRole },
-        publisher: { "@id": `${SITE.url}/#organization` },
-        mainEntityOfPage: `${SITE.url}/blog/${p.slug}`,
-      },
-      {
-        "@type": "FAQPage",
-        mainEntity: p.faq.map((f) => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.a },
-        })),
-      },
-    ],
-  };
+  const path = postPath(p.slug);
+  const crumbs: Crumb[] = [
+    { name: PAGES.blog.label, path: PAGES.blog.path },
+    { name: p.title, path },
+  ];
+  const otherLangs = Object.entries(p.translations ?? {});
+  const jsonLd = graph(
+    webPageNode({ path, name: p.title, description: p.description, crumbs, dateModified: p.updated ?? p.date, about: { "@id": `${absUrl(path)}#article` } }),
+    breadcrumbNode(crumbs),
+    {
+      "@type": "BlogPosting",
+      "@id": `${absUrl(path)}#article`,
+      headline: p.title,
+      description: p.description,
+      inLanguage: p.lang ?? "en-IN",
+      datePublished: p.date,
+      dateModified: p.updated ?? p.date,
+      // Studio-written posts are credited to the organisation, not to a person who did not write them.
+      author:
+        p.author === "SiteBlitz Studio" ? { "@id": ORG_ID } : { "@type": "Person", name: p.author, jobTitle: p.authorRole },
+      publisher: { "@id": ORG_ID },
+      mainEntityOfPage: { "@id": `${absUrl(path)}#webpage` },
+      ...(otherLangs.length ? { workTranslation: otherLangs.map(([, s]) => ({ "@id": `${absUrl(postPath(s))}#article` })) } : {}),
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${absUrl(path)}#faq`,
+      mainEntity: p.faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    }
+  );
 
   const mid = Math.floor(p.blocks.length / 2);
 
   return (
     <Shell>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <article className="mx-auto max-w-3xl px-5 pb-24 pt-32 md:px-8 md:pt-44">
-        <p className="text-xs uppercase tracking-[0.25em] text-volt" data-anim="fade-up" data-now>
+      <JsonLd data={jsonLd} />
+      <article lang={p.lang} className="mx-auto max-w-3xl px-5 pb-24 pt-32 md:px-8 md:pt-44">
+        <div lang="en" className="ph-soft mb-8 flex flex-wrap items-center justify-between gap-3">
+          <Breadcrumbs crumbs={crumbs} />
+          {otherLangs.map(([lang, slug]) => (
+            <Link
+              key={lang}
+              href={postPath(slug)}
+              hrefLang={lang}
+              className="rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink/85 transition-colors hover:border-volt/50 hover:text-ink"
+            >
+              {lang.startsWith("hi") ? "Hindi (Roman) mein padhein" : "Read in English"}
+            </Link>
+          ))}
+        </div>
+        <p className="text-xs uppercase tracking-[0.25em] text-volt">
           {p.cluster === "smb-india" ? "Websites for Indian SMBs" : "Speed & conversion"}
         </p>
-        <h1 className="font-display mt-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl" data-anim="fade-up" data-now>
+        <h1 className="font-display mt-3 text-3xl font-bold leading-tight tracking-tight md:text-5xl">
           {p.title}
         </h1>
         <div className="mt-6 flex flex-wrap items-center gap-3 border-b border-line pb-6 text-xs text-faint">
@@ -178,7 +211,7 @@ export default async function PostPage({
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
           <Link href="/blog" className="text-sm text-muted hover:text-ink">
-            ← All insights
+            ← All guides
           </Link>
           <a
             href={SITE.whatsapp(`Hi SiteBlitz! I read "${p.title}" and have a question.`)}

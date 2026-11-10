@@ -2,12 +2,12 @@
   "slug": "website-cost-india-honest-breakdown",
   "metaTitle": "Website Design Cost in India (2026): Guide",
   "title": "What a Website Actually Costs in India: An Honest Breakdown",
-  "description": "Why Indian website quotes run ₹3,000 to ₹3,00,000 — the five things you're paying for, where cheap fails, and where expensive is waste.",
+  "description": "Why Indian website quotes run from a few thousand rupees to a few lakh — the five things you're paying for, where cheap fails, and where expensive is waste.",
   "cluster": "smb-india",
   "readingMinutes": 6,
   "date": "2026-07-10",
-  "author": "Shivam Bhadoriya",
-  "authorRole": "Founder, SiteBlitz",
+  "author": "SiteBlitz Studio",
+  "authorRole": "Website studio, Gujarat",
   "blocks": [
     {
       "type": "p",
@@ -19,11 +19,11 @@
     },
     {
       "type": "p",
-      "text": "The ₹3,000–₹10,000 website is a template. Someone buys a theme, swaps in your logo, pastes your text, points your domain at shared hosting, and hands you the keys. Total working time: a few hours. That's not fraud — it's data entry with a design layer. The ₹30,000–₹80,000 website is usually semi-custom: real design decisions, a CMS, some attention to your actual business. The ₹1,50,000-and-up website is a process — discovery calls, brand workshops, custom engineering, multiple stakeholders, and a project manager whose salary lives inside your invoice."
+      "text": "The cheapest website, a few thousand rupees, is usually a template. Someone buys a theme, swaps in your logo, pastes your text, points your domain at shared hosting, and hands you the keys. Total working time: a few hours. That's not fraud — it's data entry with a design layer. A mid-range website, in the tens of thousands, is usually semi-custom: real design decisions, a CMS, some attention to your actual business. A website quoted in lakhs is usually a process — discovery calls, brand workshops, custom engineering, multiple stakeholders, and a project manager whose salary lives inside your invoice."
     },
     {
       "type": "p",
-      "text": "None of these tiers is inherently a rip-off. The rip-off is paying tier-three prices for tier-one work. In India's website market that happens constantly, because most buyers can't see under the hood."
+      "text": "None of these tiers is inherently a rip-off. The rip-off is paying tier-three prices for tier-one work. It happens because most buyers can't see under the hood."
     },
     {
       "type": "h2",
@@ -97,7 +97,7 @@
     },
     {
       "type": "p",
-      "text": "SiteBlitz is one point on this spectrum, so here are our numbers with no drama. Launch is ₹7,999: a one-page site, delivered in 2 working days once your content is ready. Business is ₹17,999: three agreed pages in 7 working days once ready. E-commerce, booking or more pages are quoted to scope. Prices are one-time with no GST added; domain and hosting are written separately in the quote. Every site ships server-rendered so Google can read it, with basic structured data, WhatsApp buttons and an enquiry path."
+      "text": "SiteBlitz is one point on this spectrum, so here are our numbers with no drama. Launch is ₹7,999: a one-page site, delivered in 2 working days once the project is ready to build. Business is ₹17,999: three agreed pages in 7 working days once ready. E-commerce, booking or more pages are quoted to scope. Prices are one-time with no GST added; domain and hosting are written separately in the quote. Every site ships server-rendered so Google can read it, with basic structured data, WhatsApp buttons and an enquiry path."
     },
     {
       "type": "p",
@@ -120,7 +120,7 @@
     },
     {
       "type": "p",
-      "text": "In our experience, a competent small-business website in India lands somewhere between ₹8,000 and ₹60,000 depending on scope. Below that, engineering has usually been deleted. Far above it, you're often funding process. Whatever you spend, make the vendor show you where the five line items live inside their number. The good ones will enjoy the question."
+      "text": "Whatever you spend, make the vendor show you where the five line items live inside their number. The good ones will enjoy the question."
     }
   ],
   "keyTakeaways": [
@@ -137,5 +137,10 @@
       "q": "What does SiteBlitz charge, and what's included?",
       "a": "Launch is ₹7,999 for a one-page site (2 working days once ready), Business is ₹17,999 for three pages (7 working days once ready), and larger sites with e-commerce or booking are quoted to scope. Every package includes server-rendered pages, basic SEO, WhatsApp buttons and an enquiry path."
     }
-  ]
+  ],
+  "updated": "2026-11-11",
+  "lang": "en",
+  "translations": {
+    "hi-Latn": "website-banane-ka-kharcha"
+  }
 }

@@ -1,94 +1,92 @@
 {
   "slug": "project-rescue",
+  "metaTitle": "Website Redesign & Project Rescue",
   "name": "Project Rescue",
-  "eyebrow": "Rescue service",
-  "headline": "Half-built. Hacked. Eleven seconds to load. *We'll take it from here.*",
-  "promise": "You paid for a website and got a headache. We take over half-finished builds, vanished-agency projects and hacked or crawling WordPress sites — diagnose what's salvageable, rebuild what isn't, and hand you something fast, secure and fully yours.",
-  "startingPriceINR": 17999,
-  "timeline": "3–5 days",
+  "eyebrow": "Redesign or repair",
+  "headline": "A clear next step for a *stalled website*.",
+  "promise": "Half-built, broken, hacked or just outdated: send us what you have and we review it, then quote either a repair or a rebuild with a written scope and schedule. You decide before any paid work starts.",
+  "startingPriceINR": 0,
+  "timeline": "Written schedule in the quotation",
   "included": [
     {
-      "title": "Forensic audit",
-      "text": "We examine every file, plugin, DNS record and hosting setting before touching anything. You get a plain-English report of what's broken, what's risky and why."
+      "title": "A plain review",
+      "text": "We look at the files, hosting, domain and settings you can share and explain in plain words what is wrong."
     },
     {
-      "title": "Repair-or-rebuild verdict",
-      "text": "Sometimes a repair is the right call. Sometimes patching a bad build costs more than replacing it. We show you the maths and tell you straight."
+      "title": "Repair or rebuild, with reasons",
+      "text": "Sometimes fixing is right, sometimes rebuilding costs less than patching. You get both options and our recommendation."
     },
     {
       "title": "Security cleanup",
-      "text": "Malware removal, compromised credentials rotated, abandoned admin accounts closed. If WordPress was the way in, we shut that door for good."
+      "text": "Where the scope covers it: suspicious code removed, passwords changed and unused admin accounts closed."
     },
     {
-      "title": "Speed rescue",
-      "text": "Server-rendered rebuild targeting 90+ Lighthouse scores, verified on real devices. Slow sites lose customers before the page even appears."
+      "title": "Speed and mobile fixes",
+      "text": "Pages rebuilt or repaired for phones first and checked with Lighthouse on mobile before launch."
     },
     {
-      "title": "SEO salvage and redirects",
-      "text": "We map every old URL and 301-redirect it, keep what ranks, and add structured data. Your existing Google visibility is an asset — we treat it like one."
+      "title": "Redirects for old pages",
+      "text": "Old addresses redirected to their new pages so visitors and Google can follow them. Rankings after a rebuild are never guaranteed."
     },
     {
-      "title": "Full ownership handover",
-      "text": "Domain, hosting, code and analytics — all in your name, with your logins. No agency can hold your business hostage again."
+      "title": "Handover in your name",
+      "text": "Domain, hosting access and content documented and handed to you, as written in the agreement."
     }
   ],
   "process": [
     {
-      "step": "Triage",
-      "time": "Day 0",
-      "text": "You send us whatever you have — logins, a half-dead URL, even just the domain name. We run the forensic audit and diagnose the damage within 24 hours."
+      "step": "Send what you have",
+      "time": "One WhatsApp chat",
+      "text": "The address, any logins you hold and what went wrong."
     },
     {
-      "step": "The verdict",
-      "time": "Day 1",
-      "text": "Repair or rebuild, with a fixed quote and a fixed timeline. You approve before any work begins. No surprises, no scope creep."
+      "step": "Review and quote",
+      "time": "In writing",
+      "text": "What we found, repair or rebuild, the price and the schedule."
     },
     {
-      "step": "The rescue",
-      "time": "Days 1–4",
-      "text": "We rebuild or repair on a modern server-rendered stack: SEO baked in, WhatsApp integration, lead capture and your own analytics dashboard included."
+      "step": "Fix or rebuild",
+      "time": "As scheduled",
+      "text": "Work starts after you approve the quote and the first payment."
     },
     {
-      "step": "Handover",
-      "time": "Days 3–5",
-      "text": "Your site goes live with redirects verified, Lighthouse scores checked and every account transferred to you. We walk you through all of it on a call."
+      "step": "Launch and hand over",
+      "time": "After your approval",
+      "text": "Redirects checked, logins handed over, notes on what was changed."
     }
   ],
   "stack": [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "Vercel edge hosting",
-    "Cloudflare DNS",
-    "301 redirect mapping",
-    "Lighthouse CI"
+    "Written review",
+    "Repair-or-rebuild quote",
+    "301 redirects",
+    "Mobile-first rebuild",
+    "Handover in your name"
   ],
   "faqs": [
     {
-      "q": "My old agency has my domain and hosting logins. Can you still help?",
-      "a": "Yes — this is the most common rescue we see. We work with your registrar and host to recover access, then move everything into accounts you own. From that point on, nobody can vanish with your website again."
+      "q": "My old developer has my domain and hosting logins. Can you help?",
+      "a": "Usually the domain can be recovered through the registrar when it is registered to you. We help you through the steps; we never take ownership of it."
     },
     {
       "q": "How do you decide between repairing and rebuilding?",
-      "a": "The audit decides, not our preference. If a repair genuinely fixes the problem, we quote the repair. If patching would cost you more within a year than rebuilding, we show you that comparison and let you choose."
+      "a": "By cost and risk. If the fix costs close to a rebuild or leaves the site fragile, we recommend rebuilding and say why."
     },
     {
       "q": "Will I lose my Google rankings if you rebuild?",
-      "a": "Protecting rankings is a core part of the rescue, not an afterthought. We map every existing URL, set up 301 redirects and carry over the content that earns your visibility. Rankings are an asset we salvage, same as the domain."
+      "a": "Redirects keep what Google already knows about your old pages, but nobody can promise rankings stay the same after a rebuild."
     },
     {
       "q": "My WordPress site was hacked. Is that in scope?",
-      "a": "Completely. We clean the infection and rotate every credential — and in most cases we recommend rebuilding on a server-rendered stack with no plugin attack surface. That is usually what ends the hack-cleanup-hack cycle for good."
+      "a": "It can be. We review it first; cleanup, hardening or a rebuild are quoted separately depending on what we find."
     },
     {
       "q": "What does a rescue cost?",
-      "a": "A three-page rebuild is ₹17,999 (the Business package); larger rescues are quoted after the Day 0 triage. The price is fixed before work begins, so it cannot balloon mid-project. Diagnosis itself costs you nothing."
+      "a": "It depends on what we find. If a three-page rebuild covers it, the Business package price of ₹17,999 applies; anything larger is quoted in writing first."
     }
   ],
   "relatedWorkSlugs": [
     "fashion",
     "clinic"
   ],
-  "cta": "Send us the wreckage. Diagnosis is free."
+  "cta": "Send us the address of the stalled site, and we will reply with what we see and the options."
 }

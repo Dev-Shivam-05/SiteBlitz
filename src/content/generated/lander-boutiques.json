@@ -1,14 +1,14 @@
 {
   "slug": "boutiques",
   "industry": "Fashion & Boutiques",
-  "metaTitle": "Boutique Website Design India | Live in 48 Hours",
-  "metaDescription": "Editorial-grade boutique websites that load fast, turn Instagram followers into buyers, and capture enquiries. Designed and live in as little as 48 hours.",
+  "metaTitle": "Boutique Website Design in India, from ₹7,999",
+  "metaDescription": "Boutique websites that show your collection clearly on a phone and turn Instagram interest into WhatsApp enquiries. From ₹7,999, live 2 working days after ready-to-build.",
   "headline": "A website that looks like a *lookbook* — and loads like lightning.",
-  "sub": "Most fashion sites make you choose: beautiful or fast. We refuse the trade-off. Editorial visuals, catalogue-ready pages, and an Instagram-to-enquiry funnel that actually converts.",
+  "sub": "Editorial photographs that still open quickly on a phone, catalogue-style pages, and a clear path from Instagram to an enquiry.",
   "painPoints": [
     {
       "title": "Gorgeous, but glacial",
-      "text": "Full-bleed imagery gets dumped onto templates never built for it. The result: pages that crawl on mobile, where nearly all your shoppers are. A shopper on patchy 4G will not wait ten seconds for a hemline."
+      "text": "Full-bleed photographs get dropped onto templates never built for them. The result: pages that crawl on a phone, which is where your shoppers are scrolling. A shopper on patchy 4G will not wait ten seconds for a hemline."
     },
     {
       "title": "Instagram is the shop, the site is an afterthought",
@@ -22,7 +22,7 @@
   "mustHaves": [
     {
       "title": "Editorial visuals that stay fast",
-      "text": "Full-screen imagery, modern image formats, and lazy loading tuned so pages feel instant. Every SiteBlitz build targets 90+ Lighthouse scores — beauty and speed, no compromise."
+      "text": "Full-screen imagery, modern image formats, and lazy loading tuned so pages feel instant. Every SiteBlitz build is checked with Lighthouse on mobile before launch, photographs included."
     },
     {
       "title": "A catalogue built like a lookbook",
@@ -37,15 +37,15 @@
       "text": "One tap from a product page to a WhatsApp conversation about size, fabric, or availability. Built-in lead capture means no interested buyer slips away unrecorded."
     },
     {
-      "title": "Proof you can see in your dashboard",
-      "text": "A first-party analytics dashboard shows visitors, sources, and enquiry funnels — so you know whether that reel drove traffic, and whether traffic became enquiries. Server-rendered SEO and structured data help shoppers find you on Google too."
+      "title": "Readable by Google",
+      "text": "Server-rendered pages and structured data describe your boutique, your collections and your area, and the site is submitted to Google Search Console at launch. Rankings are up to Google."
     }
   ],
   "anchorWorkSlug": "fashion",
   "faqs": [
     {
       "q": "Can my site look editorial and still load fast?",
-      "a": "Yes — that's the entire point of how we build. Every build targets 90+ Lighthouse scores with images sized for phones, and we publish this site's own real-user Core Web Vitals at /proof, so you can check how we build before you pay."
+      "a": "Yes — that's the entire point of how we build. Every build is checked with Lighthouse on mobile, with images sized for phones, and we publish this site's own real-user Core Web Vitals at /proof, so you can check how we build before you pay."
     },
     {
       "q": "Do I need full e-commerce, or is an enquiry flow enough?",
@@ -53,8 +53,8 @@
     },
     {
       "q": "How fast can my boutique site go live?",
-      "a": "A one-page site on the Launch package (₹7,999, one page, delivered in 2 working days once your content is ready). A three-page catalogue site on the Business package (₹17,999) takes 7 working days once ready. Full e-commerce is quoted separately. Every site ships with basic SEO, WhatsApp buttons and an enquiry path."
+      "a": "A one-page site on the Launch package (₹7,999, one page, delivered in 2 working days once the project is ready to build). A three-page catalogue site on the Business package (₹17,999) takes 7 working days once ready. Full e-commerce is quoted separately. Every site ships with basic SEO, WhatsApp buttons and an enquiry path."
     }
   ],
-  "cta": "Show your collection the way it deserves — live in as little as 48 hours."
+  "cta": "Show your collection clearly, live 2 working days after ready-to-build."
 }

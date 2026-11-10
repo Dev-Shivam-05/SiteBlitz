@@ -5,12 +5,12 @@
   "cluster": "smb-india",
   "readingMinutes": 5,
   "date": "2026-07-10",
-  "author": "Shivam Bhadoriya",
-  "authorRole": "Founder, SiteBlitz",
+  "author": "SiteBlitz Studio",
+  "authorRole": "Website studio, Gujarat",
   "blocks": [
     {
       "type": "p",
-      "text": "Your next customer finds you at 11 pm, on a mid-range Android phone, over patchy 4G. They'll give your website a few seconds of patience, and those seconds decide whether they message you or the shop two lanes over. We build websites for Indian small businesses every week at SiteBlitz, and the same six things separate sites that generate enquiries from sites that just exist. Treat it as a checklist: if your site misses any, fix that before you spend a rupee on ads."
+      "text": "Your next customer finds you at 11 pm, on a mid-range Android phone, over patchy 4G. They'll give your website a few seconds of patience, and those seconds decide whether they message you or the shop two lanes over. At SiteBlitz we plan every small-business website around the same six things, and the same six things separate sites that generate enquiries from sites that just exist. Treat it as a checklist: if your site misses any, fix that before you spend a rupee on ads."
     },
     {
       "type": "h2",
@@ -111,7 +111,7 @@
     },
     {
       "type": "p",
-      "text": "This is why every SiteBlitz build ships with a first-party analytics dashboard instead of a third-party tracking script. You should be able to answer \"did Instagram or Google send me more enquiries this month?\" in ten seconds, without a tutorial. None of this requires a big budget: our Launch plan — a one-page site with all six of these built in, live in 48 hours — is ₹7,999. The checklist above is not the premium tier. It's the floor."
+      "text": "This is why every SiteBlitz build sends enquiries straight to your WhatsApp or phone instead of a third-party tracking script. You should be able to answer \"did Instagram or Google send me more enquiries this month?\" in ten seconds, without a tutorial. None of this requires a big budget: our Launch plan — a one-page site with WhatsApp, call buttons and basic SEO, live 2 working days after ready-to-build — is ₹7,999. The checklist above is not the premium tier. It's the floor."
     }
   ],
   "keyTakeaways": [
@@ -122,11 +122,12 @@
   "faq": [
     {
       "q": "How much does a small business website cost in India in 2026?",
-      "a": "Less than most owners expect. SiteBlitz's Launch package is ₹7,999 for a one-page site delivered in 2 working days once your content is ready, with basic SEO and WhatsApp buttons. Business is ₹17,999 for three pages; e-commerce or booking is quoted to scope."
+      "a": "Less than most owners expect. SiteBlitz's Launch package is ₹7,999 for a one-page site delivered in 2 working days once the project is ready to build, with basic SEO and WhatsApp buttons. Business is ₹17,999 for three pages; e-commerce or booking is quoted to scope."
     },
     {
       "q": "I already get enquiries from Google Business Profile and Instagram. Do I still need a website?",
-      "a": "Yes — those are rented land with rules you don't control. Your website is the one channel you own: it ranks for local searches, holds your proof and pricing, and turns lookers into WhatsApp conversations. It works with your profile and social pages, not instead of them."
+      "a": "Yes — those are rented land with rules you don't control. Your website is the one channel you own: it can rank for local searches, holds your proof and pricing, and turns lookers into WhatsApp conversations. It works with your profile and social pages, not instead of them."
     }
-  ]
+  ],
+  "updated": "2026-11-11"
 }

@@ -1,10 +1,10 @@
 {
   "slug": "law-firms",
   "industry": "Law Firms",
-  "metaTitle": "Law Firm Website Design India | Live in 48 Hours",
-  "metaDescription": "Authoritative law firm websites with practice-area pages, discreet consultation paths and server-rendered SEO. Fixed prices from ₹7,999.",
+  "metaTitle": "Law Firm Website Design in India",
+  "metaDescription": "Law firm websites with a page for each practice area and a discreet consultation request. From ₹7,999, with scope, price and delivery written upfront.",
   "headline": "Your website is the first hearing. *Win it.*",
-  "sub": "SiteBlitz builds authoritative law firm websites — dedicated practice-area pages, discreet consultation paths and SEO that compounds. Designed, engineered and live in as little as 48 hours.",
+  "sub": "SiteBlitz builds clear law firm websites: a page for each practice area and a discreet consultation request. A one-page site goes live 2 working days after ready-to-build.",
   "painPoints": [
     {
       "title": "Templates that whisper, not argue",
@@ -26,7 +26,7 @@
     },
     {
       "title": "A page per practice area",
-      "text": "Each practice area gets its own server-rendered page with its own keywords and structured data. That's how a firm ranks for 'property lawyer in Delhi' instead of only its own name."
+      "text": "Each practice area gets its own server-rendered page with its own structured data. That gives a firm a fair chance at searches like 'property lawyer in Delhi', not only its own name."
     },
     {
       "title": "Discreet consultation paths",
@@ -34,27 +34,27 @@
     },
     {
       "title": "SEO that compounds",
-      "text": "Server-rendered pages, legal-service structured data and 90+ Lighthouse targets on every build. Search visibility is the cheapest client acquisition a firm will ever own."
+      "text": "Server-rendered pages and legal-service structured data on every build, checked with Lighthouse on mobile before launch. Clear structure helps Google understand each practice area."
     },
     {
-      "title": "Proof, not promises",
-      "text": "A first-party analytics dashboard shows which practice areas draw enquiries, where visitors come from and where they drop off. We publish our own live numbers at /proof — your site gets held to the same standard."
+      "title": "Every enquiry reaches you",
+      "text": "Consultation requests arrive straight at your firm by WhatsApp, phone or form, and Search Console shows which searches brought visitors. Nothing about a matter is published without written approval."
     }
   ],
   "anchorWorkSlug": "law",
   "faqs": [
     {
       "q": "How fast can our firm's website go live?",
-      "a": "A one-page site on the Launch package (₹7,999, one page, delivered in 2 working days once your content is ready). For separate practice-area pages, the Business package (₹17,999) covers three pages in 7 working days once ready; more pages are quoted."
+      "a": "A one-page site on the Launch package (₹7,999, one page, delivered in 2 working days once the project is ready to build). For separate practice-area pages, the Business package (₹17,999) covers three pages in 7 working days once ready; more pages are quoted."
     },
     {
       "q": "How do you handle confidentiality?",
-      "a": "Enquiry forms deliver straight to your firm, analytics stay first-party, and we never publish client names, matters or testimonials without written approval. Discretion is a design requirement, not an afterthought."
+      "a": "Enquiries come straight to your firm, and we never publish client names, matters or testimonials without written approval. Discretion is a design requirement, not an afterthought."
     },
     {
       "q": "Have you built for law firms before?",
       "a": "We publish client work only with the client's permission and numbers we can back up, so there is no law-firm case study on this site yet. What you can judge today is how we build: this site's own live analytics and real-user Core Web Vitals are public at /proof."
     }
   ],
-  "cta": "Book your build. Your next client is already searching."
+  "cta": "Tell us about your practice, and we will reply with the matching demo and the price."
 }

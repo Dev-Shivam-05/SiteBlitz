@@ -1,94 +1,92 @@
 {
   "slug": "care-plans",
+  "metaTitle": "Website Maintenance & Care Plans",
   "name": "Care Plans",
-  "eyebrow": "Ongoing care",
-  "headline": "We maintain it. *You own it.*",
-  "promise": "Websites decay quietly — dependencies age, content goes stale, and one missed update can take a good site down. Care Plans keep yours fast, secure and current: updates shipped, backups running, changes made, analytics reviewed with you every month. And because you own everything — code, domain, data — you stay because it works, not because you're stuck.",
-  "startingPriceINR": 2499,
-  "timeline": "monthly, cancel anytime",
+  "eyebrow": "After launch",
+  "headline": "Website care with *a written scope*.",
+  "promise": "Optional maintenance after launch: content edits, updates, backups and checks, with the tasks, the limits and the monthly price agreed in writing. It is separate from the website build and quoted to what your site needs.",
+  "startingPriceINR": 0,
+  "timeline": "Quoted separately",
   "included": [
     {
-      "title": "Content changes",
-      "text": "New prices, new photos, a new team member, this week's offer. Send it on WhatsApp and it goes live — no ticket portals, no waiting rooms."
+      "title": "Small content edits",
+      "text": "New prices, photos or opening hours, up to the number of edits agreed in your quote, sent to us on WhatsApp."
     },
     {
-      "title": "Updates & patches",
-      "text": "Frameworks, dependencies and integrations kept current. Everything is tested before it touches production, so updates land quietly instead of loudly."
+      "title": "Updates kept current",
+      "text": "The software your site runs on, updated and checked before the change goes live."
     },
     {
-      "title": "Daily offsite backups",
-      "text": "Automatic backups stored away from your hosting, with fast restore. If something ever breaks, we roll back — we don't panic."
+      "title": "Backups",
+      "text": "Backups on the schedule agreed in your quote, so a broken change can be rolled back."
     },
     {
-      "title": "Security monitoring",
-      "text": "Uptime checks, SSL renewal, dependency alerts and scans running around the clock. Most problems get fixed before you'd ever notice them."
+      "title": "Uptime and SSL checks",
+      "text": "We check that the site opens and its certificate is valid, as agreed, and tell you when something needs fixing."
     },
     {
-      "title": "Monthly analytics review call",
-      "text": "Thirty minutes on what your dashboard actually says — visitors, sources, funnels, drop-offs. You leave each call with one or two concrete next moves."
+      "title": "Speed re-checks",
+      "text": "We re-check page speed after content changes and fix what slows a page down, within the agreed scope."
     },
     {
-      "title": "Performance guardrails",
-      "text": "We defend your 90+ Lighthouse targets as content grows. Speed is a habit, not a launch-day trick."
+      "title": "A short monthly note",
+      "text": "What was changed, what was checked and anything you should know, if your quote includes it."
     }
   ],
   "process": [
     {
-      "step": "Handover & audit",
-      "time": "Day 1",
-      "text": "We take the keys — or set up access to a site we didn't build — run a full health check, and record the baseline for speed, security and SEO."
+      "step": "Check the site",
+      "time": "Before any quote",
+      "text": "Built by us or someone else, we look at how it is hosted and what it needs."
     },
     {
-      "step": "Lockdown",
-      "time": "Day 2",
-      "text": "Backups scheduled, monitoring wired up, pending updates applied. From here your site is watched around the clock."
+      "step": "Written scope",
+      "time": "In writing",
+      "text": "Tasks, number of edits, response times and the monthly price. You approve before it starts."
     },
     {
-      "step": "The monthly rhythm",
-      "time": "Day 3–30",
-      "text": "Content changes ship as you send them. Patches and updates land in the background. You run your business; the site keeps pace."
+      "step": "Access and backup",
+      "time": "First week",
+      "text": "Access set up and a first backup taken before anything is changed."
     },
     {
-      "step": "Review & improve",
+      "step": "Monthly work",
       "time": "Every month",
-      "text": "We open your analytics together, agree what to improve next, and do it. Cancel anytime — everything you own keeps working without us."
+      "text": "Edits as you send them, updates and checks, within the agreed scope."
     }
   ],
   "stack": [
-    "Vercel",
-    "Cloudflare",
-    "GitHub",
-    "Dependabot",
-    "Lighthouse CI",
-    "Uptime monitoring",
-    "First-party analytics",
-    "Automated offsite backups"
+    "Written scope and edit limits",
+    "Backups",
+    "Uptime and SSL checks",
+    "Speed re-checks",
+    "Content edits on WhatsApp"
   ],
   "faqs": [
     {
       "q": "Am I locked in?",
-      "a": "No — that's the whole point. You own the code, the repository, the domain and your analytics data from day one. Cancel any month and everything keeps working; you just lose the crew maintaining it."
+      "a": "The notice period and terms are written in your quote before you agree. Your website, domain and content stay yours either way."
     },
     {
-      "q": "Do you take on sites SiteBlitz didn't build?",
-      "a": "Yes, after a quick technical audit. If your site runs on a stack we can maintain properly, we onboard it and treat it like one of ours. If it doesn't, we'll say so plainly and suggest what makes sense instead."
+      "q": "Do you look after sites SiteBlitz didn't build?",
+      "a": "Often, yes. We check how the site is built and hosted first, then quote what is practical."
     },
     {
-      "q": "What counts as a content change?",
-      "a": "The everyday stuff: text edits, price updates, new photos, team changes, swapping an offer or announcement. Whole new pages or features are scoped and quoted separately, so there are never surprise invoices."
+      "q": "What counts as a content edit?",
+      "a": "A change to text, prices, photos or hours on an existing page. New pages, new features or a redesign are quoted separately."
     },
     {
-      "q": "What happens on the monthly review call?",
-      "a": "We read your first-party analytics dashboard together — visitors, sources, funnels, what changed since last month. Then we pick one or two concrete improvements and ship them. It's the difference between having data and using it."
+      "q": "Is maintenance included in the website price?",
+      "a": "No. The build price is one-time. Maintenance is optional and quoted separately, sized to what your site needs."
     },
     {
       "q": "My site already works. Why would I need this?",
-      "a": "Because websites decay quietly. Dependencies age, security holes appear, content goes stale — and both Google and your customers notice. A monthly habit at ₹2,499 is far cheaper than an emergency rebuild."
+      "a": "You may not. Many small sites need only occasional edits; we will say so. Care plans suit sites that change often or must stay up."
     }
   ],
   "relatedWorkSlugs": [
     "clinic",
     "restaurant"
   ],
-  "cta": "Hand over the maintenance. Never the ownership."
+  "cta": "Tell us what your site needs each month, and we will reply with a written scope and price."
 }

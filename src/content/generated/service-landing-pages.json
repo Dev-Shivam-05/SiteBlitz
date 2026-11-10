@@ -1,95 +1,92 @@
 {
   "slug": "landing-pages",
-  "metaTitle": "Landing Page Design Services from ₹7,999",
+  "metaTitle": "Landing Page Design Services, from ₹7,999",
   "name": "Landing Pages",
-  "eyebrow": "Core service",
-  "headline": "One page. One job. *Built to convert.*",
-  "promise": "Your ad makes a promise. The page it points to has to keep it — same message, same offer, one clear next step. We design, write and ship campaign landing pages in 48 hours, wired for measurement from the very first click.",
+  "eyebrow": "One page, one action",
+  "headline": "Landing pages built around *one action*.",
+  "promise": "A single page for one offer or one ad campaign, arranged around one action such as a WhatsApp message or an enquiry. It is the one-page Launch package: ₹7,999, live 2 working days after ready-to-build.",
   "startingPriceINR": 7999,
-  "timeline": "48 hours",
+  "timeline": "2 working days after ready-to-build",
   "included": [
     {
-      "title": "Message-matched hero",
-      "text": "The headline your visitor sees mirrors the ad they clicked. No cognitive gap, no second-guessing — the scent trail from Google or Meta stays unbroken."
+      "title": "A page that matches the ad",
+      "text": "The headline repeats what your ad or post promised, so a visitor knows straight away that they landed in the right place."
     },
     {
-      "title": "One CTA, ruthlessly enforced",
-      "text": "A single conversion goal, repeated at every scroll depth. No navigation menus, no footer link farms, no exits that leak paid traffic."
+      "title": "One call to action",
+      "text": "Every section points to the same next step. Fewer exits and choices make the page easier to act on."
     },
     {
-      "title": "Conversion copywriting",
-      "text": "We write the page around your offer: proof, objections, urgency, in that order. Short sentences. Verbs that push."
+      "title": "Your words, in order",
+      "text": "We arrange your text around the offer: what it is, who it is for, what it costs and what to do next. The words come from you."
     },
     {
-      "title": "Speed engineering",
-      "text": "Server-rendered and tuned for 90+ Lighthouse scores, because a slow page burns ad spend before anyone reads a word."
+      "title": "Built for the phone first",
+      "text": "Ad clicks mostly happen on phones, so the page is designed for a phone screen first and checked there before launch."
     },
     {
-      "title": "Full-funnel measurement",
-      "text": "First-party analytics dashboard tracking visitors, traffic sources and the conversion funnel — so you see exactly what each campaign produced."
+      "title": "Basic technical SEO",
+      "text": "A title, a description and structured data, and the page submitted to Google Search Console. Ad pages often do not need to rank; this keeps the option open."
     },
     {
-      "title": "Lead capture + WhatsApp",
-      "text": "Forms that route enquiries to your inbox and a WhatsApp button for the visitors who would rather just talk. Every lead lands somewhere you check."
+      "title": "WhatsApp and call buttons",
+      "text": "A one-tap WhatsApp chat with a message already typed, and a call button, so an interested visitor reaches you in a few seconds."
     }
   ],
   "process": [
     {
-      "step": "Brief & message match",
-      "time": "H0",
-      "text": "A focused kickoff call. We take your offer, your ad copy and your audience, and lock the one action this page exists to drive."
+      "step": "Send the offer",
+      "time": "One WhatsApp chat",
+      "text": "The offer, the ad or post it belongs to, who it is for and the one action you want."
     },
     {
-      "step": "Copy & wireframe",
-      "time": "H6",
-      "text": "You review the page as words and structure first — headline, argument, CTA — so design never has to paper over a weak message."
+      "step": "Agree the page",
+      "time": "In writing",
+      "text": "Sections, content and the date are written down; you approve them and make the first payment."
     },
     {
-      "step": "Build & wire-up",
-      "time": "H24",
-      "text": "We build the approved page, connect analytics and lead capture, add structured data and hook in WhatsApp. Everything is tested against real form submissions."
+      "step": "Build",
+      "time": "2 working days",
+      "text": "Counted from ready-to-build. You get a staging link to review."
     },
     {
-      "step": "QA & launch",
-      "time": "H48",
-      "text": "Device and speed checks, a final conversion walk-through, then we point your domain and go live. Your campaign can start sending traffic immediately."
+      "step": "Revise and launch",
+      "time": "One round",
+      "text": "One consolidated round of changes, then the page goes live on your domain."
     }
   ],
   "stack": [
-    "Next.js",
-    "React",
-    "Tailwind CSS",
-    "Vercel Edge Network",
-    "First-party analytics dashboard",
-    "Schema.org structured data",
-    "Core Web Vitals monitoring",
-    "WhatsApp Business integration"
+    "Mobile-first design",
+    "WhatsApp and call buttons",
+    "Basic technical SEO",
+    "Google Search Console submission",
+    "One consolidated revision round"
   ],
   "faqs": [
     {
-      "q": "Why not just send ad traffic to my homepage?",
-      "a": "Your homepage has ten jobs; a landing page has one. When the page continues the exact promise of the ad, visitors don't have to hunt for what they came for. Fewer choices, fewer exits, more conversions."
+      "q": "Why not send ad traffic to my home page?",
+      "a": "A home page talks about everything you do. A landing page talks about the one thing the ad offered, which makes it easier for a visitor to take the next step."
     },
     {
       "q": "Will the page match my Google or Meta ads?",
-      "a": "That's the whole method. We start from your ad copy and build outward, so the headline, offer and CTA on the page echo what the click promised. Ad platforms reward relevance — and so do visitors."
+      "a": "Yes. Send us the ad text and we mirror its promise in the headline. Running and paying for the ads stays with you; ad spend is not part of any package."
     },
     {
-      "q": "Is 48 hours actually realistic?",
-      "a": "Yes, because the scope is deliberately tight: one page, one goal, a fixed hour-stamped process. You approve copy at H6 and we launch by H48. We publish our own live performance data at /proof, so you can hold us to it."
+      "q": "Is 2 working days realistic?",
+      "a": "For one page, yes: 2 working days from ready-to-build, with one consolidated revision round."
     },
     {
       "q": "How will I know if the page is working?",
-      "a": "Every build ships with our first-party analytics dashboard: visitors, where they came from and how they moved through the funnel. You watch real numbers, not vanity metrics. It's the same engine behind the live numbers on our /proof page."
+      "a": "Enquiries reach your WhatsApp or phone. Your ad platform reports clicks, and Search Console shows any search visits."
     },
     {
       "q": "What do you need from me to start?",
-      "a": "Your offer, your ad copy or campaign idea, your logo and any brand assets, plus about 45 minutes for the kickoff call. If something is missing, we flag it at H0 — not at H47."
+      "a": "The offer, the page text, your logo and photos, and access to your domain. Anything missing, we flag before the clock starts."
     }
   ],
   "relatedWorkSlugs": [
     "restaurant",
     "fashion"
   ],
-  "cta": "Your campaign is ready to spend. Give it a page that earns it back."
+  "cta": "Send us the offer and the ad, and we will reply with the page plan and the price."
 }

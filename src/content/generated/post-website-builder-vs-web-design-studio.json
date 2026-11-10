@@ -7,7 +7,7 @@
   "readingMinutes": 6,
   "date": "2026-11-01",
   "author": "SiteBlitz Studio",
-  "authorRole": "Editorial team",
+  "authorRole": "Website studio, Gujarat",
   "blocks": [
     {
       "type": "p",
@@ -121,7 +121,8 @@
     },
     {
       "q": "How fast can a studio deliver a website?",
-      "a": "It varies by studio and scope. At SiteBlitz, a one-page Launch site can be live in as little as 48 hours; multi-page Growth sites take about four days and Scale projects about seven."
+      "a": "It varies by studio and scope. At SiteBlitz, a one-page Launch site can be live 2 working days after ready-to-build; a three-page Business site takes 7 working days, and larger projects follow the schedule in their quote."
     }
-  ]
+  ],
+  "updated": "2026-11-11"
 }
