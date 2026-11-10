@@ -21,7 +21,7 @@ export function WhatsAppPill() {
   const [topic, setTopic] = useState("default");
 
   useEffect(() => {
-    const hero = document.querySelector('[data-scene="hero"]');
+    const hero = document.querySelector("[data-hero]");
     const enders = Array.from(document.querySelectorAll("[data-close], footer"));
     const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-wa]"));
     // Pages without the home hero show the pill after the first screen.

@@ -430,6 +430,114 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
 [data-hero-words] { animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s backwards; }
 [data-hero-frame] .hero-photo { animation: hero-photo-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 
+/* ==== v4 hero: wordmark particles → showroom phone (sections/Home.tsx HomeHero, hero/ParticleHero.tsx) ====
+   Static flow by default (reduced motion, short landscape screens): the wordmark screen, then the phone block.
+   With motion the hero is 260svh tall and its stage sticks for 160svh of scroll; ParticleHero writes the progress
+   to --p (0 → 1) and these rules read it. .is-gl = the WebGL engine is running; .is-drawn = its first frame is up. */
+.hero-v4 { position: relative; background: var(--color-void); }
+.hero-stage { position: relative; overflow: hidden; }
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 40% at 50% 36%, rgba(204, 255, 0, 0.09), transparent 70%),
+    radial-gradient(90% 60% at 50% 110%, rgba(245, 245, 240, 0.05), transparent 70%);
+}
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.hero-v4.is-drawn .hero-canvas { opacity: 1; }
+.hero-screen {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.hero-mark {
+  position: absolute;
+  left: 50%;
+  top: 33%;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: 17.2vw;
+  line-height: 0.9;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+@media (min-width: 768px) { .hero-mark { top: 38%; } }
+.hero-a { position: relative; z-index: 2; }
+.hero-cue-line { position: relative; display: block; width: 56px; height: 1px; overflow: hidden; background: rgba(245, 245, 240, 0.2); }
+.hero-cue-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-volt);
+  animation: cue-run 1.8s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+@keyframes cue-run { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+.hero-b { position: relative; z-index: 2; padding: 10vh 0 14vh; }
+.hero-b-inner { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 768px) { .hero-b-inner { grid-template-columns: 1fr 1fr; gap: 6vw; } }
+.hero-phone { position: relative; height: min(70svh, 600px); aspect-ratio: 780 / 1624; justify-self: center; }
+.hero-shot { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 1.6rem; }
+.hero-bezel {
+  position: absolute;
+  inset: -9px;
+  border: 9px solid var(--color-raised);
+  border-radius: calc(1.6rem + 9px);
+  box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(245, 245, 240, 0.12), 0 0 90px -20px rgba(204, 255, 0, 0.35);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-height: 540px) {
+  .hero-v4 { height: 260svh; }
+  .hero-stage { position: sticky; top: 0; height: 100svh; }
+  .hero-screen { height: 100%; min-height: 0; }
+  .hero-a {
+    opacity: clamp(0, calc(1 - var(--p, 0) * 7), 1);
+    transform: translate3d(0, calc(var(--p, 0) * -180px), 0);
+  }
+  .hero-v4.a-off .hero-a { visibility: hidden; }
+  .hero-b { position: absolute; inset: 0; padding: 0; display: flex; align-items: center; pointer-events: none; }
+  .hero-b-copy {
+    visibility: hidden;
+    opacity: clamp(0, calc((var(--p, 0) - 0.7) * 8), 1);
+    transform: translate3d(0, calc((1 - clamp(0, calc((var(--p, 0) - 0.7) * 8), 1)) * 48px), 0);
+  }
+  .hero-v4.b-on .hero-b-copy { visibility: visible; pointer-events: auto; }
+  .hero-phone { height: min(74svh, 680px); }
+  @media (max-width: 767px) {
+    .hero-b { align-items: stretch; }
+    .hero-b-inner { display: flex; flex-direction: column; justify-content: space-between; gap: 20px; height: 100%; padding-top: 92px; padding-bottom: 20px; }
+    .hero-phone { order: -1; height: min(48svh, 400px, calc(100svh - 390px)); }
+  }
+
+  /* no WebGL: the wordmark lifts away and the real phone rises in */
+  .hero-v4:not(.is-gl) .hero-mark {
+    opacity: clamp(0, calc(1 - var(--p, 0) * 3.5), 1);
+    transform: translate(-50%, calc(-50% - var(--p, 0) * 240px)) scale(calc(1 + var(--p, 0) * 0.5));
+  }
+  .hero-v4:not(.is-gl) .hero-phone {
+    opacity: clamp(0, calc((var(--p, 0) - 0.3) * 4), 1);
+    transform: translate3d(0, calc((1 - clamp(0, calc((var(--p, 0) - 0.3) * 4), 1)) * 90px), 0);
+  }
+  /* WebGL: the canvas takes over the wordmark; the bezel appears as the particles land, then the real capture */
+  .hero-v4.is-drawn .hero-mark { opacity: 0; }
+  .hero-v4.is-gl .hero-bezel { opacity: clamp(0, calc((var(--p, 0) - 0.62) * 6), 1); }
+  .hero-v4.is-gl .hero-shot { opacity: clamp(0, calc((var(--p, 0) - 0.84) * 10), 1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 

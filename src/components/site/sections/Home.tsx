@@ -1,10 +1,11 @@
-import Image, { getImageProps } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { DEMO_LIST } from "@/lib/demos";
-import { PHOTOS } from "@/lib/photos";
+import { DEMOS, DEMO_LIST } from "@/lib/demos";
 import { PROCESS_STEPS, SITE } from "@/lib/site";
 import { CONCEPT_CAP_PER_WEEK, FROM_PRICE, PACKAGES, inr, launchPkg } from "@/lib/offer";
 import { WhatsAppIcon } from "../WhatsAppIcon";
+import { Magnetic } from "../Magnetic";
+import { ParticleHero } from "../hero/ParticleHero";
 
 /* Redesign v3 home (docs/spec/redesign-v3-motion.md): the motion grammar of the reference (Horeca Social)
    carried by SiteBlitz's own content. Every scene is complete, readable server HTML; Motion.tsx only adds
@@ -14,78 +15,91 @@ import { WhatsAppIcon } from "../WhatsAppIcon";
 const WA_DEMO = "Hi SiteBlitz, I'd like to see a website demo for my business and the package details.";
 const LAUNCH_DELIVERY = launchPkg.delivery; // "2 working days after ready-to-build"
 
-/** 01 — Hero: a full-bleed shop photograph, the offer on a solid ink panel, the concept phone on the photo. */
+/** 01 — Hero (spec v4 rows 4-5): the SITEBLITZ wordmark, which ParticleHero turns into WebGL particles that
+ *  scatter from the pointer and, as the hero scrolls, fly into the phone screen of the showroom concept. Every word
+ *  is server HTML; the wordmark is a real text poster, so reduced motion, low-power devices and failed WebGL all get
+ *  the same composition without the particles. */
 export function HomeHero() {
-  const photo = PHOTOS.heroShop;
-  const portrait = PHOTOS.heroShopPortrait;
-  // Art direction: phones get the 9:16 crop, wider screens the 3:2 frame (one <img>, two sources).
-  const { props: desk } = getImageProps({ src: photo.src, alt: photo.alt, width: photo.width, height: photo.height, sizes: "100vw" });
-  const { props: phone } = getImageProps({
-    src: portrait.src,
-    alt: portrait.alt,
-    width: portrait.width,
-    height: portrait.height,
-    sizes: "100vw",
-    priority: true,
-  });
+  const showroom = DEMOS.showroom;
   return (
-    <section data-scene="hero" className="relative h-[100svh] min-h-[640px] md:min-h-[720px]">
-      <div data-hero-frame className="hero-frame absolute inset-0 overflow-hidden bg-ink">
-        <picture>
-          <source media="(min-width: 768px)" srcSet={desk.srcSet} sizes="100vw" />
-          {/* eslint-disable-next-line @next/next/no-img-element -- art-directed <picture>; props come from getImageProps */}
-          <img {...phone} alt={photo.alt} className="hero-photo absolute inset-0 h-full w-full object-cover" />
-        </picture>
-        {/* The concept phone: decorative (the same demo is linked, with its disclosure, further down) */}
-        <div
-          aria-hidden
-          className="phone-frame absolute right-4 top-[88px] w-[118px] overflow-hidden sm:w-[150px] md:bottom-[10vh] md:right-[8vw] md:top-auto md:w-[clamp(220px,22vw,320px)]"
-        >
-          <Image
-            src="/demos/showroom.png"
-            alt=""
-            width={780}
-            height={1624}
-            sizes="(min-width: 768px) 22vw, 150px"
-            className="block h-auto w-full"
-          />
+    <section data-hero aria-labelledby="hero-title" className="hero-v4">
+      <div className="hero-stage">
+        <div aria-hidden className="hero-glow" />
+        <ParticleHero />
+        <div className="hero-screen">
+          <p aria-hidden data-hero-mark className="hero-mark display">
+            Site<span className="text-volt">Blitz</span>
+          </p>
+          <div className="hero-a mx-auto w-full max-w-[1440px] px-4 pb-6 md:px-8 md:pb-10">
+            <div className="grid gap-6 md:grid-cols-[1.3fr_1fr] md:items-end md:gap-10">
+              <div>
+                <p className="kicker text-muted">{SITE.locationLine}</p>
+                <h1 id="hero-title" className="display mt-4 text-[clamp(36px,10.4vw,48px)] md:text-[clamp(48px,4.6vw,84px)]">
+                  Websites people <span className="serif text-volt">remember.</span>
+                </h1>
+              </div>
+              <div className="md:justify-self-end md:text-right">
+                <p className="text-base font-semibold md:text-lg">
+                  From {inr(FROM_PRICE)} · {launchPkg.pages}
+                </p>
+                <p className="mt-1 text-sm text-muted md:text-base">Live in {LAUNCH_DELIVERY}.</p>
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row md:justify-end">
+                  <Magnetic strength={0.3}>
+                    <a
+                      href={SITE.whatsapp(WA_DEMO)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-track="hero_whatsapp"
+                      className="btn-volt flex h-[52px] w-full items-center justify-center gap-2 rounded-full px-7 text-base font-semibold"
+                    >
+                      <WhatsAppIcon className="h-5 w-5" color="currentColor" /> Chat on WhatsApp
+                    </a>
+                  </Magnetic>
+                  <Link
+                    href="#demos"
+                    data-track="hero_demos"
+                    className="btn-line flex h-[52px] items-center justify-center rounded-full px-7 text-base font-semibold"
+                  >
+                    See the concepts
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <p aria-hidden className="hero-cue rm-hide kicker mt-6 hidden items-center gap-3 text-faint md:flex">
+              <span className="hero-cue-line" /> Scroll · watch it build
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div
-        data-hero-words
-        className="absolute inset-x-3 bottom-3 rounded-[20px] bg-ink p-6 text-void sm:inset-x-4 sm:bottom-4 md:inset-x-auto md:bottom-12 md:left-8 md:max-w-[min(760px,58vw)] md:rounded-[28px] md:p-12"
-      >
-        <p className="kicker text-void/75">{SITE.locationLine}</p>
-        <h1 className="display mt-4 text-[clamp(50px,14vw,72px)] md:text-[clamp(88px,8.6vw,132px)]">
-          Websites.
-          <br />
-          {/* volt on ink is 3.38:1, allowed here only because the headline is >= 50 px (AA large text) */}
-          <span className="text-volt">From {inr(FROM_PRICE)}.</span>
-        </h1>
-        <p className="mt-5 max-w-[34ch] text-base leading-relaxed text-void/85 md:text-lg">
-          Mobile-first websites for salons, coaching classes and showrooms.
-        </p>
-        <p className="mt-2 text-sm font-semibold text-void">
-          Launch: {launchPkg.pages} · {LAUNCH_DELIVERY}.
-        </p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a
-            href={SITE.whatsapp(WA_DEMO)}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-track="hero_whatsapp"
-            className="btn-volt flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold"
-          >
-            <WhatsAppIcon className="h-5 w-5" color="currentColor" /> Chat on WhatsApp
-          </a>
-          <Link
-            href="#demos"
-            data-track="hero_demos"
-            className="btn-line flex h-[52px] items-center justify-center rounded-full px-7 text-base font-semibold"
-          >
-            View live concepts
-          </Link>
+        <div className="hero-b">
+          <div className="hero-b-inner mx-auto w-full max-w-[1440px] px-4 md:px-8">
+            <div className="hero-b-copy">
+              <p className="kicker text-volt">Concept 03 · {showroom.brand} · a fictional business</p>
+              <h2 className="display mt-4 text-[clamp(40px,11vw,56px)] md:text-[clamp(56px,6vw,104px)]">
+                Built <span className="serif text-volt">like this.</span>
+              </h2>
+              <p className="mt-4 max-w-[40ch] text-base leading-relaxed text-muted md:mt-6 md:text-lg">{showroom.pitch}</p>
+              <Link
+                href="/demo/showroom"
+                data-track="hero_open_showroom"
+                className="btn-line mt-6 inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-base font-semibold md:mt-8"
+              >
+                Open the live concept <span aria-hidden>→</span>
+              </Link>
+            </div>
+            <div className="hero-phone">
+              <div aria-hidden className="hero-bezel" />
+              <Image
+                data-hero-shot
+                src="/demos/showroom.png"
+                alt=""
+                width={780}
+                height={1624}
+                sizes="(min-width: 768px) 340px, 220px"
+                className="hero-shot"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

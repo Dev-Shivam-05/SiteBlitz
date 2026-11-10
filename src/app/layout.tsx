@@ -113,7 +113,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {/* without JS, reveal-on-scroll elements must simply be visible */}
         <noscript>
-          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+          <style>{`.reveal{opacity:1 !important;transform:none !important}.hero-v4{height:auto !important}.hero-stage{position:relative !important;height:auto !important}.hero-screen{min-height:100svh !important}.hero-b{position:relative !important;padding:10vh 0 !important}.hero-a,.hero-b-copy,.hero-shot,.hero-bezel{opacity:1 !important;visibility:visible !important;transform:none !important}`}</style>
         </noscript>
         <script
           type="application/ld+json"
