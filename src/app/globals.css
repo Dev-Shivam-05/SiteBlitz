@@ -308,6 +308,11 @@ body {
 @media (min-width: 768px) {
   .demo-card-v3 { height: min(720px, calc(100svh - 128px)); }
 }
+/* keyboard: a focused card rises above the cards stacked on it, so its focused button is never hidden */
+.demo-card-v3:focus-within { z-index: 5; }
+.rail-row:focus-visible { outline: 2px solid var(--color-volt); outline-offset: 3px; }
+/* focusing scrolls these clear of the fixed header (top) and the WhatsApp pill (bottom) */
+.demo-card-v3 a, .rail-row { scroll-margin: 160px 0 120px; }
 .demo-shot img { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
 .demo-card-v3:hover .demo-shot img { transform: scale(1.02); }
 /* landscape phones and short screens: normal flow, no stacking (spec fallback) */
@@ -354,6 +359,8 @@ body {
 .close-scene .close-ghost:hover { transform: translateY(-1px); border-color: currentColor; }
 .close-scene.is-dark { background: var(--color-ink); color: var(--color-void); }
 .close-scene.is-dark .close-sub { color: rgba(248, 245, 238, 0.78); }
+/* volt on ink is 3.38:1, too low for a 13 px label */
+.close-scene.is-dark .close-kicker { color: rgba(248, 245, 238, 0.75); }
 .close-scene.is-dark .close-ghost { border-color: rgba(248, 245, 238, 0.55); }
 
 /* persistent WhatsApp pill. Position is set here (not a utility) because .btn-volt's position: relative is
@@ -381,7 +388,7 @@ body {
 @keyframes hero-in { from { transform: translateY(36px); } to { transform: none; } }
 @keyframes hero-photo-in { from { transform: scale(1.08); } to { transform: none; } }
 [data-hero-words] { animation: hero-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.05s backwards; }
-[data-hero-frame] > img { animation: hero-photo-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+[data-hero-frame] .hero-photo { animation: hero-photo-in 1.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
 
 /* ---- card hover sheen ---- */
 .card-hover {

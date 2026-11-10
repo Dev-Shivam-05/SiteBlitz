@@ -9,7 +9,7 @@ export function PhotoCredits({ ids, className = "" }: { ids: readonly PhotoId[];
         const p = PHOTOS[id];
         return (
           <span key={id}>
-            <a href={p.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
+            <a href={p.source} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center underline underline-offset-2 md:min-h-0">
               {p.author}
             </a>
             , {p.licence}

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { DEMO_LIST } from "@/lib/demos";
 import { PHOTOS } from "@/lib/photos";
@@ -17,10 +17,25 @@ const LAUNCH_DELIVERY = launchPkg.delivery; // "2 working days after ready-to-bu
 /** 01 — Hero: a full-bleed shop photograph, the offer on a solid ink panel, the concept phone on the photo. */
 export function HomeHero() {
   const photo = PHOTOS.heroShop;
+  const portrait = PHOTOS.heroShopPortrait;
+  // Art direction: phones get the 9:16 crop, wider screens the 3:2 frame (one <img>, two sources).
+  const { props: desk } = getImageProps({ src: photo.src, alt: photo.alt, width: photo.width, height: photo.height, sizes: "100vw" });
+  const { props: phone } = getImageProps({
+    src: portrait.src,
+    alt: portrait.alt,
+    width: portrait.width,
+    height: portrait.height,
+    sizes: "100vw",
+    priority: true,
+  });
   return (
     <section data-scene="hero" className="relative h-[100svh] min-h-[640px] md:min-h-[720px]">
       <div data-hero-frame className="hero-frame absolute inset-0 overflow-hidden bg-ink">
-        <Image src={photo.src} alt={photo.alt} fill priority sizes="100vw" className="object-cover" />
+        <picture>
+          <source media="(min-width: 768px)" srcSet={desk.srcSet} sizes="100vw" />
+          {/* eslint-disable-next-line @next/next/no-img-element -- art-directed <picture>; props come from getImageProps */}
+          <img {...phone} alt={photo.alt} className="hero-photo absolute inset-0 h-full w-full object-cover" />
+        </picture>
         {/* The concept phone: decorative (the same demo is linked, with its disclosure, further down) */}
         <div
           aria-hidden
@@ -282,7 +297,7 @@ export function Packages() {
                 className="pkg-panel scroll-mt-28 rounded-[20px] border border-line bg-surface p-6 md:min-h-[65svh] md:rounded-[28px] md:p-12"
               >
                 <div className="flex flex-wrap items-center gap-3">
-                  <h3 id={`pkg-${p.id}-title`} className="display text-[44px] md:text-[56px]">
+                  <h3 id={`pkg-${p.id}-title`} className="display text-[36px] md:text-[56px]">
                     {p.name}
                   </h3>
                   <span className="rounded-full bg-raised px-3 py-1 text-sm font-semibold">{p.pages}</span>
@@ -291,7 +306,7 @@ export function Packages() {
                   )}
                 </div>
                 <p className="mt-3 max-w-[48ch] text-base leading-relaxed text-muted md:text-lg">{p.tagline}</p>
-                <p className="display mt-6 pb-[0.12em] text-[64px] text-volt md:text-[96px]">{p.priceInr ? inr(p.priceInr) : "By quote"}</p>
+                <p className="display mt-6 pb-[0.12em] text-[42px] text-volt md:text-[96px]">{p.priceInr ? inr(p.priceInr) : "By quote"}</p>
                 <p className="mt-1 text-sm text-muted">
                   {p.priceInr ? "One-time build price · no GST added" : "Priced to the agreed scope"}
                 </p>
@@ -349,7 +364,7 @@ export function Process() {
   return (
     <section id="how" data-wa="process" aria-labelledby="how-title" className="scroll-mt-20 bg-raised py-[14vh]">
       <div className="mx-auto max-w-[1440px] px-4 md:px-8">
-        <p className="kicker text-volt">How it works</p>
+        <p className="kicker text-volt-dim">How it works</p>
         <h2 id="how-title" className="display mt-4 max-w-[16ch] text-[clamp(44px,11vw,64px)] md:text-[clamp(64px,6.4vw,104px)]">
           Four steps. You approve before you pay.
         </h2>
@@ -357,7 +372,7 @@ export function Process() {
           {PROCESS_STEPS.map((s) => (
             <li key={s.n} data-step className="step">
               <div data-step-line className="h-[3px] w-full origin-left bg-ink" />
-              <p className="step-n display mt-5 text-[72px] md:text-[96px]">{s.n}</p>
+              <p className="step-n display mt-5 text-[52px] md:text-[96px]">{s.n}</p>
               <h3 className="mt-2 text-xl font-semibold">{s.title}</h3>
               <p className="kicker mt-2 text-muted">{s.time}</p>
               <p className="mt-3 text-base leading-relaxed text-muted">{s.text}</p>
@@ -378,7 +393,7 @@ export function ConceptPromise() {
         <h2
           id="promise-title"
           data-scatter
-          className="display mx-auto max-w-[12ch] text-[clamp(60px,17vw,96px)] md:max-w-none md:text-[clamp(96px,10.5vw,176px)]"
+          className="display mx-auto max-w-[12ch] text-[clamp(44px,13vw,54px)] md:max-w-none md:text-[clamp(88px,8.4vw,120px)]"
         >
           See it before you pay
         </h2>
@@ -406,7 +421,7 @@ export function Close() {
     <section data-close data-wa="close" aria-labelledby="close-title" className="close-scene py-[16vh]">
       <div className="mx-auto max-w-[1440px] px-4 md:px-8">
         <p className="kicker close-kicker">Start here</p>
-        <h2 id="close-title" className="display mt-4 text-[clamp(64px,18vw,104px)] md:text-[clamp(104px,11vw,184px)]">
+        <h2 id="close-title" className="display mt-4 text-[clamp(44px,13vw,54px)] md:text-[clamp(88px,8.4vw,120px)]">
           Let&apos;s build your website.
         </h2>
         <div className="mt-8 grid gap-8 md:grid-cols-[1fr_auto] md:items-end">

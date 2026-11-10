@@ -7,6 +7,7 @@
 
 export type PhotoId =
   | "heroShop"
+  | "heroShopPortrait"
   | "salonInterior"
   | "salonBasin"
   | "coachingClassroom"
@@ -30,6 +31,17 @@ export const PHOTOS: Record<PhotoId, Photo> = {
     src: "/photos/hero-textile-shop.webp",
     width: 1920,
     height: 1280,
+    alt: "Shelves of folded printed cotton fabric in a local textile shop",
+    author: "Ninara",
+    licence: "CC BY 2.0",
+    source: "https://commons.wikimedia.org/wiki/File:Textile_shop_in_Jaipur.jpg",
+  },
+  /* the same photograph, centre-cropped 9:16 for phones (a landscape frame cover-cropped to a tall screen was
+     upscaled about 3x); credited through heroShop */
+  heroShopPortrait: {
+    src: "/photos/hero-textile-shop-portrait.webp",
+    width: 1080,
+    height: 1920,
     alt: "Shelves of folded printed cotton fabric in a local textile shop",
     author: "Ninara",
     licence: "CC BY 2.0",
