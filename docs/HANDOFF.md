@@ -67,5 +67,5 @@
 
 ## Next session starts here
 - Phase P-INNER: bring `/pricing`, `/about`, `/services`, `/contact`, `/work`, `/proof` onto the v3 layout and voice (≤ 8 files), then the founder's release decision (L1).
-- First command: `git -C E:\Temp\SiteBlitz log --oneline -8`, then open the Preview build from the `v2-redesign` push and show the owner the home page on a phone.
+- First command: `git -C E:\Temp\SiteBlitz push origin v2-redesign` (if the owner has not pushed yet), then open the Preview build and show the owner the home page on a phone.
 - Watch out for: custom CSS outside `@layer` beats Tailwind v4 utilities. Put helper classes in `@layer components`. `.btn-volt`'s `position: relative` silently beats the `fixed` utility.
