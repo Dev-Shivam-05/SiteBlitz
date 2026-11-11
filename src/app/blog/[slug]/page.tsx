@@ -62,14 +62,14 @@ function Block({ b }: { b: PostBlock }) {
     return (
       <ul className="my-4 space-y-2">
         {(b.items || []).map((it, i) => (
-          <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-muted">
+          <li key={i} className="flex gap-3 text-base leading-relaxed text-muted">
             <span className="mt-1 shrink-0 text-volt">✦</span>
             <span>{it}</span>
           </li>
         ))}
       </ul>
     );
-  return <p className="my-4 text-[15px] leading-relaxed text-muted">{b.text}</p>;
+  return <p className="my-4 text-base leading-relaxed text-muted">{b.text}</p>;
 }
 
 /** 10turtle's smartest pattern, done honestly: a relevant service card inside
@@ -82,7 +82,7 @@ function ServicePlug({ cluster }: { cluster: string }) {
   if (!svc) return null;
   return (
     <aside className="my-10 rounded-2xl border border-volt/30 bg-surface p-6">
-      <p className="text-[10px] uppercase tracking-[0.25em] text-volt">From the studio</p>
+      <p className="text-xs uppercase tracking-[0.25em] text-volt">From the studio</p>
       <p className="font-display mt-2 text-lg font-bold">{svc.name}</p>
       <p className="mt-1 text-sm text-muted">{svc.promise.split(". ")[0]}.</p>
       <div className="mt-4 flex flex-wrap items-center gap-4">
@@ -219,7 +219,7 @@ export default async function PostPage({
         </div>
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
-          <Link href="/blog" className="text-sm text-muted hover:text-ink">
+          <Link href="/blog" className="inline-flex min-h-11 items-center text-sm text-muted hover:text-ink">
             ← All guides
           </Link>
           <a

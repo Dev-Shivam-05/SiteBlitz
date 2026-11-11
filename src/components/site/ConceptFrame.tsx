@@ -13,7 +13,7 @@ export function ConceptFrame({ title, goal, index }: { title: string; goal: stri
       </div>
       <div className="blueprint-grid relative flex flex-1 flex-col justify-between gap-5 p-5 md:p-7">
         <div>
-          <span className="inline-block rounded-full border border-volt/40 bg-volt/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-volt">
+          <span className="inline-block rounded-full border border-volt/40 bg-volt/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-volt">
             Concept study
           </span>
           <p className="font-display mt-4 max-w-[16ch] text-2xl font-bold leading-tight text-ink md:text-3xl">{title}</p>

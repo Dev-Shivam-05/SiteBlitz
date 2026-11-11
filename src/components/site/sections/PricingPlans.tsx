@@ -15,7 +15,7 @@ export function PricingPlans({ headingLevel = "h2" }: { headingLevel?: "h2" | "h
           }`}
         >
           {p.recommended && (
-            <span className="absolute -top-3 left-7 rounded-full bg-volt px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-void">
+            <span className="absolute -top-3 left-7 rounded-full bg-volt px-3 py-1 text-xs font-bold uppercase tracking-wide text-void">
               Most complete
             </span>
           )}

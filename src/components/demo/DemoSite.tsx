@@ -17,7 +17,7 @@ export function DemoSite({ demo }: { demo: Demo }) {
   const detail = PHOTOS[demo.detailPhoto];
   return (
     <div className={`${demo.theme} demo-root min-h-screen`}>
-      <div className="demo-ribbon sticky top-0 z-50 px-4 py-2 text-center text-[11px] font-semibold leading-snug sm:text-xs">
+      <div className="demo-ribbon sticky top-0 z-50 px-4 py-2 text-center text-xs font-semibold leading-snug">
         SITEBLITZ CONCEPT DEMO · An illustrative {demo.vertical.toLowerCase()} website, not a real business or
         client project.{" "}
         <Link href="/pricing" className="underline underline-offset-2">

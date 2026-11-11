@@ -198,7 +198,7 @@ async function ProofContent() {
         <div className="mt-8 overflow-x-auto rounded-2xl border border-line" data-anim="fade-up">
           <table className="w-full min-w-[560px] text-left text-sm">
             <thead>
-              <tr className="border-b border-line bg-surface text-[11px] uppercase tracking-wider text-faint">
+              <tr className="border-b border-line bg-surface text-xs uppercase tracking-wider text-faint">
                 <th className="px-5 py-3.5">Metric</th>
                 <th className="px-5 py-3.5">Budget</th>
                 <th className="px-5 py-3.5">Why it matters</th>

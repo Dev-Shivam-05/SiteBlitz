@@ -125,7 +125,7 @@ export function GraderTool() {
                 <p className={`font-display text-5xl font-bold tabular-nums ${scoreColor(result.score)}`}>
                   {result.score}
                 </p>
-                <p className="text-[10px] uppercase tracking-widest text-faint">/ 100</p>
+                <p className="text-xs uppercase tracking-widest text-faint">/ 100</p>
               </div>
             </div>
             <div className="w-full">
@@ -174,7 +174,7 @@ export function GraderTool() {
                     <div>
                       <p className="font-semibold text-ink">
                         {f.check}
-                        <span className="ml-2 text-[10px] uppercase tracking-wider text-faint">{CAT_LABEL[f.category]}</span>
+                        <span className="ml-2 text-xs uppercase tracking-wider text-faint">{CAT_LABEL[f.category]}</span>
                       </p>
                       <p className="mt-0.5 text-muted">{f.note}</p>
                     </div>

@@ -52,7 +52,7 @@ export default function BlogIndex() {
               className="group flex flex-col justify-between rounded-2xl border border-line bg-surface p-7 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-volt/40"
             >
               <div>
-                <p className="text-[10px] uppercase tracking-[0.25em] text-volt">
+                <p className="text-xs uppercase tracking-[0.25em] text-volt">
                   {CLUSTER_LABEL[p.cluster] || p.cluster}
                 </p>
                 <h2 className="font-display mt-3 text-2xl font-bold leading-snug group-hover:text-volt">
