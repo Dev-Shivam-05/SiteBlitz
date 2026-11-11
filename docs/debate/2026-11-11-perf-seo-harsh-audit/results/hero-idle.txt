@@ -1,0 +1,5 @@
+hero on screen, scrolled a little: 121 draw calls in 2 s | is-gl true
+scrollY 13810
+hero off screen: 0 draw calls in 2 s | is-gl true
+back at top: 121 draw calls in 2 s | is-gl true
+tab hidden (at top): 0 draw calls in 2 s | is-gl true

@@ -211,3 +211,27 @@ instruction, after four ChatGPT rounds (`docs/debate/2026-11-10-multipage-seo-ra
 
 **Why:** the owner asked for multi-page, top search visibility and AI visibility without inventing anything; every
 choice above either removes a false or inconsistent claim or adds content only the studio can publish truthfully.
+
+## D18 — Fixes from the harsh performance / SEO / mobile audit (2026-11-11)
+
+**Decision:** the owner approved all twelve fixes plus the security update ("Go for all, do not stop until everything is
+completed") after the three-round audit in `docs/debate/2026-11-11-perf-seo-harsh-audit/RESULT.md`. This changes D15 in
+one place: the full-screen first-visit preloader (0-100 count on a void sheet) is replaced by a 3 px volt line that sweeps
+the top edge once. Everything else in D15 stays (palette, Mona Sans / Instrument Serif / DM Sans, particle hero, curtain).
+- Next 15.5.20 -> 15.5.29 (2026-11-03 security release).
+- Fonts self-hosted from `src/fonts/` (`scripts/fonts/build_fonts.py`): Mona Sans narrowed to 600-800 weight / 100-125 %
+  width, DM Sans 400-600 with its optical-size axis, both with the rupee sign; two preloads, 101 KB instead of six files,
+  214 KB, five preloads. Instrument Serif stays on next/font/google, no longer preloaded. Admin text set in Mona Sans at
+  weight 400 (one quick-add input) now renders at 600, the lowest weight in the file.
+- Below-the-fold sections and the footer use `content-visibility: auto`; sections holding measured or pinned scenes are
+  excluded and Motion.tsx refreshes ScrollTrigger when real heights arrive.
+- Footer links `prefetch={false}`; the hero phone capture loads at low priority.
+- Accessibility: phone menu is a modal, skip link, scroll padding for the fixed header and WhatsApp pill, words-scrub
+  readable (opacity 0.5 -> 1, no aria-label on a <p>), step numerals 3.5:1, guide body 16 px, nothing public under 12 px.
+- Search: declared favicon set, in-content links to the hub pages, descriptive anchors, full legal descriptions, manifest
+  copy from site.ts/offer.ts, and production builds require `NEXT_PUBLIC_SITE_URL` (docs/DEPLOY.md).
+- Rejected while building: wrapping the page body in `<Suspense>` to split hydration. Next streamed the boundary into a
+  hidden `<div>` swapped in by script, so without JavaScript the page body was invisible.
+
+**Why:** each change removes a measured defect (see the audit's `results/`); none changes copy, prices or the look beyond
+the preloader.

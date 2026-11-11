@@ -1,0 +1,12 @@
+cv    LCP 3424 TBT 2419 maxTask 2279 
+nocv  LCP 3604 TBT 829 maxTask 1959 
+cv    LCP 3696 TBT 1749 maxTask 2190 
+nocv  LCP 4692 TBT 1192 maxTask 3036 
+cv    LCP 3428 TBT 1795 maxTask 1924 
+nocv  LCP 5008 TBT 1014 maxTask 3287 
+cv    LCP 2700 TBT 1628 maxTask 1230 
+nocv  LCP 4776 TBT 873 maxTask 3166 
+cv    LCP 3432 TBT 1550 maxTask 1946 
+nocv  LCP 4688 TBT 1169 maxTask 3098 
+cv    LCP 3612 TBT 1900 maxTask 2182 
+nocv  LCP 4808 TBT 888 maxTask 3122 

@@ -25,6 +25,8 @@ const CSS = opt("css", "");
 const BLOCK = opt("block", "") ? opt("block").split(",") : [];
 // --seen: mark the session as already seen, so the first-visit preloader and the delayed hero entrance are skipped.
 const SEEN = args.includes("--seen");
+// --inject "<html>": inserted right after <head> in the document response (CDP Fetch), e.g. a style override for an A/B test.
+const INJECT = opt("inject", "");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function open(port) {
@@ -43,11 +45,11 @@ async function open(port) {
   }
   throw new Error("no CDP");
 }
-const PROBE = `(() => { const v = window.__v = { fcp: 0, lcp: 0, lcpEl: '', cls: 0, tbt: 0, maxTask: 0, plEnd: 0 };
+const PROBE = `(() => { const v = window.__v = { fcp: 0, lcp: 0, lcpEl: '', cls: 0, tbt: 0, tbtAll: 0, maxTask: 0, plEnd: 0 };
   new PerformanceObserver((l) => { for (const e of l.getEntries()) if (e.name === 'first-contentful-paint') v.fcp = e.startTime; }).observe({ type: 'paint', buffered: true });
   new PerformanceObserver((l) => { for (const e of l.getEntries()) { v.lcp = e.startTime; const el = e.element; v.lcpEl = el ? el.tagName.toLowerCase() + '.' + String(el.className || '').split(' ')[0] : ''; } }).observe({ type: 'largest-contentful-paint', buffered: true });
   new PerformanceObserver((l) => { for (const e of l.getEntries()) if (!e.hadRecentInput) v.cls += e.value; }).observe({ type: 'layout-shift', buffered: true });
-  new PerformanceObserver((l) => { for (const e of l.getEntries()) { if (v.fcp && e.startTime > v.fcp) v.tbt += Math.max(0, e.duration - 50); v.maxTask = Math.max(v.maxTask, e.duration); } }).observe({ type: 'longtask', buffered: true });
+  new PerformanceObserver((l) => { for (const e of l.getEntries()) { v.tbtAll += Math.max(0, e.duration - 50); if (v.fcp && e.startTime > v.fcp) v.tbt += Math.max(0, e.duration - 50); v.maxTask = Math.max(v.maxTask, e.duration); } }).observe({ type: 'longtask', buffered: true });
   const tick = () => { const el = document.querySelector('.preloader'); if (el) { const cs = getComputedStyle(el); const r = el.getBoundingClientRect();
     const cover = cs.display === 'none' || cs.visibility === 'hidden' ? 0 : Math.max(0, Math.min(innerHeight, r.bottom) - Math.max(0, r.top)) / innerHeight; if (cover >= 0.5) v.plEnd = performance.now(); }
     if (performance.now() < 8000) requestAnimationFrame(tick); }; requestAnimationFrame(tick); })()`;
@@ -77,6 +79,15 @@ for (const path of PAGES) {
       if (CSS) await c.send("Page.addScriptToEvaluateOnNewDocument", { source: `(() => { const s = document.createElement("style"); s.textContent = ${JSON.stringify(CSS)}; (document.head || document.documentElement).appendChild(s); })()` });
       if (SEEN) await c.send("Page.addScriptToEvaluateOnNewDocument", { source: "try{sessionStorage.setItem('sb_seen','1')}catch(e){}" });
       if (BLOCK.length) await c.send("Network.setBlockedURLs", { urls: BLOCK });
+      if (INJECT) {
+        await c.send("Fetch.enable", { patterns: [{ urlPattern: BASE + path, resourceType: "Document", requestStage: "Response" }] });
+        c.on(async (d) => {
+          if (d.method !== "Fetch.requestPaused") return;
+          const b = await c.send("Fetch.getResponseBody", { requestId: d.params.requestId });
+          const html = (b.base64Encoded ? Buffer.from(b.body, "base64").toString("utf8") : b.body).replace("<head>", "<head>" + INJECT);
+          await c.send("Fetch.fulfillRequest", { requestId: d.params.requestId, responseCode: 200, responseHeaders: [{ name: "content-type", value: "text/html; charset=utf-8" }], body: Buffer.from(html).toString("base64") });
+        });
+      }
       await c.send("Page.navigate", { url: BASE + path });
       await sleep(10000);
       const v = JSON.parse((await c.send("Runtime.evaluate", { expression: "JSON.stringify(window.__v)", returnByValue: true })).result.value);
@@ -91,11 +102,11 @@ for (const path of PAGES) {
   const kbcol = (k) => runs.map((x) => x.kb[k] || 0);
   const s = { path, profile: P.name, n: runs.length,
     fcp: [q(col("fcp"), 0.75), Math.max(...col("fcp"))], lcp: [q(col("lcp"), 0.75), Math.max(...col("lcp"))], ready: [q(col("ready"), 0.75), Math.max(...col("ready"))],
-    plEnd: q(col("plEnd"), 0.75), cls: [q(col("cls"), 0.75), Math.max(...col("cls"))], tbt: [q(col("tbt"), 0.75), Math.max(...col("tbt"))], maxTask: Math.max(...col("maxTask")),
+    plEnd: q(col("plEnd"), 0.75), cls: [q(col("cls"), 0.75), Math.max(...col("cls"))], tbt: [q(col("tbt"), 0.75), Math.max(...col("tbt"))], tbtAll: [q(col("tbtAll"), 0.75), Math.max(...col("tbtAll"))], maxTask: Math.max(...col("maxTask")),
     lcpEl: runs.map((x) => x.lcpEl).sort().find((e, i, a) => a.filter((y) => y === e).length > a.length / 2) || runs[0]?.lcpEl,
     kb10s: { js: q(kbcol("Script"), 0.75), font: q(kbcol("Font"), 0.75), img: q(kbcol("Image"), 0.75), css: q(kbcol("Stylesheet"), 0.75), doc: q(kbcol("Document"), 0.75), fetch: q(kbcol("Fetch"), 0.75), total: q(kbcol("total"), 0.75) } };
   all.push({ ...s, runs });
   const f = (a) => `${Math.round(a[0])}/${Math.round(a[1])}ms`;
-  console.log(`${path} [${P.name} x${s.n}] p75/max FCP ${f(s.fcp)} LCP ${f(s.lcp)} READY ${f(s.ready)} (preloader ${Math.round(s.plEnd)}ms) CLS ${s.cls[0].toFixed(3)}/${s.cls[1].toFixed(3)} TBT ${f(s.tbt)} maxTask ${Math.round(s.maxTask)}ms | LCP el ${s.lcpEl} | 10s KB js ${s.kb10s.js} font ${s.kb10s.font} img ${s.kb10s.img} css ${s.kb10s.css} doc ${s.kb10s.doc} fetch ${s.kb10s.fetch} total ${s.kb10s.total}`);
+  console.log(`${path} [${P.name} x${s.n}] p75/max FCP ${f(s.fcp)} LCP ${f(s.lcp)} READY ${f(s.ready)} (preloader ${Math.round(s.plEnd)}ms) CLS ${s.cls[0].toFixed(3)}/${s.cls[1].toFixed(3)} TBT ${f(s.tbt)} allBlocking ${f(s.tbtAll)} maxTask ${Math.round(s.maxTask)}ms | LCP el ${s.lcpEl} | 10s KB js ${s.kb10s.js} font ${s.kb10s.font} img ${s.kb10s.img} css ${s.kb10s.css} doc ${s.kb10s.doc} fetch ${s.kb10s.fetch} total ${s.kb10s.total}`);
 }
 if (opt("out")) writeFileSync(opt("out"), JSON.stringify(all, null, 2));

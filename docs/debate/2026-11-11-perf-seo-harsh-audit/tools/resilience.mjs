@@ -58,10 +58,10 @@ for (const path of PAGES) {
     for (let i = 0; i < 30; i++) {
       await c.send("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9 });
       await c.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9 });
-      await sleep(250);
+      await sleep(700); // html has scroll-behavior: smooth; let the focus scroll finish
       stops.push(await ev(c, `const el=document.activeElement;if(!el||el===document.body)return {tag:'body'};const r=el.getBoundingClientRect();const cs=getComputedStyle(el);
         const ring=(cs.outlineStyle!=='none'&&parseFloat(cs.outlineWidth)>0)||cs.boxShadow!=='none';const cx=Math.min(innerWidth-1,Math.max(0,r.left+r.width/2)),cy=Math.min(innerHeight-1,Math.max(0,r.top+r.height/2));
-        const top=document.elementFromPoint(cx,cy);const covered=top&&!(el===top||el.contains(top)||top.contains(el));
+        const top=document.elementFromPoint(cx,cy);const inside=r.top>=0&&r.bottom<=innerHeight&&r.left>=0&&r.right<=innerWidth;const covered=inside&&top&&!(el===top||el.contains(top)||top.contains(el));
         return {tag:el.tagName.toLowerCase(),label:(el.getAttribute('aria-label')||el.textContent||'').trim().replace(/\\s+/g,' ').slice(0,28),ring,covered:!!covered,coveredBy:covered?(top.className+'').slice(0,30):'',inView:r.bottom>0&&r.top<innerHeight}`));
     }
     // Menu: focus the toggle, Enter, Escape

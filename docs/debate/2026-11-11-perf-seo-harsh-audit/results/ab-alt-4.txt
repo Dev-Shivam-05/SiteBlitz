@@ -1,0 +1,10 @@
+before  FCP 3836 TBT 686 allBlocking 4293 maxTask 2531 
+after   FCP 3120 TBT 1200 allBlocking 4010 maxTask 1760 
+before  FCP 3368 TBT 697 allBlocking 4375 maxTask 2093 
+after   FCP 3376 TBT 1153 allBlocking 4114 maxTask 2019 
+before  FCP 3752 TBT 711 allBlocking 4329 maxTask 2472 
+after   FCP 3332 TBT 1215 allBlocking 4345 maxTask 1919 
+before  FCP 3988 TBT 634 allBlocking 4367 maxTask 2696 
+after   FCP 2656 TBT 1536 allBlocking 4491 maxTask 1210 
+before  FCP 3792 TBT 730 allBlocking 4344 maxTask 2226 
+after   FCP 2536 TBT 1157 allBlocking 3793 maxTask 1185 

@@ -1,0 +1,39 @@
+/pricing: self time by file (4x CPU, 8 s)
+    7391 ms  (native)
+     157 ms  4bd1b696-100b9d70ed4e49c1.js
+     149 ms  webpack-5d9aa119599593b8.js
+      84 ms  1255-d8a1861c775d9bcc.js
+      83 ms  3262.92514019ed49ea2f.js
+      67 ms  c15bf2b0.bfa95b308e62c6cc.js
+      55 ms  5292-75789cc4d35b596e.js
+       8 ms  495.562ac911ec183862.js
+       5 ms  pricing
+       4 ms  layout-341d417289a92ca9.js
+       2 ms  2619-04bc32f026a0d946.js
+       1 ms  main-app-ecdf52ae0b08fd9b.js
+Top functions:
+    6010 ms  (idle) (native):0:0
+    1336 ms  (program) (native):0:0
+     134 ms  r webpack-5d9aa119599593b8.js:1:44
+      48 ms  r 5292-75789cc4d35b596e.js:1:5717
+      25 ms  requestAnimationFrame (native):0:0
+      14 ms  t 3262.92514019ed49ea2f.js:1:9747
+      14 ms  oq 4bd1b696-100b9d70ed4e49c1.js:1:79869
+      12 ms  l9 4bd1b696-100b9d70ed4e49c1.js:1:50998
+      10 ms  r c15bf2b0.bfa95b308e62c6cc.js:1:14200
+       8 ms  F 1255-d8a1861c775d9bcc.js:1:154992
+       8 ms  uv 4bd1b696-100b9d70ed4e49c1.js:1:98365
+       6 ms  n c15bf2b0.bfa95b308e62c6cc.js:1:44494
+       6 ms  tv c15bf2b0.bfa95b308e62c6cc.js:1:2726
+       6 ms  e c15bf2b0.bfa95b308e62c6cc.js:1:36033
+       6 ms  (anon) 1255-d8a1861c775d9bcc.js:1:165661
+       6 ms  o1 4bd1b696-100b9d70ed4e49c1.js:1:88806
+       6 ms  e.updateRoot c15bf2b0.bfa95b308e62c6cc.js:1:31175
+       5 ms  (garbage collector) (native):0:0
+       5 ms  (anon) 4bd1b696-100b9d70ed4e49c1.js:1:116960
+       5 ms  (anon) 3262.92514019ed49ea2f.js:1:27332
+       4 ms  59248 4bd1b696-100b9d70ed4e49c1.js:1:84
+       4 ms  init 3262.92514019ed49ea2f.js:1:22015
+       4 ms  (anon) pricing:1:6380
+       4 ms  t.enable 3262.92514019ed49ea2f.js:1:59970
+       4 ms  t.init 3262.92514019ed49ea2f.js:1:46360

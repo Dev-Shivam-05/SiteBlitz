@@ -1,0 +1,5 @@
+/pricing 4x CPU, fonts blocked, 3 runs, medians (ms)
+  trivial      layout max    43 sum    43 (n 1) | style max    1 sum     2 | paint sum 4
+  trivialfont  layout max    33 sum    33 (n 1) | style max    2 sum     2 | paint sum 5
+  base         layout max   300 sum   391 (n 32) | style max   44 sum   256 | paint sum 250
+  trivial      layout max    36 sum    36 (n 1) | style max    1 sum     2 | paint sum 4

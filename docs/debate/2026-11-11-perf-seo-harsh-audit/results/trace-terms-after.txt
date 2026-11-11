@@ -1,0 +1,7 @@
+/terms: 6 tasks > 100 ms
+   t=191ms dur 110ms | other:DocumentLoader::CommitNavigation 80, script  0, other:DocumentLoader::DocumentLoader 0, other:BackForwardCacheBufferLimitTracker::DidRemoveFrameOrWorkerFromBackForwardCache 0 | top calls: 
+   t=1137ms dur 967ms | layout 834, paint/commit 77, style 29, other:IntersectionObserverController::computeIntersections 1, script  0 | top calls: 
+   t=2159ms dur 162ms | layout 147, paint/commit 10, style 4, other:IntersectionObserverController::computeIntersections 0 | top calls: 
+   t=2344ms dur 730ms | script 4bd1b696-100b9d70ed4e49c1.js 714, script  15 | top calls: 4bd1b696-100b9d70ed4e49c1.js: 714; 4bd1b696-100b9d70ed4e49c1.js:cc 14; 4bd1b696-100b9d70ed4e49c1.js: 9
+   t=4235ms dur 211ms | script 3262.92514019ed49ea2f.js 209, script  2 | forced style/layout inside script 6 | top calls: 3262.92514019ed49ea2f.js: 209; webpack-458f92849d934c28.js:s 1; 4bd1b696-100b9d70ed4e49c1.js:cc 0
+   t=4542ms dur 154ms | script  154 | forced style/layout inside script 28 | top calls: 495.4d6f0e03a529afe6.js:d 154

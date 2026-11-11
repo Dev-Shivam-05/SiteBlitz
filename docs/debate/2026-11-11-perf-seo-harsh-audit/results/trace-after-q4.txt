@@ -1,0 +1,19 @@
+/: 11 tasks > 100 ms
+   t=1042ms dur 1544ms | layout 1260, style 211, paint/commit 37, script  16, other:IntersectionObserverController::computeIntersections 1 | top calls: :$RV 10; : 1
+   t=2654ms dur 202ms | layout 172, paint/commit 20, style 6, other:IntersectionObserverController::computeIntersections 1, script  0 | top calls: 
+   t=2951ms dur 656ms | script 4bd1b696-100b9d70ed4e49c1.js 639, script  16 | top calls: 4bd1b696-100b9d70ed4e49c1.js: 639; 4bd1b696-100b9d70ed4e49c1.js:cc 15; 4bd1b696-100b9d70ed4e49c1.js: 6
+   t=3966ms dur 564ms | layout 427, style 106 | top calls: 
+   t=5690ms dur 220ms | script 3262.92514019ed49ea2f.js 217, script  2 | forced style/layout inside script 6 | top calls: 3262.92514019ed49ea2f.js: 217; webpack-458f92849d934c28.js:s 1; 4bd1b696-100b9d70ed4e49c1.js: 0
+   t=6036ms dur 167ms | script  167 | forced style/layout inside script 36 | top calls: 495.4d6f0e03a529afe6.js:d 166
+   t=6222ms dur 111ms | script  111 | forced style/layout inside script 45 | top calls: 495.4d6f0e03a529afe6.js:d 111
+   t=6356ms dur 114ms | script  113 | forced style/layout inside script 32 | top calls: 495.4d6f0e03a529afe6.js:d 113
+   t=6513ms dur 146ms | script  145 | forced style/layout inside script 49 | top calls: 495.4d6f0e03a529afe6.js:d 145
+   t=6875ms dur 169ms | script  169 | forced style/layout inside script 92 | top calls: 495.4d6f0e03a529afe6.js:d 168
+   t=7409ms dur 124ms | script 511.0a5cdefef5ba7c0f.js 121, script  2 | forced style/layout inside script 5 | top calls: 511.0a5cdefef5ba7c0f.js: 121; 4bd1b696-100b9d70ed4e49c1.js:cc 1; webpack-458f92849d934c28.js:s 1
+/pricing: 6 tasks > 100 ms
+   t=1081ms dur 1987ms | layout 1658, style 195, paint/commit 88, script  12, other:IntersectionObserverController::computeIntersections 1 | top calls: pricing:$RV 9; pricing: 2
+   t=3156ms dur 336ms | layout 291, paint/commit 40, style 1, other:IntersectionObserverController::computeIntersections 0 | top calls: 
+   t=3530ms dur 759ms | script 4bd1b696-100b9d70ed4e49c1.js 745, script  14 | top calls: 4bd1b696-100b9d70ed4e49c1.js: 745; 4bd1b696-100b9d70ed4e49c1.js:cc 14; 4bd1b696-100b9d70ed4e49c1.js: 10
+   t=5469ms dur 169ms | layout 110, style 37 | top calls: 
+   t=5892ms dur 228ms | script 3262.92514019ed49ea2f.js 226, script  2 | forced style/layout inside script 5 | top calls: 3262.92514019ed49ea2f.js: 226; webpack-458f92849d934c28.js:s 1; 4bd1b696-100b9d70ed4e49c1.js: 0
+   t=6218ms dur 206ms | script  206 | forced style/layout inside script 53 | top calls: 495.4d6f0e03a529afe6.js:d 205

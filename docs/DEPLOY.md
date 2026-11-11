@@ -20,7 +20,7 @@
 | `JWT_SECRET` | ✓ | — | — |
 | `ADMIN_EMAIL` | ✓ | — | — |
 | `ADMIN_PASSWORD` | ✓ | — | — |
-| `NEXT_PUBLIC_SITE_URL` | — (code default `https://siteblitz.vercel.app`) | — | — |
+| `NEXT_PUBLIC_SITE_URL` | **required since 2026-11-11** — not set yet; a production build stops without it (`src/lib/release.ts`). Set the approved origin, e.g. `https://siteblitz.vercel.app` today or `https://siteblitz.in` after the domain, no trailing slash | — (fallback `https://siteblitz.vercel.app`) | — |
 | `TELEGRAM_BOT_TOKEN` | not set yet (founder creates the bot) | — | — |
 | `TELEGRAM_CHAT_IDS` | not set yet — comma-separated chat ids | — | — |
 | `CRON_SECRET` | not set yet — random string; Vercel Cron sends it as `Authorization: Bearer …` to `/api/cron/brief` | — | — |

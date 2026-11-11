@@ -1,0 +1,5 @@
+/ 4x CPU, fonts loaded, 4 runs, medians (ms)
+  base         layout max  1658 sum  2550 (n 40) | style max  302 sum   765 | paint sum 159 | tasks>50ms 14 blocking 4577 max 2032
+  preitalic    layout max  1660 sum  2611 (n 49) | style max  292 sum   769 | paint sum 170 | tasks>50ms 16 blocking 4457 max 2007
+  base         layout max  1623 sum  2555 (n 52) | style max  256 sum   743 | paint sum 197 | tasks>50ms 17 blocking 4490 max 1960
+  preitalic    layout max  1457 sum  2412 (n 52) | style max  295 sum   792 | paint sum 217 | tasks>50ms 16 blocking 4442 max 1818

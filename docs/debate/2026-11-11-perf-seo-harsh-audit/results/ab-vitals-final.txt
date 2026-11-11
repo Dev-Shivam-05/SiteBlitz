@@ -1,0 +1,31 @@
+before  / [A x5] p75/max FCP 4048/4292ms LCP 4048/4292ms READY 4396/4733ms (preloader 4396ms) CLS 0.000/0.000 TBT 907/1447ms maxTask 3042ms | LCP el h1.display | 10s KB js 188 font 214 img 56 css 18 doc 31 fetch 10 total 530
+after   / [A x5] p75/max FCP 3352/3464ms LCP 3352/3464ms READY 3352/3464ms (preloader 0ms) CLS 0.000/0.000 TBT 2131/2156ms maxTask 2096ms | LCP el p.hero-mark | 10s KB js 189 font 116 img 30 css 19 doc 31 fetch 10 total 397
+before  /pricing [A x5] p75/max FCP 3568/3856ms LCP 3568/3856ms READY 4149/4416ms (preloader 4149ms) CLS 0.000/0.000 TBT 666/1128ms maxTask 2367ms | LCP el p. | 10s KB js 182 font 214 img 0 css 18 doc 25 fetch 18 total 470
+after   /pricing [A x5] p75/max FCP 3580/3784ms LCP 3580/3784ms READY 3580/3784ms (preloader 0ms) CLS 0.000/0.000 TBT 532/881ms maxTask 2380ms | LCP el p. | 10s KB js 183 font 116 img 0 css 19 doc 25 fetch 18 total 363
+before  /services/business-websites [A x5] p75/max FCP 3148/3460ms LCP 3148/3460ms READY 3503/3882ms (preloader 3503ms) CLS 0.000/0.000 TBT 377/434ms maxTask 2200ms | LCP el p. | 10s KB js 188 font 214 img 0 css 18 doc 22 fetch 45 total 500
+after   /services/business-websites [A x5] p75/max FCP 2932/2956ms LCP 2932/2956ms READY 2932/2956ms (preloader 0ms) CLS 0.000/0.000 TBT 616/648ms maxTask 1600ms | LCP el p. | 10s KB js 189 font 116 img 0 css 19 doc 22 fetch 46 total 394
+before  /contact [A x5] p75/max FCP 2540/2624ms LCP 2540/2624ms READY 2762/3349ms (preloader 2762ms) CLS 0.000/0.000 TBT 463/498ms maxTask 1155ms | LCP el p. | 10s KB js 185 font 214 img 0 css 18 doc 14 fetch 18 total 462
+after   /contact [A x5] p75/max FCP 2788/2948ms LCP 2788/2948ms READY 2788/2948ms (preloader 0ms) CLS 0.000/0.000 TBT 395/447ms maxTask 1465ms | LCP el p. | 10s KB js 186 font 116 img 0 css 19 doc 14 fetch 18 total 355
+before  /blog/what-a-small-business-website-must-have-2026 [A x5] p75/max FCP 3604/3696ms LCP 3604/3696ms READY 3604/4078ms (preloader 3563ms) CLS 0.000/0.000 TBT 421/555ms maxTask 2429ms | LCP el p.my-4 | 10s KB js 185 font 214 img 0 css 18 doc 22 fetch 27 total 479
+after   /blog/what-a-small-business-website-must-have-2026 [A x5] p75/max FCP 3028/3100ms LCP 3028/3100ms READY 3028/3100ms (preloader 0ms) CLS 0.000/0.000 TBT 492/617ms maxTask 1658ms | LCP el p.my-4 | 10s KB js 186 font 116 img 0 css 19 doc 22 fetch 29 total 374
+before  /research/gujarat-business-websites-2026 [A x5] p75/max FCP 3492/3560ms LCP 3492/3560ms READY 3845/3845ms (preloader 3845ms) CLS 0.000/0.000 TBT 1066/2701ms maxTask 2290ms | LCP el p. | 10s KB js 182 font 214 img 0 css 18 doc 51 fetch 26 total 504
+after   /research/gujarat-business-websites-2026 [A x5] p75/max FCP 2944/3060ms LCP 2944/3060ms READY 2944/3060ms (preloader 0ms) CLS 0.000/0.000 TBT 1581/1723ms maxTask 1605ms | LCP el p. | 10s KB js 183 font 116 img 0 css 19 doc 51 fetch 27 total 398
+== before early/settled taps
+/ @390 EARLY TAP at 2800ms: event duration 992ms
+/ @390: settled max interaction 472ms
+/pricing @390 EARLY TAP at 2800ms: event duration 896ms
+/pricing @390: settled max interaction 104ms
+/faq @390 EARLY TAP at 2800ms: event duration 576ms
+/faq @390: settled max interaction 144ms
+/blog/what-a-small-business-website-must-have-2026 @390 EARLY TAP at 2800ms: event duration 240ms
+/blog/what-a-small-business-website-must-have-2026 @390: settled max interaction 208ms
+== after early/settled taps
+/ @390 EARLY TAP at 2800ms: event duration 872ms
+/ @390: settled max interaction 520ms
+/pricing @390 EARLY TAP at 2800ms: event duration 856ms
+/pricing @390: settled max interaction 168ms
+/faq @390 EARLY TAP at 2800ms: event duration 768ms
+/faq @390: settled max interaction 144ms
+/blog/what-a-small-business-website-must-have-2026 @390 EARLY TAP at 2800ms: event duration 512ms
+/blog/what-a-small-business-website-must-have-2026 @390: settled max interaction 136ms
+done

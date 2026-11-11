@@ -41,6 +41,28 @@ ode_modules` and stop those PIDs.
 - E2E without touching production: run the cached `~/.cache/mongodb-binaries/mongod-x64-win32-8.2.6.exe` on a
   scratch dbpath and port, then `next start` with `MONGODB_URI` and test-only `ADMIN_*`, `JWT_SECRET`, `CRON_SECRET` env.
 
+## Performance work (learned 2026-11-11, harsh audit + fixes, D18)
+- A Windows `next build` ships **no font preloads** (Next 15.5's font-manifest plugin matches a forward-slash path; Vercel's
+  Linux build ships them). For lab numbers build with `NODE_OPTIONS=--require E:/Temp/SiteBlitz/docs/debate/2026-11-11-perf-seo-harsh-audit/tools/font-manifest-shim.cjs node node_modules/next/dist/bin/next build`
+  (in memory, nothing on disk changes). AnyDesk shifted the same test by ~70 % within two hours: interleave baseline and
+  variant runs. The audit scripts live in that folder's `tools/` (vitals7, lh-run, mobile-scan, scroll-jank, trace,
+  layout-bisect, resilience, seo-deep, seo-extra, motion-check, hero-idle); Lighthouse 12.8.2 is in the npx cache.
+- Fonts are self-hosted in `src/fonts/`, built by `py -3 scripts/fonts/build_fonts.py` (Mona Sans 600-800 / 100-125 %,
+  DM Sans 400-600 + optical size, rupee sign included). A character outside its CHARS list falls back: add it, rerun.
+  At most two font preloads.
+- Sections after a page's first section and the footer use `content-visibility: auto` (globals.css). A scene that
+  measures real size (`data-htrack`, `data-hscroll`, `data-hall`, `data-stack`) must be in that rule's exclusion list.
+- Do not wrap the page body in `<Suspense>`: Next streams it into `<div hidden>` swapped in by script, so with JS off the
+  body is invisible (tried for hydration splitting, rejected).
+- The preloader is a 3 px entrance line (D18): nothing may cover painted content. Production builds stop without
+  `NEXT_PUBLIC_SITE_URL` (`src/lib/release.ts`); preview and local builds fall back to the vercel.app origin.
+- The guard hook blocks `git checkout -- <file>` and `git worktree remove --force`; to undo your own uncommitted edit,
+  rewrite the file. For a fair before/after, build the old commit in a worktree (`git worktree add --detach <dir> <sha>`,
+  `npm ci`, shim build, `next start -p 3200`) and alternate runs (`tools/ab-lh.mjs`, vitals7 `--base`).
+- Headless CDP traps: `element.focus()` does not match `:focus` (no window focus) — press Tab via `Input.dispatchKeyEvent`
+  or enable `Emulation.setFocusEmulationEnabled`; touch `synthesizeScrollGesture` does not scroll — use mouse wheel;
+  `Enter` needs `text: "\r"` to activate a button; tracing inflates layout times, so compare traced runs only to traced runs.
+
 ## Search and inner pages (learned 2026-11-11, SEO-0..8)
 - A new public page is registered in `src/lib/pages.ts` (or derived in `src/lib/routes.ts`); `tests/seo.test.ts` fails
   if a registered URL has no page, a footer link 404s or an indexable page is unreachable. Metadata comes from

@@ -1,4 +1,4 @@
-# Review - SiteBlitz v4 harsh performance / SEO / mobile audit - 2026-11-11 - 3 rounds - prompt: siteblitz-seo-multipage
+# Review - SiteBlitz v4 harsh performance / SEO / mobile audit - 2026-11-11 - 4 rounds - prompt: siteblitz-seo-multipage
 
 The owner asked for a harsh, real rating out of 100 for performance, SEO power and mobile, with test cases from ChatGPT plus
 Claude's own. Everything was measured on a local production build of `v2-redesign` @ 2997d46 (not deployed). Measurements:
@@ -66,3 +66,35 @@ Items 7-12 are small and independent of 1-6.
   text spacing, target-size classification, real Android/iPhone with screen readers, research reproduction, full copy-vs-offer review.
 - Owner: domain and hosting, approved production origin, preloader (D15), v1 -> v4 redirect map. Then deploy, Search Console /
   Bing, field data and search outcomes (the 40 SEO and 20 performance points that only a live site can earn).
+
+## After the fixes (owner: "Go for all", 2026-11-11; D18; round 4)
+
+All twelve fixes plus the security update were implemented on `v2-redesign` (`21465f5`..`d0cda1e`, see PHASES "Harsh-audit
+fixes"). Hydration (fix 2) was investigated but not reduced; splitting it with `<Suspense>` hid the page body without JS
+and was rejected. Measurements compare a git worktree of the pre-fix commit (port 3200) with the fixed build (port 3100),
+interleaved in the same minutes, both Linux-equivalent font builds (`results/ab-*`).
+
+| Area | Round 3 ledger | Round 4 ledger (same rules) | Rows that moved |
+|---|---|---|---|
+| Performance | 20.5 | **27.1** (26.7-27.9 until P2/P4 cases are re-keyed) | P6 fonts 2 -> 4, P7 1.25 -> 2.5, P8 0 -> 2.33 (particles stop off-screen / hidden tab), P11 2 -> 3 (no obstruction) |
+| SEO | 30.5 | **35.0** | S3 origin guard 3 -> 4, S8 heading order 3 -> 4, S9 contextual links 2.5 -> 5 |
+| Mobile | 24.3 | **38.5** | M4 keyboard 5.14 -> 10.29, M5 obstruction 0 -> 5, M7 contrast/ARIA 2 -> 6 |
+
+Before -> after, interleaved:
+- Lighthouse mobile (3 runs): home perf 89 -> 94, LCP 3.69 -> 3.06 s; /pricing 91 -> 95, 3.46 -> 2.87 s; service page 91 -> 95,
+  3.46 -> 2.88 s; research 66 -> 75. All 38 URLs on the fixed build: perf 87-97 (median 95); accessibility, best practices
+  and SEO 100 on 38/38 (were 27/38, 0/38, 37/38).
+- Profile A (CDP 4x, 1.6 Mbps): visible-ready p75 4.40 -> 3.35 s (home), 4.15 -> 3.58 (pricing), 3.50 -> 2.93 (service),
+  3.60 -> 3.03 (blog), 3.85 -> 2.94 (research), contact 2.76 -> 2.79. Fonts 214 -> 116 KB per page, 5 -> 2 preloads.
+- Scrolling home at 4x: p95 frame 50 -> 33 ms, frames over 33 ms 7.7 % -> 3.7 %; RSC prefetch per scroll 379 -> 115 KB
+  (home), 374 -> 33 KB (pricing).
+- Not better: post-FCP TBT rose on several routes (first paint is earlier; whole-window long-task time on home 4.34 -> 4.11 s,
+  overlapping ranges) and taps during load are still 500-900 ms at 4x. ChatGPT counts the TBT rise as a regression on that
+  metric and the user experience as mixed: faster to see and scroll, not yet faster to respond.
+
+## Next (recorded as Q8 in PHASES, not started)
+1. Isolate interaction blocking: the final build vs a variant with decorative motion and particles off (same HTML), trusted
+   taps at fixed times, with input delay / processing / presentation split; then shrink scene-building tasks with
+   `scheduler.yield()` or a task fallback, and look inside the hydration task.
+2. One final-head acceptance sweep on an idle, powered machine with route-keyed case IDs (so P2/P4 reconcile), plus the
+   content-visibility consequences: keyboard into deferred sections, fragment links, find-in-page, back/forward.

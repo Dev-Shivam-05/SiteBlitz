@@ -1,0 +1,10 @@
+/pricing 4x CPU, fonts blocked, 5 runs, medians (ms)
+  noscripts    layout max   494 sum   579 (n 40) | style max  105 sum   301 | paint sum 368
+  noscripts+nocss layout max   284 sum   286 (n 3) | style max   11 sum    11 | paint sum 99
+  noscripts+nomain layout max   209 sum   309 (n 39) | style max   99 sum   209 | paint sum 110
+  noscripts+nomain+nofooter+noheader layout max    61 sum   107 (n 41) | style max   23 sum   185 | paint sum 51
+  noscripts+nopreloader layout max   493 sum   494 (n 4) | style max   84 sum   233 | paint sum 233
+  noscripts+novarfont layout max   472 sum   578 (n 36) | style max   71 sum   304 | paint sum 326
+  noscripts+nofilters layout max   376 sum   480 (n 40) | style max   77 sum   271 | paint sum 310
+  noscripts+noanim layout max   376 sum   377 (n 4) | style max   77 sum    79 | paint sum 19
+  trivial      layout max    27 sum    27 (n 1) | style max    1 sum     2 | paint sum 3

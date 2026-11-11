@@ -1,0 +1,5 @@
+/terms 4x CPU, fonts loaded, 5 runs, medians (ms)
+  base         layout max   259 sum   469 (n 29) | style max   73 sum   222 | paint sum 142 | tasks>50ms 10 blocking 1542 max 741
+  nocv         layout max   332 sum   408 (n 27) | style max   77 sum   235 | paint sum 142 | tasks>50ms 9 blocking 1527 max 747
+  base         layout max   252 sum   435 (n 27) | style max   84 sum   214 | paint sum 144 | tasks>50ms 9 blocking 1549 max 682
+  nocv         layout max   326 sum   404 (n 27) | style max   72 sum   207 | paint sum 152 | tasks>50ms 7 blocking 1378 max 615

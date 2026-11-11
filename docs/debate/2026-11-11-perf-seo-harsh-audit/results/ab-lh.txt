@@ -1,0 +1,19 @@
+/
+   before: perf 62 a11y 92 bp 96 seo 100 | FCP 1.21 LCP 4.69 TBT 789 CLS 0.000 SI 5.03 581KB
+   after : perf 64 a11y 100 bp 100 seo 100 | FCP 1.17 LCP 3.47 TBT 1997 CLS 0.000 SI 3.09 397KB
+/pricing
+   before: perf 68 a11y 100 bp 96 seo 100 | FCP 1.24 LCP 4.29 TBT 629 CLS 0.000 SI 4.53 470KB
+   after : perf 78 a11y 100 bp 100 seo 100 | FCP 1.23 LCP 3.22 TBT 524 CLS 0.000 SI 2.51 363KB
+/terms
+   before: perf 82 a11y 100 bp 96 seo 100 | FCP 1.09 LCP 3.70 TBT 319 CLS 0.000 SI 3.06 458KB
+   after : perf 83 a11y 100 bp 100 seo 100 | FCP 0.92 LCP 3.52 TBT 285 CLS 0.000 SI 4.09 335KB
+/services/business-websites
+   before: perf 70 a11y 96 bp 96 seo 100 | FCP 1.07 LCP 4.39 TBT 503 CLS 0.000 SI 4.44 500KB
+   after : perf 81 a11y 100 bp 100 seo 100 | FCP 1.09 LCP 3.95 TBT 281 CLS 0.000 SI 3.06 394KB
+/blog/what-a-small-business-website-must-have-2026
+   before: perf 72 a11y 100 bp 96 seo 100 | FCP 1.08 LCP 4.34 TBT 419 CLS 0.000 SI 4.22 480KB
+   after : perf 79 a11y 100 bp 100 seo 100 | FCP 1.07 LCP 3.80 TBT 385 CLS 0.000 SI 3.10 373KB
+/research/gujarat-business-websites-2026
+   before: perf 69 a11y 100 bp 96 seo 100 | FCP 1.37 LCP 3.96 TBT 706 CLS 0.000 SI 3.39 505KB
+   after : perf 75 a11y 100 bp 100 seo 100 | FCP 1.24 LCP 3.98 TBT 561 CLS 0.000 SI 3.35 398KB
+done

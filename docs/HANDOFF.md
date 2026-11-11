@@ -1,82 +1,62 @@
-# HANDOFF — SiteBlitz — Multi-page + search (SEO-0 to SEO-6, SEO-8) — 2026-11-11 (overnight)
+# HANDOFF — SiteBlitz — Phase Q (harsh-audit fixes, Q0–Q7) — 2026-11-11
 
-Previous handoff (v4 showcase, V1–V6) is in git history: `git show 905c5b7:docs/HANDOFF.md`.
+Previous handoff (multi-page + search, SEO-0..8) is in git history: `git show 2997d46:docs/HANDOFF.md`.
 
 ## Done
-- **Real multi-page site in the v4 theme.** Header: Work, Services, Pricing, Process, Studio, Contact + WhatsApp. Every
-  inner page has the v4 page hero (breadcrumbs, H1 lines rising out of masks, drawn volt rule, hero figure) and one or
-  two moments (services row fill, concept wall on /work, drawn process path, drawn price loop, word-scrub statement,
-  research chart wipe). Home keeps all 10 scenes and links each to its page.
-- **Search foundation.** One route registry feeds nav, footer (now links every indexable page), sitemap (real lastmod),
-  llms.txt / llms-full.txt (generated; the old static file said Mumbai and withdrawn prices). One JSON-LD graph:
-  Organization (+ "Site Blitz"), WebSite, WebPage, BreadcrumbList, Service, FAQPage, Dataset, BlogPosting. Root
-  canonical bug fixed. Per-page OG cards. robots.txt names search + AI crawlers.
-- **Titles/H1/meta** per page from the debate register (home: "SiteBlitz — Gujarat-based Website Design & Development
-  Studio"; pricing: "Website Price in India: ₹7,999 & ₹17,999 Plans").
-- **New pages:** `/faq` (18 questions), `/research`, `/research/gujarat-business-websites-2026` (93,948 listing records,
-  17 trades, 24 cities, CSV), `/research/gujarat-business-websites-2026/surat`, `/blog/website-banane-ka-kharcha`
-  (Roman Hindi, hreflang pair with the English cost guide).
-- **Truth pass:** all 6 service pages, 4 industry pages, 7 guides, /process, /about, /proof rewritten from offer.ts.
-  Removed: 48-hour promises without ready-to-build, client analytics dashboards, ranking and Lighthouse-score promises,
-  withdrawn Growth/Scale plans, unapproved prices, the founder's name as author.
-- **Off-site kit:** `docs/SEO-LAUNCH-CHECKLIST.md`, IndexNow key + `scripts/indexnow-manifest.mjs` + `scripts/indexnow.mjs`.
-- **India study (SEO-8):** `/research/india-business-website-records-2026`: 1,323,078 listing records in 17 trades, 36
-  states/UTs plus an unassigned row, URL retained after filtering 32.4 %, CSV, Dataset JSON-LD.
-- **Grader and booking pages** on the v4 hero with truthful copy (no "48-hour build" promise, "Request this time").
-- **Debate:** 5 ChatGPT rounds, `docs/debate/2026-11-10-multipage-seo-ranking/RESULT.md`. ChatGPT approves the three
-  research pages for launch after your review; every figure is worded as "URL retained after filtering".
+- **Audit:** 4 ChatGPT rounds, `docs/debate/2026-11-11-perf-seo-harsh-audit/RESULT.md`. Harsh ledger (untested = 0, deploy/field
+  points unearned) moved 20.5 / 30.5 / 24.3 -> **27.1 / 35.0 / 38.5** (performance / SEO / mobile).
+- **Loads faster** (interleaved against a worktree of the pre-fix commit): Lighthouse mobile perf +4..+9 on every page
+  compared, LCP -0.5..-0.6 s; profile A visible-ready 4.40 -> 3.35 s on home; fonts 214 -> 116 KB, 5 -> 2 preloads.
+- **Accessibility, best practices and SEO score 100 on all 38 URLs** in Lighthouse (were 27/38, 0/38, 37/38).
+- **No more blocking preloader:** a 3 px volt line sweeps the top edge once; the hero entrance starts immediately.
+- **Phone menu is a real modal** (focus moves in, Tab stays inside, page behind inert, Escape returns focus); a skip link is
+  the first Tab stop; focused controls never sit under the header or WhatsApp pill.
+- **Scrolling is smoother:** home p95 frame 50 -> 33 ms at 4x CPU; background prefetch per scroll 379 -> 115 KB.
+- **Search hygiene:** favicon set declared, in-content links into /services, /about, /book, /tools/grader, /research,
+  /website-in-48-hours, /refunds; "here" anchor gone; full legal descriptions; manifest copy from offer.ts.
+- **Release guard:** a production build stops unless `NEXT_PUBLIC_SITE_URL` is a bare https origin (verified exit 1).
+- `npm test` 265 passed; `npm run build` exit 0; `scripts/seo-audit.mjs` 38 URLs, 0 problems; 0 px overflow 320-1440.
 
 ## Files changed
-- `src/lib/pages.ts`, `src/lib/routes.ts` — one page registry for nav, footer, sitemap and llms.txt.
-- `src/lib/seo.ts`, `src/components/site/JsonLd.tsx`, `Breadcrumbs.tsx` — page metadata helper and the JSON-LD graph.
-- `src/lib/llms.ts`, `src/app/llms.txt`, `src/app/llms-full.txt` — generated llms files (static `public/llms.txt` removed).
-- `src/app/{sitemap,robots,layout,opengraph-image}.ts(x)`, `src/lib/og.tsx` + 7 route `opengraph-image.tsx` — real lastmod, named crawlers, no root canonical, OG cards.
-- `src/components/site/PageHero.tsx`, `globals.css`, `Motion.tsx`, `Preloader.tsx`, `Navbar.tsx`, `Footer.tsx` — v4 inner-page hero, CSS entrance, draw-now strokes, nav and footer from the registry.
-- `src/app/{services,services/[slug],work,process,about,contact,pricing,faq,blog,blog/[slug],for/[slug],website-in-48-hours,proof,book,tools/grader}/page.tsx` — inner pages on the v4 layout with truthful copy.
-- `src/app/research/**`, `src/lib/research.ts`, `src/lib/researchIndia.ts`, `src/components/site/ResearchParts.tsx` — Gujarat, Surat and India studies with CSV routes.
-- `src/content/generated/*.json`, `src/content/index.ts`, `src/lib/site.ts` — content truth pass, Roman-Hindi guide, FAQ groups, service lines; dead v3 sections deleted.
-- `scripts/seo-audit.mjs`, `scripts/indexnow*.mjs`, `public/<key>.txt`, `tests/seo.test.ts` — audit, IndexNow tooling, 83 new tests.
-- `docs/SEO-LAUNCH-CHECKLIST.md`, `docs/debate/2026-11-10-multipage-seo-ranking/` — founder steps and the 5-round debate.
-
-## Verified (local production build, `next start -p 3100`)
-- `npm run build` exit 0. `npx vitest run --hookTimeout 60000`: 14 files, **261 tests** (was 178).
-- `node scripts/seo-audit.mjs --base http://localhost:3100`: 38 sitemap URLs, 41 internal links, **0 problems**
-  (one canonical each = sitemap URL, one h1, unique titles and descriptions ≤ 160, JSON-LD ids resolve, og:image PNG).
-- Screenshots 1440 / 390 / 320 of 17 pages: no horizontal overflow, no console errors (`.shots/final-1111*`);
-  reduced-motion full pages (`.shots/final-rm`).
-- Lab vitals (mobile 4x CPU, slow 4G, median of 3): LCP 1.1–1.5 s on every measured page; CLS 0.000–0.03
-  (India page: LCP 1.21 s, CLS 0.000).
-  TBT 120–530 ms and noisy on this loaded machine (research hub highest: big tables).
-- IndexNow scripts: dry runs only (live old site: 30/30 hashed; two unchanged runs → 0 changes). Nothing submitted.
+- `package.json`, `package-lock.json` — Next 15.5.20 -> 15.5.29 (2026-11-03 security release).
+- `src/app/layout.tsx`, `src/fonts/*.woff2`, `scripts/fonts/build_fonts.py` — self-hosted Mona Sans 600-800/100-125 % and
+  DM Sans 400-600 (one variable file each, rupee included); Instrument Serif no longer preloaded.
+- `src/components/site/Preloader.tsx`, `src/app/globals.css` — entrance line instead of the sheet; content-visibility on
+  below-fold sections and footer; skip link; scroll padding; page-hero first-visit delays removed.
+- `src/components/site/Motion.tsx` — words-scrub readable (0.5 start, no aria-label on `<p>`); ScrollTrigger refresh once after
+  the queue and on real height changes; reveals in skipped sections built when the section renders.
+- `src/components/site/Navbar.tsx`, `Shell.tsx`, `Breadcrumbs.tsx` — modal menu, skip link + `main#main`, 24 px crumbs.
+- `src/components/site/Footer.tsx` — `prefetch={false}`, column titles h2 (heading order).
+- `src/components/site/sections/Home.tsx` — hero capture low priority + 192px; statement and close-line links.
+- `src/app/{pricing,process,research/.../surat,privacy,terms,refunds,services/[slug],website-in-48-hours}/page.tsx` — links,
+  anchor, descriptions, numeral contrast, underline.
+- `src/app/blog/**`, `proof`, `components/demo/DemoSite.tsx`, `ConceptFrame.tsx`, `GraderTool.tsx`, `PricingPlans.tsx` — guide
+  body 16 px, nothing public under 12 px.
+- `src/app/{favicon.ico,icon.svg,apple-icon.png,manifest.ts}` — declared icons, truthful manifest.
+- `src/lib/release.ts`, `next.config.ts`, `tests/release.test.ts` — production origin guard (+4 tests).
+- `docs/DECISIONS.md` (D18), `docs/DEPLOY.md`, `docs/PHASES.md`, `CLAUDE.md`, `docs/debate/2026-11-11-perf-seo-harsh-audit/`.
 
 ## Decisions made
-- D17 in `docs/DECISIONS.md` (nav, Organization, training crawlers allowed, 3 prices → written quote, CC BY 4.0 for the
-  study's counts, studio byline, Hindi pairing, no city doorway pages, body font `display: optional`).
+- D18: owner approved all fixes ("Go for all"); the D15 preloader is replaced by a non-blocking line; fonts self-hosted.
+- `<Suspense>` around the page body rejected: Next streamed the body into a hidden div, invisible without JS.
+- content-visibility kept: LCP and scrolling gain; post-FCP TBT rises because first paint is earlier (whole-window long-task
+  time roughly equal). ChatGPT records that TBT rise as a regression on the metric; experience called mixed.
 
 ## Known broken / deliberately skipped
-- **Not pushed, not deployed.** See the last line of this file for the push result.
-- **design-taste-frontend gate not run**: its house rules (no scenes/dark grounds on service sites) conflict with the
-  owner-locked D15; the spec is the contract (same as V6).
-- Rich Results Test / Search Console need a public URL — not run.
-- IndexNow controlled-edit test needs an https deployment.
-- TBT is above the 150 ms lab budget on several pages (machine under load; research hub 311–527 ms).
-- Legal pages (/privacy, /terms, /refunds) keep their older layout (canonical + metadata fine, audit clean).
-
-## Owner decisions waiting
-1. Name-conflict check, then buy `siteblitz.in`; hosting that allows business use (Vercel Pro / Netlify) — D12.
-2. Set `NEXT_PUBLIC_SITE_URL` in production; then the checklist (Search Console, Bing, Brave, IndexNow).
-3. Do you meet clients in person? Only then a Google Business Profile. May Navsari be named publicly?
-4. Prices D11; whether to restore SEO / care / rescue prices (add them to `offer.ts`).
-5. Keep or remove the AI training crawlers in `robots.ts`.
-6. Read the research pages before they go live (ChatGPT approved them for launch after your review).
+- Taps during load are still 500-900 ms at 4x CPU (hydration is one 0.6-0.8 s task; motion setup 100-300 ms tasks) — Q8.
+- Ledger rows still untested: forms (M8), real phones (M10), research reproduction (S12), B-profile interactions, bfcache
+  restore, heap/cleanup, landscape/zoom — not in the approved fix list.
+- `NEXT_PUBLIC_SITE_URL` is not set in Vercel Production: the next production deploy will fail until the owner sets it.
+- Admin quick-add input set in Mona Sans now renders at weight 600 (the font file starts at 600).
+- `/refunds` wording (plural "revision rounds", 30-day defect fixes) not checked against offer.ts — owner review.
+- Temporary worktree `E:\tmp\_sb_before` (pre-fix build, ~600 MB with node_modules) left in place: the guard blocked
+  `git worktree remove --force`. Scratch fonts in `E:\tmp\_sb_fonts`.
+- Push: see the last line of this file.
 
 ## Next session starts here
-- First command: `git -C E:\Temp\SiteBlitz push origin v2-redesign`, then open the Vercel Preview on a phone.
-- Next phases on the board: SEO-7 validation study, SEO-9 website-link checker (SEO-8 India study is done).
-- The local server on :3100 was left running the final build (`next start -p 3100`, started by this session).
-- Watch out: `.ph-soft` must stay transform-only (opacity made hero figures the late LCP element); grid children that
-  hold wide tables need `min-w-0` and the scroll box `relative` (sr-only captions escaped and widened the page).
-
-- Push result (2026-11-11 01:25 IST): `git push origin v2-redesign` was **blocked by the Claude OS guard hook** ("the check itself
-  failed (cannot read the current branch: spawnSync git ENOENT)"). Not retried. The branch is about 37 commits ahead of
-  origin/v2-redesign; the owner runs the push.
+- Phase Q8: make taps during load fast (motion-off variant, input/processing/presentation split, smaller scene tasks).
+- First command: `git -C E:\Temp\SiteBlitz worktree remove --force E:\tmp\_sb_before` (owner, in your own terminal), then
+  `node docs/debate/2026-11-11-perf-seo-harsh-audit/tools/mobile-scan.mjs --pages / --widths 390 --cpu 4 --early-ms 2800`
+  against a Linux-equivalent build on :3100 (build command in CLAUDE.md "Performance work").
+- Watch out for: absolute lab numbers on this laptop drift up to ~70 % (battery, AnyDesk, other sessions' mongod) — only
+  trust before/after pairs measured interleaved.

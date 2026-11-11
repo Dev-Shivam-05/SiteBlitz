@@ -1,0 +1,16 @@
+before  LCP 3740 TBT 1008 maxTask 2399 LCP  
+after   LCP 3448 TBT 1902 maxTask 2038 LCP  
+before  LCP 3488 TBT 1007 maxTask 2141 LCP  
+after   LCP 3472 TBT 1624 maxTask 2026 LCP  
+before  LCP 3848 TBT 866 maxTask 2576 LCP  
+after   LCP 3396 TBT 1840 maxTask 2061 LCP  
+before  LCP 4112 TBT 1043 maxTask 2832 LCP  
+after   LCP 3456 TBT 1813 maxTask 1945 LCP  
+before  LCP 3572 TBT 1164 maxTask 2291 LCP  
+after   LCP 3632 TBT 2014 maxTask 2172 LCP  
+before  LCP 3980 TBT 1200 maxTask 2676 LCP  
+after   LCP 3320 TBT 1521 maxTask 1905 LCP  
+before  LCP 3012 TBT 810 maxTask 1738 LCP  
+after   LCP 3404 TBT 1816 maxTask 1937 LCP  
+before  LCP 3996 TBT 769 maxTask 2726 LCP  
+after   LCP 3508 TBT 1873 maxTask 2059 LCP  

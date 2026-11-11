@@ -1,0 +1,10 @@
+== before
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 18, Document 31, Script 201, Font 214, Manifest 1, Image 339, Other 12, Fetch 389 | fetched during scroll: Image 283, Fetch 379, Script 13
+/ cpu4 390x844: 808 frames in 17.1s, page 16168px | frames >33ms 7.7% >50ms 3.5% | p95 gap 50.0ms | LoAF 19 (max 222ms, total 1432ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 18, Document 25, Script 196, Font 214, Manifest 1, Other 12, Fetch 391 | fetched during scroll: Fetch 374, Script 14
+/pricing cpu4 390x844: 746 frames in 12.9s, page 11760px | frames >33ms 0.9% >50ms 0.1% | p95 gap 16.8ms | LoAF 2 (max 154ms, total 210ms)
+== after
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 31, Script 192, Font 116, Manifest 1, Image 312, Other 1, Fetch 125 | fetched during scroll: Image 283, Fetch 115, Script 3
+/ cpu4 390x844: 859 frames in 16.4s, page 15841px | frames >33ms 3.7% >50ms 1.9% | p95 gap 33.3ms | LoAF 12 (max 138ms, total 927ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 25, Script 189, Font 116, Manifest 1, Other 1, Fetch 50 | fetched during scroll: Fetch 33, Script 7
+/pricing cpu4 390x844: 686 frames in 11.5s, page 10706px | frames >33ms 0.1% >50ms 0.1% | p95 gap 16.8ms | LoAF 0 (max 0ms, total 0ms)

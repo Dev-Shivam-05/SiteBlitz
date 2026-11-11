@@ -1,0 +1,5 @@
+/pricing 4x CPU, fonts loaded, 5 runs, medians (ms)
+  noscripts    layout max   298 sum   309 (n 5) | style max   91 sum   295 | paint sum 228
+  noscripts+textauto layout max   272 sum   286 (n 5) | style max   70 sum   248 | paint sum 218
+  noscripts    layout max   272 sum   281 (n 5) | style max   83 sum   280 | paint sum 206
+  noscripts+textauto layout max   337 sum   347 (n 5) | style max   66 sum   246 | paint sum 228

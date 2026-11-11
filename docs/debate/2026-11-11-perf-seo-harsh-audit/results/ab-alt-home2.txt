@@ -1,0 +1,12 @@
+before  LCP 1816 TBT 244 maxTask 529 
+after   LCP 1732 TBT 207 maxTask 576 
+before  LCP 1484 TBT 197 maxTask 461 
+after   LCP 1392 TBT 264 maxTask 334 
+before  LCP 1720 TBT 283 maxTask 548 
+after   LCP 1440 TBT 301 maxTask 346 
+before  LCP 1608 TBT 121 maxTask 499 
+after   LCP 1480 TBT 215 maxTask 393 
+before  LCP 1660 TBT 235 maxTask 556 
+after   LCP 1496 TBT 457 maxTask 416 
+before  LCP 1760 TBT 237 maxTask 552 
+after   LCP 1756 TBT 554 maxTask 532 

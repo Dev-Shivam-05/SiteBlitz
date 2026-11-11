@@ -19,10 +19,12 @@ Status: `todo` · `doing` · `done` · `blocked`
 
 ## Now
 
-**Multi-page + search build is done locally (SEO-0..6, SEO-8; 2026-11-11, D17).** Real-page navigation in the v4 theme,
-inner pages redesigned with truthful copy, one JSON-LD graph, generated llms.txt, Gujarat / Surat / India research studies,
-Roman-Hindi cost guide, IndexNow tooling. 261 tests; rendered audit 38 URLs, 0 problems. Not pushed (guard hook), not
-deployed. Next: the owner pushes and reviews, then the founder steps in `docs/SEO-LAUNCH-CHECKLIST.md`.
+**Harsh-audit fixes are done locally (Q0-Q7, 2026-11-11, D18).** Next 15.5.29, self-hosted narrowed fonts (2 preloads,
+116 KB), the preloader sheet replaced by a non-blocking entrance line, content-visibility on below-fold sections, phone menu
+modal + skip link, contextual links, favicon set, production origin guard. Interleaved before/after: Lighthouse mobile
++4..+9 perf, LCP -0.5..-0.6 s; accessibility / best practices / SEO 100 on 38/38; harsh ledger 20.5/30.5/24.3 ->
+27.1/35.0/38.5. Still open: taps during load (500-900 ms at 4x CPU) and the hydration task. 265 tests, build green.
+The multi-page + search build (D17) underneath is also not deployed yet.
 
 ## First-client programme (2026-11-01, built in one execution cycle at the founder's request)
 
@@ -81,10 +83,34 @@ on the owner's explicit 9-hour instruction, each unit committed and verified on 
 | SEO-8 | One India state/UT comparison on the same method (national host frequency once, states as anchors) | **done** `27e62b9` (review: debate round 5) |
 | SEO-9 | Single-business website-link checker (Overture snapshot only; index the tool page only; licence check first) | todo — debate r4 Q3.3 |
 
+## Harsh-audit fixes (2026-11-11, owner: "Go for all, do not stop until everything is completed")
+
+Audit and ledger: `docs/debate/2026-11-11-perf-seo-harsh-audit/RESULT.md` (3 ChatGPT rounds; ledger 20.5 / 30.5 / 24.3).
+Units run back to back, each committed after its own build and check. Measurements use the Linux-equivalent build
+(`tools/font-manifest-shim.cjs`, see CLAUDE.md).
+
+| # | Unit | Status |
+|---|---|---|
+| Q0 | Next 15.5.20 -> 15.5.29 (security release) | **done** `21465f5` |
+| Q1 | First-frame layout: bisect (`tools/layout-bisect.mjs`); cost scales with content, no single culprit | **done** -> Q4 |
+| Q2 | Fonts self-hosted and narrowed: 2 preloads, 101 KB (was 5 preloads, 214 KB) | **done** `2ec40b5` |
+| Q3 | Preloader -> non-blocking entrance line; footer prefetch off; hero capture low priority | **done** `333b10a` |
+| Q4 | content-visibility on below-fold sections + ScrollTrigger refresh; words-scrub, heading order, numerals | **done** `f517c72` |
+| Q4b | Hydration split with `<Suspense>`: tried and rejected (page body hidden without JS) | **rejected** (D18) |
+| Q5 | Menu modal, skip link, scroll padding, breadcrumb hit area; text sizes | **done** `e8b1434`, `7dadf91` |
+| Q6 | Favicon set, manifest copy, production origin guard (+4 tests); contextual links, anchors, legal descriptions | **done** `cd16e06`, `442f215` |
+| Q4c | Motion: refresh once after the queue and on real height changes; reveals in skipped sections built when the section renders | **done** `d7a96bc`, `8fe92b3` |
+| Q7 | Interleaved before/after re-run against a worktree of `2997d46` (`results/ab-*`), docs, push | **done** — see RESULT.md "After the fixes" |
+| Q8 | Next: hydration cost (one 0.6-0.8 s task at 4x CPU) and motion-init tasks (100-300 ms); early taps not yet faster | todo |
+
 ## Next 3
 
-0. **Owner: push and review the multi-page + search build** (`git -C E:\Temp\SiteBlitz push origin v2-redesign`), then
-   the founder steps in `docs/SEO-LAUNCH-CHECKLIST.md` (name check, domain, hosting, NEXT_PUBLIC_SITE_URL, Search Console).
+0. **Owner: review the pushed branch** on the Vercel Preview from a phone (push it yourself with
+   `git -C E:\Temp\SiteBlitz push origin v2-redesign` if the session's push was blocked), and **set `NEXT_PUBLIC_SITE_URL` in
+   Vercel Production before the next production deploy** — the build now stops without it. Then the founder steps in
+   `docs/SEO-LAUNCH-CHECKLIST.md` (name check, domain, hosting, Search Console).
+0b. **Q8 interaction blocking:** motion-off variant vs final build, tap input/processing/presentation split, smaller scene
+   tasks (scheduler.yield), then one final-head acceptance sweep on an idle, powered machine.
 1. **Owner reviews v4** on `localhost:3000` / the Preview, on a phone first; collect changes in one list.
 2. **P-INNER:** `/about`, `/services`, `/work`, `/proof`, `/contact`, `/pricing` onto the v4 layout and voice (≤ 8 files);
    they still carry old copy such as "Violent execution" and "dominate online".
