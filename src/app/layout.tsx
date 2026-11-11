@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Instrument_Serif, Mona_Sans } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
+import localFont from "next/font/local";
 import { SITE } from "@/lib/site";
 import { FROM_PRICE, inr } from "@/lib/offer";
 import { Tracker } from "@/components/site/Tracker";
@@ -7,32 +8,45 @@ import { JsonLd } from "@/components/site/JsonLd";
 import { graph, organizationNode, websiteNode } from "@/lib/seo";
 import "./globals.css";
 
-/* Redesign v4 (docs/spec/redesign-v4-showcase.md): Mona Sans, variable in weight and width, for display type (800,
-   125% wide); Instrument Serif italic for accent words; DM Sans for text. Mona Sans takes latin-ext as well so the
-   rupee sign (U+20B9) can come from it; the browser only fetches that subset when a page needs it (unicode-range). */
-const mona = Mona_Sans({
-  subsets: ["latin", "latin-ext"],
-  axes: ["wdth"],
+/* Redesign v4 (docs/spec/redesign-v4-showcase.md): Mona Sans for display type (800, 125% wide), Instrument Serif
+   italic for accent words, DM Sans for text.
+   Mona Sans and DM Sans are self-hosted, one variable file each, built by scripts/fonts/build_fonts.py (performance
+   audit 2026-11-11, fix Q2). Google's files carried every weight 200-900 and width 75-125 % plus a separate latin-ext
+   file for the rupee sign: six files, 214 KB, five of them preloaded on every page. The site only uses Mona Sans at
+   600-800 / 100-125 %, so the build narrows those axes and keeps the characters in use (rupee included): 64 + 35 KB,
+   the only two preloads. Same faces, same rendering. */
+const mona = localFont({
+  src: "../fonts/mona-sans-600-800.woff2",
+  weight: "600 800",
+  style: "normal",
+  declarations: [{ prop: "font-stretch", value: "100% 125%" }],
   variable: "--font-mona",
   display: "swap",
+  adjustFontFallback: "Arial",
 });
 
 // "optional", not "swap": the body font is preloaded and small, so it is normally there for first paint; when a slow
 // connection misses that window, the page keeps the metric-matched fallback instead of swapping mid-read. The swap
 // re-wrapped long hero paragraphs and moved everything under them (lab CLS 0.17 on the research pages, SEO-6).
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "600"],
+// The file keeps DM Sans' optical-size axis, so large text still gets the tighter cut the browser picks by size.
+const dmSans = localFont({
+  src: "../fonts/dm-sans-400-600.woff2",
+  weight: "400 600",
+  style: "normal",
   variable: "--font-dm",
   display: "optional",
+  adjustFontFallback: "Arial",
 });
 
+// Accent words (italic) and the salon/showroom demo headings (upright). Not preloaded: it is never the largest element,
+// swap paints the Georgia fallback until it arrives, and each face is only fetched by a page that uses it.
 const instrument = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
   variable: "--font-instrument",
   display: "swap",
+  preload: false,
 });
 
 export const viewport: Viewport = {
