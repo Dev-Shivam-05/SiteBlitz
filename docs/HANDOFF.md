@@ -60,3 +60,5 @@ Previous handoff (multi-page + search, SEO-0..8) is in git history: `git show 29
   against a Linux-equivalent build on :3100 (build command in CLAUDE.md "Performance work").
 - Watch out for: absolute lab numbers on this laptop drift up to ~70 % (battery, AnyDesk, other sessions' mongod) — only
   trust before/after pairs measured interleaved.
+
+- Push result (2026-11-11): `git push origin v2-redesign` was **blocked by the Claude OS guard hook** ("the check itself failed: git log ... --not --remotes=origin"). Not retried. The branch is 50 commits ahead of origin/v2-redesign; the owner runs the push.
