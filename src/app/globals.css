@@ -106,6 +106,18 @@ body {
   }
 }
 
+/* ---- below-the-fold rendering (performance audit 2026-11-11, fix Q4) ----
+   The first frame laid out every section of the page at once (0.3-0.5 s at 4x CPU on /pricing). Sections after a
+   page's first section, and the footer, now skip layout and paint until they come near the screen; their text stays in
+   the DOM, the accessibility tree and find-in-page. Sections that hold measured or pinned scenes (Motion.tsx reads their
+   real width/height) are left alone, and Motion.tsx refreshes ScrollTrigger when the real heights arrive.
+   "auto 900px": a placeholder until first render, then the browser remembers the real size. */
+main > section ~ section:not([data-htrack], [data-hscroll], [data-hall], [data-stack]):not(:has([data-htrack], [data-hscroll], [data-hall], [data-stack])),
+main + footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 /* ---- marquee ---- */
 .marquee-mask {
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);

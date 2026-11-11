@@ -147,7 +147,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
             <ol className="grid gap-10 md:grid-cols-4 md:gap-8 md:pt-16 [&>*]:min-w-0">
               {s.process.map((p, i) => (
                 <li key={p.step}>
-                  <p className="display text-[56px] leading-none text-ink/20 md:text-[80px]">{String(i + 1).padStart(2, "0")}</p>
+                  {/* the <ol> already numbers the steps for assistive tech; ink/40 keeps the big numeral at 3.5:1 (large-text AA) */}
+                  <p aria-hidden className="display text-[56px] leading-none text-ink/40 md:text-[80px]">{String(i + 1).padStart(2, "0")}</p>
                   <h3 className="mt-4 text-xl font-semibold">{p.step}</h3>
                   <p className="kicker mt-2 text-volt">{p.time}</p>
                   <p className="mt-3 text-base leading-relaxed text-muted">{p.text}</p>

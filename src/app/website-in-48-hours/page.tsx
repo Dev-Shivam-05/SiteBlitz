@@ -167,7 +167,7 @@ export default function WebsiteIn48HoursPage() {
             Launch is {inr(launch.priceInr as number)} one-time, paid in two parts: {inr(launch.payments![0])} after
             you approve the design and scope, {inr(launch.payments![1])} after you approve the finished site. Domain
             and hosting costs are written in your quote. Full terms are on the{" "}
-            <Link href="/pricing#terms" className="text-volt hover:underline">pricing page</Link>.
+            <Link href="/pricing#terms" className="text-volt underline underline-offset-4">pricing page</Link>.
           </p>
         </section>
 

@@ -42,7 +42,8 @@ export function Footer() {
           </div>
           {COLUMNS.map((c) => (
             <div key={c.title}>
-              <h3 className="kicker text-faint">{c.title}</h3>
+              {/* h2, not h3: pages without an h2 of their own (/book, /tools/grader) otherwise skipped a heading level */}
+              <h2 className="kicker text-faint">{c.title}</h2>
               <ul className="mt-4 space-y-1">
                 {c.links.map((l) => (
                   <li key={l.href}>

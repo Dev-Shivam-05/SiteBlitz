@@ -63,6 +63,8 @@ function useAnimEngine(pathname: string) {
   useEffect(() => {
     if (prefersReduced()) return;
     let alive = true;
+    let heightTimer = 0;
+    let stopHeightWatch = () => {};
     const ctx = gsap.context(() => {
       // Yielding scheduler: above-the-fold (data-now) scenes build immediately;
       // everything else is spread across idle frames so no single long task
@@ -140,10 +142,13 @@ function useAnimEngine(pathname: string) {
             scrollTrigger: trig,
           });
         } else if (type === "words-scrub") {
-          const split = new SplitText(el, { type: "words" });
+          // aria "none": the words stay plain readable text. SplitText's default puts an aria-label on the element,
+          // which is not allowed on a <p> (Lighthouse aria-prohibited-attr). The faint state starts at 0.5, not 0.14:
+          // 5:1 against the void ground, so a word that has not tinted yet is still readable (audit 2026-11-11).
+          const split = new SplitText(el, { type: "words", aria: "none" });
           gsap.fromTo(
             split.words,
-            { opacity: 0.14 },
+            { opacity: 0.5 },
             {
               opacity: 1,
               stagger: 0.06,
@@ -611,6 +616,22 @@ function useAnimEngine(pathname: string) {
       // the trigger positions are measured again.
       document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
+      // Below-the-fold sections use content-visibility: auto (globals.css): until one first renders it reports a
+      // placeholder height, and when the real height arrives every trigger under it has moved. Re-measure once the
+      // document height has settled (debounced; a refresh that itself changes the height is not re-triggered).
+      let settledHeight = document.documentElement.scrollHeight;
+      const heightWatch = new ResizeObserver(() => {
+        if (Math.abs(document.documentElement.scrollHeight - settledHeight) < 2) return;
+        window.clearTimeout(heightTimer);
+        heightTimer = window.setTimeout(() => {
+          if (!alive) return;
+          ScrollTrigger.refresh();
+          settledHeight = document.documentElement.scrollHeight;
+        }, 200);
+      });
+      heightWatch.observe(document.body);
+      stopHeightWatch = () => heightWatch.disconnect();
+
       // Start draining the deferred queue once the browser is idle.
       if ("requestIdleCallback" in window)
         window.requestIdleCallback(drain, { timeout: 600 });
@@ -619,6 +640,8 @@ function useAnimEngine(pathname: string) {
 
     return () => {
       alive = false;
+      window.clearTimeout(heightTimer);
+      stopHeightWatch();
       ctx.revert();
     };
   }, [pathname]);
