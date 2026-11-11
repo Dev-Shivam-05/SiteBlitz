@@ -254,33 +254,24 @@ body {
   transition-delay: calc(0.18s + var(--i, 0) * 0.05s);
 }
 
-/* ---- preloader (first page of a session only; Preloader.tsx). Pure CSS: it lifts itself even if JS fails. ---- */
-@property --pl-n {
-  syntax: "<integer>";
-  initial-value: 0;
-  inherits: false;
-}
+/* ---- entrance line (first page of a session only; Preloader.tsx). It replaced a full-screen preloader that hid
+   painted content and re-laid the page out every frame (performance audit 2026-11-11). Transform and opacity only, so
+   it runs on the compositor; it covers nothing (3 px, no pointer events) and ends hidden even if JS never runs. ---- */
 .preloader {
   position: fixed;
-  inset: 0;
+  inset: 0 0 auto 0;
   z-index: 140;
-  background: var(--color-void);
-  color: var(--color-ink);
-  animation: pl-lift 0.3s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
-}
-.preloader-count {
-  counter-reset: pl var(--pl-n);
-  animation: pl-count 0.85s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-}
-.preloader-count::after { content: counter(pl); }
-.preloader-bar {
-  transform: scaleX(0);
+  height: 3px;
+  pointer-events: none;
+  background: var(--color-volt);
   transform-origin: left center;
-  animation: pl-bar 0.85s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation: pl-line 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
-@keyframes pl-count { to { --pl-n: 100; } }
-@keyframes pl-bar { to { transform: scaleX(1); } }
-@keyframes pl-lift { to { transform: translateY(-100%); visibility: hidden; } }
+@keyframes pl-line {
+  0% { transform: scaleX(0); opacity: 1; }
+  70% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; visibility: hidden; }
+}
 html[data-seen] .preloader { display: none; }
 
 /* ---- custom cursor (Cursor.tsx): desktop fine pointers only ---- */
@@ -726,8 +717,8 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
 }
 
 /* ---- page hero (PageHero.tsx, SEO-3). CSS-only entrance: it runs at first paint without JavaScript, and the H1
-   moves by transform alone inside a clipping mask, so its text is painted from the first frame (LCP). On the first page
-   of a session the Preloader marks html[data-first] and the entrance waits for the sheet to lift. ---- */
+   moves by transform alone inside a clipping mask, so its text is painted from the first frame (LCP). It starts at once:
+   since 2026-11-11 there is no preloader sheet to wait for. ---- */
 .ph-mask { display: block; overflow: clip; padding-bottom: 0.08em; margin-bottom: -0.08em; }
 .ph-line { display: block; }
 .ph-rule {
@@ -741,13 +732,9 @@ html.cursor-on .cursor-ring.is-label + .cursor-dot { opacity: 0; }
   .ph-line { animation: ph-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--i, 0) * 80ms + 40ms); }
   .ph-soft { animation: ph-soft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--i, 0) * 80ms + 120ms); }
   .ph-rule { animation: ph-rule 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both; }
-  html[data-first] .ph-line,
-  html[data-first] .ph-soft { animation-delay: calc(var(--i, 0) * 80ms + 1000ms); }
-  html[data-first] .ph-rule { animation-delay: 1.3s; }
 }
 @media (prefers-reduced-motion: no-preference) {
   [data-draw="now"] { stroke-dasharray: 100 100; animation: draw-now 1.3s cubic-bezier(0.65, 0, 0.35, 1) 0.55s both; }
-  html[data-first] [data-draw="now"] { animation-delay: 1.5s; }
 }
 @keyframes draw-now { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 @keyframes ph-rise { from { transform: translateY(108%); } }

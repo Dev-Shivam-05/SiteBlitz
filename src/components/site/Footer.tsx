@@ -6,7 +6,10 @@ import { PhotoCredits } from "./PhotoCredits";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { footerColumns, LEGAL_LINKS } from "@/lib/routes";
 
-/** Every indexable page is reachable from here (src/lib/routes.ts); the legal row sits under the wordmark. */
+/** Every indexable page is reachable from here (src/lib/routes.ts); the legal row sits under the wordmark.
+ *  prefetch={false}: these are still plain crawlable <a href> links, but scrolling past ~40 of them made Next prefetch
+ *  351-389 KB of route payloads per page view (performance audit 2026-11-11, fix Q3). The likely next steps keep
+ *  their prefetch (header, in-page buttons). */
 const COLUMNS = footerColumns();
 
 /** Redesign v4 footer: the void ground runs on from the close, the wordmark set edge to edge with its volt half,
@@ -45,6 +48,7 @@ export function Footer() {
                   <li key={l.href}>
                     <Link
                       href={l.href}
+                      prefetch={false}
                       className="group inline-flex min-h-11 items-center text-base text-ink/85 transition-colors hover:text-volt"
                     >
                       <span aria-hidden className="h-px w-0 bg-volt transition-all duration-300 group-hover:mr-2 group-hover:w-4" />
@@ -72,7 +76,7 @@ export function Footer() {
             <ul className="mt-2 flex flex-wrap gap-x-5">
               {LEGAL_LINKS.map((l) => (
                 <li key={l.path}>
-                  <Link href={l.path} className="inline-flex min-h-11 items-center hover:text-ink">
+                  <Link href={l.path} prefetch={false} className="inline-flex min-h-11 items-center hover:text-ink">
                     {l.label}
                   </Link>
                 </li>

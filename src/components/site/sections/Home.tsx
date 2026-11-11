@@ -103,13 +103,16 @@ export function HomeHero() {
             </div>
             <div className="hero-phone">
               <div aria-hidden className="hero-bezel" />
+              {/* Shown only after the visitor scrolls (the particles land into it), so it must not compete with the first
+                  screen: low fetch priority. On phones the frame is at most 400 px tall, i.e. 192 px wide. */}
               <Image
                 data-hero-shot
                 src="/demos/showroom.png"
                 alt=""
                 width={780}
                 height={1624}
-                sizes="(min-width: 768px) 340px, 220px"
+                sizes="(min-width: 768px) 340px, 192px"
+                fetchPriority="low"
                 className="hero-shot"
               />
             </div>

@@ -8,7 +8,7 @@ const i = (n: number) => ({ ["--i" as string]: n }) as CSSProperties;
  * Inner-page opening in the v4 brand (SEO-3): breadcrumb trail, volt kicker, giant display H1 whose lines rise out of
  * a mask, a lead paragraph and an optional aside (the page's own "moment"). The entrance is CSS only (globals.css,
  * "page hero"): it runs at first paint without waiting for JavaScript, moves with transform alone so the H1 is painted
- * from the first frame, waits for the preloader on the first page of a session and is off under reduced motion.
+ * from the first frame, starts immediately (no preloader sheet since 2026-11-11) and is off under reduced motion.
  */
 export function PageHero({
   crumbs,
