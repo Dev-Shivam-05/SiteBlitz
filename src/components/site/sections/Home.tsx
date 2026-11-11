@@ -3,6 +3,7 @@ import Link from "next/link";
 import { DEMOS, DEMO_LIST } from "@/lib/demos";
 import { PHOTOS, type PhotoId } from "@/lib/photos";
 import { PROCESS_STEPS, SITE } from "@/lib/site";
+import { PAGES } from "@/lib/pages";
 import { CONCEPT_CAP_PER_WEEK, EXCLUSIONS, FROM_PRICE, PACKAGES, inr, launchPkg } from "@/lib/offer";
 import { WhatsAppIcon } from "../WhatsAppIcon";
 import { Magnetic } from "../Magnetic";
@@ -148,6 +149,16 @@ export function Statement() {
         >
           Customers should understand what you offer, see what it costs and reach you on WhatsApp in a few taps. That is
           what every SiteBlitz page is built around.
+        </p>
+        {/* In-content links to the services hub and the studio page (audit 2026-11-11: both were reachable only from
+            the header and footer). */}
+        <p className="mt-10 flex flex-wrap gap-x-8 gap-y-2 text-base font-semibold md:justify-end">
+          <Link href={PAGES.services.path} className="inline-flex min-h-11 items-center gap-2 underline underline-offset-4 hover:text-volt">
+            Website development services <span aria-hidden>→</span>
+          </Link>
+          <Link href={PAGES.about.path} className="inline-flex min-h-11 items-center gap-2 underline underline-offset-4 hover:text-volt">
+            About the Gujarat-based studio <span aria-hidden>→</span>
+          </Link>
         </p>
       </div>
     </section>
@@ -546,6 +557,17 @@ export function Close() {
         </div>
         <p className="close-sub mt-12 text-sm">
           Replies {SITE.replyHours} · {SITE.locationLine}
+        </p>
+        <p className="close-sub mt-3 text-sm">
+          Already have a website?{" "}
+          <Link href={PAGES.grader.path} className="font-semibold underline underline-offset-4">
+            Check your current website
+          </Link>{" "}
+          with the free grader, or{" "}
+          <Link href={PAGES.research.path} className="font-semibold underline underline-offset-4">
+            explore our research and methodology
+          </Link>
+          .
         </p>
       </div>
     </section>

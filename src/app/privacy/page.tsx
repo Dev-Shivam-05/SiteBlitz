@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How SiteBlitz collects, uses and protects your information.",
+  description: "How SiteBlitz collects, uses and protects your information: what we collect, cookies, how long we keep data, your rights and the third parties involved.",
   alternates: { canonical: "/privacy" },
 };
 

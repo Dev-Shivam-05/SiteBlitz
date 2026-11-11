@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: "SiteBlitz refund policy — clear and fair.",
+  description: "SiteBlitz refund policy: refunds before the build starts, at direction approval and after delivery, and how to request one.",
   alternates: { canonical: "/refunds" },
 };
 

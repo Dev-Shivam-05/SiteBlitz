@@ -4,7 +4,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "The terms that govern SiteBlitz projects and use of this website.",
+  description: "The terms that govern SiteBlitz projects and use of this website: scope of work, payment, ownership, revisions, warranties and liability.",
   alternates: { canonical: "/terms" },
 };
 

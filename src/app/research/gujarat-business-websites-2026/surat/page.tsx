@@ -175,9 +175,9 @@ export default function SuratStudy() {
             </h2>
             <p className="mt-6 max-w-[40ch] text-base text-muted">
               &ldquo;Rest of Gujarat&rdquo; is the Gujarat count minus the {CITY} count for each trade; shares are computed after
-              subtracting. The full study, with every city, is{" "}
+              subtracting. Every city is in the{" "}
               <Link href={STUDY.path} className="text-ink underline underline-offset-4 hover:text-volt">
-                here
+                full Gujarat business website study
               </Link>
               .
             </p>

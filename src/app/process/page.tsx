@@ -100,7 +100,14 @@ export default function ProcessPage() {
                 </div>
               ))}
             </dl>
-            <p className="mt-6 text-base text-muted">Late content or approvals move the date. We tell you before a delivery date changes.</p>
+            <p className="mt-6 text-base text-muted">
+              Late content or approvals move the date. We tell you before a delivery date changes. For the one-page
+              site, see the{" "}
+              <Link href={PAGES.in48.path} className="text-ink underline underline-offset-4 hover:text-volt">
+                48-hour delivery conditions
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

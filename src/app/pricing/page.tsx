@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Shell } from "@/components/site/Shell";
 import { PricingPlans } from "@/components/site/sections/PricingPlans";
 import { Close, Stroke } from "@/components/site/sections/Home";
@@ -204,7 +205,7 @@ export default function PricingPage() {
         </Block>
 
         <Block id="cancel" title="What if I cancel?">
-          <p>Before a paid agreement there is nothing to cancel: the free concept carries no obligation. After a paid project starts, cancellation, completed work and refunds follow the written agreement and applicable law, and you can read those terms before paying.</p>
+          <p>Before a paid agreement there is nothing to cancel: the free concept carries no obligation. After a paid project starts, cancellation, completed work and refunds follow the written agreement and applicable law, and you can read those terms before paying. The general rules are in the <Link href={PAGES.refunds.path} className="text-ink underline underline-offset-4 hover:text-volt">refund policy</Link>.</p>
         </Block>
 
         <Block id="handover" title="What happens at handover?">
@@ -215,7 +216,7 @@ export default function PricingPage() {
           <p><strong className="text-ink">Will the website appear on Google?</strong> We set up the technical SEO included in your scope and submit the site to Google Search Console. Search engines decide whether and when to index and rank pages, so we don&apos;t guarantee either.</p>
           <p><strong className="text-ink">Will it bring guaranteed leads?</strong> No. We build a clear enquiry journey; traffic and sales depend on factors beyond the website.</p>
           <p><strong className="text-ink">Can I change the website later?</strong> Yes, depending on the agreed handover, access and any extra development needed.</p>
-          <p><strong className="text-ink">Can I talk to the team first?</strong> Yes. WhatsApp {SITE.phone} is our main channel, replies {SITE.replyHours}.</p>
+          <p><strong className="text-ink">Can I talk to the team first?</strong> Yes. WhatsApp {SITE.phone} is our main channel, replies {SITE.replyHours}. You can also <Link href={PAGES.book.path} className="text-ink underline underline-offset-4 hover:text-volt">book a project discussion</Link>.</p>
         </Block>
       </div>
 
