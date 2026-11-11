@@ -66,6 +66,7 @@ function useAnimEngine(pathname: string) {
     let heightTimer = 0;
     let stopHeightWatch = () => {};
     let drained = false;
+    const stopWaiting: (() => void)[] = [];
     let settledHeight = 0;
     const ctx = gsap.context(() => {
       // Yielding scheduler: above-the-fold (data-now) scenes build immediately;
@@ -186,10 +187,33 @@ function useAnimEngine(pathname: string) {
         }
       };
 
+      /* A reveal inside a section the browser is still skipping (content-visibility: auto, globals.css) is built
+         when that section starts to render, just before it reaches the screen. Building it at load would make
+         ScrollTrigger measure the skipped section and force its layout during load (audit 2026-11-11). Browsers
+         without checkVisibility's contentVisibilityAuto option build everything up front, as before. */
+      const waiting = new Map<HTMLElement, HTMLElement[]>();
       const els = gsap.utils.toArray<HTMLElement>("[data-anim]");
       for (const el of els) {
-        if (el.dataset.now !== undefined) buildAnim(el); // above the fold — now
-        else schedule(() => buildAnim(el)); // deferred, yielded
+        if (el.dataset.now !== undefined) {
+          buildAnim(el); // above the fold — now
+          continue;
+        }
+        const section = el.closest<HTMLElement>("main > section, main + footer");
+        const skipped = section && typeof el.checkVisibility === "function" && !el.checkVisibility({ contentVisibilityAuto: true });
+        if (section && skipped) {
+          const list = waiting.get(section) ?? [];
+          list.push(el);
+          waiting.set(section, list);
+        } else schedule(() => buildAnim(el)); // deferred, yielded
+      }
+      for (const [section, list] of waiting) {
+        const onState = (e: Event) => {
+          if ((e as ContentVisibilityAutoStateChangeEvent).skipped || !alive) return;
+          section.removeEventListener("contentvisibilityautostatechange", onState);
+          ctx.add(() => list.forEach(buildAnim));
+        };
+        section.addEventListener("contentvisibilityautostatechange", onState);
+        stopWaiting.push(() => section.removeEventListener("contentvisibilityautostatechange", onState));
       }
 
       /* ===== Redesign v4 scenes (docs/spec/redesign-v4-showcase.md). Phone and desktop values differ, so each
@@ -655,6 +679,7 @@ function useAnimEngine(pathname: string) {
       alive = false;
       window.clearTimeout(heightTimer);
       stopHeightWatch();
+      stopWaiting.forEach((stop) => stop());
       ctx.revert();
     };
   }, [pathname]);
