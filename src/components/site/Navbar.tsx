@@ -16,6 +16,9 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   const lastY = useRef(0);
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const sheetRef = useRef<HTMLElement>(null);
 
   useEffect(() => setOpen(false), [pathname]);
 
@@ -38,14 +41,45 @@ export function Navbar() {
     };
   }, []);
 
+  /* While the phone sheet is open it behaves as a modal (WAI-ARIA dialog pattern; audit 2026-11-11 found Tab walking out
+     of the open sheet into the hidden page): everything outside the header is inert, focus moves to the first link,
+     Tab and Shift+Tab cycle inside the header, and Escape closes the sheet and returns focus to the menu button. */
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const header = headerRef.current;
+    const background = Array.from(document.body.children).filter(
+      (el): el is HTMLElement => el instanceof HTMLElement && el !== header && !el.inert
+    );
+    background.forEach((el) => (el.inert = true));
+    sheetRef.current?.querySelector<HTMLElement>("a[href]")?.focus({ preventScroll: true });
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab" || !header) return;
+      const items = Array.from(header.querySelectorAll<HTMLElement>("a[href], button")).filter(
+        (el) => !el.closest("[inert]") && el.getClientRects().length > 0
+      );
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     window.addEventListener("keydown", onKey);
     document.documentElement.style.overflow = "hidden";
     window.__lenis?.stop();
     return () => {
       window.removeEventListener("keydown", onKey);
+      background.forEach((el) => (el.inert = false));
       document.documentElement.style.overflow = "";
       window.__lenis?.start();
     };
@@ -59,7 +93,7 @@ export function Navbar() {
   const isCurrent = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className={`site-header fixed inset-x-0 top-0 z-[80] ${hidden && !open ? "is-hidden" : ""}`}>
+    <header ref={headerRef} className={`site-header fixed inset-x-0 top-0 z-[80] ${hidden && !open ? "is-hidden" : ""}`}>
       <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between gap-3 px-4 md:px-8">
         <Link
           href="/"
@@ -109,6 +143,7 @@ export function Navbar() {
             </a>
           </Magnetic>
           <button
+            ref={toggleRef}
             className="pill flex h-11 w-11 items-center justify-center md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
@@ -124,6 +159,7 @@ export function Navbar() {
       </div>
 
       <nav
+        ref={sheetRef}
         id="mobile-nav"
         aria-label="Mobile"
         inert={!open}

@@ -39,6 +39,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* focus and anchor scrolling keep targets clear of the fixed header and the WhatsApp pill (audit 2026-11-11:
+     tabbing put form options and links under the pill) */
+  scroll-padding-top: 88px;
+  scroll-padding-bottom: 96px;
   background: var(--color-void);
   color-scheme: dark;
 }
@@ -219,6 +223,20 @@ main + footer {
   font-size: 1.08em;
   line-height: 0.8;
 }
+/* first focusable element on every page (Shell.tsx): off-screen until it has keyboard focus */
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: 12px;
+  z-index: 200;
+  translate: 0 -200%;
+  border-radius: 999px;
+  background: var(--color-volt);
+  color: var(--color-void);
+  padding: 12px 20px;
+  font-weight: 600;
+}
+.skip-link:focus-visible { translate: 0 0; }
 .kicker {
   font-size: 0.8125rem;
   font-weight: 600;

@@ -17,7 +17,7 @@ export function Breadcrumbs({ crumbs, className = "" }: { crumbs: readonly Crumb
                   {c.name}
                 </span>
               ) : (
-                <Link href={c.path} className="underline-offset-4 transition-colors hover:text-volt hover:underline">
+                <Link href={c.path} className="inline-flex min-h-6 items-center underline-offset-4 transition-colors hover:text-volt hover:underline">
                   {c.name}
                 </Link>
               )}
