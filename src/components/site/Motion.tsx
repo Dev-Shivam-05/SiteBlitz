@@ -65,6 +65,8 @@ function useAnimEngine(pathname: string) {
     let alive = true;
     let heightTimer = 0;
     let stopHeightWatch = () => {};
+    let drained = false;
+    let settledHeight = 0;
     const ctx = gsap.context(() => {
       // Yielding scheduler: above-the-fold (data-now) scenes build immediately;
       // everything else is spread across idle frames so no single long task
@@ -81,8 +83,16 @@ function useAnimEngine(pathname: string) {
             window.requestIdleCallback(drain, { timeout: 400 });
           else setTimeout(drain, 16);
         } else {
-          ScrollTrigger.refresh();
+          drained = true;
+          refreshAll();
+          startHeightWatch();
         }
+      };
+      // One full re-measure of every trigger. It is expensive (it lays out sections that content-visibility would
+      // skip), so it runs once when the queue is done, and later only when the document height really changed.
+      const refreshAll = () => {
+        ScrollTrigger.refresh();
+        settledHeight = document.documentElement.scrollHeight;
       };
 
       const buildAnim = (el: HTMLElement) => {
@@ -613,23 +623,26 @@ function useAnimEngine(pathname: string) {
       }); // end scheduled scene setup
 
       // Mona Sans is far wider than its fallback: once it has swapped in, every heading may wrap differently, so
-      // the trigger positions are measured again.
-      document.fonts?.ready.then(() => ScrollTrigger.refresh());
+      // the trigger positions are measured again. Fonts that arrive before the queue is done are covered by the
+      // queue's own final refresh.
+      document.fonts?.ready.then(() => {
+        if (alive && drained && Math.abs(document.documentElement.scrollHeight - settledHeight) >= 2) refreshAll();
+      });
 
       // Below-the-fold sections use content-visibility: auto (globals.css): until one first renders it reports a
-      // placeholder height, and when the real height arrives every trigger under it has moved. Re-measure once the
-      // document height has settled (debounced; a refresh that itself changes the height is not re-triggered).
-      let settledHeight = document.documentElement.scrollHeight;
+      // placeholder height, and when the real height arrives every trigger under it has moved. Once the queue is
+      // done, re-measure when the document height has settled at a new value (debounced, and only if it still
+      // differs from the last measured height). Watching starts after the queue: earlier changes are covered by it.
+      // (Audit 2026-11-11: refreshing on every early change added full-page layouts to the load.)
       const heightWatch = new ResizeObserver(() => {
         if (Math.abs(document.documentElement.scrollHeight - settledHeight) < 2) return;
         window.clearTimeout(heightTimer);
         heightTimer = window.setTimeout(() => {
-          if (!alive) return;
-          ScrollTrigger.refresh();
-          settledHeight = document.documentElement.scrollHeight;
+          if (!alive || Math.abs(document.documentElement.scrollHeight - settledHeight) < 2) return;
+          refreshAll();
         }, 200);
       });
-      heightWatch.observe(document.body);
+      const startHeightWatch = () => heightWatch.observe(document.body);
       stopHeightWatch = () => heightWatch.disconnect();
 
       // Start draining the deferred queue once the browser is idle.
