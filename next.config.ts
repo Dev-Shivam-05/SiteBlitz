@@ -1,4 +1,9 @@
 import type { NextConfig } from "next";
+import { releaseOriginProblem } from "./src/lib/release";
+
+// A production deployment must name its origin (src/lib/release.ts); local and preview builds keep the fallback.
+const originProblem = releaseOriginProblem(process.env);
+if (originProblem) throw new Error(originProblem);
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
