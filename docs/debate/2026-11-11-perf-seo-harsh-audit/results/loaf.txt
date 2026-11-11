@@ -1,0 +1,15 @@
+/ run 1: 19 long frames
+   t=282 2818ms (style+layout tail 1896ms) | : 7ms forced 0 [http://localhost:3100/]
+   t=3402 1105ms (style+layout tail 306ms) | 4bd1b696-100b9d70ed4e49c1.js: 705ms forced 0 [http://localhost:3100/_next/static/chunk] ; 4bd1b696-100b9d70ed4e49c1.js:cc 9ms forced 0 [#document.onload] ; main-app-ecdf52ae0b08fd9b.js: 7ms forced 0 [http://localhost:3100/_next/static/chunk]
+   t=3143 241ms (style+layout tail 185ms) | 
+   t=5824 213ms (style+layout tail 2ms) | 3262.92514019ed49ea2f.js: 205ms forced 5 [http://localhost:3100/_next/static/chunk]
+/pricing run 1: 8 long frames
+   t=286 2497ms (style+layout tail 1436ms) | pricing: 9ms forced 0 [http://localhost:3100/pricing]
+   t=3224 874ms (style+layout tail 108ms) | 4bd1b696-100b9d70ed4e49c1.js: 724ms forced 0 [http://localhost:3100/_next/static/chunk] ; 4bd1b696-100b9d70ed4e49c1.js:cc 10ms forced 0 [#document.onload]
+   t=2837 362ms (style+layout tail 270ms) | main-app-ecdf52ae0b08fd9b.js: 14ms forced 0 [http://localhost:3100/_next/static/chunk]
+   t=5381 186ms (style+layout tail 7ms) | 3262.92514019ed49ea2f.js: 174ms forced 4 [http://localhost:3100/_next/static/chunk]
+/research/gujarat-business-websites-2026 run 1: 11 long frames
+   t=283 2586ms (style+layout tail 1716ms) | gujarat-business-websites-2026: 7ms forced 0 [http://localhost:3100/research/gujarat-b]
+   t=3695 608ms (style+layout tail 1ms) | 4bd1b696-100b9d70ed4e49c1.js: 578ms forced 0 [http://localhost:3100/_next/static/chunk] ; 4bd1b696-100b9d70ed4e49c1.js:cc 16ms forced 0 [#document.onload]
+   t=2959 475ms (style+layout tail 338ms) | 
+   t=4903 367ms (style+layout tail 2ms) | 

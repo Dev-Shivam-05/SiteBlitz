@@ -1,0 +1,165 @@
+/ @390 EARLY TAP at 2800ms: event duration 544ms (pointerdown:544 pointerup:416 click:536) menu expanded=true
+/ @390: overflow 0px | preloader covers >=50% until 2844ms | targets 61, <24px 1, <48px 39 | text<12px 0% <16px 24.9% | fixed UI 109% | max interaction 344ms (pointerdown:72 pointerup:120 click:120 pointerdown:88 pointerup:80 click:144 pointerdown:184 pointerup:344 pointerdown:24 pointerup:64 click:64)
+   <24px: All concept studies → 169x21
+   fixed: site-header fixed inset-x-0 to 9% | hero-stage 100%
+/work @390 EARLY TAP at 2800ms: event duration 304ms (pointerdown:216 pointerup:304 click:304) menu expanded=true
+/work @390: overflow 0px | preloader covers >=50% until 2428ms | targets 48, <24px 5, <48px 41 | text<12px 1.8% <16px 30.8% | fixed UI 9% | max interaction 112ms (pointerdown:24 pointerup:112 click:112 pointerdown:24 pointerup:96 click:96)
+   <24px: Home 38x20 | restaurants 85x21 | clinics 47x21 | law firms 66x21 | boutiques 75x21
+   <12px text: Concept study@11 | Concept study@11 | Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 9%
+/pricing @390 EARLY TAP at 2800ms: event duration 360ms (pointerdown:312 pointerup:360 click:360) menu expanded=true
+/pricing @390: overflow 0px | preloader covers >=50% until 2934ms | targets 46, <24px 2, <48px 39 | text<12px 0.2% <16px 39.3% | fixed UI 9% | max interaction 88ms (pointerdown:32 pointerup:56 click:56 pointerdown:24 pointerup:88 click:88)
+   <24px: Home 38x20 | See full terms → 110x18
+   <12px text: Most complete@11
+   fixed: site-header fixed inset-x-0 to 9%
+/services/business-websites @390 EARLY TAP at 2800ms: event duration 160ms (pointerdown:112 pointerup:32 click:160) menu expanded=true
+/services/business-websites @390: overflow 0px | preloader covers >=50% until 2519ms | targets 57, <24px 4, <48px 42 | text<12px 0.6% <16px 17.3% | fixed UI 9% | max interaction 72ms (pointerdown:24 pointerup:40 click:40 pointerdown:32 pointerup:72 click:72 pointerdown:72 pointerup:64 pointerdown:32 pointerup:56 click:56)
+   <24px: Home 38x20 | Services 55x20 | the FAQ page 99x21 | prices & terms 110x21
+   <12px text: Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 9%
+/contact @390 EARLY TAP at 2800ms: event duration 192ms (pointerdown:32 pointerup:48 click:192) menu expanded=true
+/contact @390: overflow 0px | preloader covers >=50% until 1862ms | targets 52, <24px 2, <48px 47 | text<12px 0% <16px 27.1% | fixed UI 9% | max interaction 96ms (pointerdown:24 pointerup:64 click:64 pointerdown:24 pointerup:96 click:96)
+   <24px: Home 38x20 | the common questions 172x21
+   fixed: site-header fixed inset-x-0 to 9%
+/tools/grader @390 EARLY TAP at 2800ms: event duration 208ms (pointerdown:56 pointerup:208 click:208) menu expanded=true
+/tools/grader @390: overflow 0px | preloader covers >=50% until 1975ms | targets 42, <24px 1, <48px 39 | text<12px 0% <16px 43% | fixed UI 9% | max interaction 96ms (pointerdown:24 pointerup:96 click:96 pointerdown:32 pointerup:88 click:88)
+   <24px: Home 38x20
+   fixed: site-header fixed inset-x-0 to 9%
+/faq @390 EARLY TAP at 2800ms: event duration 312ms (pointerdown:216 pointerup:160 click:312) menu expanded=true
+/faq @390: overflow 0px | preloader covers >=50% until 2413ms | targets 66, <24px 3, <48px 40 | text<12px 0% <16px 5% | fixed UI 9% | max interaction 184ms (pointerdown:24 pointerup:96 click:96 pointerdown:24 pointerup:184 click:184 pointerdown:40 pointerup:88 click:88 pointerdown:32 pointerup:64 click:64)
+   <24px: Home 38x20 | Pricing 50x21 | Process 59x21
+   fixed: site-header fixed inset-x-0 to 9%
+/research/gujarat-business-websites-2026 @390 EARLY TAP at 2800ms: event duration 224ms (pointerdown:224 pointerup:152 click:152) menu expanded=false
+/research/gujarat-business-websites-2026 @390: overflow 0px | preloader covers >=50% until 2860ms | targets 79, <24px 19, <48px 39 | text<12px 0% <16px 66.5% | fixed UI 9% | max interaction 168ms (pointerdown:32 pointerup:32 click:136 pointerdown:32 pointerup:96 click:96 pointerdown:168 pointerup:128 pointerdown:32 pointerup:88 click:88)
+   <24px: Home 38x20 | Research 59x20 | Ahmedabad 83x18 | Surat 36x18 | Vadodara 65x18 | Rajkot 41x18
+   fixed: site-header fixed inset-x-0 to 9%
+/blog/what-a-small-business-website-must-have-2026 @390 EARLY TAP at 2800ms: event duration 328ms (pointerdown:240 pointerup:328 click:328) menu expanded=true
+/blog/what-a-small-business-website-must-have-2026 @390: overflow 0px | preloader covers >=50% until 2198ms | targets 46, <24px 3, <48px 43 | text<12px 0.2% <16px 94.3% | fixed UI 9% | max interaction 168ms (pointerdown:24 pointerup:64 click:64 pointerdown:24 pointerup:128 click:128 pointerdown:40 pointerup:56 pointerdown:48 pointerup:168 click:168)
+   <24px: Home 38x20 | Guides 46x20 | ← All guides 81x20
+   <12px text: From the studio@10
+   fixed: site-header fixed inset-x-0 to 9%
+/ @320: overflow 0px | preloader covers >=50% until 2501ms | targets 61, <24px 1, <48px 39 | text<12px 0% <16px 24.8% | fixed UI 112% | max interaction 224ms (pointerdown:72 pointerup:64 pointerdown:56 pointerup:80 pointerdown:224 pointerup:104 pointerdown:32 pointerup:88 click:88)
+   <24px: All concept studies → 169x21
+   fixed: site-header fixed inset-x-0 to 12% | hero-stage 100%
+/ @360: overflow 0px | preloader covers >=50% until 3003ms | targets 61, <24px 1, <48px 39 | text<12px 0% <16px 24.7% | fixed UI 112% | max interaction 384ms (pointerdown:72 pointerup:152 click:152 pointerdown:96 pointerup:80 click:144 pointerdown:384 pointerup:216 pointerdown:32 pointerup:56 click:56)
+   <24px: All concept studies → 169x21
+   fixed: site-header fixed inset-x-0 to 12% | hero-stage 100%
+/ @375: overflow 0px | preloader covers >=50% until 2771ms | targets 61, <24px 1, <48px 39 | text<12px 0% <16px 24.9% | fixed UI 109% | max interaction 360ms (pointerdown:80 pointerup:176 click:176 pointerdown:88 pointerup:80 click:184 pointerdown:360 pointerup:184 pointerdown:48 pointerup:80 click:80)
+   <24px: All concept studies → 169x21
+   fixed: site-header fixed inset-x-0 to 9% | hero-stage 100%
+/ @414: overflow 0px | preloader covers >=50% until 3016ms | targets 61, <24px 1, <48px 39 | text<12px 0% <16px 24.9% | fixed UI 108% | max interaction 224ms (pointerdown:72 pointerup:72 click:208 pointerdown:48 pointerup:48 click:184 pointerdown:224 pointerup:160 pointerdown:40 pointerup:96 click:96)
+   <24px: All concept studies → 169x21
+   fixed: site-header fixed inset-x-0 to 8% | hero-stage 100%
+/work @320: overflow 0px | preloader covers >=50% until 2252ms | targets 48, <24px 6, <48px 39 | text<12px 1.8% <16px 30.8% | fixed UI 12% | max interaction 40ms (pointerdown:40 pointerup:32 pointerdown:32 pointerup:24)
+   <24px: Home 38x20 | restaurants 85x21 | clinics 47x21 | law firms 66x21 | boutiques 75x21 | package prices 113x21
+   <12px text: Concept study@11 | Concept study@11 | Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 12%
+/work @360: overflow 0px | preloader covers >=50% until 2482ms | targets 48, <24px 6, <48px 39 | text<12px 1.8% <16px 30.8% | fixed UI 12% | max interaction 112ms (pointerdown:40 pointerup:112 click:112 pointerdown:16 pointerup:112 click:112)
+   <24px: Home 38x20 | restaurants 85x21 | clinics 47x21 | law firms 66x21 | boutiques 75x21 | package prices 113x21
+   <12px text: Concept study@11 | Concept study@11 | Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 12%
+/work @375: overflow 0px | preloader covers >=50% until 2281ms | targets 48, <24px 6, <48px 39 | text<12px 1.8% <16px 30.8% | fixed UI 9% | max interaction 184ms (pointerdown:32 pointerup:184 click:184 pointerdown:32 pointerup:136 click:136)
+   <24px: Home 38x20 | restaurants 85x21 | clinics 47x21 | law firms 66x21 | boutiques 75x21 | package prices 113x21
+   <12px text: Concept study@11 | Concept study@11 | Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 9%
+/work @414: overflow 0px | preloader covers >=50% until 2844ms | targets 48, <24px 6, <48px 40 | text<12px 1.8% <16px 30.8% | fixed UI 8% | max interaction 176ms (pointerdown:32 pointerup:176 click:176 pointerdown:24 pointerup:112 click:112)
+   <24px: Home 38x20 | restaurants 85x21 | clinics 47x21 | law firms 66x21 | boutiques 75x21 | package prices 113x21
+   <12px text: Concept study@11 | Concept study@11 | Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 8%
+/pricing @320: overflow 0px | preloader covers >=50% until 2407ms | targets 46, <24px 2, <48px 39 | text<12px 0.2% <16px 39.3% | fixed UI 12% | max interaction 32ms (pointerdown:24 pointerup:16 pointerdown:32 pointerup:16)
+   <24px: Home 38x20 | See full terms → 110x18
+   <12px text: Most complete@11
+   fixed: site-header fixed inset-x-0 to 12%
+/pricing @360: overflow 0px | preloader covers >=50% until 2551ms | targets 46, <24px 2, <48px 39 | text<12px 0.2% <16px 39.3% | fixed UI 12% | max interaction 120ms (pointerdown:32 pointerup:120 click:120 pointerdown:32 pointerup:112 click:112)
+   <24px: Home 38x20 | See full terms → 110x18
+   <12px text: Most complete@11
+   fixed: site-header fixed inset-x-0 to 12%
+/pricing @375: overflow 0px | preloader covers >=50% until 2566ms | targets 46, <24px 2, <48px 39 | text<12px 0.2% <16px 39.3% | fixed UI 9% | max interaction 128ms (pointerdown:24 pointerup:128 click:128 pointerdown:24 pointerup:112 click:112)
+   <24px: Home 38x20 | See full terms → 110x18
+   <12px text: Most complete@11
+   fixed: site-header fixed inset-x-0 to 9%
+/pricing @414: overflow 0px | preloader covers >=50% until 2572ms | targets 46, <24px 2, <48px 39 | text<12px 0.2% <16px 39.3% | fixed UI 8% | max interaction 160ms (pointerdown:24 pointerup:160 click:160 pointerdown:16 pointerup:144 click:144)
+   <24px: Home 38x20 | See full terms → 110x18
+   <12px text: Most complete@11
+   fixed: site-header fixed inset-x-0 to 8%
+/services/business-websites @320: overflow 0px | preloader covers >=50% until 2359ms | targets 57, <24px 3, <48px 43 | text<12px 0.6% <16px 17.3% | fixed UI 12% | max interaction 72ms (pointerdown:32 pointerup:24 pointerdown:32 pointerup:24 pointerdown:32 pointerup:32 pointerdown:32 pointerup:72 click:72)
+   <24px: Home 38x20 | Services 55x20 | the FAQ page 99x21
+   <12px text: Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 12%
+/services/business-websites @360: overflow 0px | preloader covers >=50% until 2366ms | targets 57, <24px 4, <48px 42 | text<12px 0.6% <16px 17.3% | fixed UI 12% | max interaction 168ms (pointerdown:40 pointerup:168 click:168 pointerdown:32 pointerup:136 click:136 pointerdown:24 pointerup:56 pointerdown:32 pointerup:40 click:40)
+   <24px: Home 38x20 | Services 55x20 | the FAQ page 99x21 | prices & terms 110x21
+   <12px text: Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 12%
+/services/business-websites @375: overflow 0px | preloader covers >=50% until 2489ms | targets 57, <24px 4, <48px 42 | text<12px 0.6% <16px 17.3% | fixed UI 9% | max interaction 128ms (pointerdown:24 pointerup:128 click:128 pointerdown:24 pointerup:112 click:112 pointerdown:40 pointerup:48 pointerdown:24 pointerup:64 click:64)
+   <24px: Home 38x20 | Services 55x20 | the FAQ page 99x21 | prices & terms 110x21
+   <12px text: Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 9%
+/services/business-websites @414: overflow 0px | preloader covers >=50% until 2430ms | targets 57, <24px 4, <48px 42 | text<12px 0.6% <16px 17.3% | fixed UI 8% | max interaction 160ms (pointerdown:32 pointerup:160 click:160 pointerdown:32 pointerup:120 click:120 pointerdown:40 pointerup:48 pointerdown:32 pointerup:56 click:56)
+   <24px: Home 38x20 | Services 55x20 | the FAQ page 99x21 | prices & terms 110x21
+   <12px text: Concept study@11 | Concept study@11
+   fixed: site-header fixed inset-x-0 to 8%
+/contact @320: overflow 0px | preloader covers >=50% until 1988ms | targets 52, <24px 2, <48px 47 | text<12px 0% <16px 27.1% | fixed UI 12% | max interaction 40ms (pointerdown:32 pointerup:32 pointerdown:32 pointerup:40)
+   <24px: Home 38x20 | the prices 75x21
+   fixed: site-header fixed inset-x-0 to 12%
+/contact @360: overflow 0px | preloader covers >=50% until 2085ms | targets 52, <24px 3, <48px 46 | text<12px 0% <16px 27.1% | fixed UI 12% | max interaction 264ms (pointerdown:40 pointerup:40 click:264 pointerdown:24 pointerup:128 click:128)
+   <24px: Home 38x20 | the prices 75x21 | the common questions 172x21
+   fixed: site-header fixed inset-x-0 to 12%
+/contact @375: overflow 0px | preloader covers >=50% until 1863ms | targets 52, <24px 3, <48px 46 | text<12px 0% <16px 27.1% | fixed UI 9% | max interaction 160ms (pointerdown:24 pointerup:160 click:160 pointerdown:32 pointerup:104 click:104)
+   <24px: Home 38x20 | the prices 75x21 | the common questions 172x21
+   fixed: site-header fixed inset-x-0 to 9%
+/contact @414: overflow 0px | preloader covers >=50% until 1996ms | targets 52, <24px 3, <48px 46 | text<12px 0% <16px 27.1% | fixed UI 8% | max interaction 176ms (pointerdown:32 pointerup:176 click:176 pointerdown:24 pointerup:144 click:144)
+   <24px: Home 38x20 | the prices 75x21 | the common questions 172x21
+   fixed: site-header fixed inset-x-0 to 8%
+/tools/grader @320: overflow 0px | preloader covers >=50% until 1985ms | targets 42, <24px 1, <48px 39 | text<12px 0% <16px 43% | fixed UI 12% | max interaction 24ms (pointerdown:16 pointerup:24 pointerdown:24 pointerup:16)
+   <24px: Home 38x20
+   fixed: site-header fixed inset-x-0 to 12%
+/tools/grader @360: overflow 0px | preloader covers >=50% until 2100ms | targets 42, <24px 1, <48px 39 | text<12px 0% <16px 43% | fixed UI 12% | max interaction 176ms (pointerdown:32 pointerup:40 click:176 pointerdown:32 pointerup:104 click:104)
+   <24px: Home 38x20
+   fixed: site-header fixed inset-x-0 to 12%
+/tools/grader @375: overflow 0px | preloader covers >=50% until 1959ms | targets 42, <24px 1, <48px 39 | text<12px 0% <16px 43% | fixed UI 9% | max interaction 168ms (pointerdown:24 pointerup:168 click:168 pointerdown:32 pointerup:104 click:104)
+   <24px: Home 38x20
+   fixed: site-header fixed inset-x-0 to 9%
+/tools/grader @414: overflow 0px | preloader covers >=50% until 1889ms | targets 42, <24px 1, <48px 39 | text<12px 0% <16px 43% | fixed UI 8% | max interaction 136ms (pointerdown:32 pointerup:80 click:80 pointerdown:32 pointerup:136 click:136)
+   <24px: Home 38x20
+   fixed: site-header fixed inset-x-0 to 8%
+/faq @320: overflow 0px | preloader covers >=50% until 2297ms | targets 66, <24px 3, <48px 39 | text<12px 0% <16px 5% | fixed UI 12% | max interaction 128ms (pointerdown:24 pointerup:32 pointerdown:24 pointerup:32 pointerdown:56 pointerup:128 click:128 pointerdown:40 pointerup:80 click:80)
+   <24px: Home 38x20 | Pricing 50x21 | Process 59x21
+   fixed: site-header fixed inset-x-0 to 12%
+/faq @360: overflow 0px | preloader covers >=50% until 2212ms | targets 66, <24px 3, <48px 39 | text<12px 0% <16px 5% | fixed UI 12% | max interaction 208ms (pointerdown:24 pointerup:208 click:208 pointerdown:32 pointerup:152 click:152 pointerdown:56 pointerup:128 click:128 pointerdown:32 pointerup:88 click:88)
+   <24px: Home 38x20 | Pricing 50x21 | Process 59x21
+   fixed: site-header fixed inset-x-0 to 12%
+/faq @375: overflow 0px | preloader covers >=50% until 2384ms | targets 66, <24px 3, <48px 40 | text<12px 0% <16px 5% | fixed UI 9% | max interaction 176ms (pointerdown:56 pointerup:176 click:176 pointerdown:24 pointerup:112 click:112 pointerdown:56 pointerup:128 click:128 pointerdown:24 pointerup:48 click:48)
+   <24px: Home 38x20 | Pricing 50x21 | Process 59x21
+   fixed: site-header fixed inset-x-0 to 9%
+/faq @414: overflow 0px | preloader covers >=50% until 2383ms | targets 66, <24px 3, <48px 41 | text<12px 0% <16px 5% | fixed UI 8% | max interaction 168ms (pointerdown:40 pointerup:168 click:168 pointerdown:32 pointerup:168 click:168 pointerdown:80 pointerup:128 click:128 pointerdown:40 pointerup:72 click:72)
+   <24px: Home 38x20 | Pricing 50x21 | Process 59x21
+   fixed: site-header fixed inset-x-0 to 8%
+/research/gujarat-business-websites-2026 @320: overflow 0px | preloader covers >=50% until 2880ms | targets 79, <24px 17, <48px 41 | text<12px 0% <16px 66.5% | fixed UI 12% | max interaction 152ms (pointerdown:24 pointerup:32 pointerdown:24 pointerup:32 pointerdown:136 pointerup:56 pointerdown:32 pointerup:152 click:152)
+   <24px: Home 38x20 | Research 59x20 | Ahmedabad 83x18 | Surat 36x18 | Vadodara 65x18 | Rajkot 41x18
+   fixed: site-header fixed inset-x-0 to 12%
+/research/gujarat-business-websites-2026 @360: overflow 0px | preloader covers >=50% until 2826ms | targets 79, <24px 19, <48px 39 | text<12px 0% <16px 66.5% | fixed UI 12% | max interaction 128ms (pointerdown:24 pointerup:128 click:128 pointerdown:32 pointerup:120 click:120 pointerdown:112 pointerup:96 pointerdown:24 pointerup:112 click:112)
+   <24px: Home 38x20 | Research 59x20 | Ahmedabad 83x18 | Surat 36x18 | Vadodara 65x18 | Rajkot 41x18
+   fixed: site-header fixed inset-x-0 to 12%
+/research/gujarat-business-websites-2026 @375: overflow 0px | preloader covers >=50% until 2664ms | targets 79, <24px 19, <48px 39 | text<12px 0% <16px 66.5% | fixed UI 9% | max interaction 192ms (pointerdown:24 pointerup:144 click:144 pointerdown:32 pointerup:192 click:192 pointerdown:136 pointerup:64 pointerdown:56 pointerup:112 click:112)
+   <24px: Home 38x20 | Research 59x20 | Ahmedabad 83x18 | Surat 36x18 | Vadodara 65x18 | Rajkot 41x18
+   fixed: site-header fixed inset-x-0 to 9%
+/research/gujarat-business-websites-2026 @414: overflow 0px | preloader covers >=50% until 2593ms | targets 79, <24px 19, <48px 39 | text<12px 0% <16px 66.5% | fixed UI 8% | max interaction 176ms (pointerdown:24 pointerup:104 click:104 pointerdown:32 pointerup:136 click:136 pointerdown:176 pointerup:88 pointerdown:32 pointerup:88 click:88)
+   <24px: Home 38x20 | Research 59x20 | Ahmedabad 83x18 | Surat 36x18 | Vadodara 65x18 | Rajkot 41x18
+   fixed: site-header fixed inset-x-0 to 8%
+/blog/what-a-small-business-website-must-have-2026 @320: overflow 0px | preloader covers >=50% until 2278ms | targets 46, <24px 3, <48px 42 | text<12px 0.2% <16px 94.3% | fixed UI 12% | max interaction 48ms (pointerdown:40 pointerup:24 pointerdown:16 pointerup:16 pointerdown:32 pointerup:24 pointerdown:32 pointerup:48 click:48)
+   <24px: Home 38x20 | Guides 46x20 | ← All guides 81x20
+   <12px text: From the studio@10
+   fixed: site-header fixed inset-x-0 to 12%
+/blog/what-a-small-business-website-must-have-2026 @360: overflow 0px | preloader covers >=50% until 2409ms | targets 46, <24px 3, <48px 42 | text<12px 0.2% <16px 94.3% | fixed UI 12% | max interaction 160ms (pointerdown:24 pointerup:160 click:160 pointerdown:24 pointerup:160 click:160 pointerdown:16 pointerup:48 pointerdown:24 pointerup:64 click:64)
+   <24px: Home 38x20 | Guides 46x20 | ← All guides 81x20
+   <12px text: From the studio@10
+   fixed: site-header fixed inset-x-0 to 12%
+/blog/what-a-small-business-website-must-have-2026 @375: overflow 0px | preloader covers >=50% until 2321ms | targets 46, <24px 3, <48px 42 | text<12px 0.2% <16px 94.3% | fixed UI 9% | max interaction 176ms (pointerdown:40 pointerup:160 click:160 pointerdown:24 pointerup:176 click:176 pointerdown:40 pointerup:48 pointerdown:24 pointerup:80 click:80)
+   <24px: Home 38x20 | Guides 46x20 | ← All guides 81x20
+   <12px text: From the studio@10
+   fixed: site-header fixed inset-x-0 to 9%
+/blog/what-a-small-business-website-must-have-2026 @414: overflow 0px | preloader covers >=50% until 2326ms | targets 46, <24px 3, <48px 43 | text<12px 0.2% <16px 94.3% | fixed UI 8% | max interaction 192ms (pointerdown:40 pointerup:192 click:192 pointerdown:24 pointerup:128 click:128 pointerdown:32 pointerup:80 pointerdown:32 pointerup:72 click:72)
+   <24px: Home 38x20 | Guides 46x20 | ← All guides 81x20
+   <12px text: From the studio@10
+   fixed: site-header fixed inset-x-0 to 8%
+done

@@ -1,0 +1,55 @@
+/  [1157w d0 in37 30KBgz]  title 61ch | ld gaps: Organization.sameAs
+/work  [518w d1 in37 20.9KBgz]  ld gaps: Organization.sameAs
+/services  [483w d1 in37 20.3KBgz]  ld gaps: Organization.sameAs
+/pricing  [1157w d1 in37 23.8KBgz]  ld gaps: Organization.sameAs
+/process  [480w d1 in37 19.2KBgz]  ld gaps: Organization.sameAs
+/about  [340w d1 in37 16.4KBgz]  ld gaps: Organization.sameAs
+/contact  [98w d1 in37 12.9KBgz]  thin 98 words | ld gaps: Organization.sameAs
+/faq  [922w d1 in37 23.5KBgz]  title 63ch | ld gaps: Organization.sameAs
+/proof  [279w d1 in37 14KBgz]  thin 279 words | ld gaps: Organization.sameAs
+/book  [131w d1 in37 13.1KBgz]  heading skips 1 | thin 131 words | ld gaps: Organization.sameAs
+/website-in-48-hours  [636w d1 in37 18.2KBgz]  ld gaps: Organization.sameAs
+/tools/grader  [67w d1 in37 12KBgz]  title 62ch | heading skips 1 | thin 67 words | ld gaps: Organization.sameAs
+/blog  [500w d1 in37 17KBgz]  ld gaps: Organization.sameAs
+/research  [184w d1 in37 13.9KBgz]  thin 184 words | ld gaps: Organization.sameAs
+/research/gujarat-business-websites-2026  [3825w d1 in37 50.3KBgz]  html 50.3KB gz | ld gaps: Organization.sameAs
+/research/gujarat-business-websites-2026/surat  [1448w d1 in37 30.5KBgz]  ld gaps: Organization.sameAs | weak anchors 1
+/research/india-business-website-records-2026  [1340w d1 in37 37.8KBgz]  ld gaps: Organization.sameAs
+/privacy  [308w d1 in37 11.8KBgz]  desc 59ch | ld gaps: Organization.sameAs
+/terms  [212w d1 in37 11.3KBgz]  desc 65ch | thin 212 words | ld gaps: Organization.sameAs
+/refunds  [126w d1 in37 10.9KBgz]  desc 41ch | thin 126 words | ld gaps: Organization.sameAs
+/services/business-websites  [720w d1 in37 21.1KBgz]  ld gaps: Organization.sameAs
+/services/ecommerce-and-booking  [638w d1 in37 20.8KBgz]  ld gaps: Organization.sameAs
+/services/landing-pages  [720w d1 in37 21.2KBgz]  ld gaps: Organization.sameAs
+/services/project-rescue  [619w d1 in37 20.8KBgz]  ld gaps: Organization.sameAs
+/services/seo-and-geo  [681w d1 in37 21KBgz]  title 62ch | ld gaps: Organization.sameAs
+/services/care-plans  [600w d1 in37 20.5KBgz]  ld gaps: Organization.sameAs
+/for/restaurants  [609w d1 in37 19KBgz]  ld gaps: Organization.sameAs
+/for/clinics  [583w d1 in37 18.9KBgz]  ld gaps: Organization.sameAs
+/for/law-firms  [578w d1 in37 19KBgz]  ld gaps: Organization.sameAs
+/for/boutiques  [625w d1 in37 19.3KBgz]  ld gaps: Organization.sameAs
+/blog/what-a-small-business-website-must-have-2026  [1267w d2 in1 21.1KBgz]  inlinks 1 | ld gaps: Organization.sameAs,BlogPosting.image
+/blog/website-cost-india-honest-breakdown  [1327w d2 in2 21.7KBgz]  ld gaps: Organization.sameAs,BlogPosting.image
+/blog/google-business-profile-plus-website-local-seo  [1280w d2 in1 21.1KBgz]  title 71ch | title ~648px | inlinks 1 | ld gaps: Organization.sameAs,BlogPosting.image
+/blog/why-website-speed-decides-revenue  [1280w d2 in1 21.1KBgz]  title 70ch | title ~664px | inlinks 1 | ld gaps: Organization.sameAs,BlogPosting.image
+/blog/landing-page-vs-website-what-your-business-needs  [1180w d2 in1 20.2KBgz]  title 70ch | title ~639px | inlinks 1 | ld gaps: Organization.sameAs,BlogPosting.image
+/blog/generative-engine-optimization-geo-explained  [1301w d2 in1 21.4KBgz]  title 70ch | title ~641px | inlinks 1 | ld gaps: Organization.sameAs,BlogPosting.image
+/blog/website-builder-vs-web-design-studio  [1312w d2 in1 20.5KBgz]  title 61ch | inlinks 1 | ld gaps: Organization.sameAs,BlogPosting.image
+/blog/website-banane-ka-kharcha  [1224w d2 in2 20.5KBgz]  ld gaps: Organization.sameAs,BlogPosting.image
+
+EDGE CASES
+/this-page-does-not-exist -> 404 (expect 404) robots=noindex canonical=null
+/services/not-a-service -> 404 (expect 404) robots=noindex canonical=null
+/blog/not-a-post -> 404 (expect 404) robots=noindex canonical=null
+/for/not-an-industry -> 404 (expect 404) robots=noindex canonical=null
+/research/not-a-study -> 404 (expect 404) robots=noindex canonical=null
+/pricing/ -> 308 /pricing (expect 308 -> /pricing) robots=null canonical=null
+/Pricing -> 404 (expect 404 or 308) robots=noindex canonical=null
+/pricing?utm_source=x -> 200 (expect 200, canonical /pricing) robots=index, follow canonical=https://siteblitz.vercel.app/pricing
+/demo/ -> 308 /demo (expect ?) robots=null canonical=null
+/admin -> 307 /admin/login?next=%2Fadmin (expect 401/307, noindex) robots=null canonical=null
+/api/track -> 405 (expect 204/405) robots=null canonical=null
+/robots.txt -> 200 (expect 200) robots=null canonical=null
+/sitemap.xml -> 200 (expect 200) robots=null canonical=null
+/llms.txt -> 200 (expect 200) robots=null canonical=null
+/manifest.webmanifest -> 200 (expect 200) robots=null canonical=null

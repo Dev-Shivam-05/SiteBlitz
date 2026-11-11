@@ -1,0 +1,10 @@
+/ [A x5] p75/max FCP 4048/4256ms LCP 4048/4256ms READY 4518/4698ms (preloader 4518ms) CLS 0.000/0.000 TBT 1005/1127ms maxTask 2964ms | LCP el h1.display | 10s KB js 188 font 214 img 56 css 19 doc 31 fetch 10 total 531
+/pricing [A x5] p75/max FCP 3912/3912ms LCP 3912/3912ms READY 4045/4321ms (preloader 4045ms) CLS 0.000/0.000 TBT 354/399ms maxTask 2629ms | LCP el p. | 10s KB js 182 font 214 img 0 css 19 doc 25 fetch 18 total 471
+/services/business-websites [A x5] p75/max FCP 3668/3744ms LCP 3668/3744ms READY 3668/3798ms (preloader 3601ms) CLS 0.000/0.000 TBT 460/1002ms maxTask 2430ms | LCP el p. | 10s KB js 188 font 214 img 0 css 19 doc 22 fetch 45 total 501
+/blog/what-a-small-business-website-must-have-2026 [A x5] p75/max FCP 3612/3680ms LCP 3612/3680ms READY 3750/3858ms (preloader 3750ms) CLS 0.000/0.000 TBT 416/440ms maxTask 2341ms | LCP el p.my-4 | 10s KB js 185 font 214 img 0 css 19 doc 22 fetch 27 total 480
+--- + webfonts blocked
+/ [A x5] p75/max FCP 3488/3616ms LCP 3488/3616ms READY 3488/3616ms (preloader 3432ms) CLS 0.000/0.000 TBT 810/2621ms maxTask 2553ms | LCP el p.hero-mark | 10s KB js 188 font 0 img 56 css 19 doc 31 fetch 10 total 317
+/pricing [A x5] p75/max FCP 3128/3136ms LCP 3128/3136ms READY 3136/3137ms (preloader 3128ms) CLS 0.000/0.000 TBT 447/1368ms maxTask 2178ms | LCP el p. | 10s KB js 182 font 0 img 0 css 19 doc 25 fetch 18 total 257
+/services/business-websites [A x5] p75/max FCP 2892/2976ms LCP 2892/2976ms READY 2896/2976ms (preloader 2887ms) CLS 0.000/0.000 TBT 781/1354ms maxTask 1943ms | LCP el p. | 10s KB js 188 font 0 img 0 css 19 doc 22 fetch 45 total 287
+/blog/what-a-small-business-website-must-have-2026 [A x5] p75/max FCP 2784/3008ms LCP 2784/3008ms READY 2784/3008ms (preloader 2744ms) CLS 0.000/0.000 TBT 499/610ms maxTask 1772ms | LCP el p.my-4 | 10s KB js 185 font 0 img 0 css 19 doc 22 fetch 27 total 266
+done

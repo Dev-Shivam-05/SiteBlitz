@@ -1,0 +1,25 @@
+/ KEYBOARD: 30/30 stops on elements | no visible focus ring: 0 | covered: 6 All concept studies →<-hero-screen ; Concept 01Salon & beautyRose<-relative overflow-hidden bg-vo ; Concept 02Coaching & tuition<-wa-pill btn-volt fixed z-[70]  | first stops: SiteBlitz home > Chat on WhatsAppWhatsApp > Open menu > Chat on WhatsApp
+   menu: Enter -> expanded=false focusInMenu=false; Escape -> expanded=false focusBack=true
+   JS OFF: main text visible 6394 chars, hidden 3778 (37%) | h1 visible true | preloader still covering false
+   FONTS BLOCKED @360: overflow 0px, headings wider than their box 1
+   PARITY (reduced motion): 390px shows 6394 chars / 16 links, 1440px shows 6434 chars / 16 links (diff 40)
+/pricing KEYBOARD: 30/30 stops on elements | no visible focus ring: 0 | covered: 3 Ask about Business<-mt-6 flex-1 space-y-2.5 ; Chat on WhatsApp<- ; Pricing & terms<-close-cta inline-flex h-14 w-f | first stops: SiteBlitz home > Chat on WhatsAppWhatsApp > Open menu > Home
+   menu: Enter -> expanded=false focusInMenu=false; Escape -> expanded=false focusBack=true
+   JS OFF: main text visible 6907 chars, hidden 1675 (20%) | h1 visible true | preloader still covering false
+   FONTS BLOCKED @360: overflow 0px, headings wider than their box 0
+   PARITY (reduced motion): 390px shows 6907 chars / 7 links, 1440px shows 6907 chars / 7 links (diff 0)
+/work KEYBOARD: 30/30 stops on elements | no visible focus ring: 0 | covered: 2 restaurants<- ; clinics<-font-display mt-4 max-w-[16ch] | first stops: SiteBlitz home > Chat on WhatsAppWhatsApp > Open menu > Home
+   menu: Enter -> expanded=false focusInMenu=false; Escape -> expanded=false focusBack=true
+   JS OFF: main text visible 2936 chars, hidden 2136 (42%) | h1 visible true | preloader still covering false
+   FONTS BLOCKED @360: overflow 0px, headings wider than their box 0
+   PARITY (reduced motion): 390px shows 2936 chars / 12 links, 1440px shows 2976 chars / 12 links (diff 40)
+/contact KEYBOARD: 30/30 stops on elements | no visible focus ring: 0 | covered: 1 Clinic / Healthcare<-wa-pill btn-volt fixed z-[70]  | first stops: SiteBlitz home > Chat on WhatsAppWhatsApp > Open menu > Home
+   menu: Enter -> expanded=false focusInMenu=false; Escape -> expanded=false focusBack=true
+   JS OFF: main text visible 467 chars, hidden 956 (67%) | h1 visible true | preloader still covering false
+   FONTS BLOCKED @360: overflow 0px, headings wider than their box 0
+   PARITY (reduced motion): 390px shows 592 chars / 6 links, 1440px shows 592 chars / 6 links (diff 0)
+/blog/what-a-small-business-website-must-have-2026 KEYBOARD: 30/30 stops on elements | no visible focus ring: 0 | covered: 2 from ₹7,999 →<-wa-pill btn-volt fixed z-[70]  ; How much does a small busine<-my-4 text-[15px] leading-relax | first stops: SiteBlitz home > Chat on WhatsAppWhatsApp > Open menu > Home
+   menu: Enter -> expanded=false focusInMenu=false; Escape -> expanded=false focusBack=true
+   JS OFF: main text visible 7262 chars, hidden 3000 (29%) | h1 visible true | preloader still covering false
+   FONTS BLOCKED @360: overflow 0px, headings wider than their box 0
+   PARITY (reduced motion): 390px shows 7262 chars / 5 links, 1440px shows 7262 chars / 5 links (diff 0)

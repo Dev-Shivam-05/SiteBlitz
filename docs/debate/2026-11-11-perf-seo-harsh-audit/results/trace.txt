@@ -1,0 +1,31 @@
+/: 14 tasks > 100 ms
+   t=185ms dur 118ms | other:DocumentLoader::CommitNavigation 93, other:DocumentLoader::DocumentLoader 1, script  0, other:BackForwardCacheBufferLimitTracker::DidRemoveFrameOrWorkerFromBackForwardCache 0 | top calls: 
+   t=1182ms dur 1617ms | layout 1154, style 395, paint/commit 44, script  3, other:IntersectionObserverController::computeIntersections 0 | top calls: 
+   t=2898ms dur 1273ms | layout 1025, style 181, paint/commit 55, other:ResourceChangePriority 0, other:IntersectionObserverController::computeIntersections 0 | top calls: 
+   t=4278ms dur 511ms | layout 383, paint/commit 69, style 49, other:IntersectionObserverController::computeIntersections 0, script  0 | top calls: 
+   t=4839ms dur 828ms | script 4bd1b696-100b9d70ed4e49c1.js 805, script  23 | top calls: 4bd1b696-100b9d70ed4e49c1.js: 805; 4bd1b696-100b9d70ed4e49c1.js:cc 22; 4bd1b696-100b9d70ed4e49c1.js: 10
+   t=6739ms dur 148ms | script 1255-ab54a41c275880be.js 141, script  6 | top calls: 1255-ab54a41c275880be.js:w 141; 4bd1b696-100b9d70ed4e49c1.js: 0
+   t=7802ms dur 282ms | script 3262.92514019ed49ea2f.js 278, script  3 | forced style/layout inside script 7 | top calls: 3262.92514019ed49ea2f.js: 278; 4bd1b696-100b9d70ed4e49c1.js:cc 1; 4bd1b696-100b9d70ed4e49c1.js: 1
+   t=8267ms dur 225ms | script  224 | forced style/layout inside script 36 | top calls: 495.562ac911ec183862.js:n 224
+   t=8533ms dur 140ms | script  140 | forced style/layout inside script 55 | top calls: 495.562ac911ec183862.js:n 140
+   t=8702ms dur 120ms | script  119 | forced style/layout inside script 27 | top calls: 495.562ac911ec183862.js:n 118
+   t=8911ms dur 156ms | script  156 | forced style/layout inside script 52 | top calls: 495.562ac911ec183862.js:n 156
+   t=9187ms dur 111ms | script  111 | forced style/layout inside script 83 | top calls: 495.562ac911ec183862.js:n 111
+   t=9405ms dur 144ms | script 511.0a5cdefef5ba7c0f.js 141, script  2 | forced style/layout inside script 8 | top calls: 511.0a5cdefef5ba7c0f.js: 141; webpack-460eed1fa83578d9.js:s 1; 4bd1b696-100b9d70ed4e49c1.js:cc 1
+   t=9704ms dur 212ms | script  212 | top calls: : 0
+/pricing: 7 tasks > 100 ms
+   t=177ms dur 145ms | other:DocumentLoader::CommitNavigation 103, other:DocumentLoader::DocumentLoader 0, script  0, other:BackForwardCacheBufferLimitTracker::DidRemoveFrameOrWorkerFromBackForwardCache 0 | top calls: 
+   t=1195ms dur 2465ms | layout 2003, style 332, paint/commit 108, script  0 | top calls: 
+   t=3753ms dur 454ms | layout 379, paint/commit 60, style 10, other:IntersectionObserverController::computeIntersections 0 | top calls: 
+   t=4290ms dur 757ms | script 4bd1b696-100b9d70ed4e49c1.js 724, script  31 | top calls: 4bd1b696-100b9d70ed4e49c1.js: 724; 4bd1b696-100b9d70ed4e49c1.js:cc 30; 4bd1b696-100b9d70ed4e49c1.js: 10
+   t=5058ms dur 254ms | layout 145, paint/commit 49, script  29, style 20, other:IntersectionObserverController::computeIntersections 0 | top calls: 4bd1b696-100b9d70ed4e49c1.js:cc 3; 4bd1b696-100b9d70ed4e49c1.js:cc 2; 4bd1b696-100b9d70ed4e49c1.js:cc 2
+   t=6787ms dur 242ms | script 3262.92514019ed49ea2f.js 236, script  5 | forced style/layout inside script 6 | top calls: 3262.92514019ed49ea2f.js: 236; 4bd1b696-100b9d70ed4e49c1.js:cc 2; webpack-460eed1fa83578d9.js:s 2
+   t=7127ms dur 300ms | script  300 | forced style/layout inside script 87 | top calls: 495.562ac911ec183862.js:n 299
+/blog/what-a-small-business-website-must-have-2026: 7 tasks > 100 ms
+   t=176ms dur 148ms | other:DocumentLoader::CommitNavigation 106, script  1, other:DocumentLoader::DocumentLoader 0, other:BackForwardCacheBufferLimitTracker::DidRemoveFrameOrWorkerFromBackForwardCache 0 | top calls: 
+   t=1187ms dur 2182ms | layout 1782, style 273, paint/commit 103, script  0 | top calls: 
+   t=3465ms dur 314ms | layout 257, paint/commit 52, style 3, other:IntersectionObserverController::computeIntersections 0 | top calls: 
+   t=3860ms dur 811ms | script 4bd1b696-100b9d70ed4e49c1.js 792, script  16 | top calls: 4bd1b696-100b9d70ed4e49c1.js: 792; 4bd1b696-100b9d70ed4e49c1.js:cc 15; 4bd1b696-100b9d70ed4e49c1.js: 11
+   t=4674ms dur 114ms | layout 53, paint/commit 28, script  19, style 9, other:IntersectionObserverController::computeIntersections 0 | top calls: 4bd1b696-100b9d70ed4e49c1.js:cc 7; 4bd1b696-100b9d70ed4e49c1.js:cc 2; 4bd1b696-100b9d70ed4e49c1.js:cc 1
+   t=6239ms dur 352ms | script 3262.92514019ed49ea2f.js 350, script  2 | forced style/layout inside script 9 | top calls: 3262.92514019ed49ea2f.js: 350; webpack-460eed1fa83578d9.js:s 1; 4bd1b696-100b9d70ed4e49c1.js: 0
+   t=6708ms dur 176ms | script  175 | forced style/layout inside script 39 | top calls: 495.562ac911ec183862.js:n 175

@@ -1,0 +1,12 @@
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Document 31, Stylesheet 19, Script 188, Manifest 1, Font 214, Image 56, Other 12, Fetch 10 | fetched during scroll: 
+/ cpu4 390x844: 5203 frames in 87.7s, page 16168px | frames >33ms 0.3% >50ms 0.1% | p95 gap 16.9ms | LoAF 4 (max 76ms, total 267ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 22, Script 183, Font 214, Manifest 1, Image 140, Other 12, Fetch 26 | fetched during scroll: 
+/work cpu4 390x844: 5043 frames in 84.3s, page 9092px | frames >33ms 0.1% >50ms 0.0% | p95 gap 16.9ms | LoAF 1 (max 60ms, total 60ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Font 214, Document 25, Script 182, Manifest 1, Other 12, Fetch 18 | fetched during scroll: 
+/pricing cpu4 390x844: 5034 frames in 84.0s, page 11760px | frames >33ms 0.0% >50ms 0.0% | p95 gap 16.9ms | LoAF 0 (max 0ms, total 0ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 51, Font 214, Script 182, Manifest 1, Other 12, Fetch 26 | fetched during scroll: 
+/research/gujarat-business-websites-2026 cpu4 390x844: 5043 frames in 84.3s, page 14846px | frames >33ms 0.1% >50ms 0.0% | p95 gap 16.9ms | LoAF 3 (max 94ms, total 228ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Document 22, Stylesheet 19, Font 214, Script 185, Manifest 1, Other 12, Fetch 27 | fetched during scroll: 
+/blog/what-a-small-business-website-must-have-2026 cpu4 390x844: 5036 frames in 84.3s, page 8073px | frames >33ms 0.1% >50ms 0.0% | p95 gap 16.9ms | LoAF 3 (max 99ms, total 227ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Document 31, Stylesheet 19, Manifest 1, Script 188, Font 214, Image 56, Other 12, Fetch 10 | fetched during scroll: Script 5
+/ cpu6 360x800: 4903 frames in 88.7s, page 16359px | frames >33ms 2.4% >50ms 0.6% | p95 gap 33.1ms | LoAF 23 (max 326ms, total 2984ms)

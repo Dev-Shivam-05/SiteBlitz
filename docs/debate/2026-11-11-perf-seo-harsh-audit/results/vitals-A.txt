@@ -1,0 +1,14 @@
+/ [A x7] p75/max FCP 2440/2472ms LCP 2440/2472ms READY 2640/2649ms (preloader 2640ms) CLS 0.000/0.000 TBT 283/711ms maxTask 1188ms | LCP el h1.display | 10s KB js 188 font 214 img 56 css 19 doc 31 fetch 10 total 531
+/work [A x7] p75/max FCP 2960/2996ms LCP 2960/2996ms READY 3215/3300ms (preloader 3215ms) CLS 0.000/0.000 TBT 315/346ms maxTask 1534ms | LCP el p. | 10s KB js 183 font 214 img 140 css 19 doc 22 fetch 26 total 617
+/services [A x7] p75/max FCP 2816/2836ms LCP 2816/2836ms READY 2984/3061ms (preloader 2984ms) CLS 0.000/0.000 TBT 304/367ms maxTask 1286ms | LCP el p. | 10s KB js 184 font 214 img 0 css 19 doc 21 fetch 31 total 482
+/services/business-websites [A x7] p75/max FCP 2828/2852ms LCP 2828/2852ms READY 2974/3145ms (preloader 2974ms) CLS 0.000/0.000 TBT 336/399ms maxTask 1545ms | LCP el p. | 10s KB js 188 font 214 img 0 css 19 doc 22 fetch 45 total 501
+/pricing [A x7] p75/max FCP 3056/3100ms LCP 3056/3100ms READY 3384/3394ms (preloader 3384ms) CLS 0.000/0.000 TBT 255/298ms maxTask 1613ms | LCP el p. | 10s KB js 182 font 214 img 0 css 19 doc 25 fetch 18 total 471
+/process [A x7] p75/max FCP 2572/2656ms LCP 2572/2656ms READY 2680/2859ms (preloader 2680ms) CLS 0.000/0.000 TBT 239/462ms maxTask 1132ms | LCP el p. | 10s KB js 182 font 214 img 0 css 19 doc 20 fetch 18 total 466
+/contact [A x7] p75/max FCP 2260/2368ms LCP 2260/2368ms READY 3159/3177ms (preloader 3159ms) CLS 0.000/0.000 TBT 922/1023ms maxTask 955ms | LCP el p. | 10s KB js 185 font 214 img 0 css 19 doc 14 fetch 18 total 463
+/faq [A x7] p75/max FCP 2484/2564ms LCP 2484/2564ms READY 2746/2754ms (preloader 2746ms) CLS 0.000/0.000 TBT 304/309ms maxTask 1173ms | LCP el p. | 10s KB js 182 font 214 img 0 css 19 doc 24 fetch 18 total 470
+/tools/grader [A x7] p75/max FCP 2312/2448ms LCP 2312/2448ms READY 3102/3153ms (preloader 3102ms) CLS 0.000/0.000 TBT 351/1034ms maxTask 1006ms | LCP el p. | 10s KB js 185 font 214 img 0 css 19 doc 13 fetch 18 total 462
+/blog/what-a-small-business-website-must-have-2026 [A x7] p75/max FCP 2824/2836ms LCP 2824/2836ms READY 3048/3060ms (preloader 3048ms) CLS 0.000/0.000 TBT 292/360ms maxTask 1406ms | LCP el p.my-4 | 10s KB js 185 font 214 img 0 css 19 doc 22 fetch 27 total 480
+/for/restaurants [A x7] p75/max FCP 2700/2728ms LCP 2700/2728ms READY 2917/3007ms (preloader 2917ms) CLS 0.000/0.000 TBT 310/348ms maxTask 1308ms | LCP el p. | 10s KB js 185 font 214 img 0 css 19 doc 20 fetch 32 total 483
+/research/gujarat-business-websites-2026 [A x7] p75/max FCP 3260/3420ms LCP 3260/3420ms READY 3537/3597ms (preloader 3537ms) CLS 0.000/0.000 TBT 869/878ms maxTask 2085ms | LCP el p. | 10s KB js 182 font 214 img 0 css 19 doc 51 fetch 26 total 505
+/research/india-business-website-records-2026 [A x7] p75/max FCP 3052/3108ms LCP 3052/3108ms READY 3395/3505ms (preloader 3395ms) CLS 0.000/0.000 TBT 299/342ms maxTask 1853ms | LCP el p. | 10s KB js 182 font 214 img 0 css 19 doc 39 fetch 26 total 493
+done

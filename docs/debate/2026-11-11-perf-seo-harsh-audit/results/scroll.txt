@@ -1,0 +1,15 @@
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Font 214, Document 31, Script 201, Manifest 1, Image 339, Other 12, Fetch 389 | fetched during scroll: Image 283, Fetch 379, Script 13
+/ cpu4 390x844: 708 frames in 17.5s, page 16168px | frames >33ms 14.5% >50ms 5.5% | p95 gap 50.1ms | LoAF 20 (max 266ms, total 1518ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 22, Script 196, Font 214, Manifest 1, Image 207, Other 12, Fetch 393 | fetched during scroll: Image 67, Fetch 367, Script 14
+/work cpu4 390x844: 438 frames in 9.7s, page 9092px | frames >33ms 7.5% >50ms 3.4% | p95 gap 49.9ms | LoAF 13 (max 125ms, total 1087ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 25, Font 214, Script 196, Manifest 1, Other 12, Fetch 391 | fetched during scroll: Fetch 374, Script 14
+/pricing cpu4 390x844: 689 frames in 13.4s, page 11760px | frames >33ms 4.9% >50ms 1.9% | p95 gap 33.4ms | LoAF 12 (max 209ms, total 1109ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 51, Font 214, Script 196, Manifest 1, Other 12, Fetch 377 | fetched during scroll: Fetch 351, Script 14
+/research/gujarat-business-websites-2026 cpu4 390x844: 798 frames in 15.6s, page 14846px | frames >33ms 5.8% >50ms 2.3% | p95 gap 33.5ms | LoAF 11 (max 155ms, total 799ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Document 22, Script 199, Font 214, Manifest 1, Other 12, Fetch 406 | fetched during scroll: Fetch 379, Script 14
+/blog/what-a-small-business-website-must-have-2026 cpu4 390x844: 514 frames in 9.8s, page 8073px | frames >33ms 3.1% >50ms 2.1% | p95 gap 33.3ms | LoAF 12 (max 198ms, total 942ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Font 214, Document 31, Script 201, Manifest 1, Image 339, Other 12, Fetch 389 | fetched during scroll: Fetch 389, Script 76, Image 283
+/ cpu6 360x800: 550 frames in 19.2s, page 16359px | frames >33ms 26.7% >50ms 16.7% | p95 gap 100.0ms | LoAF 52 (max 387ms, total 6002ms)
+   CLS load 0.000 during-scroll 0.000  | KB at 8s+scroll: Stylesheet 19, Font 214, Document 25, Script 196, Manifest 1, Other 12, Fetch 391 | fetched during scroll: Fetch 374, Script 14
+/pricing cpu6 360x800: 636 frames in 13.8s, page 11996px | frames >33ms 9.1% >50ms 4.6% | p95 gap 50.0ms | LoAF 16 (max 120ms, total 1215ms)
+done

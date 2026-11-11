@@ -1,0 +1,53 @@
+BODY-ONLY GRAPH (header/nav/footer removed): depth from / and contextual inlinks
+  /: depth 0, contextual inlinks 0
+  /work: depth 1, contextual inlinks 11 (/, /services/business-websites, /services/ecommerce-and-booking, /services/landing-pages)
+  /services: depth UNREACHABLE, contextual inlinks 0
+  /pricing: depth 1, contextual inlinks 23 (/, /work, /services, /process)
+  /process: depth 1, contextual inlinks 3 (/, /services, /faq)
+  /about: depth UNREACHABLE, contextual inlinks 0
+  /contact: depth 3, contextual inlinks 4 (/for/restaurants, /for/clinics, /for/law-firms, /for/boutiques)
+  /faq: depth 1, contextual inlinks 8 (/, /contact, /services/business-websites, /services/ecommerce-and-booking)
+  /proof: depth 2, contextual inlinks 1 (/work)
+  /book: depth UNREACHABLE, contextual inlinks 0
+  /website-in-48-hours: depth UNREACHABLE, contextual inlinks 0
+  /tools/grader: depth 3, contextual inlinks 2 (/proof, /research/gujarat-business-websites-2026)
+  /blog: depth UNREACHABLE, contextual inlinks 8 (/blog/what-a-small-business-website-must-have-2026, /blog/website-cost-india-honest-breakdown, /blog/google-business-profile-plus-website-local-seo, /blog/why-website-speed-decides-revenue)
+  /research: depth UNREACHABLE, contextual inlinks 0
+  /research/gujarat-business-websites-2026: depth UNREACHABLE, contextual inlinks 4 (/about, /research, /research/gujarat-business-websites-2026/surat, /research/india-business-website-records-2026)
+  /research/gujarat-business-websites-2026/surat: depth UNREACHABLE, contextual inlinks 1 (/research/gujarat-business-websites-2026)
+  /research/india-business-website-records-2026: depth UNREACHABLE, contextual inlinks 1 (/research)
+  /privacy: depth UNREACHABLE, contextual inlinks 0
+  /terms: depth UNREACHABLE, contextual inlinks 0
+  /refunds: depth UNREACHABLE, contextual inlinks 0
+  /services/business-websites: depth UNREACHABLE, contextual inlinks 7 (/services, /research/gujarat-business-websites-2026/surat, /blog/what-a-small-business-website-must-have-2026, /blog/website-cost-india-honest-breakdown)
+  /services/ecommerce-and-booking: depth UNREACHABLE, contextual inlinks 1 (/services)
+  /services/landing-pages: depth UNREACHABLE, contextual inlinks 1 (/services)
+  /services/project-rescue: depth UNREACHABLE, contextual inlinks 1 (/services)
+  /services/seo-and-geo: depth UNREACHABLE, contextual inlinks 4 (/services, /blog/why-website-speed-decides-revenue, /blog/landing-page-vs-website-what-your-business-needs, /blog/generative-engine-optimization-geo-explained)
+  /services/care-plans: depth UNREACHABLE, contextual inlinks 1 (/services)
+  /for/restaurants: depth 2, contextual inlinks 1 (/work)
+  /for/clinics: depth 2, contextual inlinks 1 (/work)
+  /for/law-firms: depth 2, contextual inlinks 1 (/work)
+  /for/boutiques: depth 2, contextual inlinks 1 (/work)
+  /blog/what-a-small-business-website-must-have-2026: depth UNREACHABLE, contextual inlinks 1 (/blog)
+  /blog/website-cost-india-honest-breakdown: depth UNREACHABLE, contextual inlinks 2 (/blog, /blog/website-banane-ka-kharcha)
+  /blog/google-business-profile-plus-website-local-seo: depth UNREACHABLE, contextual inlinks 1 (/blog)
+  /blog/why-website-speed-decides-revenue: depth UNREACHABLE, contextual inlinks 1 (/blog)
+  /blog/landing-page-vs-website-what-your-business-needs: depth UNREACHABLE, contextual inlinks 1 (/blog)
+  /blog/generative-engine-optimization-geo-explained: depth UNREACHABLE, contextual inlinks 1 (/blog)
+  /blog/website-builder-vs-web-design-studio: depth UNREACHABLE, contextual inlinks 1 (/blog)
+  /blog/website-banane-ka-kharcha: depth UNREACHABLE, contextual inlinks 2 (/blog, /blog/website-cost-india-honest-breakdown)
+SIMILARITY /for/: max 5-shingle Jaccard 5.5% (/for/restaurants vs /for/law-firms)
+SIMILARITY /services/: max 5-shingle Jaccard 12.8% (/services/business-websites vs /services/landing-pages)
+SIMILARITY /blog/: max 5-shingle Jaccard 2.9% (/blog/what-a-small-business-website-must-have-2026 vs /blog/website-cost-india-honest-breakdown)
+skip link: false
+html lang (hi page): en-IN | main lang attr: hi-Latn
+Googlebot UA html same length: true 202540 202540
+cache /demos/salon.png: 200 public, max-age=0 image/png
+cache /photos/coaching-chairs.webp: 200 public, max-age=0 image/webp
+cache /brand/logo-icon.png: 200 public, max-age=0 image/png
+cache /images/: 404 private, no-cache, no-store, max-age=0, must-revalidate text/html; charset=utf-8
+cache /_next/image?url=%2Fdemos%2Fsalon.png&w=256&q=75: 200 public, max-age=60, must-revalidate image/webp
+cache /favicon.svg: 200 public, max-age=0 image/svg+xml
+cache /opengraph-image: 200 public, immutable, no-transform, max-age=31536000 image/png
+cache /llms.txt: 200 public, max-age=3600 text/plain; charset=utf-8
