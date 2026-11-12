@@ -330,6 +330,116 @@ export interface AdSpendDoc {
   updatedAt?: Date;
 }
 
+/* ------------------------------------------------------------------ */
+/* Outreach (email engine v2, docs/spec/outreach-contract.md)          */
+/* ------------------------------------------------------------------ */
+// Field names are snake_case on purpose: they are the contract's names, shared with the lead generator (Python).
+// Explicit collection names, because the contract names the collections. Indexes are created by
+// ensureOutreachIndexes() in src/lib/outreach.ts before the first read or write.
+
+export const SUPPRESSION_REASONS = [
+  "unsubscribe_one_click",
+  "unsubscribe_link",
+  "reply_stop",
+  "hard_bounce",
+  "complaint",
+  "manual",
+] as const;
+export type SuppressionReason = (typeof SUPPRESSION_REASONS)[number];
+
+/** One suppressed address, stored only as its hash. The first reason, source and time are kept; later events go to
+ *  history (capped in src/lib/outreach.ts). A suppression is never deleted by the website. */
+const OutreachSuppressionSchema = new Schema<OutreachSuppressionDoc>(
+  {
+    hash: { type: String, required: true, unique: true },
+    reason: { type: String, required: true, enum: [...SUPPRESSION_REASONS] },
+    source: { type: String, default: "" },
+    created_at: { type: Date, required: true },
+    history: [
+      {
+        _id: false,
+        reason: { type: String, enum: [...SUPPRESSION_REASONS] },
+        source: String,
+        at: Date,
+      },
+    ],
+  },
+  { collection: "outreach_suppressions", versionKey: false }
+);
+// "since" paging for GET /api/outreach/suppressions
+OutreachSuppressionSchema.index({ created_at: 1, _id: 1 });
+
+export interface OutreachSuppressionDoc {
+  hash: string;
+  reason: SuppressionReason;
+  source: string;
+  created_at: Date;
+  history: { reason: SuppressionReason; source?: string; at: Date }[];
+}
+
+export const SNAPSHOT_VERTICALS = ["salon_beauty", "coaching_tuition", "retail_showroom", "other"] as const;
+export const OBSERVATION_TYPES = ["SOCIAL_ONLY", "NO_VIEWPORT", "SITE_DOWN"] as const;
+export const CONCEPT_DEMOS = ["salon", "coaching", "showroom"] as const;
+
+// A sub-schema because the observation has a field called "type", which Mongoose would otherwise read as the type of
+// the whole "observation" path.
+const ObservationSchema = new Schema<OutreachSnapshotDoc["observation"]>(
+  {
+    type: { type: String, required: true, enum: [...OBSERVATION_TYPES] },
+    text: { type: String, required: true },
+    checked_at: { type: Date, required: true },
+  },
+  { _id: false }
+);
+
+/** One "Opportunity Snapshot" page (/s/{slug}), created by the lead generator after a business asked for a sample. */
+const OutreachSnapshotSchema = new Schema<OutreachSnapshotDoc>(
+  {
+    slug: { type: String, required: true, unique: true },
+    business_name: { type: String, required: true },
+    city: { type: String, required: true },
+    vertical: { type: String, required: true, enum: [...SNAPSHOT_VERTICALS] },
+    observation: { type: ObservationSchema, required: true },
+    evidence_image: Buffer,
+    evidence_mime: { type: String, enum: ["image/png", "image/jpeg"] },
+    concept_demo: { type: String, required: true, enum: [...CONCEPT_DEMOS] },
+    offer: {
+      price_inr: { type: Number, required: true },
+      scope_lines: [String],
+      yearly_costs_note: String,
+    },
+    recording: {
+      url: String,
+      transcript: String,
+    },
+    reply_email: { type: String, required: true },
+    created_at: { type: Date, required: true },
+    expires_at: { type: Date, required: true },
+    removed_at: { type: Date, default: null },
+    // Raw request count for /s/{slug} (spec row 16: raw, never "viewed"); link scanners are included.
+    raw_view_count: { type: Number, default: 0 },
+  },
+  { collection: "outreach_snapshots", versionKey: false }
+);
+
+export interface OutreachSnapshotDoc {
+  slug: string;
+  business_name: string;
+  city: string;
+  vertical: (typeof SNAPSHOT_VERTICALS)[number];
+  observation: { type: (typeof OBSERVATION_TYPES)[number]; text: string; checked_at: Date };
+  evidence_image?: Buffer;
+  evidence_mime?: "image/png" | "image/jpeg";
+  concept_demo: (typeof CONCEPT_DEMOS)[number];
+  offer: { price_inr: number; scope_lines: string[]; yearly_costs_note: string };
+  recording?: { url?: string; transcript?: string };
+  reply_email: string;
+  created_at: Date;
+  expires_at: Date;
+  removed_at: Date | null;
+  raw_view_count: number;
+}
+
 // Typecheck OOM fix (P5): `schema: Schema` made TS structurally compare Schema<XDoc> against
 // Schema<any, ...> defaults, which exhausted 6 GB. Keep the doc type on both the schema and here.
 function model<T>(name: string, schema: Schema<T>): Model<T> {
@@ -345,3 +455,5 @@ export const AnalyticsEvent = model<EventDoc>("AnalyticsEvent", EventSchema);
 export const Lead = model<LeadDoc>("Lead", LeadSchema);
 export const Notification = model<NotificationDoc>("Notification", NotificationSchema);
 export const AdSpend = model<AdSpendDoc>("AdSpend", AdSpendSchema);
+export const OutreachSuppression = model<OutreachSuppressionDoc>("OutreachSuppression", OutreachSuppressionSchema);
+export const OutreachSnapshot = model<OutreachSnapshotDoc>("OutreachSnapshot", OutreachSnapshotSchema);
