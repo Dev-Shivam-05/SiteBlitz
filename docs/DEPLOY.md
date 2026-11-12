@@ -6,7 +6,8 @@
 |---|---|---|
 | Vercel project | `shivam-bhadoriyas-projects/siteblitz` (`prj_Qid4Mrj6BK0937BGgZDQHxSWiUAi`) | `vercel project inspect siteblitz` |
 | Production URL | https://siteblitz.vercel.app | `vercel project ls` |
-| Current production deployment | `siteblitz-jq9kvqway-…` created 2026-07-10 23:20 IST — the same day as commit `fca3e11` (v3 rebuild); no git ref recorded, so it was most likely a CLI `vercel --prod` deploy | `vercel ls siteblitz`, `vercel inspect` |
+| Current production deployment | `siteblitz-pzk36vkzo-…` created 2026-11-12 13:06 IST from commit `aa116dc` (redesign v4 + everything to the outreach engine), by promoting preview `siteblitz-heq3mtc79-…`; promotion rebuilt it with the Production variables | `vercel inspect siteblitz.vercel.app`, `/api/proof` → `"commit":"aa116dc"` |
+| Previous production deployment | `siteblitz-jq9kvqway-…` created 2026-07-10 23:20 IST (pre-v2 site) — the rollback target | `vercel inspect` |
 | Pushes to `v2-redesign` | create **Preview** deployments automatically (one appeared 3 min after the 2026-10-31 push) | `vercel ls siteblitz` |
 | Project framework setting | "Vite" in the dashboard, overridden to `nextjs` by `vercel.json` — keep `vercel.json` | `vercel project inspect`, `vercel.json` |
 | `main` | far behind `v2-redesign`; never push to it (owner rule) | `CLAUDE.md` |
@@ -20,7 +21,7 @@
 | `JWT_SECRET` | ✓ | — | — |
 | `ADMIN_EMAIL` | ✓ | — | — |
 | `ADMIN_PASSWORD` | ✓ | — | — |
-| `NEXT_PUBLIC_SITE_URL` | **required since 2026-11-11** — not set yet; a production build stops without it (`src/lib/release.ts`). Set the approved origin, e.g. `https://siteblitz.vercel.app` today or `https://siteblitz.in` after the domain, no trailing slash | — (fallback `https://siteblitz.vercel.app`) | — |
+| `NEXT_PUBLIC_SITE_URL` | ✓ `https://siteblitz.vercel.app` (set 2026-11-12). Required: a production build stops without it (`src/lib/release.ts`). Change it to `https://siteblitz.in` once the domain is attached, then redeploy production | — (fallback `https://siteblitz.vercel.app`) | — |
 | `TELEGRAM_BOT_TOKEN` | not set yet (founder creates the bot) | — | — |
 | `TELEGRAM_CHAT_IDS` | not set yet — comma-separated chat ids | — | — |
 | `CRON_SECRET` | not set yet — random string; Vercel Cron sends it as `Authorization: Bearer …` to `/api/cron/brief` | — | — |
@@ -59,24 +60,15 @@ Consequences:
 3. Promote that exact deployment: `vercel promote <preview-url> --yes`.
 4. Record the previous production URL here before promoting, so rollback is one command.
 
-## Pending release (2026-11-01)
+## Release 2026-11-12 (v4 to production)
 
-Commit `f6e0de9` on `v2-redesign` is verified locally: `npm test` 81/81, `npm run build` green with type checking,
-`tsc` 0 errors, screenshots 320-1920 px in motion and reduced-motion modes, lab LCP ≤ 1.78 s on every measured page
-(`docs/audit/d2-site-admin-audit.md`). The agent's `vercel deploy --prod` was blocked by its permission settings, so the
-owner releases it. Deploy from a clean checkout so no local `.env.local` is uploaded:
-
-```powershell
-git -C E:\Temp\SiteBlitz worktree add --detach E:\Temp\siteblitz-release f6e0de9
-Copy-Item -Recurse E:\Temp\SiteBlitz\.vercel E:\Temp\siteblitz-release\.vercel
-cd E:\Temp\siteblitz-release
-vercel deploy --prod
-```
-
-Then check https://siteblitz.vercel.app (home, /work, /website-in-48-hours, /proof) on a phone, and remove the worktree:
-`git -C E:\Temp\SiteBlitz worktree remove E:\Temp\siteblitz-release`.
+`npm test` 368/368 locally, push `7c94ca1..aa116dc`, preview `siteblitz-heq3mtc79` built Ready, `vercel promote` → production
+`siteblitz-pzk36vkzo` Ready. Checked on https://siteblitz.vercel.app: 12 routes answer 200 (home, work, pricing, services,
+proof, 48-hour, research, contact, sitemap, robots, admin login, `/api/proof` with `ok:true, db:true, commit:aa116dc`);
+canonical and sitemap use the production origin; screenshots at 375 and 1440 (motion) and full-page reduced-motion in
+`.shots/prod-2026-11-12*`. Not tested: admin login, lead form, real phones.
 
 ## Rollback
 
-`vercel promote <previous-production-url> --yes` (or `vercel rollback`). The previous production deployment before the
-2026-10-31 release is `https://siteblitz-jq9kvqway-shivam-bhadoriyas-projects.vercel.app`.
+`vercel promote https://siteblitz-jq9kvqway-shivam-bhadoriyas-projects.vercel.app --yes` (or `vercel rollback`) — the
+pre-v2 production deployment from 2026-07-10.

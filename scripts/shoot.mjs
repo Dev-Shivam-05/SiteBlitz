@@ -10,6 +10,7 @@
 //         fastest whole-page audit.
 // --full  capture the full page height instead of the first viewport.
 // Prints one line per shot plus any console errors and horizontal overflow (scrollWidth > viewport width).
+// A non-local --base (production or a preview) sends Sec-GPC: 1, so the shots are not recorded as visits.
 
 import { spawn } from "node:child_process";
 import { mkdirSync, existsSync, writeFileSync } from "node:fs";
@@ -113,6 +114,12 @@ try {
   });
   await cdp.send("Page.enable");
   await cdp.send("Runtime.enable");
+  // Any non-local base is the production database (docs/DEPLOY.md, R8): send Global Privacy Control so /api/track
+  // records nothing and QA shots never land in the analytics or the real-user vitals that /proof publishes.
+  if (!/^https?:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/.test(BASE)) {
+    await cdp.send("Network.enable");
+    await cdp.send("Network.setExtraHTTPHeaders", { headers: { "Sec-GPC": "1" } });
+  }
   // --cookie name=value (e.g. a locally signed sb_admin token to audit admin screens)
   const cookie = opt("cookie");
   if (cookie) {

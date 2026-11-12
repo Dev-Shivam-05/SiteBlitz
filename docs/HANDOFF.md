@@ -46,7 +46,7 @@ Previous handoff (multi-page + search, SEO-0..8) is in git history: `git show 29
 - Taps during load are still 500-900 ms at 4x CPU (hydration is one 0.6-0.8 s task; motion setup 100-300 ms tasks) — Q8.
 - Ledger rows still untested: forms (M8), real phones (M10), research reproduction (S12), B-profile interactions, bfcache
   restore, heap/cleanup, landscape/zoom — not in the approved fix list.
-- `NEXT_PUBLIC_SITE_URL` is not set in Vercel Production: the next production deploy will fail until the owner sets it.
+- `NEXT_PUBLIC_SITE_URL` is set in Vercel Production (`https://siteblitz.vercel.app`, 2026-11-12); switch it to the real domain when attached.
 - Admin quick-add input set in Mona Sans now renders at weight 600 (the font file starts at 600).
 - `/refunds` wording (plural "revision rounds", 30-day defect fixes) not checked against offer.ts — owner review.
 - Temporary worktree `E:\tmp\_sb_before` (pre-fix build, ~600 MB with node_modules) left in place: the guard blocked
@@ -61,4 +61,4 @@ Previous handoff (multi-page + search, SEO-0..8) is in git history: `git show 29
 - Watch out for: absolute lab numbers on this laptop drift up to ~70 % (battery, AnyDesk, other sessions' mongod) — only
   trust before/after pairs measured interleaved.
 
-- Push result (2026-11-11): `git push origin v2-redesign` was **blocked by the Claude OS guard hook** ("the check itself failed: git log ... --not --remotes=origin"). Not retried. The branch is 50 commits ahead of origin/v2-redesign; the owner runs the push.
+- Push and release (2026-11-12): `v2-redesign` pushed (`7c94ca1..aa116dc`) and promoted to production — https://siteblitz.vercel.app now serves v4 (`docs/DEPLOY.md` "Release 2026-11-12").
