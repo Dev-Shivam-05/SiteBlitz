@@ -24,6 +24,18 @@
 | `TELEGRAM_BOT_TOKEN` | not set yet (founder creates the bot) | — | — |
 | `TELEGRAM_CHAT_IDS` | not set yet — comma-separated chat ids | — | — |
 | `CRON_SECRET` | not set yet — random string; Vercel Cron sends it as `Authorization: Bearer …` to `/api/cron/brief` | — | — |
+| `OUTREACH_API_KEY` | not set yet — random secret, 32+ characters, the same value as in the lead generator's `.env`. Missing or shorter: every `/api/outreach/*` route answers 503, so the lead generator sends nothing | — (keep unset) | — |
+| `OUTREACH_SIGNING_SECRET` | not set yet — random secret, 32+ characters, the same value as in the lead generator's `.env`. Missing or shorter: `/u/` shows an "unavailable" page (503) and the API answers 503 | — (keep unset) | — |
+| `OUTREACH_PUBLIC_BASE_URL` | optional — origin used in the snapshot URLs the API returns (`<base>/s/<slug>`), no trailing slash; falls back to `NEXT_PUBLIC_SITE_URL`, then `https://siteblitz.vercel.app`. Must be the production origin: preview URLs sit behind Vercel's deployment protection, which mail providers cannot pass | — | — |
+
+Email engine v2 (2026-11-12, `docs/spec/outreach-contract.md`, D19): `/u/{token}` (unsubscribe), `/s/{slug}` (snapshot
+pages) and `/api/outreach/*` (Bearer) are on production only. Set the three `OUTREACH_*` variables in **Production only**:
+previews share the production database (R8), so a preview with the secrets could create snapshot pages in it. The website
+never sends email. Before the first campaign: any firewall, bot-protection or attack-challenge mode in the host's dashboard
+must exclude `/u/` and `/s/` (mail providers POST to `/u/` from their servers and cannot solve a challenge), and the lead
+generator's unsubscribe links must use the production origin. To check after deploying: `GET /u/x.y` answers the 400
+"link not valid" page (503 means the signing secret is missing), and a `POST /api/outreach/suppressions/check` without a key
+answers 401.
 
 Lead ops (2026-11-01): without the two `TELEGRAM_*` vars every new lead records a `failed` / `telegram_not_configured`
 notification, shown on `/admin/today` → Alerts; set them, then press Retry. Without `CRON_SECRET` the daily brief
@@ -36,6 +48,9 @@ Consequences:
   or locally with a hand-made `.env.local`.
 - `vercel link` / `vercel env pull` writes the production `MONGODB_URI` into `.env.local`. Do not keep it while running the
   screenshot tool, or test visits become production data.
+- The suppression list (`outreach_suppressions`) lives in that same production database and is authoritative. Never point a
+  local or preview run that creates test suppressions or snapshots at it; `tests/outreach-db.test.ts` starts its own
+  throwaway mongod on 127.0.0.1 for that reason.
 
 ## Release path (used for L1)
 

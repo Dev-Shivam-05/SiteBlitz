@@ -235,3 +235,37 @@ the top edge once. Everything else in D15 stays (palette, Mona Sans / Instrument
 
 **Why:** each change removes a measured defect (see the audit's `results/`); none changes copy, prices or the look beyond
 the preloader.
+
+## D19 — Email engine v2: unsubscribe, suppression list and snapshot pages on the website (2026-11-12)
+
+**Decision:** founder `go` 2026-11-12 ("go for all"), contract `docs/spec/outreach-contract.md` (copy of the lead
+generator's). The lead generator on the laptop sends; this website keeps what must answer while the laptop is off:
+`/u/{token}` (RFC 8058 one-click + confirm page), the authoritative suppression list (`outreach_suppressions`, hashes only)
+behind Bearer routes, and the Opportunity Snapshot pages `/s/{slug}` (`outreach_snapshots`). Nothing is sent from here.
+Choices made while building:
+- `/u/` and `/s/` are **route handlers that return plain HTML**, not React pages: `/u/` must answer GET and a raw POST at
+  the same URL, an expired or removed snapshot must answer HTTP **410** (an App Router page cannot), and the pages must
+  carry no analytics. A route handler skips the root layout, so the first-party Tracker and every framework script are
+  absent, and a `default-src 'none'` CSP forbids scripts outright. Output is built with an escaping template.
+- Same look without new fonts or colours: the stylesheet repeats the v4 tokens and the demo palettes; a test fails if it
+  uses a colour globals.css does not define. Mona Sans and DM Sans are served from byte-identical copies in
+  `public/fonts/` (a test checks the bytes match `src/fonts/`); Instrument Serif is not self-hosted, so accent words use
+  its declared Georgia fallback on these pages.
+- The concept preview is the matching demo's text and palette with only the business name, its initials and the city
+  put in, under the required label. The demos' licensed stand-in photographs are left out: they could be read as the
+  business's own premises.
+- Limits picked where the contract is silent: history kept per suppressed address capped at 100 events (a valid link can
+  be POSTed without end; an unbounded array would reach MongoDB's 16 MB limit and make the unsubscribe write fail);
+  `since` paging is inclusive (no item skipped at a page boundary; the caller de-duplicates); request bodies over
+  1,000,000 characters and tokens over 1,024 characters are refused; evidence images are checked by their PNG/JPEG magic
+  bytes and accepted up to 400 x 1024 bytes; snapshot life 1-30 days (spec row 7 says 30); scope 1-6 lines; a recording URL
+  must be https.
+- `/u/` needs only the signing secret (and the database for POST), so unsubscribes keep working if the API key is
+  missing; the Bearer API needs both secrets, so a website that cannot verify unsubscribe links makes the lead generator's
+  pre-send check fail. Secrets shorter than 32 characters count as missing. A signed numeric send id `m` is accepted as
+  text, because refusing an authentic unsubscribe is the worse failure.
+- Removal sets `removed_at` and keeps the record, as the contract says; the page shows no business data afterwards.
+
+**Why:** RFC 8058 and the Gmail/Yahoo sender rules require a one-click unsubscribe that works at all times; the spec
+(rows 12, 13, 18) puts it, the suppression list and the snapshot pages on the always-on stack, and each choice above
+either follows the contract or closes a failure mode it leaves open.

@@ -103,6 +103,16 @@ Units run back to back, each committed after its own build and check. Measuremen
 | Q7 | Interleaved before/after re-run against a worktree of `2997d46` (`results/ab-*`), docs, push | **done** — see RESULT.md "After the fixes" |
 | Q8 | Next: hydration cost (one 0.6-0.8 s task at 4x CPU) and motion-init tasks (100-300 ms); early taps not yet faster | todo |
 
+## Email engine v2, website side (2026-11-12, founder: "go for all")
+
+Contract: `docs/spec/outreach-contract.md` (copy; the lead generator's file is the source). Decision D19. The lead generator
+sends from the laptop; this site answers while the laptop is off. Nothing is sent from the website.
+
+| # | Unit | Status |
+|---|---|---|
+| O1 | `/u/{token}` RFC 8058 unsubscribe, `outreach_suppressions` + Bearer suppression API, `outreach_snapshots` + snapshot API, `/s/{slug}` pages (410 when expired/removed, no scripts), +103 tests | **done** `60275b2`, `35fdc03`, `681e711`, `84a9944`; screenshots `docs/screenshots/2026-11-12-outreach-pages/` — not pushed, not deployed; `OUTREACH_*` env vars in `docs/DEPLOY.md` |
+| O2 | Production: set the three `OUTREACH_*` vars (Production only), exclude `/u/` and `/s/` from any bot challenge, deploy, run the checks in `docs/DEPLOY.md` | todo — founder / parent session |
+
 ## Next 3
 
 0. **Owner: review the pushed branch** on the Vercel Preview from a phone (push it yourself with
