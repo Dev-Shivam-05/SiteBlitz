@@ -61,3 +61,24 @@ scope, one-time price, yearly costs note, the recorded overview (no autoplay, tr
 - "stop" replies, hard bounces and complaints are written to `POST /suppressions` first, then locally.
 - Creates a snapshot only after a reply labelled `sample_requested` or `interested`, and puts the returned URL in the
   AI-drafted reply, which waits for the founder's approval.
+
+## Known-answer vector (added on the website side, 2026-11-12)
+Both repos test against these fixed values (`tests/outreach-token.test.ts` here). Byte rules: the secret is the env
+value with surrounding whitespace removed, used as UTF-8 bytes (no hex or base64 decoding); the HMAC message is the
+base64url payload string as ASCII; base64url has no `=` padding; payload values are ASCII.
+
+| Input / output | Value |
+|---|---|
+| email (before strip + lower) | `"  Owner@Example.com "` |
+| `h` = sha256_hex(email.strip().lower()) | `c8cd3c6427301eaf6665bccacd65ddb614527acc843a15463e3faba57124c351` |
+| `m` | `"send-0001"` |
+| secret | `kat-secret-not-for-production-0123456789` |
+| payload JSON | `{"h":"c8cd3c6427301eaf6665bccacd65ddb614527acc843a15463e3faba57124c351","m":"send-0001","v":1}` |
+| token | `eyJoIjoiYzhjZDNjNjQyNzMwMWVhZjY2NjViY2NhY2Q2NWRkYjYxNDUyN2FjYzg0M2ExNTQ2M2UzZmFiYTU3MTI0YzM1MSIsIm0iOiJzZW5kLTAwMDEiLCJ2IjoxfQ.CyQyXv0246O-c9S4tTeSF4c3xo-pCWu4M_Uj6ituq3Y` |
+
+Python reference: `p = base64.urlsafe_b64encode(json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()).rstrip(b"=").decode()`;
+`sig = base64.urlsafe_b64encode(hmac.new(secret.strip().encode(), p.encode(), hashlib.sha256).digest()).rstrip(b"=").decode()`.
+Website verification details: the signature is compared in constant time against the canonical encoding (43 characters),
+tokens over 1,024 characters are refused, `v` must be `1`, `h` must be 64 lowercase hex; a signed numeric `m` is accepted
+as its string form. The website refuses to start the outreach routes when `OUTREACH_API_KEY` or `OUTREACH_SIGNING_SECRET`
+is shorter than 32 characters (503).
