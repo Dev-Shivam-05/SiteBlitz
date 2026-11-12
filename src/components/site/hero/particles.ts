@@ -339,8 +339,13 @@ export async function createHeroEngine(o: HeroEngineOptions): Promise<HeroEngine
     mx = x;
     my = y;
     lastMove = performance.now();
-    tx = (x / W) * 2 - 1;
-    ty = (y / H) * 2 - 1;
+    // The tilt is an angle, so its target must stay within -1..1. The listeners are on window and the stage is
+    // sticky: a pointer moved while the hero is scrolled far away sits thousands of pixels below the stage's top,
+    // and the unclamped target once rotated the wordmark past 90 degrees (upside down after scrolling back up).
+    // A pointer off the stage aims for a level wordmark instead.
+    const over = x >= 0 && x <= sr.width && y >= 0 && y <= sr.height;
+    tx = over ? Math.min(1, Math.max(-1, (x / W) * 2 - 1)) : 0;
+    ty = over ? Math.min(1, Math.max(-1, (y / H) * 2 - 1)) : 0;
     simOn = true;
   };
   const onPointer = (e: PointerEvent) => setPointer(e.clientX, e.clientY);
@@ -350,6 +355,8 @@ export async function createHeroEngine(o: HeroEngineOptions): Promise<HeroEngine
   };
   const onEnd = () => {
     mx = my = -1e5;
+    // a lifted finger (mostly a scroll gesture on phones) or a mouse that left the window levels the wordmark again
+    tx = ty = 0;
   };
   window.addEventListener("pointermove", onPointer, { passive: true });
   window.addEventListener("touchstart", onTouch, { passive: true });
