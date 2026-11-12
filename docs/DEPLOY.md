@@ -6,8 +6,9 @@
 |---|---|---|
 | Vercel project | `shivam-bhadoriyas-projects/siteblitz` (`prj_Qid4Mrj6BK0937BGgZDQHxSWiUAi`) | `vercel project inspect siteblitz` |
 | Production URL | https://siteblitz.vercel.app | `vercel project ls` |
-| Current production deployment | `siteblitz-pzk36vkzo-…` created 2026-11-12 13:06 IST from commit `aa116dc` (redesign v4 + everything to the outreach engine), by promoting preview `siteblitz-heq3mtc79-…`; promotion rebuilt it with the Production variables | `vercel inspect siteblitz.vercel.app`, `/api/proof` → `"commit":"aa116dc"` |
-| Previous production deployment | `siteblitz-jq9kvqway-…` created 2026-07-10 23:20 IST (pre-v2 site) — the rollback target | `vercel inspect` |
+| Current production deployment | `siteblitz-2wcunlc0q-…` created 2026-11-12 16:33 IST: `vercel redeploy` of `siteblitz-pzk36vkzo-…` (same commit `aa116dc`) so the new `OUTREACH_*` variables apply | `vercel inspect siteblitz.vercel.app`, `/api/proof` → `"commit":"aa116dc"` |
+| Previous production deployment | `siteblitz-pzk36vkzo-…` created 2026-11-12 13:06 IST from `aa116dc` (identical code, built before the `OUTREACH_*` variables existed) — the rollback target | `vercel inspect` |
+| Pre-v2 production deployment | `siteblitz-jq9kvqway-…` created 2026-07-10 23:20 IST (pre-v2 site) | `vercel inspect` |
 | Pushes to `v2-redesign` | create **Preview** deployments automatically (one appeared 3 min after the 2026-10-31 push) | `vercel ls siteblitz` |
 | Project framework setting | "Vite" in the dashboard, overridden to `nextjs` by `vercel.json` — keep `vercel.json` | `vercel project inspect`, `vercel.json` |
 | `main` | far behind `v2-redesign`; never push to it (owner rule) | `CLAUDE.md` |
@@ -25,9 +26,14 @@
 | `TELEGRAM_BOT_TOKEN` | not set yet (founder creates the bot) | — | — |
 | `TELEGRAM_CHAT_IDS` | not set yet — comma-separated chat ids | — | — |
 | `CRON_SECRET` | not set yet — random string; Vercel Cron sends it as `Authorization: Bearer …` to `/api/cron/brief` | — | — |
-| `OUTREACH_API_KEY` | not set yet — random secret, 32+ characters, the same value as in the lead generator's `.env`. Missing or shorter: every `/api/outreach/*` route answers 503, so the lead generator sends nothing | — (keep unset) | — |
-| `OUTREACH_SIGNING_SECRET` | not set yet — random secret, 32+ characters, the same value as in the lead generator's `.env`. Missing or shorter: `/u/` shows an "unavailable" page (503) and the API answers 503 | — (keep unset) | — |
-| `OUTREACH_PUBLIC_BASE_URL` | optional — origin used in the snapshot URLs the API returns (`<base>/s/<slug>`), no trailing slash; falls back to `NEXT_PUBLIC_SITE_URL`, then `https://siteblitz.vercel.app`. Must be the production origin: preview URLs sit behind Vercel's deployment protection, which mail providers cannot pass | — | — |
+| `OUTREACH_API_KEY` | ✓ Sensitive (set 2026-11-12) — random secret, 32+ characters, the same value as in the lead generator's `.env` (`E:\tmp\Siteblitz_LeadGenerator\.env`, gitignored). Missing or shorter: every `/api/outreach/*` route answers 503, so the lead generator sends nothing | — (keep unset) | — |
+| `OUTREACH_SIGNING_SECRET` | ✓ Sensitive (set 2026-11-12) — random secret, 32+ characters, the same value as in the lead generator's `.env`. Missing or shorter: `/u/` shows an "unavailable" page (503) and the API answers 503 | — (keep unset) | — |
+| `OUTREACH_PUBLIC_BASE_URL` | not set (optional) — origin used in the snapshot URLs the API returns (`<base>/s/<slug>`), no trailing slash; falls back to `NEXT_PUBLIC_SITE_URL`, then `https://siteblitz.vercel.app`. Must be the production origin: preview URLs sit behind Vercel's deployment protection, which mail providers cannot pass | — | — |
+
+Sensitive variables cannot be read back from Vercel. The lead generator's `.env` is the only readable copy of the two
+`OUTREACH_*` secrets: if it is lost, generate new values and set them on both sides. In the dashboard form the secret goes
+in **Value**, the variable name in **Key** (on 2026-11-12 the two secrets were first saved as names, which left the routes
+at 503 until they were re-added).
 
 Email engine v2 (2026-11-12, `docs/spec/outreach-contract.md`, D19): `/u/{token}` (unsubscribe), `/s/{slug}` (snapshot
 pages) and `/api/outreach/*` (Bearer) are on production only. Set the three `OUTREACH_*` variables in **Production only**:
@@ -68,7 +74,18 @@ proof, 48-hour, research, contact, sitemap, robots, admin login, `/api/proof` wi
 canonical and sitemap use the production origin; screenshots at 375 and 1440 (motion) and full-page reduced-motion in
 `.shots/prod-2026-11-12*`. Not tested: admin login, lead form, real phones.
 
+## Redeploy 2026-11-12 16:33 IST (outreach secrets)
+
+`OUTREACH_API_KEY` and `OUTREACH_SIGNING_SECRET` added to Production (Sensitive), then `vercel redeploy` of
+`siteblitz-pzk36vkzo` with `--target production` → `siteblitz-2wcunlc0q` Ready, aliased to https://siteblitz.vercel.app.
+Checked against production (secrets read from the lead generator's `.env`, never printed): `/api/proof` 200 with
+`ok:true, db:true, commit:aa116dc`; `/` and `/pricing` 200; `GET /u/x.y` 400; `/u/` token signed with a wrong secret 400;
+`/u/` token signed with the real secret 200 (confirm page, GET writes nothing); `POST /api/outreach/suppressions/check`
+without a key 401, with a wrong key 401, with the real key 200 `{"ok":true,"suppressed":[]}`. Requests from this machine
+got app responses, not a bot challenge. Not tested: a real one-click unsubscribe POST from a mail provider, snapshot
+creation (both write to the production database).
+
 ## Rollback
 
-`vercel promote https://siteblitz-jq9kvqway-shivam-bhadoriyas-projects.vercel.app --yes` (or `vercel rollback`) — the
-pre-v2 production deployment from 2026-07-10.
+`vercel promote https://siteblitz-pzk36vkzo-shivam-bhadoriyas-projects.vercel.app --yes` — same code without the outreach
+secrets. Pre-v2 site: `vercel promote https://siteblitz-jq9kvqway-shivam-bhadoriyas-projects.vercel.app --yes`.
