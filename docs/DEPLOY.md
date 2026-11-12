@@ -6,8 +6,9 @@
 |---|---|---|
 | Vercel project | `shivam-bhadoriyas-projects/siteblitz` (`prj_Qid4Mrj6BK0937BGgZDQHxSWiUAi`) | `vercel project inspect siteblitz` |
 | Production URL | https://siteblitz.vercel.app | `vercel project ls` |
-| Current production deployment | `siteblitz-2wcunlc0q-…` created 2026-11-12 16:33 IST: `vercel redeploy` of `siteblitz-pzk36vkzo-…` (same commit `aa116dc`) so the new `OUTREACH_*` variables apply | `vercel inspect siteblitz.vercel.app`, `/api/proof` → `"commit":"aa116dc"` |
-| Previous production deployment | `siteblitz-pzk36vkzo-…` created 2026-11-12 13:06 IST from `aa116dc` (identical code, built before the `OUTREACH_*` variables existed) — the rollback target | `vercel inspect` |
+| Current production deployment | `siteblitz-6kjhcasol-…` created 2026-11-12 17:53 IST from commit `0c1311c` (hero tilt fix; also carries `9537496` FAQ accordions + cursor ring), by promoting preview `siteblitz-fd5bpfqnk-…` | `vercel inspect siteblitz.vercel.app`, `/api/proof` → `"commit":"0c1311c"` |
+| Previous production deployment | `siteblitz-2wcunlc0q-…` created 2026-11-12 16:33 IST: `vercel redeploy` of `siteblitz-pzk36vkzo-…` (commit `aa116dc`) with the `OUTREACH_*` variables — the rollback target | `vercel inspect` |
+| Earlier production deployment | `siteblitz-pzk36vkzo-…` created 2026-11-12 13:06 IST from `aa116dc`, built before the `OUTREACH_*` variables existed | `vercel inspect` |
 | Pre-v2 production deployment | `siteblitz-jq9kvqway-…` created 2026-07-10 23:20 IST (pre-v2 site) | `vercel inspect` |
 | Pushes to `v2-redesign` | create **Preview** deployments automatically (one appeared 3 min after the 2026-10-31 push) | `vercel ls siteblitz` |
 | Project framework setting | "Vite" in the dashboard, overridden to `nextjs` by `vercel.json` — keep `vercel.json` | `vercel project inspect`, `vercel.json` |
@@ -85,7 +86,19 @@ without a key 401, with a wrong key 401, with the real key 200 `{"ok":true,"supp
 got app responses, not a bot challenge. Not tested: a real one-click unsubscribe POST from a mail provider, snapshot
 creation (both write to the production database).
 
+## Release 2026-11-12 17:53 IST (hero tilt fix)
+
+Owner report: after scrolling down and back up, the particle wordmark showed upside down (desktop) and sometimes tilted
+(phones). Cause: the tilt target came from the pointer measured against the sticky stage, unclamped; a mouse move or touch
+while the hero was scrolled away gave values far above 1, and the eased tilt rotated the wordmark past 90 degrees.
+Reproduced on production with `shoot.mjs --eval` (pointer/touch event while scrolled down, then back to the top):
+`.shots/hero-tilt-before/`. Fix `0c1311c` (`hero/particles.ts`). `npm test` 368/368 and `npm run typecheck` locally (no local
+`next build`: another session's `next start` held `.next`); Vercel built preview `siteblitz-fd5bpfqnk`, promoted →
+`siteblitz-6kjhcasol`. Same repro on production now shows a level wordmark at 1440 and 390; normal and reduced-motion shots
+in `.shots/hero-tilt-after/`; `/`, `/pricing`, `/work`, `/contact` 200; `/u/x.y` 400 and the suppression check without a
+key 401 (the promotion kept the `OUTREACH_*` secrets). Not tested: real phones.
+
 ## Rollback
 
-`vercel promote https://siteblitz-pzk36vkzo-shivam-bhadoriyas-projects.vercel.app --yes` — same code without the outreach
-secrets. Pre-v2 site: `vercel promote https://siteblitz-jq9kvqway-shivam-bhadoriyas-projects.vercel.app --yes`.
+`vercel promote https://siteblitz-2wcunlc0q-shivam-bhadoriyas-projects.vercel.app --yes` — the previous production (commit
+`aa116dc` with the outreach secrets). Pre-v2 site: `vercel promote https://siteblitz-jq9kvqway-shivam-bhadoriyas-projects.vercel.app --yes`.
