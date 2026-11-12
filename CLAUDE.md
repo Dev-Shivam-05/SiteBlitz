@@ -57,8 +57,12 @@ ode_modules` and stop those PIDs.
 - The preloader is a 3 px entrance line (D18): nothing may cover painted content. Production builds stop without
   `NEXT_PUBLIC_SITE_URL` (`src/lib/release.ts`); preview and local builds fall back to the vercel.app origin.
 - The guard hook blocks `git checkout -- <file>` and `git worktree remove --force`; to undo your own uncommitted edit,
-  rewrite the file. For a fair before/after, build the old commit in a worktree (`git worktree add --detach <dir> <sha>`,
-  `npm ci`, shim build, `next start -p 3200`) and alternate runs (`tools/ab-lh.mjs`, vitals7 `--base`).
+  rewrite the file. It also blocks a `git push` that carries a shell redirect (`2>&1`, `| tail`): push with the bare
+  `git push origin v2-redesign`.
+- **No extra project folders on this device (owner, 2026-11-12).** No new worktrees, clones or copies of the repo; work in
+  `E:\Temp\SiteBlitz` on the live branch. If a server from another session holds `.next`, verify on the Vercel preview or
+  production (`/tmp`-style scratch scripts are fine, a second `node_modules` is not). Before/after perf comparisons: build
+  the old commit's numbers first in this checkout, then the new one, instead of a side-by-side worktree.
 - Headless CDP traps: `element.focus()` does not match `:focus` (no window focus) — press Tab via `Input.dispatchKeyEvent`
   or enable `Emulation.setFocusEmulationEnabled`; touch `synthesizeScrollGesture` does not scroll — use mouse wheel;
   `Enter` needs `text: "\r"` to activate a button; tracing inflates layout times, so compare traced runs only to traced runs.
