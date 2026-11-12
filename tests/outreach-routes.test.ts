@@ -264,4 +264,9 @@ describe("look: only the site's own colours and fonts", () => {
     const families = new Set([...OUTREACH_CSS.matchAll(/"([^"]+)"/g)].map((m) => m[1]));
     expect([...families].sort()).toEqual(["DM Sans", "Instrument Serif", "Mona Sans", "woff2"].sort());
   });
+
+  it("layout classes that share an element with .wrap use padding longhands (a shorthand wiped the side padding at 390 px)", async () => {
+    const { OUTREACH_CSS } = await import("@/lib/outreachPages");
+    expect(OUTREACH_CSS.match(/\.(wrap|layer|bar|center|foot)\{[^}]*\bpadding:/g) ?? []).toEqual([]);
+  });
 });

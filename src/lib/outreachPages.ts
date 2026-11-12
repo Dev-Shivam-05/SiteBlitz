@@ -66,7 +66,7 @@ body{margin:0;background:var(--color-void);color:var(--color-ink);font-family:va
 a{color:inherit}
 img{display:block;max-width:100%;height:auto}
 p,h1,h2,h3,figure,ul{margin:0}
-.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1180px;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
 .top{border-bottom:1px solid var(--color-line)}
 .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;padding-bottom:18px}
 .brand{font-family:var(--font-display);font-weight:800;font-stretch:125%;text-transform:uppercase;letter-spacing:-0.02em;font-size:18px;text-decoration:none}
@@ -79,9 +79,9 @@ p,h1,h2,h3,figure,ul{margin:0}
 .lead{margin-top:24px;max-width:60ch;font-size:clamp(17px,2vw,21px);line-height:1.55}
 .muted{color:var(--color-muted)}
 .small{font-size:14px}
-.layer{padding:56px 0}
+.layer{padding-top:56px;padding-bottom:56px}
 .layer+.layer{border-top:1px solid var(--color-line)}
-.offer-line{margin-top:28px;display:inline-flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;border:1px solid rgba(245, 245, 240, 0.16);border-radius:999px;padding:10px 18px;font-size:15px}
+.offer-line{margin-top:28px;display:inline-flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;border:1px solid rgba(245, 245, 240, 0.16);border-radius:20px;padding:10px 18px;font-size:15px}
 .offer-line strong{color:var(--color-volt);font-weight:600}
 .grid{display:grid;gap:28px;margin-top:36px}
 .grid>*{min-width:0}
@@ -146,7 +146,7 @@ p,h1,h2,h3,figure,ul{margin:0}
 .cp-visit-t{font-size:22px}
 .cp-visit p+p{margin-top:6px;font-size:14px;opacity:0.85}
 @media (min-width:640px){.cp-grid{grid-template-columns:1fr 1fr}}
-@media (min-width:768px){.wrap{padding:0 32px}.layer{padding:80px 0}.panel{padding:28px}}
+@media (min-width:768px){.wrap{padding-left:32px;padding-right:32px}.layer{padding-top:80px;padding-bottom:80px}.panel{padding:28px}}
 @media (min-width:1000px){.grid.two{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);align-items:start}.grid.even{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0.01ms !important}}
 `;
