@@ -29,7 +29,10 @@ export function Cursor() {
       // the ring trails the dot (lerp 0.18 a frame); stop the loop once it has caught up
       rx += (x - rx) * 0.18;
       ry += (y - ry) * 0.18;
-      r.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+      // Position through `translate`, not `transform`: the browser applies `scale` (the click pulse) before
+      // `transform`, so with a transform the pulse scaled the ring's distance from the viewport corner and
+      // pulled it ~100 px toward the top-left on every click. `translate` is applied after `scale`.
+      r.style.translate = `${rx}px ${ry}px`;
       raf = Math.abs(x - rx) + Math.abs(y - ry) > 0.2 ? requestAnimationFrame(tick) : 0;
     };
 
@@ -37,7 +40,7 @@ export function Cursor() {
       if (e.pointerType !== "mouse") return;
       x = e.clientX;
       y = e.clientY;
-      d.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      d.style.translate = `${x}px ${y}px`;
       if (!shown) {
         shown = true;
         rx = x;

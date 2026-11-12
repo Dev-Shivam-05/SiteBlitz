@@ -208,12 +208,12 @@ export default async function PostPage({
 
         <div className="mt-10">
           {p.faq.map((f) => (
-            <details key={f.q} className="group border-b border-line py-4">
+            <details key={f.q} name="faq" className="faq-item group border-b border-line py-4">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <span className="shrink-0 text-volt transition-transform duration-300 group-open:rotate-45">+</span>
               </summary>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{f.a}</p>
+              <p className="pt-2 text-sm leading-relaxed text-muted">{f.a}</p>
             </details>
           ))}
         </div>

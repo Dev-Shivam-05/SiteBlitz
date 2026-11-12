@@ -225,7 +225,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           </div>
           <div className="border-t border-ink/15">
             {s.faqs.map((f) => (
-              <details key={f.q} className="faq-item group border-b border-ink/15">
+              <details key={f.q} name="faq" className="faq-item group border-b border-ink/15">
                 <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold">
                   <h3 className="font-semibold">{f.q}</h3>
                   <span

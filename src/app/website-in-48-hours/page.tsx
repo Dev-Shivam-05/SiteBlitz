@@ -177,12 +177,12 @@ export default function WebsiteIn48HoursPage() {
           </h2>
           <div className="mt-6 divide-y divide-line border-y border-line">
             {PAGE_FAQS.map((f) => (
-              <details key={f.q} className="group py-5">
+              <details key={f.q} name="faq" className="faq-item group py-5">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-ink [&::-webkit-details-marker]:hidden">
                   {f.q}
                   <span className="shrink-0 text-volt transition-transform duration-300 group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">{f.a}</p>
+                <p className="max-w-2xl pt-3 text-sm leading-relaxed text-muted">{f.a}</p>
               </details>
             ))}
           </div>

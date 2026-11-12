@@ -22,7 +22,7 @@ export function FAQ() {
         </div>
         <div className="border-t border-ink/15">
           {FAQS.map((f) => (
-            <details key={f.q} className="faq-item group border-b border-ink/15">
+            <details key={f.q} name="faq" className="faq-item group border-b border-ink/15">
               <summary
                 data-track="faq_open"
                 className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold md:text-xl"

@@ -76,7 +76,7 @@ export default function FaqPage() {
                 </h2>
                 <div className="mt-8 border-t border-ink/15">
                   {g.items.map((f) => (
-                    <details key={f.q} className="faq-item group border-b border-ink/15">
+                    <details key={f.q} name={`faq-${g.id}`} className="faq-item group border-b border-ink/15">
                       <summary
                         data-track="faq_page_open"
                         className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-lg font-semibold md:text-xl"
